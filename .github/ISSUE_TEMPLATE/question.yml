@@ -1,0 +1,12 @@
+name: ❓ 질문하기
+description: 궁금한 점이나 애매한 상황이 있다면 이슈로 남겨주세요.
+labels: [question]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 어떤 점이 궁금한가요?
+      description: 상황과 함께 구체적으로 작성해주세요.
+      placeholder: 예: PR 제목은 어느 시점에 수정해야 하나요?
+    validations:
+      required: true

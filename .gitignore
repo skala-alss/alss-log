@@ -1,0 +1,30 @@
+# .gitignore
+.vscode/
+
+# Build / Exec
+main.exe
+*.exe
+*.out
+*.class
+*.o
+*.pyc
+__pycache__/
+
+# Input/Output
+input.txt
+output.txt
+*.log
+
+# Script
+build.sh
+run.sh
+
+# System / Temp
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Archive
+*.zip
+*.tar.gz
