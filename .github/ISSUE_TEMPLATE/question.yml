@@ -7,6 +7,6 @@ body:
     attributes:
       label: 어떤 점이 궁금한가요?
       description: 상황과 함께 구체적으로 작성해주세요.
-      placeholder: 예: PR 제목은 어느 시점에 수정해야 하나요?
+      placeholder: "예: PR 제목은 어느 시점에 수정해야 하나요?"
     validations:
       required: true

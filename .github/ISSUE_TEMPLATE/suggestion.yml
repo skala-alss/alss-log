@@ -7,6 +7,6 @@ body:
     attributes:
       label: 어떤 내용을 제안하시나요?
       description: 간단한 제안 배경과 이유를 함께 설명해주세요.
-      placeholder: 예: 문제 선정에 대해 투표제를 제안합니다.
+      placeholder: "예: 문제 선정에 대해 투표제를 제안합니다."
     validations:
       required: true
