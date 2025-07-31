@@ -1,2 +1,11 @@
 blank_issues_enabled: false
-contact_links: []
+issue_templates:
+  - name: ❓ 질문하기
+    description: 궁금한 점이나 애매한 상황이 있다면 이슈로 남겨주세요.
+    labels: [question]
+    template: question.yml
+
+  - name: 💡 건의사항 제출
+    description: 규칙, 일정, 운영 방식 등에 대한 제안이 있다면 남겨주세요.
+    labels: [suggestion]
+    template: suggestion.yml
