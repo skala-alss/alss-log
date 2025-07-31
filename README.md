@@ -1,4 +1,4 @@
-# 🧠 alss-log
+# <img width="101.2" height="25.85" alt="image" src="https://github.com/user-attachments/assets/e3f14879-c39e-4a9d-bf07-afc3baaaf47c" /> alss-log
 
 SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.  
 팀원들이 주차별로 문제를 풀이하고, 코드 리뷰를 통해 함께 성장하는 것을 목표로 합니다.
