@@ -12,6 +12,7 @@ main.exe
 __pycache__/
 
 # Input/Output
+input.txt
 output.txt
 *.log
 
