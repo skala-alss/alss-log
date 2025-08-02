@@ -31,8 +31,17 @@ fi
 pid="${BASH_REMATCH[1]}"
 
 # ─────────────────────────────────────── 2. BOJ HTML 가져오기
-url="https://www.acmicpc.net/problem/$pid"
-html=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" -e "https://www.acmicpc.net" "$url")
+user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+referer="https://www.acmicpc.net/"
+accept="text/html,application/xhtml+xml"
+accept_lang="en-US,en;q=0.9"
+
+html=$(curl -sL \
+  -A "$user_agent" \
+  -H "Referer: $referer" \
+  -H "Accept: $accept" \
+  -H "Accept-Language: $accept_lang" \
+  "https://www.acmicpc.net/problem/$pid")
 
 # ─────────────────────────────────────── 3. 제목 추출
 title=$(echo "$html" | perl -ne '
@@ -55,6 +64,7 @@ if [[ -z $title ]]; then
   ')
 fi
 
+[[ -z $title ]] && { echo "❗ 제목을 추출하지 못했습니다." >&2; exit 1; }
 echo "▶ 제목: $title"
 
 # ─────────────────────────────────────── 4. 예제 입력 파싱
