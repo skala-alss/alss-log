@@ -1,5 +1,6 @@
-# .gitignore
+# IDE settings
 .vscode/
+.idea/
 
 # Build / Exec
 main.exe
@@ -14,16 +15,8 @@ __pycache__/
 output.txt
 *.log
 
-# Script
-build.sh
-run.sh
-
 # System / Temp
 .DS_Store
 Thumbs.db
 *~
 *.swp
-
-# Archive
-*.zip
-*.tar.gz
