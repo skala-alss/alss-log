@@ -9,3 +9,8 @@ issue_templates:
     description: 규칙, 일정, 운영 방식 등에 대한 제안이 있다면 남겨주세요.
     labels: [suggestion]
     template: suggestion.yml
+
+  - name: 📢 공지 또는 완료 보고
+    description: 진행 상황을 알리거나 공유할 내용이 있다면 사용해주세요.
+    labels: [notice]
+    template: notice.yml

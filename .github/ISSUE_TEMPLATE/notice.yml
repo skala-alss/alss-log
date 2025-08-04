@@ -1,0 +1,24 @@
+name: 📢 공지 또는 완료 보고
+description: 스터디 진행 사항 공지나 완료된 작업을 공유할 때 사용해주세요.
+labels: [notice]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: 공지/보고 제목
+      description: 제목을 간단명료하게 작성해주세요.
+      placeholder: "예: Week02 완료 보고"
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: 주요 내용
+      description: 완료된 작업, 전달사항, 관련 링크 등을 정리해주세요.
+      placeholder: |
+        - 이번 주 해결한 문제: 1000, 1001
+        - 주요 결정사항: 브랜치 전략 통일
+        - 다음 일정: 8월 5일 회의
+    validations:
+      required: true
