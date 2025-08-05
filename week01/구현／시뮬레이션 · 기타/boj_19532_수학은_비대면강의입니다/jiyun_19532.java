@@ -1,6 +1,7 @@
+//package week01.구현／시뮬레이션 · 기타.boj_19532_수학은_비대면강의입니다;
 import java.util.*;
 
-public class Main{
+public class jiyun_19532 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
@@ -18,6 +19,5 @@ public class Main{
                 }
             }
         }
-
     }
 }
