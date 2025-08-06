@@ -4,15 +4,12 @@
 def main() -> None:
 
     import sys
-    from fractions import Fraction
-    import math
 
     sys.stdin = open("input.txt", "r")
 
-    N, M = map(Fraction, sys.stdin.readline().split())
+    N, M = map(int, sys.stdin.readline().split())
 
-    print(f"A: {float (N)} B: {float (M)}")
-    print(f"A + B = {N + M}")
+    print(N+M)
 
 if __name__ == "__main__":
     main()
