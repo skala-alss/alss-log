@@ -10,6 +10,7 @@ main.exe
 *.o
 *.pyc
 __pycache__/
+out/
 
 # Input/Output
 input.txt
