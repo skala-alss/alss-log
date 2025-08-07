@@ -126,7 +126,7 @@
 
 ## 📝 학습 자료
 
-- [📄 Week 02 학습 노트 (PDF)](../docs/study-note-week02.pdf)
+- [📄 Week 02 학습 노트 (PDF)](../../docs/study-note-week02.pdf)
 
 ---
 

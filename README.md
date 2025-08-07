@@ -81,8 +81,8 @@ alss-log/
 
 | 주차      | 학습자료                                   | 문제 링크                 |
 | ------- | -------------------------------------- | --------------------- |
-| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./week01) |
-| Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./week02) |
+| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./problems/week01) |
+| Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./problems/week02) |
 | Week 04 | (예정)                                   | -                     |
 
 ---

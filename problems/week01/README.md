@@ -123,7 +123,7 @@
 
 ## 📝 학습 자료
 
-- [📄 Week 01 학습 노트 (PDF)](../docs/study-note-week01.pdf)
+- [📄 Week 01 학습 노트 (PDF)](../../docs/study-note-week01.pdf)
 
 ---
 
