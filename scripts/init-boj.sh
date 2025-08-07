@@ -10,7 +10,7 @@ set -euo pipefail
 export LANG=C.UTF-8
 export LC_ALL=C.UTF-8
 
-USERNAME="keehoon"        # ← 여기에 본인 깃허브/닉네임 기입
+USERNAME="jinyeop"        # ← 여기에 본인 깃허브/닉네임 기입
 
 # ─────────────────────────────────────── 0. 인자 처리
 [[ $# -lt 1 ]] && { echo "사용법: $0 <cpp|py|java> [--run]"; exit 1; }
