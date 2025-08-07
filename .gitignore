@@ -26,3 +26,6 @@ run.sh
 Thumbs.db
 *~
 *.swp
+
+# Java Build Output
+out/
