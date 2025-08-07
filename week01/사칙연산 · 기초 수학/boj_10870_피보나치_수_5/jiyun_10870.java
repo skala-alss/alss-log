@@ -6,7 +6,12 @@ public class jiyun_10870 {
 
        int n = Integer.parseInt(br.readLine());
 
-       int[] arr = new int[n+1];
+        if (n == 0) {
+            System.out.println(0);
+            return;
+        }
+
+        int[] arr = new int[n+1];
        arr[0] = 0;
        arr[1] = 1;
 
