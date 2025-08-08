@@ -50,7 +50,7 @@ alss-log/
   예: `week01-keehoon`
 - PR 제목: `:page_facing_up: submit: week{주차번호}-{이름}`
   예: `:page_facing_up: submit: week01-keehoon`
-- 파일명: `이름.확장자` (예: `keehwon.py`, `keehwon_2.cpp`)
+- 파일명: `이름_문제번호.확장자` (예: `keehoon_5597.py`, `keehoon_5597_2.cpp`)
 
 📘 자세한 사용법은 👉 [Git 사용 가이드](./docs/GIT_GUIDE.md)
 
