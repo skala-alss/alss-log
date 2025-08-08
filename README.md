@@ -19,8 +19,8 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 alss-log/
 ├── week01/
 │   ├── boj_1000/
-│   │   ├── keehwon.cpp
-│   │   └── youngjae.py
+│   │   ├── keehwon_1000.cpp
+│   │   └── youngjae_1000.py
 │   ├── programmers_12900/
 │   └── README.md
 ├── docs/
