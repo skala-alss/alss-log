@@ -28,7 +28,7 @@ alss-log/
 │   ├── RULES.md
 │   └── GIT_GUIDE.md
 ├── scripts/
-│   ├── init-boj.sh
+│   ├── boj_init.py
 │   └── README.md
 └── .github/
     ├── PULL_REQUEST_TEMPLATE.md
@@ -87,14 +87,39 @@ alss-log/
 
 ---
 
+좋아요—핵심만 손봤습니다. 아래 **“🛠️ BOJ 문제 자동 세팅 도구”** 섹션만 최신 스크립트에 맞게 수정했어요.
+
+---
+
 ## 🛠️ BOJ 문제 자동 세팅 도구
 
-스터디에서는 BOJ 문제를 빠르게 세팅할 수 있는 Bash 스크립트 도구를 제공합니다.  
-해당 스크립트를 사용하면 문제 번호 기반으로 자동으로 템플릿 코드, input.txt 등을 생성할 수 있습니다.
+스터디에서는 BOJ 문제를 빠르게 세팅할 수 있는 **Python 스크립트 도구**를 제공합니다.
+문제 번호 기반으로 자동으로 **소스 템플릿 + 테스트 입출력 + 실행 러너**까지 만들어 줍니다.
 
-- 자동 생성 항목: `소스코드 스니펫`, `input.txt`, `build.sh(C++)`, `.vscode 설정(C++)`
-- 언어별 지원: `C++`, `Python`, `Java`
-- macOS / Windows 모두 사용 가능
+- 자동 생성 항목
+
+  - **소스코드 템플릿**(파일 상단에 **solved.ac 메타** 주석 자동 삽입)
+  - `tests/sample*.in|.out` (샘플 I/O), `input.txt`(편의용), **`run.sh`(언어 공통 러너)**
+  - (C++ 전용) `.vscode/c_cpp_properties.json`
+- 언어별 지원: **C++**, **Python**, **Java**
+
+  - Java 템플릿은 **`class Main`** 기준 (제출 시 `public class Main`로 변경)
+- 실행/채점 방법
+
+  - `run.sh` 실행 → **소스 1개 선택 → `tests/*.in` 전부 실행 → 동일 이름의 `.out`와 비교**
+  - **C++(Windows)**: `run.sh`가 자동으로 **MSYS2 UCRT64** 셸로 재실행하여 빌드/실행
+  - **Python**: UTF-8 강제(`-X utf8`)
+  - **Java**: `javac -encoding UTF-8 -d <tmp>` 후 `Main`으로 실행
+- 경로 옵션
+
+  - `--dest / --dest-base / BOJ_DEST_BASE` 지원, `--dest +<suffix>`로 기본 경로 뒤에 덧붙이기 가능
+- 파일명 규칙(충돌 방지)
+
+  - 일반: `이름_문제번호.확장자`
+  - 지정경로 모드: `<문제번호>.<제목_정제>.(cpp|py|java)`
+- 팀 저장소 정책
+
+  - 생성 보조물(`run.sh`, `tests/`, `input.txt`, `out/` 등)은 **커밋 대상에서 제외**하도록 `.gitignore` 구성
 
 📘 설치 및 사용법은 👉 [`scripts/README.md`](./scripts/README.md)
 
