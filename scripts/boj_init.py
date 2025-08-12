@@ -82,7 +82,7 @@ def parse_args() -> argparse.Namespace:
           python boj_init.py java --id 1006 --dest +week02 && ./run.sh "1006.문제제목.java"
         """),
     )
-    p.add_argument("lang", choices=["cpp","py","java","c++","cpp17","python"], help="언어")
+    p.add_argument("lang", choices=["cpp","py","java","c++","cpp14","python"], help="언어")
     p.add_argument("--id", type=int, help="문제 번호(미지정시 폴더명에서 추출)")
     p.add_argument("--username", default="keehoon", help="일반 모드 파일명(username_pid)의 username 부분")
     p.add_argument("--run", action="store_true", help="생성 후 즉시 run.sh로 채점 실행(해당 소스 자동 선택)")
@@ -107,7 +107,7 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 def normalize_lang(lang: str) -> str:
-    if lang in ["cpp","c++","cpp17"]: return "cpp"
+    if lang in ["cpp","c++","cpp14"]: return "cpp"
     if lang in ["py","python"]: return "py"
     return "java"
 
@@ -544,7 +544,7 @@ case "$ext" in
     [[ -x "$gpp" ]] || gpp="g++"
     exe="./main.exe"
     echo "⚙️  compile: $pick -> $exe"
-    "$gpp" "$pick" -std=c++17 -O2 -pipe -static -s -o "$exe"
+    "$gpp" "$pick" -std=c++14 -O2 -pipe -static -s -o "$exe"
     run_cmd() { ./main.exe; }
     ;;
   py)
