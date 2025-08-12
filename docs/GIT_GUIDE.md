@@ -27,8 +27,8 @@
 
 4. 자신의 커밋에 **소스 코드 파일만 추가**합니다.
 
-   * 파일명: `{이름}.{확장자}` (예: `keehoon.cpp`, `youngjae.py`)
-   * 여러 파일 제출 시: `이름_2.py`, `이름_3.java` 등으로 구분
+   * 파일명: `{이름}_{문제번호}.{확장자}` (예: `keehoon_1000.cpp`, `youngjae_2222.py`)
+   * 여러 파일 제출 시: `이름_문제번호_2.py`, `이름_문제번호_3.java` 등으로 구분
 
 5. 원격 브랜치에 푸시합니다.
 
@@ -87,9 +87,9 @@ PR을 생성하면 자동으로 템플릿이 적용됩니다.
 ```bash
 week01/
 ├── boj_1000/
-│   ├── keehoon.cpp
-│   ├── youngjae.py
-│   └── youngjae_2.py
+│   ├── keehoon_1000.cpp
+│   ├── youngjae_1000.py
+│   └── youngjae_1000_2.py
 └── README.md
 ```
 

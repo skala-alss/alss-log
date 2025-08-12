@@ -76,7 +76,7 @@ sample=$(echo "$html" | perl -0777 -ne '
 [[ -z $sample ]] && echo "⚠️  예제 입력 미발견 → 빈 input.txt 생성"
 
 # ─────────────────────────────────────── 5. 파일명 설정
-prefix="boj_${pid}_${USERNAME}"
+prefix="${USERNAME}_${pid}"
 case "$lang" in
   cpp)  src="${prefix}.cpp"  ;;
   py)   src="${prefix}.py"   ;;

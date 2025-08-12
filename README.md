@@ -19,8 +19,8 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 alss-log/
 ├── week01/
 │   ├── boj_1000/
-│   │   ├── keehwon.cpp
-│   │   └── youngjae.py
+│   │   ├── keehwon_1000.cpp
+│   │   └── youngjae_1000.py
 │   ├── programmers_12900/
 │   └── README.md
 ├── docs/
@@ -50,7 +50,7 @@ alss-log/
   예: `week01-keehoon`
 - PR 제목: `:page_facing_up: submit: week{주차번호}-{이름}`
   예: `:page_facing_up: submit: week01-keehoon`
-- 파일명: `이름.확장자` (예: `keehwon.py`, `keehwon_2.cpp`)
+- 파일명: `이름_문제번호.확장자` (예: `keehoon_5597.py`, `keehoon_5597_2.cpp`)
 
 📘 자세한 사용법은 👉 [Git 사용 가이드](./docs/GIT_GUIDE.md)
 
@@ -81,8 +81,9 @@ alss-log/
 
 | 주차      | 학습자료                                   | 문제 링크                 |
 | ------- | -------------------------------------- | --------------------- |
-| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./week01) |
-| Week 02 | (예정)                                   | -                     |
+| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./problems/week01) |
+| Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./problems/week02) |
+| Week 04 | (예정)                                   | -                     |
 
 ---
 

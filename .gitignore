@@ -10,6 +10,7 @@ main.exe
 *.o
 *.pyc
 __pycache__/
+out/
 
 # Input/Output
 input.txt
@@ -25,3 +26,6 @@ run.sh
 Thumbs.db
 *~
 *.swp
+
+# Java Build Output
+out/
