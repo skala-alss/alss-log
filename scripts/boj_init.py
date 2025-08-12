@@ -476,11 +476,26 @@ shopt -s nullglob
 # 0) 공통 유틸
 #   - unixify: CRLF→LF 정규화 + 마지막 줄 개행(LF) 보장
 #     (gawk의 RS/RT를 이용해 EOF 개행 유무를 정확히 처리)
+#   - normalize_ws: unixify 포함 + 각 행의 '행끝 공백' 제거
+#                   + 파일 끝의 연속된 빈 줄 제거 + 마지막 개행 보장
 # ─────────────────────────────────────────────────────────────
 unixify() {
   gawk 'BEGIN{RS="\r?\n"; ORS=""}
        { printf "%s", $0; if (RT!="") printf "\n" }
        END { if (NR>0 && RT=="") printf "\n" }'
+}
+normalize_ws() {
+  gawk 'BEGIN{RS="\r?\n"; ORS=""; n=0}
+       {
+         sub(/[ \t]+$/, "", $0);      # 행끝 공백 제거
+         n++; a[n]=$0
+       }
+       END {
+         # 파일 끝의 연속된 빈 줄 제거
+         while (n>0 && a[n]=="") n--;
+         for (i=1; i<=n; i++) printf "%s\n", a[i];
+         if (n==0) printf "\n";       # 비어있는 파일도 개행 1개 보장
+       }'
 }
 have() { command -v "$1" >/dev/null 2>&1; }
 
@@ -551,7 +566,6 @@ case "$ext" in
     run_cmd() { python -X utf8 "$pick"; }
     ;;
   java)
-    # 임시 빌드 디렉터리(지정 없으면 자동 삭제)
     JAVA_BUILD_DIR="${JAVA_BUILD_DIR:-}"
     if [[ -z "$JAVA_BUILD_DIR" ]]; then
       build_dir="$(mktemp -d)"
@@ -565,7 +579,6 @@ case "$ext" in
 
     echo "⚙️  javac -encoding UTF-8 -d \"$build_dir\" $pick"
     javac -encoding UTF-8 -d "$build_dir" "$pick"
-
     run_cmd() { java -Dfile.encoding=UTF-8 -cp "$build_dir" Main; }
     ;;
   *)
@@ -573,7 +586,9 @@ case "$ext" in
 esac
 
 # ─────────────────────────────────────────────────────────────
-# 5) 실행 & 검증 (CR/LF 정규화, diff 없으면 cmp fallback)
+# 5) 실행 & 검증
+#    - normalize_ws 로 행끝 공백/마지막 개행 차이 무시
+#    - diff 없으면 cmp fallback
 # ─────────────────────────────────────────────────────────────
 for in_file in "${inputs[@]}"; do
   tmp_out="$(mktemp)"
@@ -588,25 +603,25 @@ for in_file in "${inputs[@]}"; do
 
   if [[ -n "$exp" && -f "$exp" ]]; then
     if have diff; then
-      if diff -u <(unixify < "$exp") <(unixify < "$tmp_out") > /dev/null; then
+      if diff -u <(normalize_ws < "$exp") <(normalize_ws < "$tmp_out") > /dev/null; then
         echo "✅ PASS"
       else
         echo "❌ FAIL"
-        diff -u <(unixify < "$exp") <(unixify < "$tmp_out") || true
+        diff -u <(normalize_ws < "$exp") <(normalize_ws < "$tmp_out") || true
       fi
     else
-      exp_u="$(mktemp)"; tmp_u="$(mktemp)"
-      unixify < "$exp" > "$exp_u"
-      unixify < "$tmp_out" > "$tmp_u"
-      if cmp -s "$exp_u" "$tmp_u"; then
+      exp_n="$(mktemp)"; tmp_n="$(mktemp)"
+      normalize_ws < "$exp" > "$exp_n"
+      normalize_ws < "$tmp_out" > "$tmp_n"
+      if cmp -s "$exp_n" "$tmp_n"; then
         echo "✅ PASS (cmp)"
       else
         echo "❌ FAIL (cmp) — 시스템에 diff가 없어 상세 비교는 생략"
-        echo "---- expected (head) ----"; head -n 40 "$exp_u" || true
-        echo "---- actual   (head) ----"; head -n 40 "$tmp_u" || true
+        echo "---- expected (head) ----"; head -n 40 "$exp_n" || true
+        echo "---- actual   (head) ----"; head -n 40 "$tmp_n" || true
         echo "-------------------------"
       fi
-      rm -f "$exp_u" "$tmp_u"
+      rm -f "$exp_n" "$tmp_n"
     fi
   else
     echo "ℹ️  비교용 정답 파일 없음"
