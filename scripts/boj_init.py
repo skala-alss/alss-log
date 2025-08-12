@@ -41,6 +41,28 @@ HEADERS = {
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Console Encoding Setup (Force UTF-8 Output)
+#   - Git Bash, Windows Console 등 환경별 인코딩 차이로 인한 모지바케 방지
+#   - stdout/stderr를 UTF-8로 재설정 (Python 3.7+)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _supports_utf8() -> bool:
+    enc = (sys.stdout.encoding or '') + (sys.stderr.encoding or '')
+    return 'UTF' in enc.upper()
+
+try:
+    # Python 3.7+ : 표준 출력 인코딩을 강제로 UTF-8로
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+except Exception:
+    # 못 바꾸는 환경 대비
+    os.environ.setdefault('PYTHONIOENCODING', 'utf-8')
+
+OK = "✅" if _supports_utf8() else "[OK]"
+WARN = "⚠️" if _supports_utf8() else "[WARN]"
+SKIP = "⏭" if _supports_utf8() else "[SKIP]"
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Args & Lang normalize
 # ─────────────────────────────────────────────────────────────────────────────
 def parse_args() -> argparse.Namespace:
