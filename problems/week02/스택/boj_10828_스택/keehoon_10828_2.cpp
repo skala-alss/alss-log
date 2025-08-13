@@ -16,8 +16,7 @@
 #include <unistd.h>
 #include <cstdio>
 #endif
-#include <deque>
-#include <sstream>
+#include <stack>
 
 using namespace std;
 
@@ -39,49 +38,41 @@ int main()
   }
 #endif
 
-  int N;
+  int N, number;
+  string query;
+  stack<int> st;
 
   cin >> N;
-  cin.ignore();
-
-  deque<int> st;
-  string line;
 
   for (int i = 1; i <= N; ++i)
   {
-    getline(cin, line);
-    stringstream query(line);
-    string order;
+    cin >> query;
 
-    query >> order;
-
-    if (order == "push")
+    if (query == "push")
     {
-      int number;
-      query >> number;
-      st.push_back(number);
+      cin >> number;
+      st.push(number);
     }
 
-    else if (order == "pop")
+    else if (query == "pop")
     {
       if (st.size())
       {
-        cout << st.back() << '\n';
-        st.pop_back();
+        cout << st.top() << '\n';
+        st.pop();
       }
       else
         cout << -1 << '\n';
     }
 
-    else if (order == "size")
+    else if (query == "size")
       cout << st.size() << '\n';
 
-    else if (order == "empty")
-      cout << (st.size() ? 0 : 1) << '\n';
+    else if (query == "empty")
+      cout << (st.empty() ? 1 : 0) << '\n';
 
-    else if (order == "top")
-      cout << (st.size() ? st.back() : -1) << '\n';
+    else if (query == "top")
+      cout << (st.size() ? st.top() : -1) << '\n';
   }
-
   return 0;
 }
