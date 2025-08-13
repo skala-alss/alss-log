@@ -222,57 +222,119 @@ def extract_text(el) -> str:
 def parse_problem(html: str) -> dict:
     soup = BeautifulSoup(html, "lxml")
 
+    # ── 제목 ────────────────────────────────────────────────────────────────
     title = ""
     title_span = soup.select_one("#problem_title")
-    if title_span: title = extract_text(title_span)
+    if title_span:
+        title = title_span.get_text(strip=True)
     if not title:
         t = soup.select_one("head > title")
         if t:
-            raw = extract_text(t)
+            raw = t.get_text(strip=True)
             title = re.sub(r"^\s*\d+\s*[:\-]\s*", "", raw)
             title = re.sub(r"\s*-\s*.*$", "", title).strip()
 
-    time_limit = None
-    memory_limit = None
-    info_table = soup.select_one(".problem-info, .table-responsive table")
-    if info_table:
-        text_blob = extract_text(info_table)
-        m = re.search(r"시간\s*제한\s*([^\n]+)", text_blob) or re.search(r"Time\s*Limit\s*:?[\s]*([^\n]+)", text_blob, re.I)
-        if m: time_limit = m.group(1).strip()
-        m = re.search(r"메모리\s*제한\s*([^\n]+)", text_blob) or re.search(r"Memory\s*Limit\s*:?[\s]*([^\n]+)", text_blob, re.I)
-        if m: memory_limit = m.group(1).strip()
+    # ── 시간/메모리 제한 ────────────────────────────────────────────────────
+    def _norm(s: str) -> str:
+        # NBSP 제거 + 공백 정규화
+        return " ".join((s or "").replace("\xa0", " ").split())
 
+    time_limit: Optional[str] = None
+    memory_limit: Optional[str] = None
+
+    table = soup.select_one("table#problem-info") or soup.find("table", id="problem-info")
+    if table:
+        # 헤더 행과 값 행을 분리해서 같은 인덱스로 매핑
+        thead = table.find("thead")
+        tbody = table.find("tbody")
+
+        header_row = (thead.find("tr") if thead else None) or table.find("tr")
+        value_row  = (tbody.find("tr") if tbody else None) or (header_row.find_next("tr") if header_row else None)
+
+        headers = []
+        values  = []
+        if header_row:
+            headers = [_norm(td.get_text(" ", strip=True)) for td in header_row.find_all(["th", "td"], recursive=False)]
+        if value_row:
+            values  = [_norm(td.get_text(" ", strip=True)) for td in value_row.find_all(["td", "th"], recursive=False)]
+
+        pairs: Dict[str, str] = {}
+        for i in range(min(len(headers), len(values))):
+            k, v = headers[i], values[i]
+            if k and v:
+                pairs[k] = v
+
+        # 한국어/영어 라벨 모두 대응
+        time_limit   = pairs.get("시간 제한")   or pairs.get("Time Limit")
+        memory_limit = pairs.get("메모리 제한") or pairs.get("Memory Limit")
+
+    # 백업: 테이블 텍스트 블롭에서 라벨 다음 토큰만 비탐욕 캡처(다음 라벨로 lookahead)
+    def _blob(el):
+        return (el.get_text("\n") if el else soup.get_text("\n")).replace("\xa0", " ")
+
+    if not time_limit:
+        blob = _blob(table)
+        m = (re.search(r"시간\s*제한\s*(.*?)\s*(?=\n|메모리\s*제한)", blob, re.S) or
+             re.search(r"Time\s*Limit\s*:?\s*(.*?)\s*(?=\n|Memory\s*Limit)", blob, re.I | re.S))
+        if m:
+            time_limit = _norm(m.group(1))
+
+    if not memory_limit:
+        blob = _blob(table)
+        m = (re.search(r"메모리\s*제한\s*(.*?)\s*(?=\n|제출|정답|맞힌\s*사람|정답\s*비율)", blob, re.S) or
+             re.search(r"Memory\s*Limit\s*:?\s*(.*?)\s*(?=\n|Submissions|Accepted|Solved|Accuracy)", blob, re.I | re.S))
+        if m:
+            memory_limit = _norm(m.group(1))
+
+    # ── 샘플 입출력 ────────────────────────────────────────────────────────
     samples: List[Tuple[str, str]] = []
-    input_pres = soup.select('pre[id^="sample-input"]')
+    input_pres  = soup.select('pre[id^="sample-input"]')
     output_pres = soup.select('pre[id^="sample-output"]')
 
     def sort_key(pre):
-        m = re.search(r"(\d+)$", pre.get("id",""))
+        m = re.search(r"(\d+)$", pre.get("id", ""))
         return int(m.group(1)) if m else 0
 
-    input_pres.sort(key=sort_key); output_pres.sort(key=sort_key)
+    input_pres.sort(key=sort_key)
+    output_pres.sort(key=sort_key)
+
+    def clean_sample_text(s: str) -> str:
+        if s is None:
+            return ""
+        s = ihtml.unescape(s).replace("\r\n", "\n").replace("\r", "\n")
+        s = re.sub(r"\n{3,}", "\n\n", s)
+        s = re.sub(r"[ \t]+$", "", s, flags=re.M).strip("\n") + "\n"
+        return s
 
     if input_pres and output_pres and len(input_pres) == len(output_pres):
         for ip, op in zip(input_pres, output_pres):
-            iin  = clean_sample_text(extract_text(ip))
-            oout = clean_sample_text(extract_text(op))
-            samples.append((iin, oout))
+            samples.append((clean_sample_text(ip.get_text()), clean_sample_text(op.get_text())))
     else:
+        # 제목 기반 fallback (예제 입력/출력 헤딩 다음의 <pre> 수집)
         def collect_by_heading(patterns: List[str]) -> List[str]:
-            texts = []
+            texts: List[str] = []
             for h in soup.select("h3, h4, h5"):
                 label = extract_text(h)
                 if any(pat.lower() in label.lower() for pat in patterns):
                     nxt_pre = h.find_next("pre")
-                    if nxt_pre: texts.append(extract_text(nxt_pre))
+                    if nxt_pre:
+                        texts.append(nxt_pre.get_text())
             return texts
-        ins = collect_by_heading(["예제 입력", "Sample Input"])
+
+        ins  = collect_by_heading(["예제 입력", "Sample Input"])
         outs = collect_by_heading(["예제 출력", "Sample Output"])
         for i in range(max(len(ins), len(outs))):
-            samples.append((clean_sample_text(ins[i] if i < len(ins) else ""),
-                            clean_sample_text(outs[i] if i < len(outs) else "")))
+            samples.append((
+                clean_sample_text(ins[i] if i < len(ins) else ""),
+                clean_sample_text(outs[i] if i < len(outs) else ""),
+            ))
 
-    return {"title": title, "time_limit": time_limit, "memory_limit": memory_limit, "samples": samples}
+    return {
+        "title": title,
+        "time_limit": time_limit,
+        "memory_limit": memory_limit,
+        "samples": samples,
+    }
 
 # ─────────────────────────────────────────────────────────────────────────────
 # solved.ac helpers
