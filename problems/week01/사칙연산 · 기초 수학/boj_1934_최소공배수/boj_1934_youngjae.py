@@ -17,7 +17,7 @@ def main() -> None:
     for _ in range(N):
         a, b = map(int, sys.stdin.readline().split())
         lcm = a*b//gcd(a,b)
-        print(lcm)
+        print(lcm)1
         
         
     
