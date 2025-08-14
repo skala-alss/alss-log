@@ -580,21 +580,19 @@ fi
 # ─────────────────────────────────────────────────────────────
 # 2) C++이면 UCRT64로 재실행(bounce)
 #    (이미 UCRT64면 그대로 진행)
+#    - 임시파일 대신 환경변수로 인자 전달 → /tmp 불일치 이슈 제거
 # ─────────────────────────────────────────────────────────────
 ext="${pick##*.}"
 MSYS_NOW="${MSYSTEM:-}"
 if [[ "$ext" == "cpp" && "$MSYS_NOW" != "UCRT64" ]]; then
-  PICK_FILE="$(mktemp -t run_pick.XXXXXX)"
-  printf '%s' "$pick" > "$PICK_FILE"
-  trap 'rm -f "$PICK_FILE"' EXIT
-
   UCRT_BASH="/c/msys64/usr/bin/bash.exe"
   UCRT_ENV="/c/msys64/usr/bin/env.exe"
 
   if [[ -x "$UCRT_BASH" && -x "$UCRT_ENV" ]]; then
     echo "↪ UCRT64로 재실행(bash.exe -lc)"
-    exec "$UCRT_ENV" MSYSTEM=UCRT64 CHERE_INVOKING=1 \
-         "$UCRT_BASH" -lc "cd \"$PWD\"; p=\$(cat \"$PICK_FILE\"); rm -f \"$PICK_FILE\"; bash ./run.sh \"\$p\""
+    # PICK_ARG 환경변수로 안전하게 전달 (경로/공백/한글 대비)
+    exec "$UCRT_ENV" MSYSTEM=UCRT64 CHERE_INVOKING=1 PICK_ARG="$pick" \
+         "$UCRT_BASH" -lc "cd \"$PWD\"; bash ./run.sh \"\$PICK_ARG\""
   else
     echo "❗ UCRT bash를 찾을 수 없습니다: $UCRT_BASH (또는 env.exe)"
     exit 1
