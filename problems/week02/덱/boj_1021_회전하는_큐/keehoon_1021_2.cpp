@@ -46,24 +46,33 @@ int main()
   for (int i = 1; i <= N; ++i)
     dq.push_back(i);
 
-  int pos;
   int result = 0;
   while (M--)
   {
-    cin >> pos;
-    int idx = 0;
-    for (int i = 0; i < dq.size(); ++i)
-      if (dq[i] == pos)
+    int target;
+    cin >> target;
+
+    int idx = find(dq.begin(), dq.end(), target) - dq.begin();
+    int n = (int)dq.size();
+    int r = n - idx;
+
+    if (idx <= n / 2)
+      while (idx--)
       {
-        idx = i;
-        break;
+        dq.push_back(dq.front());
+        dq.pop_front();
+        ++result;
       }
 
-    rotate(dq.begin(), dq.begin() + idx, dq.end());
-    result += min(idx, (int)dq.size() - idx);
+    else
+      while (r--)
+      {
+        dq.push_front(dq.back());
+        dq.pop_back();
+        ++result;
+      }
     dq.pop_front();
   }
-
   cout << result;
   return 0;
 }
