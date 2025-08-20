@@ -84,7 +84,8 @@ alss-log/
 | ------- | -------------------------------------- | --------------------- |
 | Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./problems/week01) |
 | Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./problems/week02) |
-| Week 04 | (예정)                                   | -                     |
+| Week 04 | [📄 PDF](./docs/study-note-week04.pdf) | [📂 week04](./problems/week04) |
+| Week 05 | (예정)                                   | -                     |
 
 ---
 
