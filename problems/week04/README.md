@@ -17,7 +17,7 @@
 
 > **비고**: `솔브드 티어`는 solved.ac 기준
 
-| 솔브드 티어                                                                             |    번호 | 제목           | 링크                                          | 폴더                                                      | #1 | #2 | #3 | #4 | #5 | #6 |
+| 솔브드 티어 | 번호 | 제목 | 링크 | 폴더 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 |:---:|---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/>   | 27433 | 팩토리얼 2       | [🔗](https://www.acmicpc.net/problem/27433) | [📁](./브루트포스&재귀&백트래킹-초급/boj_27433_팩토리얼_2)     |    |    |    |    |    |    |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/>   | 27434 | 팩토리얼 3       | [🔗](https://www.acmicpc.net/problem/27434) | [📁](./브루트포스&재귀&백트래킹-초급/boj_27434_팩토리얼_3)     |    |    |    |    |    |    |
@@ -44,7 +44,7 @@
 
 ## 🧠 브루트포스 & 재귀 & 백트래킹 — 고급(골드 이상)
 
-| 솔브드 티어                                                                            |    번호 | 제목             | 링크                                          | 폴더                                                        | #1 | #2 | #3 | #4 | #5 | #6 |
+| 솔브드 티어 | 번호 | 제목 | 링크 | 폴더 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 |:---:|---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/>   | 12347 | 한수 2           | [🔗](https://www.acmicpc.net/problem/12347) | [📁](./브루트포스&재귀&백트래킹-고급/boj_12347_한수_2)         |    |    |    |    |    |    |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/>  |  9663 | N-Queen        | [🔗](https://www.acmicpc.net/problem/9663)  | [📁](./브루트포스&재귀&백트래킹-고급/boj_9663_N_Queen)       |    |    |    |    |    |    |
@@ -64,7 +64,7 @@
 
 ## 🪚 분할 정복 (Divide & Conquer)
 
-| 솔브드 티어                                                                             |    번호 | 제목        | 링크                                          | 폴더                              | #1 | #2 | #3 | #4 | #5 | #6 |
+| 솔브드 티어 | 번호 | 제목 | 링크 | 폴더 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 |:---:|---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> |  4779 | 칸토어 집합    | [🔗](https://www.acmicpc.net/problem/4779)  | [📁](./분할정복/boj_4779_칸토어_집합)    |    |    |    |    |    |    |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/>  |  1780 | 종이의 개수    | [🔗](https://www.acmicpc.net/problem/1780)  | [📁](./분할정복/boj_1780_종이의_개수)    |    |    |    |    |    |    |
