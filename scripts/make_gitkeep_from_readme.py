@@ -5,73 +5,170 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import unicodedata
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote
 
-# ✅ 더 관대한 패턴들
-MD_LINK_RE   = re.compile(r"\[([^\]]+)\]\s*\(([^)]+)\)")
+# ─────────────────────────────────────────────────────────────────────────────
+# 링크 패턴
+#  - Markdown: 중첩 괄호 1단계 + 이스케이프 + (<...>) 형식 지원
+# ─────────────────────────────────────────────────────────────────────────────
+MD_LINK_RE = re.compile(
+    r"""
+    \[([^\]]+)\]          # [링크텍스트]
+    \s*
+    \(
+      \s*
+      (                   # ← URL 캡처
+        (?:
+            <[^>]*>                 # <...> 로 감싼 URL
+          | (?:[^()\\]|\\.)+        # 일반 문자 또는 이스케이프된 문자
+          | \([^()]*\)              # 한 단계 중첩 괄호 허용
+        )+
+      )
+      \s*
+    \)
+    """,
+    re.VERBOSE,
+)
 HTML_LINK_RE = re.compile(r'<a\s+[^>]*href="([^"]+)"[^>]*>(.*?)</a>', re.IGNORECASE | re.DOTALL)
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 금지문자/예약어/유령문자 처리 (BOJ 크롤러 정책 반영: 전각 치환)
+# ─────────────────────────────────────────────────────────────────────────────
+_FORBID_MAP = {"/":"／","\\":"＼","?":"？",":":"：","*":"＊","\"":"＂","<":"＜",">":"＞","|":"｜"}
+_RESERVED_WIN = re.compile(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$", re.IGNORECASE)
+_ZWS_RE = re.compile(r"[\u200B\u200C\u200D\uFEFF]")  # ZWSP/ZWJ/ZWNJ/BOM
+
+# (로그용) 기존 검사 집합
 WIN_INVALID_CHARS = set('<>:"/\\|?*')
-WIN_RESERVED = {
+WIN_RESERVED_SET = {
     "CON", "PRN", "AUX", "NUL",
     *{f"COM{i}" for i in range(1, 10)},
     *{f"LPT{i}" for i in range(1, 10)},
 }
 
+# ─────────────────────────────────────────────────────────────────────────────
+# CLI
+# ─────────────────────────────────────────────────────────────────────────────
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="README의 [📁](상대경로) 또는 <a href>📁 링크를 파싱해 폴더/.gitkeep 생성")
     default_readme = Path(__file__).resolve().parent.parent / "week04" / "README.md"
     p.add_argument("--readme", type=Path, default=default_readme, help=f"파싱할 README 경로 (기본: {default_readme})")
     p.add_argument("--dry-run", action="store_true", help="생성하지 않고 점검만")
-    p.add_argument("--verbose", "-v", action="count", default=0, help="매칭/필터 로그 출력")
+    p.add_argument("--verbose", "-v", action="count", default=0, help="매칭/필터/치환 로그 출력")
     return p.parse_args()
 
-def extract_links(md: str, verbose: int = 0) -> list[str]:
-    links = []
+# ─────────────────────────────────────────────────────────────────────────────
+# 문자열 정규화 유틸
+# ─────────────────────────────────────────────────────────────────────────────
+def _strip_invisibles(s: str) -> str:
+    # NBSP→space, ZWSP/ZWJ/ZWNJ/BOM 제거, NFC 정규화
+    s = _ZWS_RE.sub("", (s or "").replace("\xa0", " "))
+    try:
+        s = unicodedata.normalize("NFC", s)
+    except Exception:
+        pass
+    return s
 
-    # 1) Markdown 링크: [텍스트](URL) 중 텍스트에 📁 포함
+def sanitize_component_keep_spaces(part: str) -> str:
+    """
+    폴더/파일 컴포넌트용 안전화:
+      - 제어문자 제거
+      - 금지문자 전각 치환 (BOJ 크롤러와 동일 맵)
+      - 후행 공백/점 제거 + 선행 점 제거
+      - 확장자 제외 본체가 예약어면 '_' 접두
+      - 공백은 유지(README 상대경로와 동기화 목적)
+    """
+    s = _strip_invisibles(part or "")
+    # 제어문자 제거
+    s = "".join(ch for ch in s if ord(ch) >= 32)
+    # 전각 치환
+    for k, v in _FORBID_MAP.items():
+        s = s.replace(k, v)
+    # 끝 공백/점 제거 + 선행 점 제거
+    s = s.rstrip(" .")
+    s = re.sub(r"^\.+", "", s)
+    # 예약어 보호 (확장자 제외 본체 기준)
+    stem = (s.split(".", 1)[0]).upper()
+    if _RESERVED_WIN.match(stem):
+        s = "_" + s
+    return s or "_"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 링크 추출/정규화
+# ─────────────────────────────────────────────────────────────────────────────
+def extract_links(md: str, verbose: int = 0) -> list[str]:
+    links: list[str] = []
+
+    # 1) Markdown: [텍스트](URL) – 텍스트에 📁 포함
     for text, url in MD_LINK_RE.findall(md):
         if "📁" in text:
-            links.append(url.strip())
+            url = url.strip()
+            # (<...>)로 감싼 URL이면 벗겨냄
+            if url.startswith("<") and url.endswith(">"):
+                url = url[1:-1].strip()
+            links.append(url)
 
     # 2) HTML 앵커: <a href="URL"> ... 📁 ... </a>
     for url, inner in HTML_LINK_RE.findall(md):
         if "📁" in inner:
             links.append(url.strip())
 
-    # URL 디코드 + 상대경로만
-    links = [unquote(l) for l in links if not ("://" in l or l.startswith(("http:", "https:")))]
+    # URL 디코드 + 외부URL 제외 + 보이지 않는 문자 제거 + 트레일링 슬래시 제거
+    links = [
+        _strip_invisibles(unquote(l)).rstrip("/")
+        for l in links
+        if not ("://" in l or l.startswith(("http:", "https:")))
+    ]
 
-    # 중복 제거
-    uniq = []
-    seen = set()
+    # 중복 제거(정규화된 문자열 기준)
+    uniq, seen = [], set()
     for l in links:
         if l not in seen:
-            uniq.append(l)
-            seen.add(l)
+            uniq.append(l); seen.add(l)
 
     if verbose:
         print(f"[debug] raw-matches={len(links)} (uniq={len(uniq)})")
-        for i, l in enumerate(uniq[:10], 1):
+        for i, l in enumerate(uniq[:20], 1):
             print(f"  {i:02d}. {l}")
     return uniq
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 안전 경로 빌드 & base 탈출 방지
+# ─────────────────────────────────────────────────────────────────────────────
+def build_safe_path(base: Path, posix_parts: tuple[str, ...]) -> Path:
+    """
+    PurePosixPath(parts) → 각 part를 sanitize하여 OS 경로로 재조립.
+    '.'은 무시, '..'은 우선 포함하되 최종 relative_to(base) 검증에서 필터.
+    """
+    p = base
+    for part in posix_parts:
+        if part in ("", "."):
+            continue
+        if part == "..":
+            p = p / part
+            continue
+        p = p / sanitize_component_keep_spaces(part)
+    return p
+
 def to_abs_paths(readme_path: Path, rel_links: list[str]) -> list[Path]:
-    base = readme_path.parent.resolve()  # ✅ 절대경로로 고정
-    print(f"[debug] base={base}")  # 절대경로인지 확인
-    out = []
+    base = readme_path.parent.resolve()
+    out: list[Path] = []
     for link in rel_links:
-        posix = PurePosixPath(link)
-        abs_p = (base / Path(*posix.parts)).resolve()
+        posix = PurePosixPath(link)  # 입력은 POSIX 기준으로 해석
+        abs_p = build_safe_path(base, posix.parts).resolve()
         try:
-            abs_p.relative_to(base)
+            abs_p.relative_to(base)  # base 밖으로 나가면 ValueError
         except ValueError:
-            # base 밖으로 나가는 상대경로는 제외
             continue
         out.append(abs_p)
+    # 중복 제거 + 정렬
     return sorted(set(out))
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 검사 로직(로그용) — 생성 중단하지 않음
+# ─────────────────────────────────────────────────────────────────────────────
 def check_windows_name_issues(base: Path, targets: list[Path]):
     base = base.resolve()
     problems = []
@@ -79,25 +176,20 @@ def check_windows_name_issues(base: Path, targets: list[Path]):
         try:
             rel_parts = p.resolve().relative_to(base).parts
         except ValueError:
-            # 이 경우는 base 밖인데, 어차피 to_abs_paths에서 거른 상태라 거의 없음
             rel_parts = p.resolve().parts
 
         for part in rel_parts:
             if not part:
                 continue
-
-            # ✅ Windows 드라이브/앵커는 건너뜀 (예: 'C:\' 또는 'D:')
-            #  - Path.parts에선 'C:\\' 꼴이 나올 수 있음
+            # 드라이브 앵커 패스
             if re.fullmatch(r"[A-Za-z]:\\?", part):
                 continue
-
             if part.endswith(" ") or part.endswith("."):
                 problems.append((p, f"끝 공백/점 포함: '{part}'"))
                 break
 
-            # ✅ 예약어(CON.txt 등)도 막기: 확장자를 떼고 비교
-            name_no_ext = part.split(".")[0].upper()
-            if name_no_ext in WIN_RESERVED:
+            name_no_ext = part.split(".", 1)[0].upper()
+            if name_no_ext in WIN_RESERVED_SET:
                 problems.append((p, f"예약어 이름: '{part}'"))
                 break
 
@@ -107,6 +199,28 @@ def check_windows_name_issues(base: Path, targets: list[Path]):
                 break
     return problems
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 매핑 미리보기
+# ─────────────────────────────────────────────────────────────────────────────
+def preview_mapping(base: Path, rel_links: list[str]):
+    for link in rel_links:
+        posix = PurePosixPath(link)
+        raw = (base / Path(*posix.parts))
+        sanitized = build_safe_path(base, posix.parts)
+        try:
+            raw_rel = raw.resolve().relative_to(base)
+        except Exception:
+            raw_rel = raw
+        try:
+            san_rel = sanitized.resolve().relative_to(base)
+        except Exception:
+            san_rel = sanitized
+        if str(raw_rel) != str(san_rel):
+            print(f"  map: {link}  →  {san_rel}")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 메인
+# ─────────────────────────────────────────────────────────────────────────────
 def main():
     args = parse_args()
     readme = args.readme
@@ -121,16 +235,20 @@ def main():
         print("⚠️ README에서 폴더 링크(📁)를 찾지 못했습니다. (-v로 원문 매칭 로그 확인)")
         sys.exit(0)
 
+    base = readme.parent.resolve()
+    if args.verbose:
+        print(f"[debug] base={base}")
+        print("🧪 경로 치환 미리보기:")
+        preview_mapping(base, rel_links)
+
     targets = to_abs_paths(readme, rel_links)
 
-    # ✅ base를 반드시 resolve해서 사용
-    base = readme.parent.resolve()
+    # 검사: 경고만 출력하고 계속 진행 (치환 규칙이 이미 반영됨)
     name_issues = check_windows_name_issues(base, targets)
     if name_issues:
-        print("⚠️ Windows 금지 이름/문자 감지. 생성 작업을 중단합니다.\n")
+        print("⚠️ Windows 금지 이름/문자 패턴 감지 — 치환 규칙으로 생성 계속 진행합니다.\n")
         for p, why in name_issues:
             print(f" - {p}  ← {why}")
-        sys.exit(1)
 
     if args.dry_run or args.verbose:
         print("📝 생성 대상 폴더 목록:")
