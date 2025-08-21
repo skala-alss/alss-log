@@ -33,8 +33,7 @@ def main() -> None:
     #     n = n//10
     # # print(n)
     # print(st)
-    
-
+ 
 if __name__ == "__main__":
     main()
 
