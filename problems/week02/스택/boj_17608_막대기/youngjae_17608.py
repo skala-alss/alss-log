@@ -11,10 +11,11 @@ def main() -> None:
     sys.stdin = open("input.txt", "r")
     
     data = sys.stdin.read().strip()
+    # print(data)
 
     # 빈 줄 기준으로 블록 나누기
     blocks = data.split("\n\n")
-    # print(blocks)
+    print(blocks)
     # blocks2 = data.split("\n")
     # print(blocks2)
     
