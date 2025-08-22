@@ -2,30 +2,37 @@
 .vscode/
 .idea/
 
-# Build / Exec
+# Build / Exec (generated artifacts)
+main
 main.exe
 *.exe
+a.out
 *.out
 *.class
 *.o
-*.pyc
+*.obj
+*.dll
+*.so
+*.dylib
 __pycache__/
+*.pyc
 out/
+.javac-cache/
 
-# Input/Output
+# Problem workspace artifacts (avoid merge conflicts)
+tests/
 input.txt
 output.txt
-*.log
-
-# Script
-build.sh
 run.sh
+build.sh
+
+# Logs
+*.log
 
 # System / Temp
 .DS_Store
 Thumbs.db
 *~
 *.swp
-
-# Java Build Output
-out/
+*.tmp
+*.pick
