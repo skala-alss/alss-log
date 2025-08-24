@@ -5,6 +5,33 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 
 ---
 
+## 🗂️ 학습 자료
+
+| 주차      | 학습자료                                   | 문제 링크                 |
+| ------- | -------------------------------------- | --------------------- |
+| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./problems/week01) |
+| Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./problems/week02) |
+| Week 04 | [📄 PDF](./docs/study-note-week04.pdf) | [📂 week04](./problems/week04) |
+| Week 05 | (예정)                                   | -                     |
+
+---
+
+<!--START:DASHBOARD_WEEKS-->
+
+<!--END:DASHBOARD_WEEKS-->
+
+<!--START:DASHBOARD_LEADERBOARD-->
+
+<!--END:DASHBOARD_LEADERBOARD-->
+
+<!--START:DASHBOARD_TREND-->
+
+<!--END:DASHBOARD_TREND-->
+
+<sub>※ 향후 JS/CSS로 동적 SVG/미니 차트를 제공할 예정입니다.</sub>
+
+---
+
 ## 🚩 스터디 목적
 
 - 알고리즘 실력 향상 및 문제 해결 능력 강화
@@ -75,17 +102,6 @@ alss-log/
 - 💡 **건의사항 제출**: 규칙, 일정, 운영 방식 등에 대한 제안이 있다면 남겨주세요.
 
 > 👉 이슈 생성 시 템플릿이 자동 적용됩니다.
-
----
-
-## 🗂️ 학습 자료
-
-| 주차      | 학습자료                                   | 문제 링크                 |
-| ------- | -------------------------------------- | --------------------- |
-| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./problems/week01) |
-| Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./problems/week02) |
-| Week 04 | [📄 PDF](./docs/study-note-week04.pdf) | [📂 week04](./problems/week04) |
-| Week 05 | (예정)                                   | -                     |
 
 ---
 
