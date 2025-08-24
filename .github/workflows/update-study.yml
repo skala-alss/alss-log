@@ -17,11 +17,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout with BOT PAT
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false   # GITHUB_TOKEN 대신 PAT을 쓸 것이므로 false
+          token: ${{ secrets.BOT_PAT }}   # ✅ PAT로 클론 & push 인증 일원화
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,15 +36,14 @@ jobs:
       - name: Build dashboards
         run: python scripts/build_dashboard.py
 
-      - name: Commit & Push if changed (via PAT)
+      - name: Commit & Push if changed (auto)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🔄 docs: auto-update week tables & root dashboard"
+          commit_message: "📝 docs: auto-update week tables & root dashboard"
           branch: main
           file_pattern: |
             README.md
             problems/**/README.md
           commit_user_name: skala-bot
           commit_user_email: skalabot16@gmail.com
-          push_options: |
-            https://x-access-token:${{ secrets.BOT_PAT }}@github.com/skala-alss/alss-log.git
+          commit_author: "skala-bot <skalabot16@gmail.com>"  # Author도 봇으로 고정
