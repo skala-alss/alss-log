@@ -1,0 +1,54 @@
+weeks:
+  - id: 4
+    path: "problems/week04/README.md"
+    released_at: "2025-08-21T00:00:00+09:00" # 파일의 WEEKMETA와 동일
+    groups:
+      - key: "BEGINNER"
+        marker: "PROGRESS:BEGINNER"
+        title: "브루트포스&재귀&백트래킹—초급(골드 미만)"
+        problems:
+          [
+            27433,
+            27434,
+            1065,
+            15649,
+            15650,
+            15651,
+            15652,
+            15654,
+            15655,
+            15656,
+            15657,
+            15663,
+            15664,
+            15665,
+            15666,
+            15658,
+            14888,
+            12348,
+            11277,
+            11278,
+          ]
+      - key: "ADVANCED"
+        marker: "PROGRESS:ADVANCED"
+        title: "브루트포스 & 재귀 & 백트래킹 — 고급(골드 이상)"
+        problems:
+          [
+            12347,
+            9663,
+            14502,
+            15659,
+            17141,
+            17142,
+            16637,
+            17471,
+            17779,
+            30242,
+            27439,
+            16639,
+            16638,
+          ]
+      - key: "DNC"
+        marker: "PROGRESS:DNC"
+        title: "분할 정복 (Divide & Conquer)"
+        problems: [4779, 1780, 2630, 1992, 1629, 2447, 1074, 10830, 11444, 2749]
