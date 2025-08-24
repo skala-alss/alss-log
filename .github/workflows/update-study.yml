@@ -41,9 +41,10 @@ jobs:
         with:
           commit_message: "🔄 docs: auto-update week tables & root dashboard"
           branch: main
-          repository: https://x-access-token:${{ secrets.BOT_PAT }}@github.com/skala-alss/alss-log.git
           file_pattern: |
             README.md
             problems/**/README.md
           commit_user_name: skala-bot
-          commit_user_email: skala-bot@example.com
+          commit_user_email: skalabot16@gmail.com
+          push_options: |
+            https://x-access-token:${{ secrets.BOT_PAT }}@github.com/skala-alss/alss-log.git
