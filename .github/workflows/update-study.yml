@@ -2,7 +2,7 @@ name: Update Study Dashboards
 
 on:
   schedule:
-    - cron: "0 18 * * *"   # 매일 03:00 KST (UTC+9)
+    - cron: "0 18 * * *" # 매일 03:00 KST (UTC+9)
   workflow_dispatch: {}
 
 permissions:
@@ -44,9 +44,10 @@ jobs:
       # 👇 이 스텝에서만 ALSS_* 전부 "1"로 강제
       - name: Build dashboards
         env:
-          ALSS_CHECK_BRANCHES: "1"  # 모든 브랜치/리모트 스캔
-          ALSS_OVERWRITE: "1"       # 멤버 칼럼 전체 덮어쓰기(원하면 "0"로 조절)
-          ALSS_DEBUG: "1"           # 디버그 로그 활성화
+          ALSS_CHECK_BRANCHES: "1"
+          ALSS_OVERWRITE: "1" # 안정화 후 0으로 전환 권장
+          ALSS_DEBUG: "1"
+          ALSS_TREND_FALLBACK_DURING: "0" # 정확도 우선, 원하면 "1"로
         run: |
           python scripts/build_dashboard.py
 

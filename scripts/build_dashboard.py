@@ -7,15 +7,18 @@ ALSS Dashboard Builder (solved.ac + Git repo)
   PRE   : solved_by & no member file in repo
   NONE  : not solved_by
   * Old filename rule supported: week root: boj_{pid}_{member}.ext
+  * Also supports {member}_{pid}(_N)?.ext and any path containing boj_{pid}
 - Root README:
   1) 주차별 완료율(배정세트 기준, PRE/DURING=해결)
   2) 전체 리더보드(동일)
   3) 멤버별 주차별 누적 추세(제출 주차 귀속: squash merge 커밋 제목 → 브랜치명)
+     - 폴백: ALSS_TREND_FALLBACK_DURING=1 이면 DURING을 배정 주차로 귀속
 
 Env:
-  ALSS_OVERWRITE=1        # overwrite all member cells (default: fill blanks only)
-  ALSS_CHECK_BRANCHES=1   # scan all refs/heads + refs/remotes (default: 1)
-  ALSS_DEBUG=1            # debug logs
+  ALSS_OVERWRITE=1               # overwrite all member cells (default: 1; 0이면 빈칸만 채움)
+  ALSS_CHECK_BRANCHES=1          # scan all refs/heads + refs/remotes (default: 1)
+  ALSS_DEBUG=1                   # debug logs (default: 1)
+  ALSS_TREND_FALLBACK_DURING=0   # trend 귀속 폴백(배정 주차로) 활성화 (default: 0)
 """
 
 import os, re, time, math, subprocess, shlex
@@ -34,12 +37,13 @@ ROOT_README = os.path.join(ROOT_DIR, "README.md")
 OVERWRITE_ALL_MEMBER_CELLS = os.getenv("ALSS_OVERWRITE", "1") == "1"
 CHECK_BRANCHES = os.getenv("ALSS_CHECK_BRANCHES", "1") == "1"
 DEBUG = os.getenv("ALSS_DEBUG", "1") == "1"
+ALSS_TREND_FALLBACK_DURING = os.getenv("ALSS_TREND_FALLBACK_DURING", "0") == "1"
 
 # ---------- solved.ac API ----------
 SOLVED_BASE = "https://solved.ac/api/v3"
 SESSION = requests.Session()
 SESSION.headers.update({
-    "User-Agent": "alss-dashboard/2.0 (+https://github.com/your/repo)",
+    "User-Agent": "alss-dashboard/2.1 (+https://github.com/your/repo)",
 })
 
 def _get(url, params=None, max_retry=5):
@@ -50,7 +54,7 @@ def _get(url, params=None, max_retry=5):
             time.sleep(max(3, retry_after))
             continue
         r.raise_for_status()
-        time.sleep(0.25)
+        time.sleep(0.25)  # gentle rate limit
         return r.json()
     raise RuntimeError(f"Too many 429s for {url} {params}")
 
@@ -217,34 +221,48 @@ def _split_tokens(base_noext: str) -> Set[str]:
     toks = re.split(r"[\s_\-\.]+", _norm_token(base_noext))
     return set(t for t in toks if t)
 
+def _path_tokens_without_ext(path: str) -> Set[str]:
+    """경로의 모든 컴포넌트(확장자 제외)에서 토큰 추출."""
+    parts = []
+    for seg in path.replace("\\", "/").split("/"):
+        if not seg:
+            continue
+        base, _ext = os.path.splitext(seg)
+        if base:
+            parts.append(base)
+    toks = set()
+    for p in parts:
+        toks |= _split_tokens(p)
+    return toks
+
 def _member_owns_path(path: str, pid: int, member: dict) -> bool:
     """
-    파일이 멤버의 제출로 보이는지 판단.
-    허용 패턴:
-      - <...>/boj_{pid}_*/{member}[...].ext
-      - <week>/boj_{pid}_{member}.ext  (옛 규칙)
+    제출 파일 여부:
+      - 경로 전체 토큰에 'pid'와 'member 키'가 동시에 존재하면 OK (boj_{pid} 또는 {name}_{pid} 모두 커버)
+      - 추가로, 문제폴더 내부에서 파일명이 멤버 선두/토큰이면 OK
     """
     base = os.path.basename(path)
     base_noext, ext = os.path.splitext(base)
     if ext.lower() not in ALLOWED_EXT:
         return False
 
-    toks = _split_tokens(base_noext)
     keys = _member_keys_for_match(member)
+    all_toks = _path_tokens_without_ext(path)     # 경로 전체 토큰
+    base_toks = _split_tokens(base_noext)         # 파일명 토큰
 
-    # (A) 옛 규칙: 파일명에 pid와 member 토큰이 모두 포함
-    if str(pid) in toks:
+    has_pid = str(pid) in all_toks
+    has_member_anywhere = any(k in all_toks for k in keys)
+
+    # 1) 경로 토큰에 pid와 멤버키가 동시에 있으면 바로 인정
+    if has_pid and has_member_anywhere:
+        return True
+
+    # 2) 문제 폴더 내부 케이스(파일명이 멤버로 시작/토큰 포함) + 경로에 pid는 있어야 함
+    b = base_noext.lower()
+    if has_pid:
         for k in keys:
-            if k in toks:
+            if b == k or b.startswith(k + "_") or b.startswith(k + "-") or (k in base_toks):
                 return True
-
-    # (B) 문제폴더 내부: member 토큰이 파일명 선두/토큰에 존재
-    for k in keys:
-        b = base_noext.lower()
-        if b == k or b.startswith(k + "_") or b.startswith(k + "-"):
-            return True
-        if k in toks:
-            return True
 
     return False
 
@@ -299,14 +317,31 @@ def paths_in_refs(refs: List[str], rel_path: str) -> List[str]:
                 seen.add(p); out.append(p)
     return out
 
-# ---------- Repo scanning (per week; across all branches) ----------
-def collect_repo_files_for_week(week_cfg, refs: List[str]) -> Dict[int, List[str]]:
+def _resolve_main_ref() -> str:
+    for ref in ["origin/main", "main", "HEAD"]:
+        try:
+            out = _run(f"git rev-parse --verify {shlex.quote(ref)}")
+            if out.strip():
+                return ref
+        except Exception:
+            continue
+    return "HEAD"
+
+def _git_log_submit_commits(main_ref: str) -> str:
+    try:
+        # squash subject 예: "📄 submit: week03-keehoon (#25)"
+        cmd = f"git log {shlex.quote(main_ref)} --grep='submit: week' --pretty=%H|%s --name-only --no-renames --first-parent"
+        return _run(cmd)
+    except Exception:
+        return ""
+
+# ---------- Repo scanning: GLOBAL index (across all weeks/branches) ----------
+def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
     """
-    refs 각각에서 week_dir 이하 파일을 모아 pid -> [paths...] 매핑
+    모든 refs에서 problems/ 이하 파일을 모아 pid -> [paths...] 매핑
     """
-    week_dir = os.path.dirname(os.path.join(ROOT_DIR, week_cfg["path"]))  # problems/weekXX
-    rel_week_dir = os.path.relpath(week_dir, ROOT_DIR).replace("\\", "/")
-    paths = paths_in_refs(refs, rel_week_dir)
+    problems_root = infer_problems_root(weeks_cfg)  # 보통 "problems"
+    paths = paths_in_refs(refs, problems_root)
     by_pid: Dict[int, List[str]] = {}
     for p in paths:
         m = re.search(r"boj_(\d+)", p)
@@ -317,17 +352,14 @@ def collect_repo_files_for_week(week_cfg, refs: List[str]) -> Dict[int, List[str
     return by_pid
 
 # ---------- DURING/PRE classification (repo-backed) ----------
-def classify_states_repo(week_cfg, members, problems: List[int]) -> Dict[int, Dict[str, str]]:
+def classify_states_repo(week_cfg, members, problems: List[int], repo_index_all: Dict[int, List[str]]) -> Dict[int, Dict[str, str]]:
     """
-    DURING: solved_by AND (repo(any ref) has member file)
+    DURING: solved_by AND (repo(any ref, any week dir) has member file)
     PRE   : solved_by AND (repo에 파일 없음)
     NONE  : solved_by 아님
     """
     pset = set(problems)
     results = {pid: {} for pid in problems}
-
-    refs = list_all_refs()
-    repo_index = collect_repo_files_for_week(week_cfg, refs)
 
     for m in members:
         seat = str(m["seat"])
@@ -338,9 +370,109 @@ def classify_states_repo(week_cfg, members, problems: List[int]) -> Dict[int, Di
         for pid in problems:
             if pid not in solved:
                 results[pid][seat] = "NONE"; continue
-            owned = any(_member_owns_path(path, pid, m) for path in repo_index.get(pid, []))
+            owned = any(_member_owns_path(path, pid, m) for path in repo_index_all.get(pid, []))
             results[pid][seat] = "DURING" if owned else "PRE"
     return results
+
+# ---------- Submission week attribution ----------
+def build_submission_attribution(weeks_cfg, participants, states_bundle=None) -> Dict[str, Dict[int, str]]:
+    """
+    반환: { seat(str) : { pid(int) : week_label("02","03",...) } }
+    우선순위: squash 커밋 제목 → 브랜치명 → (옵션) DURING 폴백(배정 주차)
+    """
+    problems_root = infer_problems_root(weeks_cfg)
+    all_pids = set(pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"])
+    wk_label_by_pid = {}
+    for w in weeks_cfg:
+        lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
+        for g in w["groups"]:
+            for pid in g["problems"]:
+                wk_label_by_pid[pid] = lab
+
+    # seat 인덱스
+    seat_by_branch_key = { _norm_token(m.get("branch_key") or m.get("name") or m.get("github")) : str(m["seat"]) for m in participants }
+
+    # 1) 커밋 제목 기반
+    commit_attrib: Dict[str, Dict[int, str]] = {}
+    main_ref = _resolve_main_ref()
+    log = _git_log_submit_commits(main_ref)
+    if DEBUG:
+        print(f"[debug] main_ref={main_ref}, submit_commits_found={bool(log.strip())}")
+    if log.strip():
+        chunks = re.split(r"\n(?=[0-9a-f]{7,40}\|)", log.strip(), flags=re.IGNORECASE)
+        for ch in chunks:
+            if "|" not in ch: continue
+            head, *rest = ch.split("\n")
+            _, subj = head.split("|", 1)
+            m = re.search(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", subj, flags=re.IGNORECASE)
+            if not m: continue
+            wk_lab = f"{int(m.group(1)):02d}"
+            bkey = _norm_token(m.group(2))
+            seat = seat_by_branch_key.get(bkey)
+            if not seat: continue
+            commit_attrib.setdefault(seat, {})
+            for p in rest:
+                p = p.strip()
+                if not p or p.startswith((" ", "\t")):
+                    continue
+                if problems_root + "/" not in p.replace("\\","/"):
+                    continue
+                m2 = re.search(r"boj_(\d+)", p)
+                if not m2: continue
+                pid = int(m2.group(1))
+                if pid in all_pids:
+                    commit_attrib[seat][pid] = wk_lab
+
+    # 2) 브랜치명 기반
+    branch_attrib: Dict[str, Dict[int, str]] = {}
+    refs = list_all_refs()
+    week_branch_re = re.compile(r"week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
+    for r in refs:
+        mb = week_branch_re.search(r)
+        if not mb: continue
+        wk_lab = f"{int(mb.group(1)):02d}"
+        bkey = _norm_token(mb.group(2))
+        seat = seat_by_branch_key.get(bkey)
+        if not seat: continue
+        # 해당 ref에서 problems 경로를 가져와 pid/멤버 소유 확인
+        try:
+            ps = list_paths_in_ref(r, problems_root)
+        except Exception:
+            continue
+        for p in ps:
+            m2 = re.search(r"boj_(\d+)", p)
+            if not m2: continue
+            pid = int(m2.group(1))
+            if pid not in all_pids: continue
+            member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
+            if member and _member_owns_path(p, pid, member):
+                branch_attrib.setdefault(seat, {})
+                branch_attrib[seat].setdefault(pid, wk_lab)
+
+    # 3) 병합 (commit > branch > (옵션) DURING 폴백)
+    out: Dict[str, Dict[int, str]] = { str(m["seat"]): {} for m in participants }
+
+    for seat, mp in commit_attrib.items():
+        out[seat].update(mp)
+    for seat, mp in branch_attrib.items():
+        for pid, wk_lab in mp.items():
+            out[seat].setdefault(pid, wk_lab)
+
+    if ALSS_TREND_FALLBACK_DURING and states_bundle:
+        # DURING인데 아직 귀속 주차가 없는 문제만 배정 주차로 폴백
+        for w in weeks_cfg:
+            lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
+            for g in w["groups"]:
+                for pid, seat_states in states_bundle[w["id"]][g["key"]].items():
+                    for m in participants:
+                        seat = str(m["seat"])
+                        if pid not in out[seat] and seat_states.get(seat) == "DURING":
+                            out[seat][pid] = lab
+
+    if DEBUG:
+        total_mapped = sum(len(v) for v in out.values())
+        print(f"[debug] submission_attribution mapped pairs: {total_mapped}")
+    return out
 
 # ---------- Root README dashboards ----------
 def replace_block(text: str, marker: str, new_md: str) -> str:
@@ -380,8 +512,8 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             solved_map[seat] = solved
         solved_by_member_per_week.append(solved_map)
 
-    # 2) 제출 주차 귀속 맵 (commit title → branch name → assignment fallback)
-    submission_map = build_submission_attribution(weeks_cfg, participants)
+    # 2) 제출 주차 귀속 맵
+    submission_map = build_submission_attribution(weeks_cfg, participants, states_bundle if ALSS_TREND_FALLBACK_DURING else None)
 
     # 주차별 완료율 (%)
     def week_matrix_md():
@@ -445,7 +577,7 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         lines = ["| " + " | ".join(header) + " |",
                  "|" + "---|" * (len(header)-1) + "---|"]
 
-        # 편의를 위한 인덱스: 주차 라벨 → 인덱스
+        # 주차 라벨 → 인덱스
         week_index = {lab: i for i, lab in enumerate(week_titles)}
 
         for k, U in enumerate(cumulative_assign_sets):
@@ -453,7 +585,6 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             denom = len(U)
             for m in participants:
                 seat = str(m["seat"])
-                # 제출 귀속 주차별 맵에서, 이 멤버가 제출한 (pid -> wk_label)
                 mp = submission_map.get(seat, {})
                 solved = sum(1 for pid, wk_lab in mp.items()
                              if pid in U and week_index.get(wk_lab, 9999) <= k)
@@ -470,110 +601,21 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
     write_if_changed(root_readme_path, text)
     return True
 
-# ---------- Submission week attribution ----------
-def build_submission_attribution(weeks_cfg, participants) -> Dict[str, Dict[int, str]]:
-    """
-    반환: { seat(str) : { pid(int) : week_label("02","03",...) } }
-    우선순위: squash merge 커밋 제목 → 브랜치명 → (없으면 배정 주차로 폴백)
-    """
-    problems_root = infer_problems_root(weeks_cfg)  # "problems"
-    all_pids = set(pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"])
-    wk_label_by_pid = {}
-    for w in weeks_cfg:
-        lab = wk_label(w)
-        for g in w["groups"]:
-            for pid in g["problems"]:
-                wk_label_by_pid[pid] = lab
-
-    # seat 인덱스
-    seat_by_branch_key = {}
-    for m in participants:
-        bk = _norm_token(m.get("branch_key") or m.get("name") or m.get("github"))
-        seat_by_branch_key[bk] = str(m["seat"])
-
-    # 1) 커밋 제목 기반 (main 히스토리)
-    #    subject 예: "📄 submit: week03-keehoon (#25)"
-    commit_attrib: Dict[str, Dict[int, str]] = {}
-    try:
-        log = _run("git log --grep='submit: week' --pretty=%H|%s --name-only --no-renames --first-parent origin/main || git log --grep='submit: week' --pretty=%H|%s --name-only --no-renames --first-parent main")
-        chunks = re.split(r"\n(?=[0-9a-f]{7,40}\|)", log.strip(), flags=re.IGNORECASE)
-        for ch in chunks:
-            if "|" not in ch: continue
-            head, *rest = ch.split("\n")
-            _, subj = head.split("|", 1)
-            m = re.search(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", subj, flags=re.IGNORECASE)
-            if not m: continue
-            wk_lab = f"{int(m.group(1)):02d}"
-            bkey = _norm_token(m.group(2))
-            seat = seat_by_branch_key.get(bkey)
-            if not seat: continue
-            commit_attrib.setdefault(seat, {})
-            for p in rest:
-                p = p.strip()
-                if not p or p.startswith((" ", "\t")):  # name-only block empty line skip
-                    continue
-                if problems_root + "/" not in p.replace("\\","/"):
-                    continue
-                m2 = re.search(r"boj_(\d+)", p)
-                if not m2: continue
-                pid = int(m2.group(1))
-                if pid in all_pids:
-                    commit_attrib[seat][pid] = wk_lab
-    except Exception:
-        if DEBUG: print("[debug] commit attribution skipped (git history not available)")
-
-    # 2) 브랜치명 기반 (refs 전체)
-    branch_attrib: Dict[str, Dict[int, str]] = {}
-    refs = list_all_refs()
-    week_branch_re = re.compile(r"week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
-    try:
-        paths = paths_in_refs(refs, problems_root)
-        for p in paths:
-            m_pid = re.search(r"boj_(\d+)", p)
-            if not m_pid: continue
-            pid = int(m_pid.group(1))
-            if pid not in all_pids: continue
-            # 어떤 ref에서 온 파일인지 알 수 없으므로, ref별로 다시 조회(정확도↑)
-            for r in refs:
-                # 브랜치명이 weekXX-{name} 형태인지
-                m_b = week_branch_re.search(r)
-                if not m_b: continue
-                wk_lab = f"{int(m_b.group(1)):02d}"
-                bkey = _norm_token(m_b.group(2))
-                seat = seat_by_branch_key.get(bkey)
-                if not seat: continue
-                # 해당 ref에서 이 파일이 존재?
-                if p in list_paths_in_ref(r, problems_root):
-                    # 소유자 확인까지 하고 매핑
-                    # participants 중 seat의 멤버로 확인
-                    member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
-                    if member and _member_owns_path(p, pid, member):
-                        branch_attrib.setdefault(seat, {})
-                        branch_attrib[seat].setdefault(pid, wk_lab)
-    except Exception:
-        if DEBUG: print("[debug] branch attribution skipped (git tree not available)")
-
-    # 3) 병합 (commit > branch > assignment fallback)
-    out: Dict[str, Dict[int, str]] = {}
-    for m in participants:
-        seat = str(m["seat"])
-        out[seat] = {}
-        # commit 우선
-        for pid, wk_lab in commit_attrib.get(seat, {}).items():
-            out[seat][pid] = wk_lab
-        # branch 다음
-        for pid, wk_lab in branch_attrib.get(seat, {}).items():
-            out[seat].setdefault(pid, wk_lab)
-        # fallback: 배정 주차(그래도 없을 때만)
-        for pid in all_pids:
-            out[seat].setdefault(pid, wk_label_by_pid.get(pid, ""))
-    return out
-
 # ---------- main ----------
 def main():
     participants = load_yaml(PARTICIPANTS_YAML)["members"]
     weeks_cfg = load_yaml(WEEKS_YAML)["weeks"]
     participants = sorted(participants, key=lambda m: m["seat"])
+
+    # 전 브랜치/리모트 확보 전제: Actions에서 git fetch --all --prune --tags 수행 권장
+    refs = list_all_refs()
+    repo_index_all = collect_repo_files_all(weeks_cfg, refs)
+    if DEBUG:
+        sample = []
+        for pid, paths in repo_index_all.items():
+            sample.append(f"{pid}:{len(paths)}")
+            if len(sample) >= 8: break
+        print(f"[debug] repo_index_all pids={len(repo_index_all)}; samples: {', '.join(sample)}")
 
     # Week READMEs
     states_bundle = {}  # week_id -> group_key -> {pid -> {seat -> 'PRE'|'DURING'|'NONE'}}
@@ -581,7 +623,7 @@ def main():
         w_id = w["id"]
         states_bundle[w_id] = {}
         for g in w["groups"]:
-            states = classify_states_repo(w, participants, g["problems"])
+            states = classify_states_repo(w, participants, g["problems"], repo_index_all)
             states_bundle[w_id][g["key"]] = states
         # 멤버 열만 패치
         render_week_readme_members_only(w, participants, states_bundle[w_id])
