@@ -722,51 +722,50 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             lines.append(f"{i}) {name} — **{sc}/{assigned_total} ({rate}%)**")
         return "\n".join(lines)
     
-    # (유틸) 주차 라벨 정렬 키
-    def _lab_key(l: str):
-        return (0, int(l)) if str(l).isdigit() else (1, str(l))
-
     # 3-3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
     def trend_md():
-        # A. 행 라벨: 배정 주차 ∪ 제출 귀속 주차
-        labs_from_assign = set(assign_by_lab.keys())
-        labs_from_submit = {
-            wk for seat_mp in submission_map.values() for wk in seat_mp.values()
-        }
-        labs_all = sorted(labs_from_assign | labs_from_submit, key=_lab_key)
 
-        # B. 누적 분모 집합 U_k 구성 (배정 없는 주차는 공집합 더해 누적 유지)
-        cumulative_assign_sets: List[Set[int]] = []
-        acc: Set[int] = set()
-        for lab in labs_all:
-            acc |= assign_by_lab.get(lab, set())
-            cumulative_assign_sets.append(set(acc))
+        # 1) 제출 귀속에서 나온 주차 라벨 수집
+        labels_from_submission = {wk for seat_map in submission_map.values() for wk in seat_map.values()}
 
-        week_index = {lab: i for i, lab in enumerate(labs_all)}
+        # 2) 라벨 정렬 키(숫자는 2자리 '03'처럼 정수로 정렬, 그 외는 사전식)
+        def _wk_key(s):
+            s = str(s)
+            return (0, int(s)) if re.fullmatch(r"\d+", s) else (1, s)
 
+        # 3) 표 행 라벨 = 배정 주차 ∪ 귀속 주차
+        all_labels = sorted(set(week_titles) | labels_from_submission, key=_wk_key)
+        label_pos = {lab: i for i, lab in enumerate(all_labels)}
+
+        # 4) 분모(배정 누적 집합)를 all_labels 순서에 맞게 구성
+        #    weeks.yaml에 없는 주차 라벨은 직전까지의 배정 누적을 그대로 사용
+        cumulative_assign_sets_all = []
+        for i, lab in enumerate(all_labels):
+            U = set()
+            for wl, ws in zip(week_titles, week_sets):
+                if label_pos[wl] <= i:  # 배정 주차가 현재 라벨 이전/동일이면 포함
+                    U |= ws
+            cumulative_assign_sets_all.append(U)
+
+        # 5) 표 렌더링
         header = ["주차＼멤버"] + [m["name"] for m in participants]
         lines = ["| " + " | ".join(header) + " |",
-                 "|" + "---|" * (len(header)-1) + "---|"]
+                "|" + "---|" * (len(header)-1) + "---|"]
 
-        for k, U in enumerate(cumulative_assign_sets):
-            lab = labs_all[k]
+        for i, (lab, U) in enumerate(zip(all_labels, cumulative_assign_sets_all)):
             denom = len(U)
             row = [lab]
             for m in participants:
                 seat = str(m["seat"])
-                mp = submission_map.get(seat, {})  # { pid: "04", ... }
-
-                # 분자: '해당 주차까지 제출' 중에서 U(배정 누적)에 속하는 고유 PID만 집계 (기준 일치)
-                solved_ids = {
-                    pid for pid, wk in mp.items()
-                    if (wk in week_index and week_index[wk] <= k and pid in U)
-                }
-                solved = len(solved_ids)
+                mp = submission_map.get(seat, {})
+                # 귀속 주차가 현재 라벨 이하인 제출 건 누적
+                solved = sum(1 for _pid, wk_lab in mp.items()
+                            if wk_lab in label_pos and label_pos[wk_lab] <= i)
                 rate = round(solved / denom * 100) if denom else 0
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
 
-        return "\n" + "\n".join(
+        return "\n".join(
             ["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines
         )
     
