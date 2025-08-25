@@ -203,6 +203,10 @@ def _replace_block_exact(text: str, marker: str, new_md_inside: str, s: int, e: 
 
 def render_week_readme_members_only(week_cfg, participants, states_by_group):
     path = os.path.join(ROOT_DIR, week_cfg["path"])
+    if not path or not os.path.exists(path):
+        if DEBUG:
+            print(f"[debug] skip week README (missing): {path}")
+        return False
     text = read_file(path)
     changed = False
 
@@ -679,6 +683,8 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
 
         for widx, ws in enumerate(week_sets):
             assign = len(ws)
+            if assign == 0:
+                continue  # 🔹 더미(배정 0) 주차는 완료율 표에서 숨김
             row = [week_titles[widx]]
             row_sum = 0
             for mi, m in enumerate(participants):
