@@ -63,7 +63,7 @@ jobs:
         run: |
           python scripts/build_dashboard.py
 
-      # 4.5) 커밋 전 디프/상태 확인 (디버그)
+      # 4.5) 커밋 전 디프/상태 확인 (그대로 유지 OK)
       - name: Show diff before commit
         run: |
           echo "=== git status (short) ==="
@@ -79,30 +79,26 @@ jobs:
             echo
           done
 
-      # 5) 변경 발생 시 자동 커밋/푸시 (README 범위로 한정)
-      - name: Pre-stage README changes (safety)
+      # 5) README만 스테이징 → 커밋 → 푸시 (수동)
+      - name: Commit & Push README changes (manual)
         run: |
-          # 신규 파일/변경 파일 스테이징
+          # 1) README만 스테이징 (신규/변경/삭제 모두)
           git add -- README.md ':(glob)**/README.md' || true
-          # 삭제/리네임 등 추적 파일 상태 업데이트
           git add -u -- README.md ':(glob)**/README.md' || true
 
           echo "=== staged files (name-only) ==="
           git --no-pager diff --cached --name-only || true
 
-      - name: Commit & Push if changed (auto)
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "📝 docs: auto-update week tables & root dashboard"
-          branch: main
-          # 🔑 Git pathspec with glob magic
-          file_pattern: |
-            README.md
-            :(glob)**/README.md
-          add_options: -A
-          commit_user_name: skala-bot
-          commit_user_email: skalabot16@gmail.com
-          commit_author: "skala-bot <skalabot16@gmail.com>"
+          # 2) 스테이지에 변화가 있으면 커밋
+          if ! git diff --cached --quiet; then
+            git config user.name  "skala-bot"
+            git config user.email "skalabot16@gmail.com"
+            git commit -m "📝 docs: auto-update week tables & root dashboard"
+            # 3) PAT로 푸시 (앞 단계에서 remote URL을 PAT로 이미 통일했음)
+            git push origin HEAD:main
+          else
+            echo "No README changes to commit."
+          fi
 
       # 실패 시 추가 디버그
       - name: Debug on failure
