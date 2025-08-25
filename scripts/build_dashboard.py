@@ -150,7 +150,7 @@ def patch_member_columns_in_block(block_md: str,
         folder_col = header.index("폴더")
         number_col = header.index("번호")
     except ValueError:
-        return block_md  # 예상 헤더와 다르면 원본 유지
+        return block_md
 
     member_cols = list(range(folder_col + 1, len(header)))
     seats = [m["seat"] for m in participants]
@@ -160,7 +160,8 @@ def patch_member_columns_in_block(block_md: str,
         cells = _split_row(lines[i])
         if not cells or _is_separator_row(cells):
             continue
-        # 문제 번호 파싱
+
+        # 문제 번호
         try:
             pid = int(re.sub(r"[^\d]", "", cells[number_col]))
         except ValueError:
@@ -168,14 +169,19 @@ def patch_member_columns_in_block(block_md: str,
         if pid not in pid_to_states:
             continue
 
+        # 멤버 열 채우기(강제 덮어쓰기 + 디버그)
         for idx, seat in enumerate(seats):
             col = member_cols[idx]
             state = pid_to_states[pid].get(str(seat), "NONE")
-            if OVERWRITE_ALL_MEMBER_CELLS:
-                cells[col] = SYMBOL[state]
+            sym = SYMBOL.get(state, SYMBOL["NONE"])
+            if cells[col] != sym:
+                if DEBUG:
+                    print(f"[debug] patch: pid={pid} seat={seat} state={state} -> '{sym}' (was '{cells[col]}')")
+                cells[col] = sym
             else:
-                if is_blank_cell(cells[col]) and state != "NONE":
-                    cells[col] = SYMBOL[state]
+                if DEBUG:
+                    print(f"[debug] patch: pid={pid} seat={seat} state={state} (no change)")
+
         lines[i] = _join_row(cells)
 
     return "\n".join(lines)
