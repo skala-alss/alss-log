@@ -10,8 +10,8 @@ members:
     name: "SDGeo12"
     solved_handle: "sdgeo20"
     github: "SDGeo12"
-    branch_key: "sdgeo"
-    file_key: "sdgeo"
+    branch_key: "donggeon"
+    file_key: "donggeon"
 
   - seat: 3
     name: "jiyunee02"
