@@ -532,10 +532,13 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     problems_root = infer_problems_root(weeks_cfg)
 
     # seat 인덱스
-    seat_by_branch_key = {
-        _norm_token(m.get("branch_key") or m.get("name") or m.get("github")): str(m["seat"])
-        for m in participants
-    }
+    seat_by_branch_key = {}
+    for m in participants:
+        seat = str(m["seat"])
+        # branch_key, file_key, name, github 순으로 모두 매핑
+        for key in [m.get("branch_key"), m.get("file_key"), m.get("name"), m.get("github")]:
+            if key:
+                seat_by_branch_key[_norm_token(key)] = seat
     if DEBUG:
         print("[debug] seat_by_branch_key:", seat_by_branch_key)
 
@@ -546,29 +549,45 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     if DEBUG:
         print(f"[debug] main_refs tried: {main_refs}, submit_commits_found={len(submit_commits)>0}")
 
-    pat_subj = re.compile(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
+    # 예) "submit: week03-jinyeop (#30)" / "submit] week 02 - chang"
+    pat_subj = re.compile(r"submit[:\]]?\s*week\s*(\d+)\s*-\s*([A-Za-z0-9_\-]+)", re.IGNORECASE)
     for sha, subj, files in submit_commits:
-        m = pat_subj.search(subj)
-        if not m:
+    subj_m = pat_subj.search(subj)
+    subj_wk = f"{int(subj_m.group(1)):02d}" if subj_m else None
+    subj_key = _norm_token(subj_m.group(2)) if subj_m else None
+    subj_seat = seat_by_branch_key.get(subj_key) if subj_key else None
+
+    for p in files:
+        pp = p.replace("\\","/")
+        if problems_root + "/" not in pp:
             continue
-        wk_lab = f"{int(m.group(1)):02d}"
-        bkey = _norm_token(m.group(2))
-        seat = seat_by_branch_key.get(bkey)
-        if not seat:
+        m2 = re.search(r"boj_(\d)", pp)
+        if not m2:
             continue
-        member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
-        if not member:
+        pid = int(m2.group(1))
+
+        # ① 소유자 seat: 제목에서 찾기 → 실패 시 경로로 추론
+        owner_seat, owner_member = subj_seat, None
+        if owner_seat:
+            owner_member = next((mm for mm in participants if str(mm["seat"]) == owner_seat), None)
+        if not owner_member:
+            for mm in participants:
+                if _member_owns_path(pp, pid, mm):
+                    owner_seat, owner_member = str(mm["seat"]), mm
+                    break
+        if not owner_member:
             continue
-        for p in files:
-            if problems_root + "/" not in p.replace("\\","/"):
-                continue
-            m2 = re.search(r"boj_(\d+)", p)
-            if not m2:
-                continue
-            pid = int(m2.group(1))
-            if _member_owns_path(p, pid, member):
-                # 최신 커밋이 먼저 오므로 '처음 본 라벨'을 유지(older가 덮어쓰지 않도록)
-                commit_attrib.setdefault(seat, {}).setdefault(pid, wk_lab)
+
+        # ② 주차 라벨: 제목에서 찾기 → 실패 시 경로에서 weekNN 추출
+        wk_lab = subj_wk
+        if not wk_lab:
+            mw = re.search(r"/problems/week(\d{2})/", pp, re.IGNORECASE)
+            if mw:
+                wk_lab = mw.group(1)
+        if not wk_lab:
+            continue
+
+        commit_attrib.setdefault(owner_seat, {}).setdefault(pid, wk_lab)
 
     # 2) 브랜치 기반 (최신 브랜치 우선)
     def _ref_unix_ts(ref: str) -> int:
@@ -797,8 +816,11 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
                 seat = str(m["seat"])
                 mp = submission_map.get(seat, {})
                 # 귀속 주차가 현재 라벨 이하인 제출 건 누적
-                solved = sum(1 for _pid, wk_lab in mp.items()
-                            if wk_lab in label_pos and label_pos[wk_lab] <= i)
+                solved = sum(
+                    1
+                    for pid, wk_lab in mp.items()
+                    if (pid in U) and (wk_lab in label_pos) and (label_pos[wk_lab] <= i)
+                )
                 rate = round(solved / denom * 100) if denom else 0
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
