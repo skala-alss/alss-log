@@ -21,15 +21,15 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 ### 주차별 완료율 (%)
 | 주차＼멤버 | nOOne-is-hier | SDGeo12 | jiyunee02 | skala-changhyun | seo-youngjae | JinYeopKang | 합계(%) |
 |---|---|---|---|---|---|---|---|
-| 04 | 35 | 0 | 0 | 0 | 0 | 0 | 6 |
-| 합계(%) | 35 | 0 | 0 | 0 | 0 | 0 | 6 |
+| 04 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 합계(%) | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 <!--END:DASHBOARD_WEEKS-->
 
 <!--START:DASHBOARD_LEADERBOARD-->
 
 ### 전체 리더보드 (누적)
-1) nOOne-is-hier — **15/43 (35%)**
+1) nOOne-is-hier — **0/43 (0%)**
 2) SDGeo12 — **0/43 (0%)**
 3) jiyunee02 — **0/43 (0%)**
 4) skala-changhyun — **0/43 (0%)**
