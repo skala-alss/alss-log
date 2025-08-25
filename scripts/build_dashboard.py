@@ -25,7 +25,7 @@ Env:
   ALSS_LOG_LIMIT=0               # (선택) 커밋 스캔 상한(-n). 0 또는 미지정이면 무제한
 """
 
-import os, re, time, math, subprocess, shlex
+import os, re, time, math, subprocess, shlex, unicodedata
 from typing import Dict, List, Set, Tuple
 import requests, yaml
 
@@ -210,7 +210,9 @@ ALLOWED_EXT = {".cpp",".cc",".cxx",".c",".py",".java",".kt",".js",".ts",
                ".rb",".go",".cs",".swift",".rs",".m",".mm"}
 
 def _norm_token(s: str) -> str:
-    return re.sub(r"[\s_\-]+", "_", (s or "").strip().lower())
+    # 한글/기호 경로의 정규화 문제를 없애기 위해 NFKC 적용
+    s = unicodedata.normalize("NFKC", (s or ""))
+    return re.sub(r"[\s_\-]+", "_", s.strip().lower())
 
 def _member_keys_for_match(m: dict) -> List[str]:
     keys = []
@@ -241,32 +243,38 @@ def _path_tokens_without_ext(path: str) -> Set[str]:
 
 def _member_owns_path(path: str, pid: int, member: dict) -> bool:
     """
-    제출 파일 여부:
-      - 경로 전체 토큰에 'pid'와 'member 키'가 동시에 존재하면 OK (boj_{pid} 또는 {name}_{pid} 모두 커버)
-      - 추가로, 문제폴더 내부에서 파일명이 멤버 선두/토큰이면 OK
+    제출 파일 여부(견고 버전):
+      - 경로(정규화) 안에 'boj_{pid}'가 있어야 함
+      - 코드 파일 확장자여야 함
+      - 파일명(확장자 제외)에 멤버 key( file_key / name / github 중 하나 )가 포함되면 DURING
+      - 추가: 디렉터리 경로에도 멤버 key 토큰이 단독으로 등장하면 인정
     """
+    # 확장자 필터
     base = os.path.basename(path)
     base_noext, ext = os.path.splitext(base)
     if ext.lower() not in ALLOWED_EXT:
         return False
 
-    keys = _member_keys_for_match(member)
-    all_toks = _path_tokens_without_ext(path)     # 경로 전체 토큰
-    base_toks = _split_tokens(base_noext)         # 파일명 토큰
+    # 정규화된 문자열 준비
+    s_full = _norm_token(path.replace("\\", "/"))
+    s_base = _norm_token(base_noext)
+    pid_str = str(pid)
 
-    has_pid = str(pid) in all_toks
-    has_member_anywhere = any(k in all_toks for k in keys)
+    # 문제 폴더 포함 여부 (boj_{pid})
+    if f"boj_{pid_str}" not in s_full:
+        return False
 
-    # 1) 경로 토큰에 pid와 멤버키가 동시에 있으면 바로 인정
-    if has_pid and has_member_anywhere:
+    # 멤버 키 후보
+    keys = _member_keys_for_match(member)  # 이미 _norm_token 적용됨
+
+    # 1) 파일명에 멤버 키 포함 → OK
+    if any(k in s_base for k in keys):
         return True
 
-    # 2) 문제 폴더 내부 케이스(파일명이 멤버로 시작/토큰 포함) + 경로에 pid는 있어야 함
-    b = base_noext.lower()
-    if has_pid:
-        for k in keys:
-            if b == k or b.startswith(k + "_") or b.startswith(k + "-") or (k in base_toks):
-                return True
+    # 2) 디렉터리 경로에 '/{key}(/|_|-)' 형태로 포함 → OK
+    for k in keys:
+        if re.search(rf"/{re.escape(k)}([/_-]|$)", s_full):
+            return True
 
     return False
 
@@ -662,19 +670,18 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
 
     # 3-3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
     def trend_md():
-        # 분모: 1..k주차 배정 문제의 합집합
+        # 분모: 1..k주차 배정 문제의 '합집합'(중복 제거)
         cumulative_assign_sets: List[Set[int]] = []
         acc = set()
         for ws in week_sets:
             acc |= ws
             cumulative_assign_sets.append(set(acc))
 
-        # 주차 라벨 → 인덱스
         week_index = {lab: i for i, lab in enumerate(week_titles)}
 
         header = ["주차＼멤버"] + [m["name"] for m in participants]
         lines = ["| " + " | ".join(header) + " |",
-                 "|" + "---|" * (len(header)-1) + "---|"]
+                "|" + "---|" * (len(header)-1) + "---|"]
 
         for k, U in enumerate(cumulative_assign_sets):
             row = [week_titles[k]]
@@ -682,16 +689,16 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             for m in participants:
                 seat = str(m["seat"])
                 mp = submission_map.get(seat, {})  # { pid: "04", ... }
-                solved_pids_up_to_k = {
-                    pid for pid, wk_lab in mp.items()
-                    if wk_lab in week_index and week_index[wk_lab] <= k
-                }
-                solved = len(solved_pids_up_to_k & U)
+                # ✨ 분자: '해당 주차까지 제출한' 고유 PID 수 (배정 세트와 무관)
+                solved = sum(1 for _pid, wk_lab in mp.items()
+                            if wk_lab in week_index and week_index[wk_lab] <= k)
                 rate = round(solved / denom * 100) if denom else 0
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
 
-        return "\n".join(["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines)
+        return "\n".join(
+            ["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines
+        )
 
     text = read_file(root_readme_path)
     text = replace_block(text, "DASHBOARD_WEEKS", "\n".join(["### 주차별 완료율 (%)", week_matrix_md()]))
