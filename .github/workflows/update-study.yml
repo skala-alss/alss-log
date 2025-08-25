@@ -27,12 +27,26 @@ jobs:
       # 리모트/브랜치 트리 확보 (브랜치/PR 커밋 탐색 정확도 ↑)
       - name: Fetch all branches & tags
         run: |
+          git config --global advice.detachedHead false
+
+          # 1) 혹시 shallow clone이면 전체 히스토리 확보
+          if git rev-parse --is-shallow-repository | grep -q true; then
+            git fetch --unshallow --tags
+          fi
+
+          # 2) push용 PAT로 origin 업데이트(선택: 이미 checkout에 token을 줬다면 생략 가능)
           git remote set-url origin https://x-access-token:${{ secrets.BOT_PAT }}@github.com/${{ github.repository }}.git
-          git fetch origin +refs/heads/*:refs/remotes/origin/* --prune --depth=0
+
+          # 3) 원격 모든 브랜치를 로컬 remote-tracking으로 가져오기 (depth 옵션 X)
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
+
+          # 4) 태그도 갱신
           git fetch --tags --force
-          echo "--- branches (remote) ---"
-          git branch -r || true
-          echo "--- recent log (HEAD) ---"
+
+          # 5) 디버그용 출력
+          echo "--- remote branches ---"
+          git branch -r | sed -n '1,100p'
+          echo "--- recent main log ---"
           git log --oneline --decorate --max-count=20 || true
 
       - name: Set up Python
