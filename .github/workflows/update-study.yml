@@ -67,7 +67,7 @@ jobs:
           ALSS_CHECK_BRANCHES: "1"
           ALSS_OVERWRITE: "1"
           ALSS_DEBUG: "1"
-          ALSS_TREND_FALLBACK_DURING: "0"
+          ALSS_TREND_FALLBACK_DURING: "1"
           ALSS_LOG_LIMIT: "0"
         run: |
           python scripts/build_dashboard.py

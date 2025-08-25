@@ -11,10 +11,11 @@ ALSS Dashboard Builder (solved.ac + Git repo)
 - Root README:
   1) 주차별 완료율(배정세트 기준, **DURING만 집계**)
   2) 전체 리더보드(동일, **DURING만 집계**)
-  3) 멤버별 주차별 누적 추세(제출 주차 귀속, **diff 기반**):
+  3) 멤버별 주차별 누적 추세(제출 주차 귀속 / **배정 누적 분모**, %)
      - 병합 PR: "submit: weekNN-<alias>" 커밋의 변경 파일
      - 미병합 브랜치: git diff main...<branch> 의 변경 파일
      - 폴백: ALSS_TREND_FALLBACK_DURING=1 이면 DURING을 배정 주차로 귀속
+     - ✨ 누적 추세 분자/분모 일치: **분자도 배정 세트 내 PID만** 집계
 NOTE: released_at 속성은 사용하지 않음.
 
 Env:
@@ -505,7 +506,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     all_pids = set(pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"])
     wk_label_by_pid = {}
     for w in weeks_cfg:
-        lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
+        lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id",""))
+        else str(w.get("id",""))
         for g in w["groups"]:
             for pid in g["problems"]:
                 wk_label_by_pid[pid] = lab
@@ -543,6 +545,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
                 continue
             pid = int(m2.group(1))
             if _member_owns_path(p, pid, member):
+                # seat+pid dedup: dict key 덮어쓰기(같은 seat/pid 여러 파일은 1건)
                 commit_attrib.setdefault(seat, {})[pid] = wk_lab
 
     # 2) 브랜치명 기반 (스냅샷 전체가 아니라, main...branch **diff**만 사용)
@@ -569,6 +572,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             pid = int(m2.group(1))
             if member and _member_owns_path(p, pid, member):
                 branch_attrib.setdefault(seat, {})
+                # seat+pid dedup: 최초 주차 유지, 이후 중복은 무시
                 branch_attrib[seat].setdefault(pid, wk_lab)
             if DEBUG:
                 print(f"[debug] branch-attr seat={seat} ref={r} week={wk_lab} pid={pid} path={p}")
@@ -583,11 +587,12 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
 
     if ALSS_TREND_FALLBACK_DURING and states_bundle:
         for w in weeks_cfg:
-            lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
+            lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")) else str(w.get("id",""))
             for g in w["groups"]:
                 for pid, seat_states in states_bundle[w["id"]][g["key"]].items():
                     for m in participants:
                         seat = str(m["seat"])
+                        # seat+pid dedup 유지: 기존 매핑 없고, DURING인 경우에만 채움
                         if pid not in out[seat] and seat_states.get(seat) == "DURING":
                             out[seat][pid] = lab
 
@@ -670,7 +675,6 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             tot.append(str(rate))
         overall = round(sum(col_tot_solved) / sum(col_tot_assign) * 100) if sum(col_tot_assign) else 0
         tot.append(str(overall))
-        lines.append("| " + " | ".join(tot) + " |")
         return "\n".join(lines)
 
     # 3-2) 전체 리더보드 (누적): DURING만 (유니크 PID 기준)
@@ -704,6 +708,9 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             acc |= ws
             cumulative_assign_sets.append(set(acc))
 
+        if DEBUG:
+            print("[trend] assigned_cum sizes:", [len(s) for s in cumulative_assign_sets])
+
         week_index = {lab: i for i, lab in enumerate(week_titles)}
 
         header = ["주차＼멤버"] + [m["name"] for m in participants]
@@ -713,14 +720,20 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         for k, U in enumerate(cumulative_assign_sets):
             row = [week_titles[k]]
             denom = len(U)
+            # 디버그 집계
+            per_seat_dbg = {}
             for m in participants:
                 seat = str(m["seat"])
                 mp = submission_map.get(seat, {})  # { pid: "04", ... }
-                # ✨ 분자: '해당 주차까지 제출한' 고유 PID 수 (배정 세트와 무관)
+                # ✨ 분자: '해당 주차까지 제출' **AND** 배정 누적(U) 내에 포함된 고유 PID 수
                 solved = sum(1 for _pid, wk_lab in mp.items()
-                            if wk_lab in week_index and week_index[wk_lab] <= k)
+                             if (_pid in U) and (wk_lab in week_index) and (week_index[wk_lab] <= k))
                 rate = round(solved / denom * 100) if denom else 0
                 row.append(f"{solved}/{denom} ({rate})")
+                if DEBUG:
+                    per_seat_dbg[seat] = solved
+            if DEBUG:
+                print(f"[trend] week={week_titles[k]} denom={denom} solved_by_seat={per_seat_dbg}")
             lines.append("| " + " | ".join(row) + " |")
 
         return "\n".join(
