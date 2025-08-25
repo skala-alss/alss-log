@@ -41,7 +41,6 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 
 <!--START:DASHBOARD_TREND-->
 
-
 ### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
 | 주차＼멤버 | nOOne-is-hier | SDGeo12 | jiyunee02 | skala-changhyun | seo-youngjae | JinYeopKang |
 |---|---|---|---|---|---|---|
