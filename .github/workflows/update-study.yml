@@ -22,22 +22,17 @@ jobs:
       - name: Checkout with BOT PAT
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # shallow 금지 (커밋/브랜치 탐색 위해)
-          token: ${{ secrets.BOT_PAT }} # push·fetch 모두 PAT 사용
+          fetch-depth: 0
+          token: ${{ secrets.BOT_PAT }}
 
-      # 2) 리모트/브랜치/태그 전부 확보 (브랜치/PR 커밋 탐색 정확도 ↑)
+      # 2) 리모트/브랜치/태그 전부 확보 (+ PR refs)
       - name: Fetch all branches & tags
         run: |
           git config --global advice.detachedHead false
-
-          # origin URL을 PAT로 통일 (푸시 문제 예방)
           git remote set-url origin https://x-access-token:${{ secrets.BOT_PAT }}@github.com/${{ github.repository }}.git
 
-          # 1) 일반 브랜치
           git fetch --prune --tags
           git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
-
-          # 2) 🔴 PR 헤드/머지 **반드시 가져오기**
           git fetch origin '+refs/pull/*/head:refs/remotes/pull/*/head' --prune
           git fetch origin '+refs/pull/*/merge:refs/remotes/pull/*/merge' --prune
 
@@ -60,30 +55,47 @@ jobs:
       # 4) 대시보드 빌드
       - name: Build dashboards
         env:
-          # 스크립트 동작 플래그 (명시적으로 모두 on)
           ALSS_CHECK_BRANCHES: "1"
-          ALSS_OVERWRITE: "1" # 안정화 후엔 "0"으로 내려도 됨(빈칸만 채우기)
+          ALSS_OVERWRITE: "1"
           ALSS_DEBUG: "1"
-          ALSS_TREND_FALLBACK_DURING: "0" # 정확도 우선. 필요 시 "1"로 변경
-          # 선택) 커밋 스캔 상한(-n). 무제한이면 비우거나 0 유지
+          ALSS_TREND_FALLBACK_DURING: "0"
           ALSS_LOG_LIMIT: "0"
         run: |
           python scripts/build_dashboard.py
 
-      # 5) 변경 발생 시 자동 커밋/푸시
+      # 4.5) 커밋 전 디프/상태 확인 (디버그)
+      - name: Show diff before commit
+        run: |
+          echo "=== git status (short) ==="
+          git status -s || true
+          echo
+          echo "=== changed files (name-only) ==="
+          git --no-pager diff --name-only || true
+          echo
+          echo "=== README diffs (first 200 lines) ==="
+          for f in $(git --no-pager diff --name-only | grep -E '/?README\.md$' || true); do
+            echo "--- $f ---"
+            git --no-pager diff -- "$f" | sed -n '1,200p' || true
+            echo
+          done
+          echo "=== specific week04 preview (first 120 lines) ==="
+          git --no-pager diff -- problems/week04/README.md | sed -n '1,120p' || true
+
+      # 5) 변경 발생 시 자동 커밋/푸시 (README 범위로 한정)
       - name: Commit & Push if changed (auto)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "📝 docs: auto-update week tables & root dashboard"
           branch: main
-          file_pattern: |
-            README.md
-            problems/**/README.md
+          # 한 줄, 대소문자 정확히. 루트 및 하위 모든 README.md 포함
+          file_pattern: "**/README.md"
+          # 변경/삭제 포착을 확실히 하기 위해 -A 사용 (pathspec은 여전히 README로 제한됨)
+          add_options: -A
           commit_user_name: skala-bot
           commit_user_email: skalabot16@gmail.com
           commit_author: "skala-bot <skalabot16@gmail.com>"
 
-      # 실패 시 추가 디버그(선택)
+      # 실패 시 추가 디버그
       - name: Debug on failure
         if: failure()
         run: |
