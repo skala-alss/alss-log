@@ -249,32 +249,31 @@ def _member_owns_path(path: str, pid: int, member: dict) -> bool:
       - 파일명(확장자 제외)에 멤버 key( file_key / name / github 중 하나 )가 포함되면 DURING
       - 추가: 디렉터리 경로에도 멤버 key 토큰이 단독으로 등장하면 인정
     """
-    # 확장자 필터
-    base = os.path.basename(path)
+    p = path.replace("\\", "/")
+    base = os.path.basename(p)
     base_noext, ext = os.path.splitext(base)
     if ext.lower() not in ALLOWED_EXT:
         return False
 
-    # 정규화된 문자열 준비
-    s_full = _norm_token(path.replace("\\", "/"))
-    s_base = _norm_token(base_noext)
-    pid_str = str(pid)
+    pid_s = str(pid)
+    klist = _member_keys_for_match(member)  # ['keehoon', 'noone_is_hier', ...]
 
-    # 문제 폴더 포함 여부 (boj_{pid})
-    if f"boj_{pid_str}" not in s_full:
-        return False
-
-    # 멤버 키 후보
-    keys = _member_keys_for_match(member)  # 이미 _norm_token 적용됨
-
-    # 1) 파일명에 멤버 키 포함 → OK
-    if any(k in s_base for k in keys):
-        return True
-
-    # 2) 디렉터리 경로에 '/{key}(/|_|-)' 형태로 포함 → OK
-    for k in keys:
-        if re.search(rf"/{re.escape(k)}([/_-]|$)", s_full):
+    bn_norm = _norm_token(base_noext)  # 구분자 통일(대/소문자, -, _ 등)
+    # 1) 파일명 패턴 확정 매치: <key>_(or -)<pid>(...)
+    for k in klist:
+        if re.match(rf"^{re.escape(k)}[_\-]{pid_s}(?:[_\-].*)?$", bn_norm):
             return True
+
+    # 2) 디렉터리 구조 힌트: .../boj_<pid>.../ <basename startswith key>
+    if re.search(rf"/boj_{pid_s}[^/]*/", p):
+        for k in klist:
+            if bn_norm.startswith(k + "_") or bn_norm.startswith(k + "-") or k in _split_tokens(base_noext):
+                return True
+
+    # 3) 보조 규칙(느슨): 경로 토큰 어딘가에 pid와 key가 공존
+    all_toks = _path_tokens_without_ext(p)
+    if (pid_s in all_toks) and any(k in all_toks for k in klist):
+        return True
 
     return False
 
@@ -425,12 +424,16 @@ def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
     """
     모든 refs에서 problems/ 이하 파일을 모아 pid -> [paths...] 매핑
     """
-    problems_root = infer_problems_root(weeks_cfg)  # 보통 "problems"
+    problems_root = infer_problems_root(weeks_cfg)
     paths = paths_in_refs(refs, problems_root)
     by_pid: Dict[int, List[str]] = {}
     for p in paths:
         m = re.search(r"boj_(\d+)", p)
         if not m:
+            continue
+        # ⬇⬇⬇ 추가: 소스 확장자만 수집
+        ext = os.path.splitext(p)[1].lower()
+        if ext not in ALLOWED_EXT:
             continue
         pid = int(m.group(1))
         by_pid.setdefault(pid, []).append(p)
@@ -514,7 +517,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             if not m2:
                 continue
             pid = int(m2.group(1))
-            if pid in all_pids and _member_owns_path(p, pid, member):
+            if _member_owns_path(p, pid, member):
                 commit_attrib.setdefault(seat, {})[pid] = wk_lab
 
     # 2) 브랜치명 기반 (스냅샷 전체가 아니라, main...branch **diff**만 사용)
@@ -539,7 +542,6 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             m2 = re.search(r"boj_(\d+)", p)
             if not m2: continue
             pid = int(m2.group(1))
-            if pid not in all_pids: continue
             if member and _member_owns_path(p, pid, member):
                 branch_attrib.setdefault(seat, {})
                 branch_attrib[seat].setdefault(pid, wk_lab)
