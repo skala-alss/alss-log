@@ -552,42 +552,42 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     # 예) "submit: week03-jinyeop (#30)" / "submit] week 02 - chang"
     pat_subj = re.compile(r"submit[:\]]?\s*week\s*(\d+)\s*-\s*([A-Za-z0-9_\-]+)", re.IGNORECASE)
     for sha, subj, files in submit_commits:
-    subj_m = pat_subj.search(subj)
-    subj_wk = f"{int(subj_m.group(1)):02d}" if subj_m else None
-    subj_key = _norm_token(subj_m.group(2)) if subj_m else None
-    subj_seat = seat_by_branch_key.get(subj_key) if subj_key else None
+        subj_m = pat_subj.search(subj)
+        subj_wk = f"{int(subj_m.group(1)):02d}" if subj_m else None
+        subj_key = _norm_token(subj_m.group(2)) if subj_m else None
+        subj_seat = seat_by_branch_key.get(subj_key) if subj_key else None
 
-    for p in files:
-        pp = p.replace("\\","/")
-        if problems_root + "/" not in pp:
-            continue
-        m2 = re.search(r"boj_(\d)", pp)
-        if not m2:
-            continue
-        pid = int(m2.group(1))
+        for p in files:
+            pp = p.replace("\\","/")
+            if problems_root + "/" not in pp:
+                continue
+            m2 = re.search(r"boj_(\d)", pp)
+            if not m2:
+                continue
+            pid = int(m2.group(1))
 
-        # ① 소유자 seat: 제목에서 찾기 → 실패 시 경로로 추론
-        owner_seat, owner_member = subj_seat, None
-        if owner_seat:
-            owner_member = next((mm for mm in participants if str(mm["seat"]) == owner_seat), None)
-        if not owner_member:
-            for mm in participants:
-                if _member_owns_path(pp, pid, mm):
-                    owner_seat, owner_member = str(mm["seat"]), mm
-                    break
-        if not owner_member:
-            continue
+            # ① 소유자 seat: 제목에서 찾기 → 실패 시 경로로 추론
+            owner_seat, owner_member = subj_seat, None
+            if owner_seat:
+                owner_member = next((mm for mm in participants if str(mm["seat"]) == owner_seat), None)
+            if not owner_member:
+                for mm in participants:
+                    if _member_owns_path(pp, pid, mm):
+                        owner_seat, owner_member = str(mm["seat"]), mm
+                        break
+            if not owner_member:
+                continue
 
-        # ② 주차 라벨: 제목에서 찾기 → 실패 시 경로에서 weekNN 추출
-        wk_lab = subj_wk
-        if not wk_lab:
-            mw = re.search(r"/problems/week(\d{2})/", pp, re.IGNORECASE)
-            if mw:
-                wk_lab = mw.group(1)
-        if not wk_lab:
-            continue
+            # ② 주차 라벨: 제목에서 찾기 → 실패 시 경로에서 weekNN 추출
+            wk_lab = subj_wk
+            if not wk_lab:
+                mw = re.search(r"/problems/week(\d{2})/", pp, re.IGNORECASE)
+                if mw:
+                    wk_lab = mw.group(1)
+            if not wk_lab:
+                continue
 
-        commit_attrib.setdefault(owner_seat, {}).setdefault(pid, wk_lab)
+            commit_attrib.setdefault(owner_seat, {}).setdefault(pid, wk_lab)
 
     # 2) 브랜치 기반 (최신 브랜치 우선)
     def _ref_unix_ts(ref: str) -> int:
