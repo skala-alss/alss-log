@@ -431,6 +431,14 @@ def classify_states_repo(week_cfg, members, problems: List[int], repo_index_all:
             if pid not in solved:
                 results[pid][seat] = "NONE"; continue
             owned = any(_member_owns_path(path, pid, m) for path in repo_index_all.get(pid, []))
+            if DEBUG and pid in solved:
+                cand = repo_index_all.get(pid, [])
+                print(f"[debug] DURING-check seat={seat} handle={handle} pid={pid} cand={len(cand)} -> {'DURING' if owned else 'PRE'}")
+                # 후보는 있는데 매칭이 안 될 때 각 경로와 결과를 샘플로 보여줌
+                if cand and not owned:
+                    for p in cand[:6]:
+                        ok = _member_owns_path(p, pid, m)
+                        print(f"         try: member={m.get('file_key') or m.get('name') or m.get('github')} vs {p} => {ok}")
             results[pid][seat] = "DURING" if owned else "PRE"
     return results
 
@@ -496,6 +504,11 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
         seat = seat_by_branch_key.get(bkey)
         if not seat: continue
         ps = list_diff_paths_vs_main(r, problems_root)
+        if DEBUG:
+            print(f"[debug] branch={r} week={wk_lab} diff_paths={len(ps)} (problems under)")
+            for smp in ps[:6]:
+                print("        -", smp)
+
         member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
         for p in ps:
             m2 = re.search(r"boj_(\d+)", p)
@@ -505,6 +518,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             if member and _member_owns_path(p, pid, member):
                 branch_attrib.setdefault(seat, {})
                 branch_attrib[seat].setdefault(pid, wk_lab)
+            if DEBUG:
+                print(f"[debug] branch-attr seat={seat} ref={r} week={wk_lab} pid={pid} path={p}")
 
     # 3) 병합 (commit > branch > (옵션) DURING 폴백)
     out: Dict[str, Dict[int, str]] = { str(m["seat"]): {} for m in participants }
@@ -678,11 +693,14 @@ def main():
     refs = list_all_refs()
     repo_index_all = collect_repo_files_all(weeks_cfg, refs)
     if DEBUG:
-        sample = []
-        for pid, paths in repo_index_all.items():
-            sample.append(f"{pid}:{len(paths)}")
-            if len(sample) >= 8: break
-        print(f"[debug] repo_index_all pids={len(repo_index_all)}; samples: {', '.join(sample)}")
+        target_pids_dbg = sorted({pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"]})
+        print(f"[debug] target_pids (weeks.yaml): {len(target_pids_dbg)}")
+        # 각 PID에 대해 후보 경로가 몇 개 있는지(최대 8개만 샘플)
+        for pid in target_pids_dbg[:30]:
+            paths = repo_index_all.get(pid, [])
+            print(f"[debug] pid={pid} candidates={len(paths)}")
+            for p in paths[:8]:
+                print("        -", p)
 
     # Week READMEs
     states_bundle = {}  # week_id -> group_key -> {pid -> {seat -> 'PRE'|'DURING'|'NONE'}}
