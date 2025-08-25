@@ -21,7 +21,7 @@
 
 | 솔브드 티어 | 번호 | 제목 | 링크 | 폴더 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 |:---:|---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 27433 | 팩토리얼 2 | [🔗](https://www.acmicpc.net/problem/27433) | [📁](./브루트포스&재귀&백트래킹-초급/boj_27433_팩토리얼_2) | ✅ | ❌ | ❌ | ☑️ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 27433 | 팩토리얼 2 | [🔗](https://www.acmicpc.net/problem/27433) | [📁](./브루트포스&재귀&백트래킹-초급/boj_27433_팩토리얼_2) | ✅ | ☑️ | ❌ | ☑️ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 27434 | 팩토리얼 3 | [🔗](https://www.acmicpc.net/problem/27434) | [📁](./브루트포스&재귀&백트래킹-초급/boj_27434_팩토리얼_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1065 | 한수 | [🔗](https://www.acmicpc.net/problem/1065) | [📁](./브루트포스&재귀&백트래킹-초급/boj_1065_한수) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15649 | N과 M (1) | [🔗](https://www.acmicpc.net/problem/15649) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15649_N과_M_(1)) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
