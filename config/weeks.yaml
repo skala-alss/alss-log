@@ -1,7 +1,6 @@
 weeks:
   - id: 4
     path: "problems/week04/README.md"
-    released_at: "2025-08-21T00:00:00+09:00" # 파일의 WEEKMETA와 동일
     groups:
       - key: "BEGINNER"
         marker: "PROGRESS:BEGINNER"

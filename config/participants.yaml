@@ -1,25 +1,37 @@
 members:
   - seat: 1
     name: "nOOne-is-hier"
-    solved_handle: "kanadachocolate"
     github: "nOOne-is-hier"
+    solved_handle: "kanadachocolate"
+    file_key: "keehoon" # 파일명에서 사용할 토큰
+    branch_key: "keehoon" # week{XX}-{branch_key}
   - seat: 2
     name: "SDGeo12"
-    solved_handle: "sdgeo20"
     github: "SDGeo12"
+    solved_handle: "sdgeo20"
+    file_key: "donggeon"
+    branch_key: "donggeon"
   - seat: 3
     name: "jiyunee02"
-    solved_handle: "jiyun301"
     github: "jiyunee02"
+    solved_handle: "jiyun301"
+    file_key: "jiyun"
+    branch_key: "jiyun"
   - seat: 4
     name: "skala-changhyun"
-    solved_handle: "gcgc09"
     github: "skala-changhyun"
+    solved_handle: "gcgc09"
+    file_key: "chang"
+    branch_key: "chang"
   - seat: 5
     name: "seo-youngjae"
-    solved_handle: "heaven707"
     github: "seo-youngjae"
+    solved_handle: "heaven707"
+    file_key: "youngjae"
+    branch_key: "youngjae"
   - seat: 6
     name: "JinYeopKang"
-    solved_handle: "jyyj14587"
     github: "JinYeopKang"
+    solved_handle: "jyyj14587"
+    file_key: "jinyeop"
+    branch_key: "jinyeop"
