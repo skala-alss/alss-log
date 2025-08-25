@@ -18,37 +18,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1) PAT로 체크아웃 + 전체 히스토리 전제
       - name: Checkout with BOT PAT
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          token: ${{ secrets.BOT_PAT }}
+          fetch-depth: 0 # shallow 금지 (커밋/브랜치 탐색 위해)
+          token: ${{ secrets.BOT_PAT }} # push·fetch 모두 PAT 사용
 
-      # 리모트/브랜치 트리 확보 (브랜치/PR 커밋 탐색 정확도 ↑)
+      # 2) 리모트/브랜치/태그 전부 확보 (브랜치/PR 커밋 탐색 정확도 ↑)
       - name: Fetch all branches & tags
         run: |
           git config --global advice.detachedHead false
 
-          # 1) 혹시 shallow clone이면 전체 히스토리 확보
-          if git rev-parse --is-shallow-repository | grep -q true; then
-            git fetch --unshallow --tags
-          fi
-
-          # 2) push용 PAT로 origin 업데이트(선택: 이미 checkout에 token을 줬다면 생략 가능)
+          # origin URL을 PAT로 통일 (푸시 문제 예방)
           git remote set-url origin https://x-access-token:${{ secrets.BOT_PAT }}@github.com/${{ github.repository }}.git
 
-          # 3) 원격 모든 브랜치를 로컬 remote-tracking으로 가져오기 (depth 옵션 X)
+          # 원격 모든 브랜치를 로컬 remote-tracking으로 동기화
+          git fetch --prune --tags
           git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
 
-          # 4) 태그도 갱신
-          git fetch --tags --force
+          echo '--- remote branches (head 100) ---'
+          git branch -r | sed -n '1,100p' || true
+          echo '--- recent main log (head 30) ---'
+          (git log origin/main --oneline --decorate -n 30 || git log main --oneline --decorate -n 30) || true
 
-          # 5) 디버그용 출력
-          echo "--- remote branches ---"
-          git branch -r | sed -n '1,100p'
-          echo "--- recent main log ---"
-          git log --oneline --decorate --max-count=20 || true
-
+      # 3) Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -59,16 +53,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests PyYAML
 
-      # 👇 이 스텝에서만 ALSS_* 전부 "1"로 강제
+      # 4) 대시보드 빌드
       - name: Build dashboards
         env:
+          # 스크립트 동작 플래그 (명시적으로 모두 on)
           ALSS_CHECK_BRANCHES: "1"
-          ALSS_OVERWRITE: "1" # 안정화 후 0으로 전환 권장
+          ALSS_OVERWRITE: "1" # 안정화 후엔 "0"으로 내려도 됨(빈칸만 채우기)
           ALSS_DEBUG: "1"
-          ALSS_TREND_FALLBACK_DURING: "0" # 정확도 우선, 원하면 "1"로
+          ALSS_TREND_FALLBACK_DURING: "0" # 정확도 우선. 필요 시 "1"로 변경
+          # 선택) 커밋 스캔 상한(-n). 무제한이면 비우거나 0 유지
+          ALSS_LOG_LIMIT: "0"
         run: |
           python scripts/build_dashboard.py
 
+      # 5) 변경 발생 시 자동 커밋/푸시
       - name: Commit & Push if changed (auto)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
@@ -80,3 +78,12 @@ jobs:
           commit_user_name: skala-bot
           commit_user_email: skalabot16@gmail.com
           commit_author: "skala-bot <skalabot16@gmail.com>"
+
+      # 실패 시 추가 디버그(선택)
+      - name: Debug on failure
+        if: failure()
+        run: |
+          echo '--- show remotes ---'
+          git remote -v
+          echo '--- show refs snapshot ---'
+          git for-each-ref --format='%(refname:short)' | sed -n '1,200p' || true

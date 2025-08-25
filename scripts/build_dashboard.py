@@ -19,6 +19,7 @@ Env:
   ALSS_CHECK_BRANCHES=1          # scan all refs/heads + refs/remotes (default: 1)
   ALSS_DEBUG=1                   # debug logs (default: 1)
   ALSS_TREND_FALLBACK_DURING=0   # trend 귀속 폴백(배정 주차로) 활성화 (default: 0)
+  ALSS_LOG_LIMIT=0               # (선택) 커밋 스캔 상한(-n). 0 또는 미지정이면 무제한
 """
 
 import os, re, time, math, subprocess, shlex
@@ -43,7 +44,7 @@ ALSS_TREND_FALLBACK_DURING = os.getenv("ALSS_TREND_FALLBACK_DURING", "0") == "1"
 SOLVED_BASE = "https://solved.ac/api/v3"
 SESSION = requests.Session()
 SESSION.headers.update({
-    "User-Agent": "alss-dashboard/2.1 (+https://github.com/your/repo)",
+    "User-Agent": "alss-dashboard/2.2 (+https://github.com/your/repo)",
 })
 
 def _get(url, params=None, max_retry=5):
@@ -329,22 +330,57 @@ def _resolve_main_ref() -> str:
             continue
     return "HEAD"
 
-def _git_log_submit_commits(main_refs: List[str]) -> str:
+# ---------- Commit scan: full-history (no 1k cap) ----------
+def _collect_submit_commits_unlimited(main_refs: List[str],
+                                      limit_env_var: str = "ALSS_LOG_LIMIT"
+                                     ) -> List[Tuple[str, str, List[str]]]:
+    """
+    main_refs 중 첫 번째로 유효한 ref에서 전체(or 제한) 히스토리를 읽어
+    'submit: weekNN-<alias>' 커밋만 추출.
+    반환: [(sha, subject, [paths...]), ...]
+    - ALSS_LOG_LIMIT 환경변수로 선택적 상한(-n) 적용. 0/미지정이면 무제한.
+    """
+    out: List[Tuple[str, str, List[str]]] = []
+    nopt = ""
+    try:
+        lim = int(os.getenv(limit_env_var, "").strip() or "0")
+        if lim > 0:
+            nopt = f"-n {lim}"
+    except Exception:
+        pass
+
+    pat = re.compile(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
+
     for ref in main_refs:
         try:
-            # 이모지/프리픽스가 달라도 잡히도록 'submit:' 만 grep
-            cmd = (
-                f"git log {shlex.quote(ref)} "
-                f"--grep='submit:' --pretty=%H|%s --name-only --no-renames --first-parent"
-            )
-            out = _run(cmd)
-            if out.strip():
-                if DEBUG:
-                    print(f"[debug] submit commits found on {ref}")
-                return out
+            log = _run(f"git log {nopt} {shlex.quote(ref)} --pretty=%H|%s")
         except Exception:
             continue
-    return ""
+
+        matched: List[Tuple[str, str]] = []
+        for line in log.splitlines():
+            if "|" not in line:
+                continue
+            sha, subj = line.split("|", 1)
+            if pat.search(subj):
+                matched.append((sha, subj))
+
+        if not matched:
+            continue
+
+        for sha, subj in matched:
+            try:
+                files = _run(f"git show {shlex.quote(sha)} --name-only --no-renames --pretty=")
+                paths = [p.strip() for p in files.splitlines() if p.strip()]
+            except Exception:
+                paths = []
+            out.append((sha, subj, paths))
+
+        if DEBUG:
+            print(f"[debug] submit commits parsed on {ref}: {len(out)}")
+        break  # 첫 ref에서 찾으면 종료
+
+    return out
 
 # ---------- Repo scanning: GLOBAL index (across all weeks/branches) ----------
 def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
@@ -405,36 +441,35 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     if DEBUG:
         print("[debug] seat_by_branch_key:", seat_by_branch_key)
 
-    # 1) 커밋 제목 기반
+    # 1) 커밋 제목 기반 (전체 히스토리 스캔)
     commit_attrib: Dict[str, Dict[int, str]] = {}
     main_refs = [_resolve_main_ref(), "HEAD", "origin/main", "main"]
-    log = _git_log_submit_commits(main_refs)
+    submit_commits = _collect_submit_commits_unlimited(main_refs)
     if DEBUG:
-        print(f"[debug] main_refs tried: {main_refs}, submit_log_found={bool(log.strip())}")
-    if log.strip():
-        chunks = re.split(r"\n(?=[0-9a-f]{7,40}\|)", log.strip(), flags=re.IGNORECASE)
-        for ch in chunks:
-            if "|" not in ch: continue
-            head, *rest = ch.split("\n")
-            _, subj = head.split("|", 1)
-            m = re.search(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", subj, flags=re.IGNORECASE)
-            if not m: continue
-            wk_lab = f"{int(m.group(1)):02d}"
-            bkey = _norm_token(m.group(2))
-            seat = seat_by_branch_key.get(bkey)
-            if not seat: continue
-            commit_attrib.setdefault(seat, {})
-            for p in rest:
-                p = p.strip()
-                if not p or p.startswith((" ", "\t")):
-                    continue
-                if problems_root + "/" not in p.replace("\\","/"):
-                    continue
-                m2 = re.search(r"boj_(\d+)", p)
-                if not m2: continue
-                pid = int(m2.group(1))
-                if pid in all_pids:
-                    commit_attrib[seat][pid] = wk_lab
+        print(f"[debug] main_refs tried: {main_refs}, submit_commits_found={len(submit_commits)>0}")
+
+    pat_subj = re.compile(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
+    for sha, subj, files in submit_commits:
+        m = pat_subj.search(subj)
+        if not m:
+            continue
+        wk_lab = f"{int(m.group(1)):02d}"
+        bkey = _norm_token(m.group(2))
+        seat = seat_by_branch_key.get(bkey)
+        if not seat:
+            continue
+        member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
+        if not member:
+            continue
+        for p in files:
+            if problems_root + "/" not in p.replace("\\","/"):
+                continue
+            m2 = re.search(r"boj_(\d+)", p)
+            if not m2:
+                continue
+            pid = int(m2.group(1))
+            if pid in all_pids and _member_owns_path(p, pid, member):
+                commit_attrib.setdefault(seat, {})[pid] = wk_lab
 
     # 2) 브랜치명 기반
     branch_attrib: Dict[str, Dict[int, str]] = {}
@@ -447,24 +482,22 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
         bkey = _norm_token(mb.group(2))
         seat = seat_by_branch_key.get(bkey)
         if not seat: continue
-        # 해당 ref에서 problems 경로를 가져와 pid/멤버 소유 확인
         try:
             ps = list_paths_in_ref(r, problems_root)
         except Exception:
             continue
+        member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
         for p in ps:
             m2 = re.search(r"boj_(\d+)", p)
             if not m2: continue
             pid = int(m2.group(1))
             if pid not in all_pids: continue
-            member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
             if member and _member_owns_path(p, pid, member):
                 branch_attrib.setdefault(seat, {})
                 branch_attrib[seat].setdefault(pid, wk_lab)
 
     # 3) 병합 (commit > branch > (옵션) DURING 폴백)
     out: Dict[str, Dict[int, str]] = { str(m["seat"]): {} for m in participants }
-
     for seat, mp in commit_attrib.items():
         out[seat].update(mp)
     for seat, mp in branch_attrib.items():
@@ -472,7 +505,6 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             out[seat].setdefault(pid, wk_lab)
 
     if ALSS_TREND_FALLBACK_DURING and states_bundle:
-        # DURING인데 아직 귀속 주차가 없는 문제만 배정 주차로 폴백
         for w in weeks_cfg:
             lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
             for g in w["groups"]:
