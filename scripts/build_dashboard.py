@@ -556,26 +556,25 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         week_sets.append(pids)
         week_titles.append(wk_label(w))
 
-        # DURING만 집계(요구사항)
         solved_map: Dict[str, Set[int]] = {}
         for m in participants:
             seat = str(m["seat"])
             solved = set()
             for g in w["groups"]:
                 for pid, seat_states in states_bundle[w["id"]][g["key"]].items():
+                    # DURING만 집계
                     if seat_states[seat] == "DURING":
                         solved.add(pid)
             solved_map[seat] = solved
         solved_by_member_per_week.append(solved_map)
 
-    # 2) 제출 주차 귀속 맵 (diff 기반)
+    # 2) 제출 주차 귀속 맵
     submission_map = build_submission_attribution(
-        weeks_cfg,
-        participants,
+        weeks_cfg, participants,
         states_bundle if ALSS_TREND_FALLBACK_DURING else None
     )
 
-    # --- 1) 주차별 완료율 (%)
+    # 3-1) 주차별 완료율 (%): DURING만
     def week_matrix_md():
         header = ["주차＼멤버"] + [m["name"] for m in participants] + ["합계(%)"]
         lines = ["| " + " | ".join(header) + " |",
@@ -607,7 +606,7 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         lines.append("| " + " | ".join(tot) + " |")
         return "\n".join(lines)
 
-    # --- 2) 전체 리더보드 (DURING만 누적, 분모=전체 배정 합집합)
+    # 3-2) 전체 리더보드 (누적): DURING만 (유니크 PID 기준)
     def leaderboard_md():
         assigned_universe = set()
         for ws in week_sets:
@@ -618,9 +617,8 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         for m in participants:
             seat = str(m["seat"])
             solved_union = set()
-            for widx in range(len(week_sets)):
-                solved_union |= solved_by_member_per_week[widx][seat]
-            solved_union &= assigned_universe  # 안전하게 분모와 교집합
+            for widx, ws in enumerate(week_sets):
+                solved_union |= (solved_by_member_per_week[widx][seat] & ws)
             scores.append((m["name"], len(solved_union)))
 
         scores.sort(key=lambda x: x[1], reverse=True)
@@ -630,7 +628,7 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             lines.append(f"{i}) {name} — **{sc}/{assigned_total} ({rate}%)**")
         return "\n".join(lines)
 
-    # --- 3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
+    # 3-3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
     def trend_md():
         # 분모: 1..k주차 배정 문제의 합집합
         cumulative_assign_sets: List[Set[int]] = []
@@ -639,7 +637,7 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             acc |= ws
             cumulative_assign_sets.append(set(acc))
 
-        # 제출 귀속 라벨 인덱스
+        # 주차 라벨 → 인덱스
         week_index = {lab: i for i, lab in enumerate(week_titles)}
 
         header = ["주차＼멤버"] + [m["name"] for m in participants]
@@ -661,11 +659,8 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
 
-        return "\n".join(
-            ["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines
-        )
+        return "\n".join(["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines)
 
-    # 블록 치환 & 저장
     text = read_file(root_readme_path)
     text = replace_block(text, "DASHBOARD_WEEKS", "\n".join(["### 주차별 완료율 (%)", week_matrix_md()]))
     text = replace_block(text, "DASHBOARD_LEADERBOARD", leaderboard_md())

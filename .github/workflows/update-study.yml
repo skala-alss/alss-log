@@ -33,14 +33,16 @@ jobs:
           # origin URL을 PAT로 통일 (푸시 문제 예방)
           git remote set-url origin https://x-access-token:${{ secrets.BOT_PAT }}@github.com/${{ github.repository }}.git
 
-          # 원격 모든 브랜치를 로컬 remote-tracking으로 동기화
+          # 1) 일반 브랜치
           git fetch --prune --tags
           git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
-          # (추가) 포크 PR 헤드도 remote-tracking으로 확보 → DURING 판정에 긍정적
-          git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*' --prune
+
+          # 2) 🔴 PR 헤드/머지 **반드시 가져오기**
+          git fetch origin '+refs/pull/*/head:refs/remotes/pull/*/head' --prune
+          git fetch origin '+refs/pull/*/merge:refs/remotes/pull/*/merge' --prune
 
           echo '--- remote branches (head 100) ---'
-          git branch -r | sed -n '1,100p' || true
+          git for-each-ref --format='%(refname:short)' refs/remotes/ | sed -n '1,100p' || true
           echo '--- recent main log (head 30) ---'
           (git log origin/main --oneline --decorate -n 30 || git log main --oneline --decorate -n 30) || true
 
