@@ -78,18 +78,27 @@ jobs:
             git --no-pager diff -- "$f" | sed -n '1,200p' || true
             echo
           done
-          echo "=== specific week04 preview (first 120 lines) ==="
-          git --no-pager diff -- problems/week04/README.md | sed -n '1,120p' || true
 
       # 5) 변경 발생 시 자동 커밋/푸시 (README 범위로 한정)
+      - name: Pre-stage README changes (safety)
+        run: |
+          # 신규 파일/변경 파일 스테이징
+          git add -- README.md ':(glob)**/README.md' || true
+          # 삭제/리네임 등 추적 파일 상태 업데이트
+          git add -u -- README.md ':(glob)**/README.md' || true
+
+          echo "=== staged files (name-only) ==="
+          git --no-pager diff --cached --name-only || true
+
       - name: Commit & Push if changed (auto)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "📝 docs: auto-update week tables & root dashboard"
           branch: main
-          # 한 줄, 대소문자 정확히. 루트 및 하위 모든 README.md 포함
-          file_pattern: "**/README.md"
-          # 변경/삭제 포착을 확실히 하기 위해 -A 사용 (pathspec은 여전히 README로 제한됨)
+          # 🔑 Git pathspec with glob magic
+          file_pattern: |
+            README.md
+            :(glob)**/README.md
           add_options: -A
           commit_user_name: skala-bot
           commit_user_email: skalabot16@gmail.com
