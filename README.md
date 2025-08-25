@@ -21,15 +21,15 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 ### 주차별 완료율 (%)
 | 주차＼멤버 | nOOne-is-hier | SDGeo12 | jiyunee02 | skala-changhyun | seo-youngjae | JinYeopKang | 합계(%) |
 |---|---|---|---|---|---|---|---|
-| 04 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| 합계(%) | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 04 | 7 | 0 | 0 | 0 | 0 | 0 | 1 |
+| 합계(%) | 7 | 0 | 0 | 0 | 0 | 0 | 1 |
 
 <!--END:DASHBOARD_WEEKS-->
 
 <!--START:DASHBOARD_LEADERBOARD-->
 
 ### 전체 리더보드 (누적)
-1) nOOne-is-hier — **0/43 (0%)**
+1) nOOne-is-hier — **3/43 (7%)**
 2) SDGeo12 — **0/43 (0%)**
 3) jiyunee02 — **0/43 (0%)**
 4) skala-changhyun — **0/43 (0%)**
@@ -43,7 +43,7 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 ### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
 | 주차＼멤버 | nOOne-is-hier | SDGeo12 | jiyunee02 | skala-changhyun | seo-youngjae | JinYeopKang |
 |---|---|---|---|---|---|---|
-| 04 | 0/43 (0) | 0/43 (0) | 0/43 (0) | 0/43 (0) | 0/43 (0) | 0/43 (0) |
+| 04 | 3/43 (7) | 0/43 (0) | 0/43 (0) | 0/43 (0) | 0/43 (0) | 0/43 (0) |
 
 <!--END:DASHBOARD_TREND-->
 
