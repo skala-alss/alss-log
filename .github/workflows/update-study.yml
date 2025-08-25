@@ -52,7 +52,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests PyYAML
 
-      # 4) 대시보드 빌드
+      # 4) README → 폴더/.gitkeep 생성 + weeks.yaml 병합/갱신
+      - name: Generate folders & weeks.yaml from READMEs
+        run: |
+          python scripts/gen_folders_and_weeks.py \
+            --scan-all \
+            --problems-root problems \
+            --weeks-yaml config/weeks.yaml \
+            -v
+
+      # 5) 대시보드 빌드 (weeks.yaml 기준)
       - name: Build dashboards
         env:
           ALSS_CHECK_BRANCHES: "1"
@@ -63,7 +72,7 @@ jobs:
         run: |
           python scripts/build_dashboard.py
 
-      # 4.5) 커밋 전 디프/상태 확인 (그대로 유지 OK)
+      # 5.5) 커밋 전 디프/상태 확인 (그대로 유지 OK)
       - name: Show diff before commit
         run: |
           echo "=== git status (short) ==="
@@ -78,26 +87,30 @@ jobs:
             git --no-pager diff -- "$f" | sed -n '1,200p' || true
             echo
           done
+          echo "=== weeks.yaml diff (first 200 lines) ==="
+          if git --no-pager diff --name-only | grep -q '^config/weeks\.yaml$'; then
+            git --no-pager diff -- config/weeks.yaml | sed -n '1,200p' || true
+          else
+            echo "(no changes in config/weeks.yaml)"
+          fi
 
-      # 5) README만 스테이징 → 커밋 → 푸시 (수동)
-      - name: Commit & Push README changes (manual)
+      # 6) README/주차README + weeks.yaml + .gitkeep 커밋/푸시
+      - name: Commit & Push changes
         run: |
-          # 1) README만 스테이징 (신규/변경/삭제 모두)
-          git add -- README.md ':(glob)**/README.md' || true
-          git add -u -- README.md ':(glob)**/README.md' || true
+          # 스테이징: 루트/주차 README, weeks.yaml, 모든 .gitkeep
+          git add -- README.md ':(glob)**/README.md' config/weeks.yaml ':(glob)**/.gitkeep' || true
+          git add -u -- README.md ':(glob)**/README.md' config/weeks.yaml ':(glob)**/.gitkeep' || true
 
           echo "=== staged files (name-only) ==="
           git --no-pager diff --cached --name-only || true
 
-          # 2) 스테이지에 변화가 있으면 커밋
           if ! git diff --cached --quiet; then
             git config user.name  "skala-bot"
             git config user.email "skalabot16@gmail.com"
-            git commit -m "📝 docs: auto-update week tables & root dashboard"
-            # 3) PAT로 푸시 (앞 단계에서 remote URL을 PAT로 이미 통일했음)
+            git commit -m "🧰 build: sync weeks.yaml, create folders/.gitkeep, and refresh dashboards"
             git push origin HEAD:main
           else
-            echo "No README changes to commit."
+            echo "No changes to commit."
           fi
 
       # 실패 시 추가 디버그
