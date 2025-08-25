@@ -211,7 +211,7 @@ def render_week_readme_members_only(week_cfg, participants, states_by_group):
 
     # 2) 절대 경로 만들고 '파일'인지 확인
     path = os.path.join(ROOT_DIR, rel)
-    if not os.path.isfile(path):            # ← exists가 아니라 isfile!
+    if not os.path.isfile(path):  # 디렉터리/미존재 모두 스킵
         if DEBUG:
             print(f"[debug] skip week README (not a file): {path}")
         return False
@@ -222,8 +222,6 @@ def render_week_readme_members_only(week_cfg, participants, states_by_group):
         if DEBUG:
             print(f"[debug] skip week README (read error): {path} ({e})")
         return False
-    path = os.path.join(ROOT_DIR, week_cfg["path"])
-    text = read_file(path)
     changed = False
 
     for g in week_cfg["groups"]:
@@ -420,6 +418,8 @@ def _collect_submit_commits_unlimited(main_refs: List[str],
     반환: [(sha, subject, [paths...]), ...]
     - ALSS_LOG_LIMIT 환경변수로 선택적 상한(-n) 적용. 0/미지정이면 무제한.
     """
+    # (sha) 중복 제거 및 최신순 정렬을 위해 타임스탬프까지 함께 수집
+    tmp: Dict[str, Tuple[int, str]] = {}  # sha -> (ts, subj)
     out: List[Tuple[str, str, List[str]]] = []
     nopt = ""
     try:
@@ -433,35 +433,42 @@ def _collect_submit_commits_unlimited(main_refs: List[str],
 
     for ref in main_refs:
         try:
-            log = _run(f"git -c core.quotepath=off log {nopt} {shlex.quote(ref)} --pretty=%H|%s")
+            log = _run(f"git -c core.quotepath=off log {nopt} {shlex.quote(ref)} --pretty=%H|%ct|%s")
         except Exception:
             continue
 
-        matched: List[Tuple[str, str]] = []
+        matched: List[Tuple[str, int, str]] = []
         for line in log.splitlines():
-            if "|" not in line:
+            if line.count("|") < 2:
                 continue
-            sha, subj = line.split("|", 1)
-            if pat.search(subj):
-                matched.append((sha, subj))
-
-        if not matched:
-            continue
-
-        for sha, subj in matched:
+            sha, ts_s, subj = line.split("|", 2)
             try:
-                files = _run(
-                    f"git -c core.quotepath=off show {shlex.quote(sha)} "
-                    f"--name-only --no-renames --pretty="
-                )
-                paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
+                ts = int(ts_s.strip())
             except Exception:
-                paths = []
-            out.append((sha, subj, paths))
+                ts = 0
+            if pat.search(subj):
+                matched.append((sha, ts, subj))
 
-        if DEBUG:
-            print(f"[debug] submit commits parsed on {ref}: {len(out)}")
-        break
+        for sha, ts, subj in matched:
+            # sha 기준 유니크(더 최신 ts가 들어오면 갱신)
+            prev = tmp.get(sha)
+            if (prev is None) or (ts > prev[0]):
+                tmp[sha] = (ts, subj)
+
+        # 최신순(ts desc) 정렬 후 파일 목록 수집
+    for sha, (ts, subj) in sorted(tmp.items(), key=lambda x: x[1][0], reverse=True):
+        try:
+            files = _run(
+                f"git -c core.quotepath=off show {shlex.quote(sha)} "
+                f"--name-only --no-renames --pretty="
+            )
+            paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
+        except Exception:
+            paths = []
+        out.append((sha, subj, paths))
+
+    if DEBUG:
+        print(f"[debug] submit commits parsed total: {len(out)} (unique by sha)")
 
     return out
 
@@ -560,7 +567,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
                 continue
             pid = int(m2.group(1))
             if _member_owns_path(p, pid, member):
-                commit_attrib.setdefault(seat, {})[pid] = wk_lab
+                # 최신 커밋이 먼저 오므로 '처음 본 라벨'을 유지(older가 덮어쓰지 않도록)
+                commit_attrib.setdefault(seat, {}).setdefault(pid, wk_lab)
 
     # 2) 브랜치 기반 (최신 브랜치 우선)
     def _ref_unix_ts(ref: str) -> int:
@@ -624,6 +632,9 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     # 우선순위 3: 폴백 (옵션)
     if ALSS_TREND_FALLBACK_DURING and states_bundle:
         for w in weeks_cfg:
+            # 더미 주차(그룹 없음)에는 귀속하지 않음
+            if not (w.get("groups") or []):
+                continue
             lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
             for g in w["groups"]:
                 for pid, seat_states in states_bundle[w["id"]][g["key"]].items():

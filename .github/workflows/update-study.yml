@@ -67,7 +67,8 @@ jobs:
           ALSS_CHECK_BRANCHES: "1"
           ALSS_OVERWRITE: "1"
           ALSS_DEBUG: "1"
-          ALSS_TREND_FALLBACK_DURING: "1"
+          # 더미 주차가 있을 때 오귀속 방지. 필요시 수동으로 "1"로 켜세요.
+          ALSS_TREND_FALLBACK_DURING: "0"
           ALSS_LOG_LIMIT: "0"
         run: |
           python scripts/build_dashboard.py
