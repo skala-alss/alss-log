@@ -274,6 +274,15 @@ def _member_owns_path(path: str, pid: int, member: dict) -> bool:
 def _run(cmd: str, cwd: str = ROOT_DIR) -> str:
     return subprocess.check_output(cmd, shell=True, cwd=cwd, text=True, stderr=subprocess.DEVNULL)
 
+def _clean_git_path(s: str) -> str:
+    """git이 C-quoted로 내보낸 경로를 정리(양끝 따옴표 제거)"""
+    if not s:
+        return s
+    s = s.strip()
+    if len(s) >= 2 and s[0] == '"' and s[-1] == '"':
+        s = s[1:-1]
+    return s
+
 def list_all_refs() -> List[str]:
     if not CHECK_BRANCHES:
         return ["HEAD", "main", "origin/main"]
@@ -309,9 +318,12 @@ def infer_problems_root(weeks_cfg) -> str:
 
 def list_paths_in_ref(ref: str, rel_path: str) -> List[str]:
     try:
-        cmd = f"git ls-tree -r --name-only {shlex.quote(ref)} -- {shlex.quote(rel_path)}"
+        cmd = (
+            f"git -c core.quotepath=off ls-tree -r --name-only "
+            f"{shlex.quote(ref)} -- {shlex.quote(rel_path)}"
+        )
         out = _run(cmd)
-        return [ln.strip() for ln in out.splitlines() if ln.strip()]
+        return [_clean_git_path(ln.strip()) for ln in out.splitlines() if ln.strip()]
     except Exception:
         return []
 
@@ -334,12 +346,14 @@ def _resolve_main_ref() -> str:
     return "HEAD"
 
 def list_diff_paths_vs_main(ref_head: str, rel_path: str) -> List[str]:
-    """main...ref_head 사이의 변경 파일 목록만 수집(제출 주차 귀속용)."""
     base = _resolve_main_ref()
     try:
-        cmd = f"git diff --name-only {shlex.quote(base)}...{shlex.quote(ref_head)} -- {shlex.quote(rel_path)}"
+        cmd = (
+            f"git -c core.quotepath=off diff --name-only "
+            f"{shlex.quote(base)}...{shlex.quote(ref_head)} -- {shlex.quote(rel_path)}"
+        )
         out = _run(cmd)
-        return [ln.strip() for ln in out.splitlines() if ln.strip()]
+        return [_clean_git_path(ln.strip()) for ln in out.splitlines() if ln.strip()]
     except Exception:
         return []
 
@@ -366,7 +380,7 @@ def _collect_submit_commits_unlimited(main_refs: List[str],
 
     for ref in main_refs:
         try:
-            log = _run(f"git log {nopt} {shlex.quote(ref)} --pretty=%H|%s")
+            log = _run(f"git -c core.quotepath=off log {nopt} {shlex.quote(ref)} --pretty=%H|%s")
         except Exception:
             continue
 
@@ -383,15 +397,18 @@ def _collect_submit_commits_unlimited(main_refs: List[str],
 
         for sha, subj in matched:
             try:
-                files = _run(f"git show {shlex.quote(sha)} --name-only --no-renames --pretty=")
-                paths = [p.strip() for p in files.splitlines() if p.strip()]
+                files = _run(
+                    f"git -c core.quotepath=off show {shlex.quote(sha)} "
+                    f"--name-only --no-renames --pretty="
+                )
+                paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
             except Exception:
                 paths = []
             out.append((sha, subj, paths))
 
         if DEBUG:
             print(f"[debug] submit commits parsed on {ref}: {len(out)}")
-        break  # 첫 ref에서 찾으면 종료
+        break
 
     return out
 
