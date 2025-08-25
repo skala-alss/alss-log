@@ -289,6 +289,8 @@ def list_all_refs() -> List[str]:
     for r in refs:
         if r not in seen:
             order.append(r); seen.add(r)
+    if DEBUG:
+        print(f"[debug] refs detected: {len(order)} -> {', '.join(order[:12])}{' ...' if len(order)>12 else ''}")
     return order
 
 def infer_problems_root(weeks_cfg) -> str:
@@ -327,13 +329,22 @@ def _resolve_main_ref() -> str:
             continue
     return "HEAD"
 
-def _git_log_submit_commits(main_ref: str) -> str:
-    try:
-        # squash subject 예: "📄 submit: week03-keehoon (#25)"
-        cmd = f"git log {shlex.quote(main_ref)} --grep='submit: week' --pretty=%H|%s --name-only --no-renames --first-parent"
-        return _run(cmd)
-    except Exception:
-        return ""
+def _git_log_submit_commits(main_refs: List[str]) -> str:
+    for ref in main_refs:
+        try:
+            # 이모지/프리픽스가 달라도 잡히도록 'submit:' 만 grep
+            cmd = (
+                f"git log {shlex.quote(ref)} "
+                f"--grep='submit:' --pretty=%H|%s --name-only --no-renames --first-parent"
+            )
+            out = _run(cmd)
+            if out.strip():
+                if DEBUG:
+                    print(f"[debug] submit commits found on {ref}")
+                return out
+        except Exception:
+            continue
+    return ""
 
 # ---------- Repo scanning: GLOBAL index (across all weeks/branches) ----------
 def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
@@ -391,13 +402,15 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
 
     # seat 인덱스
     seat_by_branch_key = { _norm_token(m.get("branch_key") or m.get("name") or m.get("github")) : str(m["seat"]) for m in participants }
+    if DEBUG:
+        print("[debug] seat_by_branch_key:", seat_by_branch_key)
 
     # 1) 커밋 제목 기반
     commit_attrib: Dict[str, Dict[int, str]] = {}
-    main_ref = _resolve_main_ref()
-    log = _git_log_submit_commits(main_ref)
+    main_refs = [_resolve_main_ref(), "HEAD", "origin/main", "main"]
+    log = _git_log_submit_commits(main_refs)
     if DEBUG:
-        print(f"[debug] main_ref={main_ref}, submit_commits_found={bool(log.strip())}")
+        print(f"[debug] main_refs tried: {main_refs}, submit_log_found={bool(log.strip())}")
     if log.strip():
         chunks = re.split(r"\n(?=[0-9a-f]{7,40}\|)", log.strip(), flags=re.IGNORECASE)
         for ch in chunks:
