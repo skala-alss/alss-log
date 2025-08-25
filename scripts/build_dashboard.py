@@ -9,10 +9,13 @@ ALSS Dashboard Builder (solved.ac + Git repo)
   * Old filename rule supported: week root: boj_{pid}_{member}.ext
   * Also supports {member}_{pid}(_N)?.ext and any path containing boj_{pid}
 - Root README:
-  1) 주차별 완료율(배정세트 기준, PRE/DURING=해결)
-  2) 전체 리더보드(동일)
-  3) 멤버별 주차별 누적 추세(제출 주차 귀속: squash merge 커밋 제목 → 브랜치명)
+  1) 주차별 완료율(배정세트 기준, **DURING만 집계**)
+  2) 전체 리더보드(동일, **DURING만 집계**)
+  3) 멤버별 주차별 누적 추세(제출 주차 귀속, **diff 기반**):
+     - 병합 PR: "submit: weekNN-<alias>" 커밋의 변경 파일
+     - 미병합 브랜치: git diff main...<branch> 의 변경 파일
      - 폴백: ALSS_TREND_FALLBACK_DURING=1 이면 DURING을 배정 주차로 귀속
+NOTE: released_at 속성은 사용하지 않음.
 
 Env:
   ALSS_OVERWRITE=1               # overwrite all member cells (default: 1; 0이면 빈칸만 채움)
@@ -330,6 +333,16 @@ def _resolve_main_ref() -> str:
             continue
     return "HEAD"
 
+def list_diff_paths_vs_main(ref_head: str, rel_path: str) -> List[str]:
+    """main...ref_head 사이의 변경 파일 목록만 수집(제출 주차 귀속용)."""
+    base = _resolve_main_ref()
+    try:
+        cmd = f"git diff --name-only {shlex.quote(base)}...{shlex.quote(ref_head)} -- {shlex.quote(rel_path)}"
+        out = _run(cmd)
+        return [ln.strip() for ln in out.splitlines() if ln.strip()]
+    except Exception:
+        return []
+
 # ---------- Commit scan: full-history (no 1k cap) ----------
 def _collect_submit_commits_unlimited(main_refs: List[str],
                                       limit_env_var: str = "ALSS_LOG_LIMIT"
@@ -471,7 +484,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             if pid in all_pids and _member_owns_path(p, pid, member):
                 commit_attrib.setdefault(seat, {})[pid] = wk_lab
 
-    # 2) 브랜치명 기반
+    # 2) 브랜치명 기반 (스냅샷 전체가 아니라, main...branch **diff**만 사용)
     branch_attrib: Dict[str, Dict[int, str]] = {}
     refs = list_all_refs()
     week_branch_re = re.compile(r"week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
@@ -482,10 +495,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
         bkey = _norm_token(mb.group(2))
         seat = seat_by_branch_key.get(bkey)
         if not seat: continue
-        try:
-            ps = list_paths_in_ref(r, problems_root)
-        except Exception:
-            continue
+        ps = list_diff_paths_vs_main(r, problems_root)
         member = next((mm for mm in participants if str(mm["seat"]) == seat), None)
         for p in ps:
             m2 = re.search(r"boj_(\d+)", p)
@@ -546,21 +556,26 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         week_sets.append(pids)
         week_titles.append(wk_label(w))
 
+        # DURING만 집계(요구사항)
         solved_map: Dict[str, Set[int]] = {}
         for m in participants:
             seat = str(m["seat"])
             solved = set()
             for g in w["groups"]:
                 for pid, seat_states in states_bundle[w["id"]][g["key"]].items():
-                    if seat_states[seat] in ("PRE","DURING"):
+                    if seat_states[seat] == "DURING":
                         solved.add(pid)
             solved_map[seat] = solved
         solved_by_member_per_week.append(solved_map)
 
-    # 2) 제출 주차 귀속 맵
-    submission_map = build_submission_attribution(weeks_cfg, participants, states_bundle if ALSS_TREND_FALLBACK_DURING else None)
+    # 2) 제출 주차 귀속 맵 (diff 기반)
+    submission_map = build_submission_attribution(
+        weeks_cfg,
+        participants,
+        states_bundle if ALSS_TREND_FALLBACK_DURING else None
+    )
 
-    # 주차별 완료율 (%)
+    # --- 1) 주차별 완료율 (%)
     def week_matrix_md():
         header = ["주차＼멤버"] + [m["name"] for m in participants] + ["합계(%)"]
         lines = ["| " + " | ".join(header) + " |",
@@ -592,15 +607,22 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         lines.append("| " + " | ".join(tot) + " |")
         return "\n".join(lines)
 
-    # 전체 리더보드
+    # --- 2) 전체 리더보드 (DURING만 누적, 분모=전체 배정 합집합)
     def leaderboard_md():
-        assigned_total = sum(len(ws) for ws in week_sets)
+        assigned_universe = set()
+        for ws in week_sets:
+            assigned_universe |= ws
+        assigned_total = len(assigned_universe)
+
         scores = []
         for m in participants:
             seat = str(m["seat"])
-            solved = sum(len(solved_by_member_per_week[widx][seat] & week_sets[widx])
-                         for widx in range(len(week_sets)))
-            scores.append((m["name"], solved))
+            solved_union = set()
+            for widx in range(len(week_sets)):
+                solved_union |= solved_by_member_per_week[widx][seat]
+            solved_union &= assigned_universe  # 안전하게 분모와 교집합
+            scores.append((m["name"], len(solved_union)))
+
         scores.sort(key=lambda x: x[1], reverse=True)
         lines = ["### 전체 리더보드 (누적)"]
         for i, (name, sc) in enumerate(scores, 1):
@@ -608,37 +630,42 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             lines.append(f"{i}) {name} — **{sc}/{assigned_total} ({rate}%)**")
         return "\n".join(lines)
 
-    # 멤버별 주차별 누적 추세 (제출 주차 귀속)
+    # --- 3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
     def trend_md():
-        # 누적 분모: 1..k주차 배정 문제 합집합 크기
+        # 분모: 1..k주차 배정 문제의 합집합
         cumulative_assign_sets: List[Set[int]] = []
         acc = set()
         for ws in week_sets:
             acc |= ws
             cumulative_assign_sets.append(set(acc))
 
-        # 멤버별로, 제출 귀속 주차가 k 이하면 카운트
+        # 제출 귀속 라벨 인덱스
+        week_index = {lab: i for i, lab in enumerate(week_titles)}
+
         header = ["주차＼멤버"] + [m["name"] for m in participants]
         lines = ["| " + " | ".join(header) + " |",
                  "|" + "---|" * (len(header)-1) + "---|"]
-
-        # 주차 라벨 → 인덱스
-        week_index = {lab: i for i, lab in enumerate(week_titles)}
 
         for k, U in enumerate(cumulative_assign_sets):
             row = [week_titles[k]]
             denom = len(U)
             for m in participants:
                 seat = str(m["seat"])
-                mp = submission_map.get(seat, {})
-                solved = sum(1 for pid, wk_lab in mp.items()
-                             if pid in U and week_index.get(wk_lab, 9999) <= k)
+                mp = submission_map.get(seat, {})  # { pid: "04", ... }
+                solved_pids_up_to_k = {
+                    pid for pid, wk_lab in mp.items()
+                    if wk_lab in week_index and week_index[wk_lab] <= k
+                }
+                solved = len(solved_pids_up_to_k & U)
                 rate = round(solved / denom * 100) if denom else 0
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
 
-        return "\n".join(["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines)
+        return "\n".join(
+            ["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines
+        )
 
+    # 블록 치환 & 저장
     text = read_file(root_readme_path)
     text = replace_block(text, "DASHBOARD_WEEKS", "\n".join(["### 주차별 완료율 (%)", week_matrix_md()]))
     text = replace_block(text, "DASHBOARD_LEADERBOARD", leaderboard_md())

@@ -36,6 +36,8 @@ jobs:
           # 원격 모든 브랜치를 로컬 remote-tracking으로 동기화
           git fetch --prune --tags
           git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
+          # (추가) 포크 PR 헤드도 remote-tracking으로 확보 → DURING 판정에 긍정적
+          git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*' --prune
 
           echo '--- remote branches (head 100) ---'
           git branch -r | sed -n '1,100p' || true
