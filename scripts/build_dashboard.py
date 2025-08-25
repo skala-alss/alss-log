@@ -503,11 +503,13 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     우선순위: squash 커밋 제목 → 브랜치명 → (옵션) DURING 폴백(배정 주차)
     """
     problems_root = infer_problems_root(weeks_cfg)
-    all_pids = set(pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"])
+    all_pids = {pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"]}
     wk_label_by_pid = {}
     for w in weeks_cfg:
-        lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id",""))
-        else str(w.get("id",""))
+        if isinstance(w.get("id"), int) or str(w.get("id", "")).isdigit():
+            lab = f"{int(w['id']):02d}"
+        else:
+            lab = str(w.get("id", ""))
         for g in w["groups"]:
             for pid in g["problems"]:
                 wk_label_by_pid[pid] = lab
