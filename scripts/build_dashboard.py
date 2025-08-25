@@ -202,11 +202,27 @@ def _replace_block_exact(text: str, marker: str, new_md_inside: str, s: int, e: 
     return text[:s] + f"<!--START:{marker}-->\n\n{new_md_inside}\n\n<!--END:{marker}-->" + text[e:]
 
 def render_week_readme_members_only(week_cfg, participants, states_by_group):
-    path = os.path.join(ROOT_DIR, week_cfg["path"])
-    if not path or not os.path.exists(path):
+    # 1) 상대 경로 원본을 먼저 확인
+    rel = (week_cfg.get("path") or "").strip()
+    if not rel:
         if DEBUG:
-            print(f"[debug] skip week README (missing): {path}")
+            print(f"[debug] skip week README (empty path): id={week_cfg.get('id')}")
         return False
+
+    # 2) 절대 경로 만들고 '파일'인지 확인
+    path = os.path.join(ROOT_DIR, rel)
+    if not os.path.isfile(path):            # ← exists가 아니라 isfile!
+        if DEBUG:
+            print(f"[debug] skip week README (not a file): {path}")
+        return False
+
+    try:
+        text = read_file(path)
+    except Exception as e:
+        if DEBUG:
+            print(f"[debug] skip week README (read error): {path} ({e})")
+        return False
+    path = os.path.join(ROOT_DIR, week_cfg["path"])
     text = read_file(path)
     changed = False
 
@@ -346,7 +362,7 @@ def list_all_refs() -> List[str]:
 def infer_problems_root(weeks_cfg) -> str:
     # e.g. "problems/week04/README.md" -> "problems"
     for w in weeks_cfg:
-        p = w.get("path", "")
+        p = (w.get("path") or "").strip()
         if p:
             parts = p.replace("\\","/").split("/")
             if len(parts) >= 2:
@@ -677,14 +693,19 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
     def week_matrix_md():
         header = ["주차＼멤버"] + [m["name"] for m in participants] + ["합계(%)"]
         lines = ["| " + " | ".join(header) + " |",
-                 "|" + "---|" * (len(header)-1) + "---|"]
+                "|" + "---|" * (len(header)-1) + "---|"]
         col_tot_solved = [0]*len(participants)
         col_tot_assign = [0]*len(participants)
 
         for widx, ws in enumerate(week_sets):
             assign = len(ws)
+            # ← weeks_cfg[widx]로 대응하는 주차 설정을 참조
+            w_cfg = weeks_cfg[widx] if widx < len(weeks_cfg) else {}
             if assign == 0:
-                continue  # 🔹 더미(배정 0) 주차는 완료율 표에서 숨김
+                if DEBUG and not (w_cfg.get("groups") or []):
+                    print(f"[debug] week {w_cfg.get('id')} has no groups (dummy week)")
+                continue  # 더미(배정 0) 주차는 완료율 표에서 숨김
+
             row = [week_titles[widx]]
             row_sum = 0
             for mi, m in enumerate(participants):
@@ -695,7 +716,7 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
                 col_tot_assign[mi] += assign
                 rate = round(solved / assign * 100) if assign else 0
                 row.append(str(rate))
-            row.append(str(round(row_sum / (assign*len(participants)) * 100) if assign else 0))
+            row.append(str(round(row_sum / (assign*len(participants)) * 100)))
             lines.append("| " + " | ".join(row) + " |")
 
         tot = ["합계(%)"]
