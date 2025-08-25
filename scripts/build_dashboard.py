@@ -128,15 +128,26 @@ def _join_row(cells: List[str]) -> str:
 def _is_separator_row(cells: List[str]) -> bool:
     return all(re.match(r"^:?-{3,}:?$", c.strip()) or c.strip() == "" for c in cells)
 
+def _find_col_idx(header_cells: List[str], exact: List[str], fuzzy: List[str]) -> int:
+    # 1) 정확 일치
+    for key in exact:
+        if key in header_cells:
+            return header_cells.index(key)
+    # 2) 부분 일치(fuzzy)
+    for i, c in enumerate(header_cells):
+        cc = c.strip().lower()
+        if any(fz in cc for fz in fuzzy):
+            return i
+    raise ValueError("column not found")
+
 def patch_member_columns_in_block(block_md: str,
                                   pid_to_states: Dict[int, Dict[str, str]],
                                   participants: List[dict]) -> str:
-    """표 블록(BEGINNER/ADVANCED/DNC)에서 멤버 열만 갱신."""
     lines = block_md.strip("\n").splitlines()
     if len(lines) < 2:
         return block_md
 
-    # 헤더 찾기
+    # 표 헤더 찾기
     header_idx = None
     for i, ln in enumerate(lines):
         if ln.strip().startswith("|"):
@@ -146,10 +157,22 @@ def patch_member_columns_in_block(block_md: str,
         return block_md
 
     header = _split_row(lines[header_idx])
+
     try:
-        folder_col = header.index("폴더")
-        number_col = header.index("번호")
+        # 폴더, 번호 열 인덱스 유연 탐지
+        folder_col = _find_col_idx(
+            header,
+            exact=["폴더"],
+            fuzzy=["폴더", "folder", "📁"]
+        )
+        number_col = _find_col_idx(
+            header,
+            exact=["번호"],
+            fuzzy=["번호", "no", "id"]
+        )
     except ValueError:
+        if DEBUG:
+            print(f"[debug] header parse failed. header={header}")
         return block_md
 
     member_cols = list(range(folder_col + 1, len(header)))
@@ -190,22 +213,28 @@ def _replace_block_exact(text: str, marker: str, new_md_inside: str, s: int, e: 
     return text[:s] + f"<!--START:{marker}-->\n\n{new_md_inside}\n\n<!--END:{marker}-->" + text[e:]
 
 def render_week_readme_members_only(week_cfg, participants, states_by_group):
-    """주차 README의 PROGRESS 블록 내부에서 멤버 컬럼만 갱신."""
     path = os.path.join(ROOT_DIR, week_cfg["path"])
     text = read_file(path)
     changed = False
 
     for g in week_cfg["groups"]:
-        marker = f"PROGRESS:{g['key']}"
+        marker = g.get("marker") or f"PROGRESS:{g['key']}"
         block, s, e = _get_block(text, marker)
         if s == -1:
-            continue  # 표가 없으면 건드리지 않음
+            if DEBUG:
+                print(f"[debug] no block found: {marker} in {path}")
+            continue
         new_block = patch_member_columns_in_block(block.strip("\n"),
                                                   states_by_group[g["key"]],
                                                   participants)
         if new_block != block.strip("\n"):
+            if DEBUG:
+                print(f"[debug] block changed: {marker} in {path}")
             text = _replace_block_exact(text, marker, new_block, s, e)
             changed = True
+        else:
+            if DEBUG:
+                print(f"[debug] block unchanged: {marker} in {path}")
 
     if changed:
         write_if_changed(path, text)
@@ -676,37 +705,53 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             lines.append(f"{i}) {name} — **{sc}/{assigned_total} ({rate}%)**")
         return "\n".join(lines)
 
-    # 3-3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
+        # 멤버별 주차별 누적 추세 (순수 diff 기준)
     def trend_md():
-        # 분모: 1..k주차 배정 문제의 '합집합'(중복 제거)
-        cumulative_assign_sets: List[Set[int]] = []
-        acc = set()
-        for ws in week_sets:
-            acc |= ws
-            cumulative_assign_sets.append(set(acc))
-
+        # 주차 라벨 → 인덱스
         week_index = {lab: i for i, lab in enumerate(week_titles)}
 
+        # seat -> {pid: wk_label}
+        submission_map = build_submission_attribution(
+            weeks_cfg, participants,
+            states_bundle if ALSS_TREND_FALLBACK_DURING else None
+        )
+
+        # k주차까지 전체 제출 PID 누적 분모(전 멤버 합집합)
+        denom_until_k: List[int] = []
+        acc_all: Set[int] = set()
+        # 주차별, 멤버별 누적 분자도 미리 계산
+        solved_until_k: List[Dict[str, int]] = []
+        acc_by_member: Dict[str, Set[int]] = {str(m["seat"]): set() for m in participants}
+
+        for k in range(len(week_titles)):
+            # 분모: k이하 귀속된 모든 PID
+            for seat, mp in submission_map.items():
+                for pid, wk_lab in mp.items():
+                    if wk_lab in week_index and week_index[wk_lab] <= k:
+                        acc_all.add(pid)
+                        acc_by_member.setdefault(seat, set())
+                        if week_index[wk_lab] <= k:
+                            acc_by_member[seat].add(pid)
+
+            denom_until_k.append(len(acc_all))
+            solved_until_k.append({seat: len(acc_by_member[seat]) for seat in acc_by_member})
+
+        # 렌더링
         header = ["주차＼멤버"] + [m["name"] for m in participants]
         lines = ["| " + " | ".join(header) + " |",
-                "|" + "---|" * (len(header)-1) + "---|"]
+                 "|" + "---|" * (len(header)-1) + "---|"]
 
-        for k, U in enumerate(cumulative_assign_sets):
-            row = [week_titles[k]]
-            denom = len(U)
+        for k, lab in enumerate(week_titles):
+            row = [lab]
+            denom = max(1, denom_until_k[k])  # 0 분모 방지
             for m in participants:
                 seat = str(m["seat"])
-                mp = submission_map.get(seat, {})  # { pid: "04", ... }
-                # ✨ 분자: '해당 주차까지 제출한' 고유 PID 수 (배정 세트와 무관)
-                solved = sum(1 for _pid, wk_lab in mp.items()
-                            if wk_lab in week_index and week_index[wk_lab] <= k)
-                rate = round(solved / denom * 100) if denom else 0
+                solved = solved_until_k[k].get(seat, 0)
+                rate = round(solved / denom * 100)
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
 
-        return "\n".join(
-            ["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines
-        )
+        return "\n".join(["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / diff 누적, %)"] + lines)
 
     text = read_file(root_readme_path)
     text = replace_block(text, "DASHBOARD_WEEKS", "\n".join(["### 주차별 완료율 (%)", week_matrix_md()]))
