@@ -2,7 +2,7 @@ name: Update Study Dashboards
 
 on:
   schedule:
-    - cron: "0 18 * * *" # 매일 03:00 KST (UTC+9) = 18:00 UTC
+    - cron: "0 18 * * *"   # 매일 03:00 KST (UTC+9)
   workflow_dispatch: {}
 
 permissions:
@@ -16,19 +16,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout with BOT PAT
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 전체 히스토리
-          token: ${{ secrets.BOT_PAT }} # PAT 인증
+          fetch-depth: 0
+          token: ${{ secrets.BOT_PAT }}
 
-      # 👇 새로 추가: 리모트/브랜치 레퍼런스 확실히 확보
+      # 리모트/브랜치 트리 확보 (브랜치/PR 커밋 탐색 정확도 ↑)
       - name: Fetch all branches & tags
         run: |
           git config --global advice.detachedHead false
           git fetch --all --prune --tags
-          # 원격 트래킹 브랜치 확인 로그(디버그)
           git branch -r || true
 
       - name: Set up Python
@@ -41,12 +41,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests PyYAML
 
+      # 👇 이 스텝에서만 ALSS_* 전부 "1"로 강제
       - name: Build dashboards
         env:
-          # 스크립트 동작 플래그 (원하는대로 조절)
-          ALSS_CHECK_BRANCHES: "1" # 모든 브랜치/리모트 스캔
-          ALSS_OVERWRITE: "0" # 멤버 칼럼 빈칸만 채움(전체 덮어쓰려면 1)
-          ALSS_DEBUG: "0" # 디버그 로그 (필요시 1)
+          ALSS_CHECK_BRANCHES: "1"  # 모든 브랜치/리모트 스캔
+          ALSS_OVERWRITE: "1"       # 멤버 칼럼 전체 덮어쓰기(원하면 "0"로 조절)
+          ALSS_DEBUG: "1"           # 디버그 로그 활성화
         run: |
           python scripts/build_dashboard.py
 
