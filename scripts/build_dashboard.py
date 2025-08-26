@@ -12,7 +12,7 @@ ALSS Dashboard Builder (solved.ac + Git repo)
   1) 주차별 완료율(배정세트 기준, **DURING만 집계**)
   2) 전체 리더보드(동일, **DURING만 집계**)
   3) 멤버별 주차별 누적 추세(제출 주차 귀속 / **배정 누적 분모**, %)
-     - 병합 PR: "submit: weekNN-<alias>" 커밋의 변경 파일
+     - 병합 PR: "submit: weekNN-<alias>" 커밋의 변경 파일(✅ git show --name-only)
      - 미병합 브랜치: (보조) git diff main...<branch> 의 변경 파일 (현재 주차만)
      - 폴백: ALSS_TREND_FALLBACK_DURING=1 이면 DURING을 배정 주차로 귀속
      - ✨ 누적 추세 분자/분모 일치: **분자도 배정 세트 내 PID만** 집계
@@ -224,7 +224,7 @@ def render_week_readme_members_only(week_cfg, participants, states_by_group):
         return False
     changed = False
 
-    for g in week_cfg["groups"]:
+    for g in week_cfg.get("groups", []):
         marker = g.get("marker") or f"PROGRESS:{g['key']}"
         block, s, e = _get_block(text, marker)
         if s == -1:
@@ -479,6 +479,7 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
     """
     main 히스토리에서 'submit: week{번호}-{alias}' 커밋만 수집.
     반환: [(sha, ts, subject(NFKC), [changed_paths...])], 최신순
+    파일 목록은 ✅ git show --name-only --no-renames 로 취득.
     """
     ref = _resolve_main_ref()
     parts = [
@@ -515,15 +516,13 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
         if not SUBMIT_RE.search(subj_norm):
             continue
 
-        # 해당 커밋의 변경 파일
+        # ✅ 해당 커밋의 변경 파일 (git show 방식)
         try:
-            files_b = _run_bytes(" ".join([
-                "git", "-c", "core.quotepath=off",
-                "diff-tree", "--no-commit-id", "--name-only", "-r",
-                "-m", "--first-parent", shlex.quote(sha),
-            ]))
-            files = _decode_git(files_b)
-            paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
+            show_b = _run_bytes(
+                f"git -c core.quotepath=off show --name-only --no-renames --pretty= {shlex.quote(sha)}"
+            )
+            show_t = _decode_git(show_b)
+            paths = [_clean_git_path(p.strip()) for p in show_t.splitlines() if p.strip()]
         except Exception:
             paths = []
         out.append((sha, ts, subj_norm, paths))
@@ -620,6 +619,9 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                     seat = str(m["seat"])
                     if seat_states.get(seat) == "DURING":
                         during_by_seat[seat].add(pid)
+    if DEBUG:
+        print("[debug][trend] DURING_by_seat_sizes:",
+              {s: len(v) for s, v in during_by_seat.items()})
 
     # 주차 라벨 정렬 (숫자만)
     week_labels_sorted: List[str] = sorted(
@@ -659,6 +661,13 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
         if cand:
             commit_items.append((seat, wk_lab, cand))
 
+    if DEBUG:
+        tmp = {}
+        for seat, wk, pids in commit_items:
+            tmp.setdefault(seat, {}).setdefault(wk, 0)
+            tmp[seat][wk] += len(pids)
+        print("[debug][trend] commit_candidates_by_seat_week:", tmp)
+
     # 제출 귀속 맵: earliest week wins (좌석별, 주차 오름차순으로 처리)
     submission_map: Dict[str, Dict[int, str]] = {str(m["seat"]): {} for m in participants}
     assigned_by_seat: Dict[str, Set[int]] = {str(m["seat"]): set() for m in participants}
@@ -674,7 +683,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                         submission_map[seat][pid] = wk
                         assigned_by_seat[seat].add(pid)
 
-    # (보조) 현재 주차 브랜치 보정: 현재 주차 브랜치가 '존재'할 때만, 해당 좌석의 DURING 잔여 PID를 채움
+    # (보조) 현재 주차 브랜치 보정
     if CHECK_BRANCHES and week_labels_sorted:
         current_wk_lab = week_labels_sorted[-1]  # 가장 큰 주차 = 현재 주차
         week_branch_re = re.compile(rf"^week\s*0*{int(current_wk_lab)}-([A-Za-z0-9_\-]+)$", re.IGNORECASE)
@@ -702,7 +711,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                     submission_map[seat][pid] = current_wk_lab
                     assigned_by_seat[seat].add(pid)
 
-    # (옵션) DURING 폴백: 남은 DURING PID는 '그 PID가 속한 배정 주차'로 귀속 (원하실 때만)
+    # (옵션) DURING 폴백
     if ALSS_TREND_FALLBACK_DURING:
         assign_by_lab: Dict[str, Set[int]] = {}
         for w in weeks_cfg:
@@ -713,16 +722,25 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
             for pid in during_set:
                 if pid in submission_map[seat]:
                     continue
-                # 배정 주차 탐색(최초)
                 for wk in week_labels_sorted:
                     if pid in assign_by_lab.get(wk, set()):
                         submission_map[seat][pid] = wk
                         break
 
     if DEBUG:
-        total_mapped = sum(len(v) for v in submission_map.values())
+        # 주차·좌석별 분자 분포 + 합계
+        by_seat_week = {}
+        for seat, mp in submission_map.items():
+            agg = {}
+            for pid, wk in mp.items():
+                agg[wk] = agg.get(wk, 0) + 1
+            by_seat_week[seat] = dict(sorted(agg.items()))
+        print("[debug][trend] submission_by_seat_week:", by_seat_week)
+        totals = {s: sum(d.values()) for s, d in by_seat_week.items()}
+        total_mapped = sum(totals.values())
         print(f"[debug] submission_attribution mapped pairs: {total_mapped}")
-        print("[debug] per-seat counts:", {s: len(mp) for s, mp in submission_map.items()})
+        print("[debug] per-seat counts:", totals)
+
     return submission_map
 
 # ---------- Root README dashboards ----------
@@ -892,9 +910,24 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
                 row.append(f"{solved}/{denom} ({rate})")
             lines.append("| " + " | ".join(row) + " |")
 
-        return "\n".join(
+        out_md = "\n".join(
             ["### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)"] + lines
         )
+
+        if DEBUG and all_labels:
+            # 최종 행 검증(좌석별 누적 분자 합)
+            last_label = all_labels[-1]
+            final_totals = {str(m["seat"]): 0 for m in participants}
+            for m in participants:
+                seat = str(m["seat"])
+                mp = submission_map.get(seat, {})
+                final_totals[seat] = sum(
+                    1 for _, wk in mp.items()
+                    if wk in label_pos and label_pos[wk] <= label_pos[last_label]
+                )
+            print("[debug][trend] final_row_totals_from_submission:", final_totals)
+
+        return out_md
 
     text = read_file(root_readme_path)
     text = replace_block(text, "DASHBOARD_WEEKS", "\n".join(["### 주차별 완료율 (%)", week_matrix_md()]))
