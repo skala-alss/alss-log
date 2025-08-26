@@ -350,12 +350,12 @@ def render_trend_multiples(payload: dict) -> str:
     width  = cols*card_w + (cols-1)*gap + 16
     height = pad_top + rows*card_h + (rows-1)*gap
 
-    # [ADD] 캡션용 오른쪽 여백(px)
-    caption_bottom_pad = 28    # 아래쪽 여백 추가
+    # [ADD] 캡션용 아래쪽 여백(px)
+    caption_bottom_pad = 28
     height += caption_bottom_pad
 
     caption_x = width - 16
-    caption_y = height - 14    # 아래쪽 바깥에 정렬
+    caption_y = height - 14  # 아래쪽 바깥에 정렬
 
     inset = 24
     cw, ch = card_w-2*inset, card_h-2*inset
@@ -392,13 +392,13 @@ def render_trend_multiples(payload: dict) -> str:
         xticks = []
         if weeks:
             step = cw/(max(1, len(weeks)-1))
-            for i,wk in enumerate(weeks):
+            for i, wk in enumerate(weeks):
                 tx = inset + step*i
                 xticks.append(f'<text class="xt" x="{tx}" y="{inset+ch+18}" text-anchor="middle">{escape(wk)}</text>')
 
         # 모든 포인트 dot + hover tip
         dots = []
-        for i,(px,py) in enumerate(pts):
+        for i, (px, py) in enumerate(pts):
             vv = int(round(vals[i]))
             dots.append(f'''
               <g class="pt" transform="translate({px:.1f},{py:.1f})" tabindex="0">
@@ -452,6 +452,8 @@ def render_trend_multiples(payload: dict) -> str:
       .pt:hover .tip, .pt:focus .tip {{ visibility:visible; opacity:1; }}
       .pt .tip rect {{ fill: var(--badge-fill); stroke: var(--badge-stk); }}
       .pt .tip text {{ font-size:12px; fill: var(--fg-strong); font-weight:700; }}
+      /* [ADD] 캡션 스타일 */
+      .caption-note {{ font-size:10px; fill: var(--fg-muted-2); font-weight:600; }}
     </style>
     """
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img">
