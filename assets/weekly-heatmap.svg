@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 798 212" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 200" role="img">
       
     
     <style>
@@ -6,47 +6,45 @@
         font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
         background: none; /* transparent */
         /* Light (default) */
-        --fg-strong:   #0f172a;  /* slate-900 */
-        --fg-muted:    #334155;  /* slate-700 */
-        --fg-muted-2:  #475569;  /* slate-600 */
-        --axis:        #64748b;  /* slate-500 */
-        --stroke:      #e2e8f0;  /* slate-200 */
+        --fg-strong:   #0f172a;
+        --fg-muted:    #334155;
+        --fg-muted-2:  #475569;
+        --axis:        #64748b;
+        --stroke:      #e2e8f0;
         --panel-fill:  #ffffff;
         --panel-stk:   #e2e8f0;
-        --track:       #f1f5f9;  /* slate-100 */
-        --bar:         #38bdf8;  /* sky-400 */
-        --line:        #06b6d4;  /* cyan-500 */
+        --track:       #f1f5f9;
+        --bar:         #38bdf8;
+        --line:        #06b6d4;
         --dot:         #06b6d4;
         --badge-fill:  #f1f5f9;
         --badge-stk:   #e2e8f0;
-        --avg-fill:    #0ea5e9;  /* sky-500 */
-        --avg-stk:     #bae6fd;  /* sky-200 */
+        --avg-fill:    #0ea5e9;
+        --avg-stk:     #bae6fd;
         --pct-color:   #0f172a;
       }
-
       @media (prefers-color-scheme: dark) {
         svg {
-          --fg-strong:   #e5e7eb; /* slate-200 */
-          --fg-muted:    #cbd5e1; /* slate-300 */
-          --fg-muted-2:  #94a3b8; /* slate-400 */
-          --axis:        #94a3b8; /* slate-400 */
-          --stroke:      #334155; /* slate-700 */
-          --panel-fill:  #0b1220; /* 어두운 보드판 느낌 */
+          --fg-strong:   #e5e7eb;
+          --fg-muted:    #cbd5e1;
+          --fg-muted-2:  #94a3b8;
+          --axis:        #94a3b8;
+          --stroke:      #334155;
+          --panel-fill:  #0b1220;
           --panel-stk:   #334155;
-          --track:       #1f2937; /* slate-800 */
-          --bar:         #38bdf8; /* 그대로 가도 대비 충분 */
-          --line:        #22d3ee; /* cyan-400 조금 더 밝게 */
+          --track:       #1f2937;
+          --bar:         #38bdf8;
+          --line:        #22d3ee;
           --dot:         #22d3ee;
-          --badge-fill:  #111827; /* slate-900 */
+          --badge-fill:  #111827;
           --badge-stk:   #334155;
-          --avg-fill:    #38bdf8; /* 평칸도 다크에서 더 선명하게 */
-          --avg-stk:     #075985; /* sky-700 */
+          --avg-fill:    #38bdf8;
+          --avg-stk:     #075985;
           --pct-color:   #e5e7eb;
         }
       }
-
       @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
-      @keyframes grow { to { width: var(--w); } }
+      @keyframes grow-w { from { transform:scaleX(0) } to { transform:scaleX(var(--sx)) } }
       @keyframes draw {
         from { stroke-dasharray:1000; stroke-dashoffset:1000; }
         to   { stroke-dasharray:1000; stroke-dashoffset:0; }
@@ -54,8 +52,8 @@
     </style>
     
     <style>
-      .colhdr { font-size: 12px; fill: var(--fg-muted); }
-      .rowlabel text { font-size: 12px; fill: var(--fg-muted-2); }
+      .colhdr { font-size: 12px; fill: var(--fg-muted); font-weight: 700; letter-spacing: .1px; }
+      .rowlabel text { font-size: 12px; fill: var(--fg-muted-2); font-weight: 600; letter-spacing: .1px; }
       .cell-anim {
         animation: pop .45s ease both;
         transform-box: fill-box;
@@ -63,53 +61,53 @@
       }
       .cell-anim rect { stroke: var(--stroke); stroke-width: 1; }
       .cell-anim.avg rect { fill: var(--avg-fill); opacity:.16; stroke: var(--avg-stk); }
-      .pct { fill: var(--pct-color); font-size: 14px; font-weight: 700; }
+      .pct { fill: var(--pct-color); font-size: 14px; font-weight: 800; }
     </style>
     
       
-          <g transform="translate(84,28)">
+          <g transform="translate(76,26)">
             <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="middle">nOOne-is-hier</text>
+                  text-anchor="middle" dominant-baseline="ideographic">nOOne-is-hier</text>
           </g>
         
-          <g transform="translate(188,28)">
+          <g transform="translate(180,26)">
             <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="middle">SDGeo12</text>
+                  text-anchor="middle" dominant-baseline="ideographic">SDGeo12</text>
           </g>
         
-          <g transform="translate(292,28)">
+          <g transform="translate(284,26)">
             <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="middle">jiyunee02</text>
+                  text-anchor="middle" dominant-baseline="ideographic">jiyunee02</text>
           </g>
         
-          <g transform="translate(396,28)">
+          <g transform="translate(388,26)">
             <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="middle">skala-changhyun</text>
+                  text-anchor="middle" dominant-baseline="ideographic">skala-changhyun</text>
           </g>
         
-          <g transform="translate(500,28)">
+          <g transform="translate(492,26)">
             <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="middle">seo-youngjae</text>
+                  text-anchor="middle" dominant-baseline="ideographic">seo-youngjae</text>
           </g>
         
-          <g transform="translate(604,28)">
+          <g transform="translate(596,26)">
             <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="middle">JinYeopKang</text>
+                  text-anchor="middle" dominant-baseline="ideographic">JinYeopKang</text>
           </g>
         
       
-      <g transform="translate(708,28)">
+      <g transform="translate(700,26)">
         <text class="colhdr" x="45.0" y="0"
-              text-anchor="middle" dominant-baseline="middle">합계(%)</text>
+              text-anchor="middle" dominant-baseline="ideographic">합계(%)</text>
       </g>
     
       
-          <g class="rowlabel" transform="translate(72,78.0)">
-            <text x="-6" y="0" text-anchor="end" dominant-baseline="middle">01</text>
+          <g class="rowlabel" transform="translate(66,66.0)">
+            <text x="-6" y="1" text-anchor="end" dominant-baseline="middle">01 주차</text>
           </g>
         
 
-              <g transform="translate(84,56)">
+              <g transform="translate(76,44)">
                 <g class="cell-anim" style="animation-delay:0.00s">
                   <title>W01 · nOOne-is-hier · 100% (56/56)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
@@ -119,7 +117,7 @@
               </g>
             
 
-              <g transform="translate(188,56)">
+              <g transform="translate(180,44)">
                 <g class="cell-anim" style="animation-delay:0.03s">
                   <title>W01 · SDGeo12 · 71% (40/56)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 51.5%)" />
@@ -129,7 +127,7 @@
               </g>
             
 
-              <g transform="translate(292,56)">
+              <g transform="translate(284,44)">
                 <g class="cell-anim" style="animation-delay:0.06s">
                   <title>W01 · jiyunee02 · 18% (10/56)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 81.7%)" />
@@ -139,7 +137,7 @@
               </g>
             
 
-              <g transform="translate(396,56)">
+              <g transform="translate(388,44)">
                 <g class="cell-anim" style="animation-delay:0.09s">
                   <title>W01 · skala-changhyun · 79% (44/56)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 47.0%)" />
@@ -149,7 +147,7 @@
               </g>
             
 
-              <g transform="translate(500,56)">
+              <g transform="translate(492,44)">
                 <g class="cell-anim" style="animation-delay:0.12s">
                   <title>W01 · seo-youngjae · 100% (56/56)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
@@ -159,7 +157,7 @@
               </g>
             
 
-              <g transform="translate(604,56)">
+              <g transform="translate(596,44)">
                 <g class="cell-anim" style="animation-delay:0.15s">
                   <title>W01 · JinYeopKang · 48% (27/56)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 64.6%)" />
@@ -169,7 +167,7 @@
               </g>
             
 
-          <g transform="translate(708,56)">
+          <g transform="translate(700,44)">
             <g class="cell-anim avg" style="animation-delay:0.18s">
               <title>W01 · 전체 평균 69% (Σ분자=233 / Σ분모=336)</title>
               <rect rx="10" ry="10" width="90" height="44" />
@@ -178,12 +176,12 @@
             </g>
           </g>
         
-          <g class="rowlabel" transform="translate(72,130.0)">
-            <text x="-6" y="0" text-anchor="end" dominant-baseline="middle">02</text>
+          <g class="rowlabel" transform="translate(66,118.0)">
+            <text x="-6" y="1" text-anchor="end" dominant-baseline="middle">02 주차</text>
           </g>
         
 
-              <g transform="translate(84,108)">
+              <g transform="translate(76,96)">
                 <g class="cell-anim" style="animation-delay:0.18s">
                   <title>W02 · nOOne-is-hier · 85% (50/59)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 43.6%)" />
@@ -193,7 +191,7 @@
               </g>
             
 
-              <g transform="translate(188,108)">
+              <g transform="translate(180,96)">
                 <g class="cell-anim" style="animation-delay:0.21s">
                   <title>W02 · SDGeo12 · 32% (19/59)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 73.8%)" />
@@ -203,7 +201,7 @@
               </g>
             
 
-              <g transform="translate(292,108)">
+              <g transform="translate(284,96)">
                 <g class="cell-anim" style="animation-delay:0.24s">
                   <title>W02 · jiyunee02 · 27% (16/59)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 76.6%)" />
@@ -213,7 +211,7 @@
               </g>
             
 
-              <g transform="translate(396,108)">
+              <g transform="translate(388,96)">
                 <g class="cell-anim" style="animation-delay:0.27s">
                   <title>W02 · skala-changhyun · 10% (6/59)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 86.3%)" />
@@ -223,7 +221,7 @@
               </g>
             
 
-              <g transform="translate(500,108)">
+              <g transform="translate(492,96)">
                 <g class="cell-anim" style="animation-delay:0.30s">
                   <title>W02 · seo-youngjae · 7% (4/59)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 88.0%)" />
@@ -233,7 +231,7 @@
               </g>
             
 
-              <g transform="translate(604,108)">
+              <g transform="translate(596,96)">
                 <g class="cell-anim" style="animation-delay:0.33s">
                   <title>W02 · JinYeopKang · 0% (0/59)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
@@ -243,7 +241,7 @@
               </g>
             
 
-          <g transform="translate(708,108)">
+          <g transform="translate(700,96)">
             <g class="cell-anim avg" style="animation-delay:0.36s">
               <title>W02 · 전체 평균 27% (Σ분자=95 / Σ분모=354)</title>
               <rect rx="10" ry="10" width="90" height="44" />
@@ -252,12 +250,12 @@
             </g>
           </g>
         
-          <g class="rowlabel" transform="translate(72,182.0)">
-            <text x="-6" y="0" text-anchor="end" dominant-baseline="middle">04</text>
+          <g class="rowlabel" transform="translate(66,170.0)">
+            <text x="-6" y="1" text-anchor="end" dominant-baseline="middle">04 주차</text>
           </g>
         
 
-              <g transform="translate(84,160)">
+              <g transform="translate(76,148)">
                 <g class="cell-anim" style="animation-delay:0.36s">
                   <title>W04 · nOOne-is-hier · 16% (7/43)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 82.9%)" />
@@ -267,7 +265,7 @@
               </g>
             
 
-              <g transform="translate(188,160)">
+              <g transform="translate(180,148)">
                 <g class="cell-anim" style="animation-delay:0.39s">
                   <title>W04 · SDGeo12 · 5% (2/43)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 89.2%)" />
@@ -277,7 +275,7 @@
               </g>
             
 
-              <g transform="translate(292,160)">
+              <g transform="translate(284,148)">
                 <g class="cell-anim" style="animation-delay:0.42s">
                   <title>W04 · jiyunee02 · 0% (0/43)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
@@ -287,7 +285,7 @@
               </g>
             
 
-              <g transform="translate(396,160)">
+              <g transform="translate(388,148)">
                 <g class="cell-anim" style="animation-delay:0.45s">
                   <title>W04 · skala-changhyun · 0% (0/43)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
@@ -297,7 +295,7 @@
               </g>
             
 
-              <g transform="translate(500,160)">
+              <g transform="translate(492,148)">
                 <g class="cell-anim" style="animation-delay:0.48s">
                   <title>W04 · seo-youngjae · 0% (0/43)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
@@ -307,7 +305,7 @@
               </g>
             
 
-              <g transform="translate(604,160)">
+              <g transform="translate(596,148)">
                 <g class="cell-anim" style="animation-delay:0.51s">
                   <title>W04 · JinYeopKang · 0% (0/43)</title>
                   <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
@@ -317,7 +315,7 @@
               </g>
             
 
-          <g transform="translate(708,160)">
+          <g transform="translate(700,148)">
             <g class="cell-anim avg" style="animation-delay:0.54s">
               <title>W04 · 전체 평균 3% (Σ분자=9 / Σ분모=258)</title>
               <rect rx="10" ry="10" width="90" height="44" />
