@@ -349,6 +349,10 @@ def render_trend_multiples(payload: dict) -> str:
     width  = cols*card_w + (cols-1)*gap + 16
     height = pad_top + rows*card_h + (rows-1)*gap
 
+     # [ADD] 캡션용 오른쪽 여백(px)
+    caption_right_pad = 200
+    width += caption_right_pad
+
     inset = 24
     cw, ch = card_w-2*inset, card_h-2*inset
 
@@ -424,6 +428,10 @@ def render_trend_multiples(payload: dict) -> str:
           </a>
         ''')
 
+    # [ADD] 오른쪽 하단 캡션
+    caption_note = "※ 제출 주차 귀속 기준 / 배정 누적 분모 대비"
+    caption_svg  = f'<text x="{width-12}" y="{height-10}" text-anchor="end" style="font-size:12px; fill: var(--fg-muted-2); font-weight:600;">{escape(caption_note)}</text>'
+
     style = f"""
     {common_light_dark_style()}
     <style>
@@ -445,6 +453,7 @@ def render_trend_multiples(payload: dict) -> str:
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img">
       {style}
       {''.join(cards)}
+      {caption_svg}
     </svg>'''
 
 def main():
