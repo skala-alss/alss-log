@@ -374,9 +374,6 @@ def _parse_pid_and_seat_from_basename(base_noext: str,
 
     return (None, None)
 
-# ---------- Git helpers ----------
-+import subprocess, shlex, unicodedata
-
 # ---------- Robust subprocess helpers (bytes + multi-decoding) ----------
 def _run_bytes(cmd: str, cwd: str = ROOT_DIR) -> bytes:
     p = subprocess.Popen(cmd, shell=True, cwd=cwd,
