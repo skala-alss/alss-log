@@ -4,7 +4,11 @@
 """
 render_svg.py
 Usage:
-  python scripts/render_svg.py data/dashboard.json assets/
+  python scripts/render_svg.py [in_json] [out_dir]
+
+Defaults:
+  in_json = data/dashboard.json
+  out_dir = assets/
 
 Generates:
   - weekly-heatmap.svg
@@ -25,12 +29,7 @@ def ensure_dir(p: str):
     os.makedirs(p, exist_ok=True)
 
 def pct_to_color(p: float) -> str:
-    """
-    색맹 안전에 가까운 블루계열 단색 스케일.
-    0% → L=92% (아주 밝은), 100% → L=35% (진한)
-    """
     p = max(0.0, min(100.0, float(p)))
-    # lightness: 92 -> 35
     L = 92 - (57 * (p / 100.0))
     return f"hsl(210, 85%, {L:.1f}%)"
 
@@ -64,16 +63,18 @@ def render_weekly_heatmap(payload: dict) -> str:
 
     # header
     header_cells = []
-    x = left_gutter
     for j, m in enumerate(members):
+        x = left_gutter + j*(cell_w+col_gap)
         header_cells.append(f'''
-          <g transform="translate({x + j*(cell_w+col_gap)},{top_gutter-28})">
-            <text class="colhdr" x="{cell_w/2}" y="0">{escape(m)}</text>
+          <g transform="translate({x},{top_gutter-28})">
+            <text class="colhdr" x="{cell_w/2}" y="0"
+                  text-anchor="middle" dominant-baseline="middle">{escape(m)}</text>
           </g>
         ''')
     header_avg = f'''
       <g transform="translate({left_gutter + cols*(cell_w+col_gap)},{top_gutter-28})">
-        <text class="colhdr" x="{right_avg_w/2}" y="0">합계(%)</text>
+        <text class="colhdr" x="{right_avg_w/2}" y="0"
+              text-anchor="middle" dominant-baseline="middle">합계(%)</text>
       </g>
     '''
 
@@ -85,7 +86,7 @@ def render_weekly_heatmap(payload: dict) -> str:
         # week label
         row_group = [f'''
           <g class="rowlabel" transform="translate({left_gutter-12},{row_y + cell_h/2})">
-            <text x="-6" y="6" text-anchor="end">{escape(wk)}</text>
+            <text x="-6" y="0" text-anchor="end" dominant-baseline="middle">{escape(wk)}</text>
           </g>
         ''']
 
@@ -98,10 +99,13 @@ def render_weekly_heatmap(payload: dict) -> str:
             row_sum += v_num
             cx = left_gutter + j*(cell_w+col_gap)
             cell = f'''
-              <g class="cell" style="animation-delay:{delay(i,j):.2f}s" transform="translate({cx},{row_y})">
-                <title>W{escape(wk)} · {escape(members[j])} · {v_pct}% ({v_num}/{den[i]})</title>
-                <rect rx="10" ry="10" width="{cell_w}" height="{cell_h}" fill="{pct_to_color(v_pct)}" />
-                <text class="pct" x="{cell_w/2}" y="{cell_h/2+6}">{int(round(v_pct))}%</text>
+              <g transform="translate({cx},{row_y})">
+                <g class="cell-anim" style="animation-delay:{delay(i,j):.2f}s">
+                  <title>W{escape(wk)} · {escape(members[j])} · {v_pct}% ({v_num}/{den[i]})</title>
+                  <rect rx="10" ry="10" width="{cell_w}" height="{cell_h}" fill="{pct_to_color(v_pct)}" />
+                  <text class="pct" x="{cell_w/2}" y="{cell_h/2}"
+                        text-anchor="middle" dominant-baseline="middle">{int(round(v_pct))}%</text>
+                </g>
               </g>
             '''
             row_group.append(cell)
@@ -110,10 +114,13 @@ def render_weekly_heatmap(payload: dict) -> str:
         avg_pct = 0 if row_den == 0 else round(row_sum / row_den * 100)
         avg_x = left_gutter + cols*(cell_w+col_gap)
         row_group.append(f'''
-          <g class="cell avg" style="animation-delay:{delay(i,cols):.2f}s" transform="translate({avg_x},{row_y})">
-            <title>W{escape(wk)} · 전체 평균 {avg_pct}% (Σ분자={row_sum} / Σ분모={row_den})</title>
-            <rect rx="10" ry="10" width="{right_avg_w}" height="{cell_h}" />
-            <text class="pct" x="{right_avg_w/2}" y="{cell_h/2+6}">{avg_pct}%</text>
+          <g transform="translate({avg_x},{row_y})">
+            <g class="cell-anim avg" style="animation-delay:{delay(i,cols):.2f}s">
+              <title>W{escape(wk)} · 전체 평균 {avg_pct}% (Σ분자={row_sum} / Σ분모={row_den})</title>
+              <rect rx="10" ry="10" width="{right_avg_w}" height="{cell_h}" />
+              <text class="pct" x="{right_avg_w/2}" y="{cell_h/2}"
+                    text-anchor="middle" dominant-baseline="middle">{avg_pct}%</text>
+            </g>
           </g>
         ''')
 
@@ -122,31 +129,19 @@ def render_weekly_heatmap(payload: dict) -> str:
     style = f"""
     <style>
       @keyframes pop {{ 0%{{opacity:0; transform:scale(0.96)}} 100%{{opacity:1; transform:scale(1)}} }}
-      svg {{
-        font-family: {SYSTEM_FONT_STACK};
-        background: #ffffff;
-      }}
-      .title {{
-        font-weight: 700; font-size: 18px; fill: #0f172a;
-      }}
-      .colhdr {{
-        font-size: 12px; fill: #334155;
-      }}
-      .rowlabel text {{
-        font-size: 12px; fill: #475569;
-      }}
-      .cell {{
+      svg {{ font-family: {SYSTEM_FONT_STACK}; background: #ffffff; }}
+      .title {{ font-weight: 700; font-size: 18px; fill: #0f172a; }}
+      .colhdr {{ font-size: 12px; fill: #334155; }}
+      .rowlabel text {{ font-size: 12px; fill: #475569; }}
+      /* translate는 바깥 g, 애니메이션은 안쪽 g(.cell-anim) */
+      .cell-anim {{
         animation: pop .45s ease both;
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
       }}
-      .cell rect {{
-        stroke: #e2e8f0; stroke-width: 1;
-      }}
-      .cell.avg rect {{
-        fill: #0ea5e9; opacity:.14; stroke: #bae6fd;
-      }}
-      .pct {{
-        fill: #0f172a; font-size: 14px; font-weight: 700; text-anchor: middle;
-      }}
+      .cell-anim rect {{ stroke: #e2e8f0; stroke-width: 1; }}
+      .cell-anim.avg rect {{ fill: #0ea5e9; opacity:.14; stroke: #bae6fd; }}
+      .pct {{ fill: #0f172a; font-size: 14px; font-weight: 700; }}
     </style>
     """
 
@@ -318,12 +313,15 @@ def render_trend_multiples(payload: dict) -> str:
     </svg>'''
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python scripts/render_svg.py data/dashboard.json assets/")
-        sys.exit(1)
-    in_json = sys.argv[1]
-    out_dir = sys.argv[2]
+    in_json = sys.argv[1] if len(sys.argv) >= 2 else "data/dashboard.json"
+    out_dir = sys.argv[2] if len(sys.argv) >= 3 else "assets"
+
     ensure_dir(out_dir)
+
+    if not os.path.exists(in_json):
+        print(f"[error] JSON not found: {in_json}\n"
+              f" - Run the build job to generate data/dashboard.json, or pass a path explicitly.", flush=True)
+        sys.exit(2)
 
     payload = load_json(in_json)
 
