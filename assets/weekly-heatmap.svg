@@ -21,7 +21,8 @@
         --badge-stk:   #e2e8f0;
         --avg-fill:    #0ea5e9;
         --avg-stk:     #bae6fd;
-        --pct-color:   #0f172a;
+        --pct-color:   #0b1220;
+        --text-stroke: rgba(0,0,0,.28);
       }
       @media (prefers-color-scheme: dark) {
         svg {
@@ -41,10 +42,11 @@
           --avg-fill:    #38bdf8;
           --avg-stk:     #075985;
           --pct-color:   #e5e7eb;
+          --text-stroke: rgba(255,255,255,.22);
         }
       }
       @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
-      @keyframes grow-w { from { transform:scaleX(0) } to { transform:scaleX(var(--sx)) } }
+      @keyframes grow-wpx { from { width:0px } to { width: var(--wpx) } }
       @keyframes draw {
         from { stroke-dasharray:1000; stroke-dashoffset:1000; }
         to   { stroke-dasharray:1000; stroke-dashoffset:0; }
@@ -52,6 +54,7 @@
     </style>
     
     <style>
+      .caption { paint-order: stroke fill; stroke: var(--text-stroke); stroke-width: .6px; }
       .colhdr { font-size: 12px; fill: var(--fg-muted); font-weight: 700; letter-spacing: .1px; }
       .rowlabel text { font-size: 12px; fill: var(--fg-muted-2); font-weight: 600; letter-spacing: .1px; }
       .cell-anim {
@@ -61,110 +64,140 @@
       }
       .cell-anim rect { stroke: var(--stroke); stroke-width: 1; }
       .cell-anim.avg rect { fill: var(--avg-fill); opacity:.16; stroke: var(--avg-stk); }
-      .pct { fill: var(--pct-color); font-size: 14px; font-weight: 800; }
+      .pct { font-size: 14px; font-weight: 800; }
     </style>
     
       
-          <g transform="translate(76,26)">
-            <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="ideographic">nOOne-is-hier</text>
-          </g>
+          <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+            <g transform="translate(76,26)">
+              <title>github:nOOne-is-hier · boj:kanadachocolate</title>
+              <text class="colhdr caption" x="48.0" y="0"
+                    text-anchor="middle" dominant-baseline="ideographic">nOOne-is-hier</text>
+            </g>
+          </a>
         
-          <g transform="translate(180,26)">
-            <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="ideographic">SDGeo12</text>
-          </g>
+          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+            <g transform="translate(180,26)">
+              <title>github:SDGeo12 · boj:sdgeo20</title>
+              <text class="colhdr caption" x="48.0" y="0"
+                    text-anchor="middle" dominant-baseline="ideographic">SDGeo12</text>
+            </g>
+          </a>
         
-          <g transform="translate(284,26)">
-            <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="ideographic">jiyunee02</text>
-          </g>
+          <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+            <g transform="translate(284,26)">
+              <title>github:jiyunee02 · boj:jiyun301</title>
+              <text class="colhdr caption" x="48.0" y="0"
+                    text-anchor="middle" dominant-baseline="ideographic">jiyunee02</text>
+            </g>
+          </a>
         
-          <g transform="translate(388,26)">
-            <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="ideographic">skala-changhyun</text>
-          </g>
+          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+            <g transform="translate(388,26)">
+              <title>github:skala-changhyun · boj:gcgc09</title>
+              <text class="colhdr caption" x="48.0" y="0"
+                    text-anchor="middle" dominant-baseline="ideographic">skala-changhyun</text>
+            </g>
+          </a>
         
-          <g transform="translate(492,26)">
-            <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="ideographic">seo-youngjae</text>
-          </g>
+          <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+            <g transform="translate(492,26)">
+              <title>github:seo-youngjae · boj:heaven707</title>
+              <text class="colhdr caption" x="48.0" y="0"
+                    text-anchor="middle" dominant-baseline="ideographic">seo-youngjae</text>
+            </g>
+          </a>
         
-          <g transform="translate(596,26)">
-            <text class="colhdr" x="48.0" y="0"
-                  text-anchor="middle" dominant-baseline="ideographic">JinYeopKang</text>
-          </g>
+          <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+            <g transform="translate(596,26)">
+              <title>github:JinYeopKang · boj:jyyj14587</title>
+              <text class="colhdr caption" x="48.0" y="0"
+                    text-anchor="middle" dominant-baseline="ideographic">JinYeopKang</text>
+            </g>
+          </a>
         
       
       <g transform="translate(700,26)">
-        <text class="colhdr" x="45.0" y="0"
+        <text class="colhdr caption" x="45.0" y="0"
               text-anchor="middle" dominant-baseline="ideographic">합계(%)</text>
       </g>
     
       
           <g class="rowlabel" transform="translate(66,66.0)">
-            <text x="-6" y="1" text-anchor="end" dominant-baseline="middle">01 주차</text>
+            <text class="caption" x="-6" y="1" text-anchor="end" dominant-baseline="middle">01 주차</text>
           </g>
         
 
-              <g transform="translate(76,44)">
-                <g class="cell-anim" style="animation-delay:0.00s">
-                  <title>W01 · nOOne-is-hier · 100% (56/56)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">100%</text>
+              <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+                <g transform="translate(76,44)">
+                  <g class="cell-anim" style="animation-delay:0.00s">
+                    <title>W01 · nOOne-is-hier · 100% (56/56) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
+                          text-anchor="middle" dominant-baseline="middle">100%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(180,44)">
-                <g class="cell-anim" style="animation-delay:0.03s">
-                  <title>W01 · SDGeo12 · 71% (40/56)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 51.5%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">71%</text>
+              <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+                <g transform="translate(180,44)">
+                  <g class="cell-anim" style="animation-delay:0.03s">
+                    <title>W01 · SDGeo12 · 71% (40/56) · github:SDGeo12 · boj:sdgeo20</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 51.5%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
+                          text-anchor="middle" dominant-baseline="middle">71%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(284,44)">
-                <g class="cell-anim" style="animation-delay:0.06s">
-                  <title>W01 · jiyunee02 · 18% (10/56)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 81.7%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">18%</text>
+              <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+                <g transform="translate(284,44)">
+                  <g class="cell-anim" style="animation-delay:0.06s">
+                    <title>W01 · jiyunee02 · 18% (10/56) · github:jiyunee02 · boj:jiyun301</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 81.7%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">18%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(388,44)">
-                <g class="cell-anim" style="animation-delay:0.09s">
-                  <title>W01 · skala-changhyun · 79% (44/56)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 47.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">79%</text>
+              <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+                <g transform="translate(388,44)">
+                  <g class="cell-anim" style="animation-delay:0.09s">
+                    <title>W01 · skala-changhyun · 79% (44/56) · github:skala-changhyun · boj:gcgc09</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 47.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
+                          text-anchor="middle" dominant-baseline="middle">79%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(492,44)">
-                <g class="cell-anim" style="animation-delay:0.12s">
-                  <title>W01 · seo-youngjae · 100% (56/56)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">100%</text>
+              <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+                <g transform="translate(492,44)">
+                  <g class="cell-anim" style="animation-delay:0.12s">
+                    <title>W01 · seo-youngjae · 100% (56/56) · github:seo-youngjae · boj:heaven707</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
+                          text-anchor="middle" dominant-baseline="middle">100%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(596,44)">
-                <g class="cell-anim" style="animation-delay:0.15s">
-                  <title>W01 · JinYeopKang · 48% (27/56)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 64.6%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">48%</text>
+              <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+                <g transform="translate(596,44)">
+                  <g class="cell-anim" style="animation-delay:0.15s">
+                    <title>W01 · JinYeopKang · 48% (27/56) · github:JinYeopKang · boj:jyyj14587</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 64.6%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">48%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
           <g transform="translate(700,44)">
@@ -177,68 +210,80 @@
           </g>
         
           <g class="rowlabel" transform="translate(66,118.0)">
-            <text x="-6" y="1" text-anchor="end" dominant-baseline="middle">02 주차</text>
+            <text class="caption" x="-6" y="1" text-anchor="end" dominant-baseline="middle">02 주차</text>
           </g>
         
 
-              <g transform="translate(76,96)">
-                <g class="cell-anim" style="animation-delay:0.18s">
-                  <title>W02 · nOOne-is-hier · 85% (50/59)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 43.6%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">85%</text>
+              <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+                <g transform="translate(76,96)">
+                  <g class="cell-anim" style="animation-delay:0.18s">
+                    <title>W02 · nOOne-is-hier · 85% (50/59) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 43.6%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
+                          text-anchor="middle" dominant-baseline="middle">85%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(180,96)">
-                <g class="cell-anim" style="animation-delay:0.21s">
-                  <title>W02 · SDGeo12 · 32% (19/59)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 73.8%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">32%</text>
+              <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+                <g transform="translate(180,96)">
+                  <g class="cell-anim" style="animation-delay:0.21s">
+                    <title>W02 · SDGeo12 · 32% (19/59) · github:SDGeo12 · boj:sdgeo20</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 73.8%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">32%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(284,96)">
-                <g class="cell-anim" style="animation-delay:0.24s">
-                  <title>W02 · jiyunee02 · 27% (16/59)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 76.6%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">27%</text>
+              <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+                <g transform="translate(284,96)">
+                  <g class="cell-anim" style="animation-delay:0.24s">
+                    <title>W02 · jiyunee02 · 27% (16/59) · github:jiyunee02 · boj:jiyun301</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 76.6%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">27%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(388,96)">
-                <g class="cell-anim" style="animation-delay:0.27s">
-                  <title>W02 · skala-changhyun · 10% (6/59)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 86.3%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">10%</text>
+              <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+                <g transform="translate(388,96)">
+                  <g class="cell-anim" style="animation-delay:0.27s">
+                    <title>W02 · skala-changhyun · 10% (6/59) · github:skala-changhyun · boj:gcgc09</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 86.3%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">10%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(492,96)">
-                <g class="cell-anim" style="animation-delay:0.30s">
-                  <title>W02 · seo-youngjae · 7% (4/59)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 88.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">7%</text>
+              <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+                <g transform="translate(492,96)">
+                  <g class="cell-anim" style="animation-delay:0.30s">
+                    <title>W02 · seo-youngjae · 7% (4/59) · github:seo-youngjae · boj:heaven707</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 88.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">7%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(596,96)">
-                <g class="cell-anim" style="animation-delay:0.33s">
-                  <title>W02 · JinYeopKang · 0% (0/59)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">0%</text>
+              <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+                <g transform="translate(596,96)">
+                  <g class="cell-anim" style="animation-delay:0.33s">
+                    <title>W02 · JinYeopKang · 0% (0/59) · github:JinYeopKang · boj:jyyj14587</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
           <g transform="translate(700,96)">
@@ -251,68 +296,80 @@
           </g>
         
           <g class="rowlabel" transform="translate(66,170.0)">
-            <text x="-6" y="1" text-anchor="end" dominant-baseline="middle">04 주차</text>
+            <text class="caption" x="-6" y="1" text-anchor="end" dominant-baseline="middle">04 주차</text>
           </g>
         
 
-              <g transform="translate(76,148)">
-                <g class="cell-anim" style="animation-delay:0.36s">
-                  <title>W04 · nOOne-is-hier · 16% (7/43)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 82.9%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">16%</text>
+              <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+                <g transform="translate(76,148)">
+                  <g class="cell-anim" style="animation-delay:0.36s">
+                    <title>W04 · nOOne-is-hier · 16% (7/43) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 82.9%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">16%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(180,148)">
-                <g class="cell-anim" style="animation-delay:0.39s">
-                  <title>W04 · SDGeo12 · 5% (2/43)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 89.2%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">5%</text>
+              <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+                <g transform="translate(180,148)">
+                  <g class="cell-anim" style="animation-delay:0.39s">
+                    <title>W04 · SDGeo12 · 5% (2/43) · github:SDGeo12 · boj:sdgeo20</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 89.2%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">5%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(284,148)">
-                <g class="cell-anim" style="animation-delay:0.42s">
-                  <title>W04 · jiyunee02 · 0% (0/43)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">0%</text>
+              <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+                <g transform="translate(284,148)">
+                  <g class="cell-anim" style="animation-delay:0.42s">
+                    <title>W04 · jiyunee02 · 0% (0/43) · github:jiyunee02 · boj:jiyun301</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(388,148)">
-                <g class="cell-anim" style="animation-delay:0.45s">
-                  <title>W04 · skala-changhyun · 0% (0/43)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">0%</text>
+              <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+                <g transform="translate(388,148)">
+                  <g class="cell-anim" style="animation-delay:0.45s">
+                    <title>W04 · skala-changhyun · 0% (0/43) · github:skala-changhyun · boj:gcgc09</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(492,148)">
-                <g class="cell-anim" style="animation-delay:0.48s">
-                  <title>W04 · seo-youngjae · 0% (0/43)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">0%</text>
+              <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+                <g transform="translate(492,148)">
+                  <g class="cell-anim" style="animation-delay:0.48s">
+                    <title>W04 · seo-youngjae · 0% (0/43) · github:seo-youngjae · boj:heaven707</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
-              <g transform="translate(596,148)">
-                <g class="cell-anim" style="animation-delay:0.51s">
-                  <title>W04 · JinYeopKang · 0% (0/43)</title>
-                  <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                  <text class="pct" x="48.0" y="22.0"
-                        text-anchor="middle" dominant-baseline="middle">0%</text>
+              <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+                <g transform="translate(596,148)">
+                  <g class="cell-anim" style="animation-delay:0.51s">
+                    <title>W04 · JinYeopKang · 0% (0/43) · github:JinYeopKang · boj:jyyj14587</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
+                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                  </g>
                 </g>
-              </g>
+              </a>
             
 
           <g transform="translate(700,148)">

@@ -21,7 +21,8 @@
         --badge-stk:   #e2e8f0;
         --avg-fill:    #0ea5e9;
         --avg-stk:     #bae6fd;
-        --pct-color:   #0f172a;
+        --pct-color:   #0b1220;
+        --text-stroke: rgba(0,0,0,.28);
       }
       @media (prefers-color-scheme: dark) {
         svg {
@@ -41,10 +42,11 @@
           --avg-fill:    #38bdf8;
           --avg-stk:     #075985;
           --pct-color:   #e5e7eb;
+          --text-stroke: rgba(255,255,255,.22);
         }
       }
       @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
-      @keyframes grow-w { from { transform:scaleX(0) } to { transform:scaleX(var(--sx)) } }
+      @keyframes grow-wpx { from { width:0px } to { width: var(--wpx) } }
       @keyframes draw {
         from { stroke-dasharray:1000; stroke-dashoffset:1000; }
         to   { stroke-dasharray:1000; stroke-dashoffset:0; }
@@ -54,94 +56,100 @@
     <style>
       .name { font-size:14px; fill: var(--fg-muted); font-weight:700; letter-spacing:.1px; }
       .track { fill: var(--track); }
-      .bar  { fill: var(--bar); animation: grow-w 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+      .bar  { fill: var(--bar); animation: grow-wpx 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
       .pct  { font-size:12px; fill: var(--fg-strong); text-anchor:end; font-weight:800; }
       .nd   { font-size:12px; fill: var(--fg-strong); font-weight:700; }
     </style>
     
       
-          <g transform="translate(0,16)">
-            <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
-            <g class="barwrap" transform="translate(168,0)">
-              <rect class="track" width="480" height="44" rx="10" ry="10"/>
-              <!-- width는 트랙 폭으로 고정, 길이는 scaleX로 표현 -->
-              <g transform="translate(0,0)">
-                <rect class="bar" width="480" height="44" rx="10" ry="10"
-                      style="--sx:0.72; animation-delay:0.00s; transform:scaleX(0); transform-origin:0 50%;"/>
+          <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+            <g transform="translate(0,16)">
+              <title>nOOne-is-hier · 72% (113/158) · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:345.59999999999997px; animation-delay:0.00s"/>
+                <text class="pct" x="468" y="28.0">72%</text>
+                <text class="nd"  x="12" y="28.0">113/158</text>
               </g>
-              <text class="pct" x="468" y="28.0">72%</text>
-              <text class="nd" x="12" y="28.0">113/158</text>
             </g>
-          </g>
+          </a>
         
-          <g transform="translate(0,68)">
-            <text class="name" x="158" y="28.0" text-anchor="end">SDGeo12</text>
-            <g class="barwrap" transform="translate(168,0)">
-              <rect class="track" width="480" height="44" rx="10" ry="10"/>
-              <!-- width는 트랙 폭으로 고정, 길이는 scaleX로 표현 -->
-              <g transform="translate(0,0)">
-                <rect class="bar" width="480" height="44" rx="10" ry="10"
-                      style="--sx:0.39; animation-delay:0.06s; transform:scaleX(0); transform-origin:0 50%;"/>
+          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+            <g transform="translate(0,68)">
+              <title>SDGeo12 · 39% (61/158) · github:SDGeo12 · boj:sdgeo20</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">SDGeo12</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:187.20000000000002px; animation-delay:0.06s"/>
+                <text class="pct" x="468" y="28.0">39%</text>
+                <text class="nd"  x="12" y="28.0">61/158</text>
               </g>
-              <text class="pct" x="468" y="28.0">39%</text>
-              <text class="nd" x="12" y="28.0">61/158</text>
             </g>
-          </g>
+          </a>
         
-          <g transform="translate(0,120)">
-            <text class="name" x="158" y="28.0" text-anchor="end">seo-youngjae</text>
-            <g class="barwrap" transform="translate(168,0)">
-              <rect class="track" width="480" height="44" rx="10" ry="10"/>
-              <!-- width는 트랙 폭으로 고정, 길이는 scaleX로 표현 -->
-              <g transform="translate(0,0)">
-                <rect class="bar" width="480" height="44" rx="10" ry="10"
-                      style="--sx:0.38; animation-delay:0.12s; transform:scaleX(0); transform-origin:0 50%;"/>
+          <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+            <g transform="translate(0,120)">
+              <title>seo-youngjae · 38% (60/158) · github:seo-youngjae · boj:heaven707</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">seo-youngjae</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:182.4px; animation-delay:0.12s"/>
+                <text class="pct" x="468" y="28.0">38%</text>
+                <text class="nd"  x="12" y="28.0">60/158</text>
               </g>
-              <text class="pct" x="468" y="28.0">38%</text>
-              <text class="nd" x="12" y="28.0">60/158</text>
             </g>
-          </g>
+          </a>
         
-          <g transform="translate(0,172)">
-            <text class="name" x="158" y="28.0" text-anchor="end">skala-changhyun</text>
-            <g class="barwrap" transform="translate(168,0)">
-              <rect class="track" width="480" height="44" rx="10" ry="10"/>
-              <!-- width는 트랙 폭으로 고정, 길이는 scaleX로 표현 -->
-              <g transform="translate(0,0)">
-                <rect class="bar" width="480" height="44" rx="10" ry="10"
-                      style="--sx:0.32; animation-delay:0.18s; transform:scaleX(0); transform-origin:0 50%;"/>
+          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+            <g transform="translate(0,172)">
+              <title>skala-changhyun · 32% (50/158) · github:skala-changhyun · boj:gcgc09</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">skala-changhyun</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:153.6px; animation-delay:0.18s"/>
+                <text class="pct" x="468" y="28.0">32%</text>
+                <text class="nd"  x="12" y="28.0">50/158</text>
               </g>
-              <text class="pct" x="468" y="28.0">32%</text>
-              <text class="nd" x="12" y="28.0">50/158</text>
             </g>
-          </g>
+          </a>
         
-          <g transform="translate(0,224)">
-            <text class="name" x="158" y="28.0" text-anchor="end">JinYeopKang</text>
-            <g class="barwrap" transform="translate(168,0)">
-              <rect class="track" width="480" height="44" rx="10" ry="10"/>
-              <!-- width는 트랙 폭으로 고정, 길이는 scaleX로 표현 -->
-              <g transform="translate(0,0)">
-                <rect class="bar" width="480" height="44" rx="10" ry="10"
-                      style="--sx:0.17; animation-delay:0.24s; transform:scaleX(0); transform-origin:0 50%;"/>
+          <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+            <g transform="translate(0,224)">
+              <title>JinYeopKang · 17% (27/158) · github:JinYeopKang · boj:jyyj14587</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">JinYeopKang</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:81.60000000000001px; animation-delay:0.24s"/>
+                <text class="pct" x="468" y="28.0">17%</text>
+                <text class="nd"  x="12" y="28.0">27/158</text>
               </g>
-              <text class="pct" x="468" y="28.0">17%</text>
-              <text class="nd" x="12" y="28.0">27/158</text>
             </g>
-          </g>
+          </a>
         
-          <g transform="translate(0,276)">
-            <text class="name" x="158" y="28.0" text-anchor="end">jiyunee02</text>
-            <g class="barwrap" transform="translate(168,0)">
-              <rect class="track" width="480" height="44" rx="10" ry="10"/>
-              <!-- width는 트랙 폭으로 고정, 길이는 scaleX로 표현 -->
-              <g transform="translate(0,0)">
-                <rect class="bar" width="480" height="44" rx="10" ry="10"
-                      style="--sx:0.16; animation-delay:0.30s; transform:scaleX(0); transform-origin:0 50%;"/>
+          <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+            <g transform="translate(0,276)">
+              <title>jiyunee02 · 16% (26/158) · github:jiyunee02 · boj:jiyun301</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">jiyunee02</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:76.8px; animation-delay:0.30s"/>
+                <text class="pct" x="468" y="28.0">16%</text>
+                <text class="nd"  x="12" y="28.0">26/158</text>
               </g>
-              <text class="pct" x="468" y="28.0">16%</text>
-              <text class="nd" x="12" y="28.0">26/158</text>
             </g>
-          </g>
+          </a>
         
     </svg>
