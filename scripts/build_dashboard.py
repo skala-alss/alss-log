@@ -375,8 +375,26 @@ def _parse_pid_and_seat_from_basename(base_noext: str,
     return (None, None)
 
 # ---------- Git helpers ----------
++import subprocess, shlex, unicodedata
+
+# ---------- Robust subprocess helpers (bytes + multi-decoding) ----------
+def _run_bytes(cmd: str, cwd: str = ROOT_DIR) -> bytes:
+    p = subprocess.Popen(cmd, shell=True, cwd=cwd,
+                         stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    out, _ = p.communicate()
+    return out or b""
+
+def _decode_git(b: bytes) -> str:
+    for enc in ("utf-8", "cp949", "euc-kr", "latin-1"):
+        try:
+            return b.decode(enc)
+        except Exception:
+            continue
+    return b.decode("utf-8", errors="replace")
+
 def _run(cmd: str, cwd: str = ROOT_DIR) -> str:
-    return subprocess.check_output(cmd, shell=True, cwd=cwd, text=True, stderr=subprocess.DEVNULL)
+    # bytes 수집 후 다중 인코딩 폴백으로 안전 디코딩
+    return _decode_git(_run_bytes(cmd, cwd))
 
 def _clean_git_path(s: str) -> str:
     """git이 C-quoted로 내보낸 경로를 정리(양끝 따옴표 제거)"""
@@ -426,7 +444,7 @@ def list_paths_in_ref(ref: str, rel_path: str) -> List[str]:
             f"git -c core.quotepath=off ls-tree -r --name-only "
             f"{shlex.quote(ref)} -- {shlex.quote(rel_path)}"
         )
-        out = _run(cmd)
+        out = _run(cmd) # 내부적으로 bytes→decode 폴백
         return [_clean_git_path(ln.strip()) for ln in out.splitlines() if ln.strip()]
     except Exception:
         return []
@@ -488,7 +506,8 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
     parts += [f"--pretty=format:%H%x1f%ct%x1f%s%x1e", ref]
     cmd = " ".join(shlex.quote(x) for x in parts)
 
-    raw = _run(cmd)
+    raw_b = _run_bytes(cmd)
+    raw = _decode_git(raw_b)
     recs = raw.split("\x1e")
     out: List[Tuple[str, str, List[str]]] = []
 
@@ -505,11 +524,12 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
 
         # 해당 커밋의 변경 파일 (merge 안전)
         try:
-            files = _run(" ".join([
+            files_b = _run_bytes(" ".join([
                 "git", "-c", "core.quotepath=off",
                 "diff-tree", "--no-commit-id", "--name-only", "-r",
                 "-m", "--first-parent", shlex.quote(sha),
             ]))
+            files = _decode_git(files_b)
             paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
         except Exception:
             paths = []
@@ -600,7 +620,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     commit_attrib: Dict[str, Dict[int, str]] = {}
     submit_commits = collect_submit_commits_on_main()
 
-    for sha, subj, files in submit_commits:
+    for sha, subj, files in reversed(submit_commits):
         mm = SUBMIT_RE.search(subj)  # 예: submit: week03-jinyeop
         if not mm:
             continue
@@ -642,7 +662,9 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             if not final_seat:
                 continue
 
-            commit_attrib.setdefault(final_seat, {})[pid] = wk_lab
+            seat_map = commit_attrib.setdefault(final_seat, {})
+            if pid not in seat_map:            # first submit wins
+                seat_map[pid] = wk_lab
             if DEBUG:
                 print(f"[debug][submit] sha={sha[:8]} week={wk_lab} seat={final_seat} pid={pid} file={os.path.basename(pp)}")
 
@@ -667,9 +689,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
         mb = week_branch_re.search(r)
         if not mb:
             continue
-        wk_lab = f"{int(mb.group(1)):02d}"
-        if current_wk_lab and wk_lab != current_wk_lab:
-            continue  # 진행 중 주차만 보정
+        wk_lab = f"{int(mb.group(1)):02d}"     # ✅ 과거 주차도 보정 허용
         bkey = _norm_token(mb.group(2))
         seat = seat_by_branch_key.get(bkey)
         if not seat:
@@ -686,6 +706,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             if not m2:
                 continue
             pid = int(m2.group(1))
+            if pid not in assigned_universe:   # ✅ 배정 문제만 귀속
+                continue
             if member and _member_owns_path(p, pid, member):
                 key = (seat, pid)
                 prev = best_branch.get(key)
@@ -844,6 +866,25 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
     
     # 3-3) 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
     def trend_md():
+
+        if DEBUG:
+            # 주차별 DURING 누적(ground truth)
+            during_cumu = {}
+            seen = set()
+            labs = [wk_label(w) for w in weeks_cfg]
+            for i, lab in enumerate(labs):
+                U = set().union(*[set(pid for g in weeks_cfg[j]["groups"] for pid in g["problems"])
+                                for j in range(i+1)])
+                row = {}
+                for m in participants:
+                    seat = str(m["seat"])
+                    seen |= set(pid for w in weeks_cfg[:i+1]
+                                for g in w["groups"]
+                                for pid, st in states_bundle[w["id"]][g["key"]].items()
+                                if st[seat] == "DURING")
+                    row[seat] = len([p for p in seen if p in U])
+                during_cumu[lab] = row
+            print("[debug] DURING cumu:", during_cumu)
 
         # 1) 제출 귀속에서 나온 주차 라벨 수집
         labels_from_submission = {wk for seat_map in submission_map.values() for wk in seat_map.values()}
