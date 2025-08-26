@@ -1,21 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 368" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 336" role="img">
       
+    
     <style>
-      @keyframes grow { to { width: var(--w); } }
-      svg { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; background:#fff; }
-      .title { font-weight:700; font-size:18px; fill:#0f172a; }
-      .name { font-size:14px; fill:#334155; font-weight:600; }
-      .track { fill:#f1f5f9; }
-      .bar {
-        fill:#38bdf8; animation: grow 0.9s cubic-bezier(.2,.7,.2,1) forwards;
+      svg {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        background: none; /* transparent */
+        /* Light (default) */
+        --fg-strong:   #0f172a;  /* slate-900 */
+        --fg-muted:    #334155;  /* slate-700 */
+        --fg-muted-2:  #475569;  /* slate-600 */
+        --axis:        #64748b;  /* slate-500 */
+        --stroke:      #e2e8f0;  /* slate-200 */
+        --panel-fill:  #ffffff;
+        --panel-stk:   #e2e8f0;
+        --track:       #f1f5f9;  /* slate-100 */
+        --bar:         #38bdf8;  /* sky-400 */
+        --line:        #06b6d4;  /* cyan-500 */
+        --dot:         #06b6d4;
+        --badge-fill:  #f1f5f9;
+        --badge-stk:   #e2e8f0;
+        --avg-fill:    #0ea5e9;  /* sky-500 */
+        --avg-stk:     #bae6fd;  /* sky-200 */
+        --pct-color:   #0f172a;
       }
-      .pct  { font-size:12px; fill:#0f172a; text-anchor:end; font-weight:700; }
-      .nd   { font-size:12px; fill:#0f172a; }
+
+      @media (prefers-color-scheme: dark) {
+        svg {
+          --fg-strong:   #e5e7eb; /* slate-200 */
+          --fg-muted:    #cbd5e1; /* slate-300 */
+          --fg-muted-2:  #94a3b8; /* slate-400 */
+          --axis:        #94a3b8; /* slate-400 */
+          --stroke:      #334155; /* slate-700 */
+          --panel-fill:  #0b1220; /* 어두운 보드판 느낌 */
+          --panel-stk:   #334155;
+          --track:       #1f2937; /* slate-800 */
+          --bar:         #38bdf8; /* 그대로 가도 대비 충분 */
+          --line:        #22d3ee; /* cyan-400 조금 더 밝게 */
+          --dot:         #22d3ee;
+          --badge-fill:  #111827; /* slate-900 */
+          --badge-stk:   #334155;
+          --avg-fill:    #38bdf8; /* 평칸도 다크에서 더 선명하게 */
+          --avg-stk:     #075985; /* sky-700 */
+          --pct-color:   #e5e7eb;
+        }
+      }
+
+      @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
+      @keyframes grow { to { width: var(--w); } }
+      @keyframes draw {
+        from { stroke-dasharray:1000; stroke-dashoffset:1000; }
+        to   { stroke-dasharray:1000; stroke-dashoffset:0; }
+      }
     </style>
     
-      <text class="title" x="16" y="28">전체 리더보드 (누적)</text>
+    <style>
+      .name { font-size:14px; fill: var(--fg-muted); font-weight:600; }
+      .track { fill: var(--track); }
+      .bar { fill: var(--bar); animation: grow 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+      .pct  { font-size:12px; fill: var(--fg-strong); text-anchor:end; font-weight:700; }
+      .nd   { font-size:12px; fill: var(--fg-strong); }
+    </style>
+    
       
-          <g transform="translate(0,56)">
+          <g transform="translate(0,24)">
             <text class="name" x="16" y="28.0">nOOne-is-hier</text>
             <g transform="translate(180,0)">
               <rect class="track" width="460" height="44" rx="10" ry="10"/>
@@ -27,7 +74,7 @@
             </g>
           </g>
         
-          <g transform="translate(0,108)">
+          <g transform="translate(0,76)">
             <text class="name" x="16" y="28.0">SDGeo12</text>
             <g transform="translate(180,0)">
               <rect class="track" width="460" height="44" rx="10" ry="10"/>
@@ -39,7 +86,7 @@
             </g>
           </g>
         
-          <g transform="translate(0,160)">
+          <g transform="translate(0,128)">
             <text class="name" x="16" y="28.0">seo-youngjae</text>
             <g transform="translate(180,0)">
               <rect class="track" width="460" height="44" rx="10" ry="10"/>
@@ -51,7 +98,7 @@
             </g>
           </g>
         
-          <g transform="translate(0,212)">
+          <g transform="translate(0,180)">
             <text class="name" x="16" y="28.0">skala-changhyun</text>
             <g transform="translate(180,0)">
               <rect class="track" width="460" height="44" rx="10" ry="10"/>
@@ -63,7 +110,7 @@
             </g>
           </g>
         
-          <g transform="translate(0,264)">
+          <g transform="translate(0,232)">
             <text class="name" x="16" y="28.0">JinYeopKang</text>
             <g transform="translate(180,0)">
               <rect class="track" width="460" height="44" rx="10" ry="10"/>
@@ -75,7 +122,7 @@
             </g>
           </g>
         
-          <g transform="translate(0,316)">
+          <g transform="translate(0,284)">
             <text class="name" x="16" y="28.0">jiyunee02</text>
             <g transform="translate(180,0)">
               <rect class="track" width="460" height="44" rx="10" ry="10"/>

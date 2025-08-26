@@ -1,23 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 798 212" role="img">
       
+    
     <style>
+      svg {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        background: none; /* transparent */
+        /* Light (default) */
+        --fg-strong:   #0f172a;  /* slate-900 */
+        --fg-muted:    #334155;  /* slate-700 */
+        --fg-muted-2:  #475569;  /* slate-600 */
+        --axis:        #64748b;  /* slate-500 */
+        --stroke:      #e2e8f0;  /* slate-200 */
+        --panel-fill:  #ffffff;
+        --panel-stk:   #e2e8f0;
+        --track:       #f1f5f9;  /* slate-100 */
+        --bar:         #38bdf8;  /* sky-400 */
+        --line:        #06b6d4;  /* cyan-500 */
+        --dot:         #06b6d4;
+        --badge-fill:  #f1f5f9;
+        --badge-stk:   #e2e8f0;
+        --avg-fill:    #0ea5e9;  /* sky-500 */
+        --avg-stk:     #bae6fd;  /* sky-200 */
+        --pct-color:   #0f172a;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        svg {
+          --fg-strong:   #e5e7eb; /* slate-200 */
+          --fg-muted:    #cbd5e1; /* slate-300 */
+          --fg-muted-2:  #94a3b8; /* slate-400 */
+          --axis:        #94a3b8; /* slate-400 */
+          --stroke:      #334155; /* slate-700 */
+          --panel-fill:  #0b1220; /* 어두운 보드판 느낌 */
+          --panel-stk:   #334155;
+          --track:       #1f2937; /* slate-800 */
+          --bar:         #38bdf8; /* 그대로 가도 대비 충분 */
+          --line:        #22d3ee; /* cyan-400 조금 더 밝게 */
+          --dot:         #22d3ee;
+          --badge-fill:  #111827; /* slate-900 */
+          --badge-stk:   #334155;
+          --avg-fill:    #38bdf8; /* 평칸도 다크에서 더 선명하게 */
+          --avg-stk:     #075985; /* sky-700 */
+          --pct-color:   #e5e7eb;
+        }
+      }
+
       @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
-      svg { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; background: #ffffff; }
-      .title { font-weight: 700; font-size: 18px; fill: #0f172a; }
-      .colhdr { font-size: 12px; fill: #334155; }
-      .rowlabel text { font-size: 12px; fill: #475569; }
-      /* translate는 바깥 g, 애니메이션은 안쪽 g(.cell-anim) */
+      @keyframes grow { to { width: var(--w); } }
+      @keyframes draw {
+        from { stroke-dasharray:1000; stroke-dashoffset:1000; }
+        to   { stroke-dasharray:1000; stroke-dashoffset:0; }
+      }
+    </style>
+    
+    <style>
+      .colhdr { font-size: 12px; fill: var(--fg-muted); }
+      .rowlabel text { font-size: 12px; fill: var(--fg-muted-2); }
       .cell-anim {
         animation: pop .45s ease both;
         transform-box: fill-box;
         transform-origin: 50% 50%;
       }
-      .cell-anim rect { stroke: #e2e8f0; stroke-width: 1; }
-      .cell-anim.avg rect { fill: #0ea5e9; opacity:.14; stroke: #bae6fd; }
-      .pct { fill: #0f172a; font-size: 14px; font-weight: 700; }
+      .cell-anim rect { stroke: var(--stroke); stroke-width: 1; }
+      .cell-anim.avg rect { fill: var(--avg-fill); opacity:.16; stroke: var(--avg-stk); }
+      .pct { fill: var(--pct-color); font-size: 14px; font-weight: 700; }
     </style>
     
-      <text class="title" x="16" y="28">주차별 완료율 (%)</text>
       
           <g transform="translate(84,28)">
             <text class="colhdr" x="48.0" y="0"
