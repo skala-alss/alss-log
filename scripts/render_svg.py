@@ -350,9 +350,13 @@ def render_trend_multiples(payload: dict) -> str:
     width  = cols*card_w + (cols-1)*gap + 16
     height = pad_top + rows*card_h + (rows-1)*gap
 
-     # [ADD] 캡션용 오른쪽 여백(px)
-    caption_right_pad = 230  # 200 → 230 (오른쪽 간격 +30px)
-    width += caption_right_pad
+    # [ADD] 캡션용 오른쪽 여백(px)
+    caption_right_pad = 0      # 오른쪽 여백 안 씀
+    caption_bottom_pad = 28    # 아래쪽 여백 추가
+    height += caption_bottom_pad
+
+    caption_x = width - 16
+    caption_y = height - 14    # 아래쪽 바깥에 정렬
 
     inset = 24
     cw, ch = card_w-2*inset, card_h-2*inset
@@ -431,7 +435,7 @@ def render_trend_multiples(payload: dict) -> str:
 
     # [ADD] 오른쪽 하단 캡션
     caption_note = "※ 제출 주차 귀속 기준 / 배정 누적 분모 대비"
-    caption_svg  = f'<text x="{width-12}" y="{height-10}" text-anchor="end" style="font-size:12px; fill: var(--fg-muted-2); font-weight:600;">{escape(caption_note)}</text>'
+    caption_svg  = f'<text x="{caption_x}" y="{caption_y}" text-anchor="end" dominant-baseline="text-after-edge" class="caption-note">{escape(caption_note)}</text>'
 
     style = f"""
     {common_light_dark_style()}
