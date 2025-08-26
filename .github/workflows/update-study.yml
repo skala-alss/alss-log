@@ -150,13 +150,19 @@ jobs:
 
           # non-FF 방지: 원격 main에 재배치 후 푸시 (최대 3회 재시도)
           for attempt in 1 2 3; do
-            git fetch origin main
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            # 1) 우선 푸시 시도(FF 예상)
+            if git push origin HEAD:main; then
               echo "Pushed on attempt $attempt"
               exit 0
             fi
-            echo "Push failed (attempt $attempt). Retrying..."
-            git rebase --abort || true
+            echo "Push rejected (non-FF). Rebase then retry..."
+            # 2) 원격 최신 반영 후 리베이스
+            git fetch origin main
+            if git pull --rebase origin main; then
+              continue
+            else
+              git rebase --abort || true
+            fi
             sleep $((attempt*2))
           done
 
@@ -223,13 +229,19 @@ jobs:
           git commit -m "🎨 build(svg): update animated study dashboards"
 
           for attempt in 1 2 3; do
-            git fetch origin main
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            # 1) 우선 푸시 시도(FF 예상)
+            if git push origin HEAD:main; then
               echo "Pushed on attempt $attempt"
               exit 0
             fi
-            echo "Push failed (attempt $attempt). Retrying..."
-            git rebase --abort || true
+            echo "Push rejected (non-FF). Rebase then retry..."
+            # 2) 원격 최신 반영 후 리베이스
+            git fetch origin main
+            if git pull --rebase origin main; then
+              continue
+            else
+              git rebase --abort || true
+            fi
             sleep $((attempt*2))
           done
 
@@ -283,13 +295,19 @@ jobs:
           git commit -m "🎨 build(svg): render-only update from committed dashboard.json"
 
           for attempt in 1 2 3; do
-            git fetch origin main
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            # 1) 우선 푸시 시도(FF 예상)
+            if git push origin HEAD:main; then
               echo "Pushed on attempt $attempt"
               exit 0
             fi
-            echo "Push failed (attempt $attempt). Retrying..."
-            git rebase --abort || true
+            echo "Push rejected (non-FF). Rebase then retry..."
+            # 2) 원격 최신 반영 후 리베이스
+            git fetch origin main
+            if git pull --rebase origin main; then
+              continue
+            else
+              git rebase --abort || true
+            fi
             sleep $((attempt*2))
           done
 
