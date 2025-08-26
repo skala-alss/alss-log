@@ -5,30 +5,127 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
 
 ---
 
-## 🗂️ 학습 자료
+<h2>🗂️ 학습 자료</h2>
 
-| 주차      | 학습자료                                   | 문제 링크                 |
-| ------- | -------------------------------------- | --------------------- |
-| Week 01 | [📄 PDF](./docs/study-note-week01.pdf) | [📂 week01](./problems/week01) |
-| Week 02 | [📄 PDF](./docs/study-note-week02.pdf) | [📂 week02](./problems/week02) |
-| Week 04 | [📄 PDF](./docs/study-note-week04.pdf) | [📂 week04](./problems/week04) |
-| Week 05 | (예정)                                   | -                     |
+<!-- 래퍼: 중앙 정렬 -->
+<div align="center">
+
+  <!-- 2단 레이아웃 테이블 (왼쪽: 학습표 / 오른쪽: 프로필 그리드) -->
+  <table border="0" cellspacing="0" cellpadding="0"
+         style="border:0 !important; border-collapse:separate; margin:0 auto; width:100%; max-width:980px;">
+    <tr>
+      <!-- LEFT: 학습 자료 표 (기존 스타일 유지) -->
+      <td valign="top" width="48%" style="border:0 !important; padding:0 12px 0 0;">
+        <table border="0" cellspacing="0" cellpadding="6" style="width:100%;">
+          <tr>
+            <th align="left">주차</th>
+            <th align="left">학습자료</th>
+            <th align="left">문제 링크</th>
+          </tr>
+          <tr>
+            <td>Week 01</td>
+            <td><a href="./docs/study-note-week01.pdf">📄 PDF</a></td>
+            <td><a href="./problems/week01">📂 week01</a></td>
+          </tr>
+          <tr>
+            <td>Week 02</td>
+            <td><a href="./docs/study-note-week02.pdf">📄 PDF</a></td>
+            <td><a href="./problems/week02">📂 week02</a></td>
+          </tr>
+          <tr>
+            <td>Week 04</td>
+            <td><a href="./docs/study-note-week04.pdf">📄 PDF</a></td>
+            <td><a href="./problems/week04">📂 week04</a></td>
+          </tr>
+          <tr>
+            <td>Week 05</td>
+            <td>(예정)</td>
+            <td>-</td>
+          </tr>
+        </table>
+      </td>
+      <!-- RIGHT: 팀원 프로필 그리드 (테두리 완전 제거) -->
+      <td valign="top" width="52%" style="border:0 !important; padding:0;">
+        <table role="presentation" border="0" cellspacing="0" cellpadding="0"
+               style="border:0 !important; border-collapse:separate; border-spacing:0; width:100%;">
+          <tr>
+            <td align="center" style="border:0 !important; padding:10px;">
+              <a href="https://github.com/nOOne-is-hier" aria-label="GitHub: nOOne-is-hier">
+                <img src="https://avatars.githubusercontent.com/nOOne-is-hier" width="120" alt="nOOne-is-hier avatar"/>
+              </a><br/>
+              <a href="https://solved.ac/profile/kanadachocolate"
+                 rel="nofollow noopener noreferrer" aria-label="solved.ac: kanadachocolate">
+                <img src="https://mazassumnida.wtf/api/mini/generate_badge?boj=kanadachocolate" alt="kanadachocolate solved.ac tier"/>
+              </a>
+            </td>
+            <td align="center" style="border:0 !important; padding:10px;">
+              <a href="https://github.com/SDGeo12" aria-label="GitHub: SDGeo12">
+                <img src="https://avatars.githubusercontent.com/SDGeo12" width="120" alt="SDGeo12 avatar"/>
+              </a><br/>
+              <a href="https://solved.ac/profile/sdgeo20"
+                 rel="nofollow noopener noreferrer" aria-label="solved.ac: sdgeo20">
+                <img src="https://mazassumnida.wtf/api/mini/generate_badge?boj=sdgeo20" alt="sdgeo20 solved.ac tier"/>
+              </a>
+            </td>
+            <td align="center" style="border:0 !important; padding:10px;">
+              <a href="https://github.com/jiyunee02" aria-label="GitHub: jiyunee02">
+                <img src="https://avatars.githubusercontent.com/jiyunee02" width="120" alt="jiyunee02 avatar"/>
+              </a><br/>
+              <a href="https://solved.ac/profile/jiyun301"
+                 rel="nofollow noopener noreferrer" aria-label="solved.ac: jiyun301">
+                <img src="https://mazassumnida.wtf/api/mini/generate_badge?boj=jiyun301" alt="jiyun301 solved.ac tier"/>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="border:0 !important; padding:10px;">
+              <a href="https://github.com/skala-changhyun" aria-label="GitHub: skala-changhyun">
+                <img src="https://avatars.githubusercontent.com/skala-changhyun" width="120" alt="skala-changhyun avatar"/>
+              </a><br/>
+              <a href="https://solved.ac/profile/gcgc09"
+                 rel="nofollow noopener noreferrer" aria-label="solved.ac: gcgc09">
+                <img src="https://mazassumnida.wtf/api/mini/generate_badge?boj=gcgc09" alt="gcgc09 solved.ac tier"/>
+              </a>
+            </td>
+            <td align="center" style="border:0 !important; padding:10px;">
+              <a href="https://github.com/seo-youngjae" aria-label="GitHub: seo-youngjae">
+                <img src="https://avatars.githubusercontent.com/seo-youngjae" width="120" alt="seo-youngjae avatar"/>
+              </a><br/>
+              <a href="https://solved.ac/profile/heaven707"
+                 rel="nofollow noopener noreferrer" aria-label="solved.ac: heaven707">
+                <img src="https://mazassumnida.wtf/api/mini/generate_badge?boj=heaven707" alt="heaven707 solved.ac tier"/>
+              </a>
+            </td>
+            <td align="center" style="border:0 !important; padding:10px;">
+              <a href="https://github.com/JinYeopKang" aria-label="GitHub: JinYeopKang">
+                <img src="https://avatars.githubusercontent.com/JinYeopKang" width="120" alt="JinYeopKang avatar"/>
+              </a><br/>
+              <a href="https://solved.ac/profile/jyyj14587"
+                 rel="nofollow noopener noreferrer" aria-label="solved.ac: jyyj14587">
+                <img src="https://mazassumnida.wtf/api/mini/generate_badge?boj=jyyj14587" alt="jyyj14587 solved.ac tier"/>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</div>
 
 ---
 
-### 주차별 완료율 (%)
+### 📈 참여 진행률 (주차별)
 
 ![주차별 완료율](assets/weekly-heatmap.svg)
 
-### 전체 리더보드 (누적)
+### 🏆 누적 기여 리더보드
 
 ![전체 리더보드](assets/leaderboard.svg)
 
-### 멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)
+### 🌱 성장 곡선 (멤버별·주차 누적)
 
-![멤버별 누적 추세](assets/trend-multiples.svg)
-
-<sub>※ 향후 JS/CSS로 동적 SVG/미니 차트를 제공할 예정입니다.</sub>
+![전체 리더보드](assets/trend-multiples.svg)
 
 ---
 
