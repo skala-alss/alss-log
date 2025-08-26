@@ -13,7 +13,7 @@ ALSS Dashboard Builder (solved.ac + Git repo)
   2) 전체 리더보드(동일, **DURING만 집계**)
   3) 멤버별 주차별 누적 추세(제출 주차 귀속 / **배정 누적 분모**, %)
      - 병합 PR: "submit: weekNN-<alias>" 커밋의 변경 파일
-     - 미병합 브랜치: git diff main...<branch> 의 변경 파일
+     - 미병합 브랜치: (보조) git diff main...<branch> 의 변경 파일
      - 폴백: ALSS_TREND_FALLBACK_DURING=1 이면 DURING을 배정 주차로 귀속
      - ✨ 누적 추세 분자/분모 일치: **분자도 배정 세트 내 PID만** 집계
 NOTE: released_at 속성은 사용하지 않음.
@@ -408,67 +408,59 @@ def list_diff_paths_vs_main(ref_head: str, rel_path: str) -> List[str]:
     except Exception:
         return []
 
-# ---------- Commit scan: full-history (no 1k cap) ----------
-def _collect_submit_commits_unlimited(main_refs: List[str],
-                                      limit_env_var: str = "ALSS_LOG_LIMIT"
-                                     ) -> List[Tuple[str, str, List[str]]]:
+# ---------- Submit commit scanning (MAIN ONLY, robust) ----------
+SUBMIT_RE = re.compile(
+    r"""submit\s*[:\]\uff1a]?\s*week\s*0*([0-9]{1,2})\s*[-–—_ ]\s*([A-Za-z0-9_\-]+)""",
+    re.IGNORECASE | re.VERBOSE,
+)
+
+def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> List[Tuple[str, str, List[str]]]:
     """
-    main_refs 중 첫 번째로 유효한 ref에서 전체(or 제한) 히스토리를 읽어
-    'submit: weekNN-<alias>' 커밋만 추출.
-    반환: [(sha, subject, [paths...]), ...]
-    - ALSS_LOG_LIMIT 환경변수로 선택적 상한(-n) 적용. 0/미지정이면 무제한.
+    main 히스토리에서 'submit: week{번호}-{alias}' 커밋만 수집.
+    반환: [(sha, subject(NFKC), [changed_paths...])], 최신순
     """
-    # (sha) 중복 제거 및 최신순 정렬을 위해 타임스탬프까지 함께 수집
-    tmp: Dict[str, Tuple[int, str]] = {}  # sha -> (ts, subj)
-    out: List[Tuple[str, str, List[str]]] = []
-    nopt = ""
+    ref = _resolve_main_ref()
+    parts = [
+        "git", "-c", "core.quotepath=off",
+        "-c", "i18n.logOutputEncoding=UTF-8",
+        "log", "--no-color",
+    ]
     try:
         lim = int(os.getenv(limit_env_var, "").strip() or "0")
         if lim > 0:
-            nopt = f"-n {lim}"
+            parts += ["-n", str(lim)]
     except Exception:
         pass
+    parts += [f"--pretty=format:%H%x1f%ct%x1f%s%x1e", ref]
+    cmd = " ".join(shlex.quote(x) for x in parts)
 
-    pat = re.compile(r"submit:\s*week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
+    raw = _run(cmd)
+    recs = raw.split("\x1e")
+    out: List[Tuple[str, str, List[str]]] = []
 
-    for ref in main_refs:
-        try:
-            log = _run(f"git -c core.quotepath=off log {nopt} {shlex.quote(ref)} --pretty=%H|%ct|%s")
-        except Exception:
+    for rec in recs:
+        if not rec.strip():
+            continue
+        cols = rec.split("\x1f")
+        if len(cols) < 3:
+            continue
+        sha, _ts, subj = cols[0].strip(), cols[1].strip(), cols[2].strip()
+        subj_norm = unicodedata.normalize("NFKC", subj)
+        if not SUBMIT_RE.search(subj_norm):
             continue
 
-        matched: List[Tuple[str, int, str]] = []
-        for line in log.splitlines():
-            if line.count("|") < 2:
-                continue
-            sha, ts_s, subj = line.split("|", 2)
-            try:
-                ts = int(ts_s.strip())
-            except Exception:
-                ts = 0
-            if pat.search(subj):
-                matched.append((sha, ts, subj))
-
-        for sha, ts, subj in matched:
-            # sha 기준 유니크(더 최신 ts가 들어오면 갱신)
-            prev = tmp.get(sha)
-            if (prev is None) or (ts > prev[0]):
-                tmp[sha] = (ts, subj)
-
-        # 최신순(ts desc) 정렬 후 파일 목록 수집
-    for sha, (ts, subj) in sorted(tmp.items(), key=lambda x: x[1][0], reverse=True):
+        # 해당 커밋이 변경한 파일들만 수집 (브랜치 전체 diff 아님)
         try:
             files = _run(
-                f"git -c core.quotepath=off show {shlex.quote(sha)} "
-                f"--name-only --no-renames --pretty="
+                f"git -c core.quotepath=off show --name-only --no-renames --pretty= {shlex.quote(sha)}"
             )
             paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
         except Exception:
             paths = []
-        out.append((sha, subj, paths))
+        out.append((sha, subj_norm, paths))
 
     if DEBUG:
-        print(f"[debug] submit commits parsed total: {len(out)} (unique by sha)")
+        print(f"[debug] submit commits parsed on {ref}: {len(out)}")
 
     return out
 
@@ -515,7 +507,6 @@ def classify_states_repo(week_cfg, members, problems: List[int], repo_index_all:
             if DEBUG and pid in solved:
                 cand = repo_index_all.get(pid, [])
                 print(f"[debug] DURING-check seat={seat} handle={handle} pid={pid} cand={len(cand)} -> {'DURING' if owned else 'PRE'}")
-                # 후보는 있는데 매칭이 안 될 때 각 경로와 결과를 샘플로 보여줌
                 if cand and not owned:
                     for p in cand[:6]:
                         ok = _member_owns_path(p, pid, m)
@@ -527,69 +518,57 @@ def classify_states_repo(week_cfg, members, problems: List[int], repo_index_all:
 def build_submission_attribution(weeks_cfg, participants, states_bundle=None) -> Dict[str, Dict[int, str]]:
     """
     반환: { seat(str) : { pid(int) : week_label("02","03",...) } }
-    우선순위: squash 커밋 제목 → (최신) 브랜치명 → (옵션) DURING 폴백(배정 주차)
+    우선순위: main의 submit 커밋 제목 → (보조) 현재 주차 브랜치 diff → (옵션) DURING 폴백
     """
     problems_root = infer_problems_root(weeks_cfg)
 
-    # seat 인덱스
+    # seat 인덱스 (alias/branch_key/file_key/name/github → seat)
     seat_by_branch_key = {}
     for m in participants:
         seat = str(m["seat"])
-        # branch_key, file_key, name, github 순으로 모두 매핑
         for key in [m.get("branch_key"), m.get("file_key"), m.get("name"), m.get("github")]:
             if key:
                 seat_by_branch_key[_norm_token(key)] = seat
     if DEBUG:
         print("[debug] seat_by_branch_key:", seat_by_branch_key)
 
-    # 1) 커밋 제목 기반 (main 히스토리 전체 스캔)
+    # 1) main의 submit 커밋 기반 귀속
     commit_attrib: Dict[str, Dict[int, str]] = {}
-    main_refs = [_resolve_main_ref(), "HEAD", "origin/main", "main"]
-    submit_commits = _collect_submit_commits_unlimited(main_refs)
-    if DEBUG:
-        print(f"[debug] main_refs tried: {main_refs}, submit_commits_found={len(submit_commits)>0}")
+    submit_commits = collect_submit_commits_on_main()
 
-    # 예) "submit: week03-jinyeop (#30)" / "submit] week 02 - chang"
-    pat_subj = re.compile(r"submit[:\]]?\s*week\s*(\d+)\s*-\s*([A-Za-z0-9_\-]+)", re.IGNORECASE)
     for sha, subj, files in submit_commits:
-        subj_m = pat_subj.search(subj)
-        subj_wk = f"{int(subj_m.group(1)):02d}" if subj_m else None
-        subj_key = _norm_token(subj_m.group(2)) if subj_m else None
-        subj_seat = seat_by_branch_key.get(subj_key) if subj_key else None
+        mm = SUBMIT_RE.search(subj)  # 예: submit: week03-jinyeop
+        if not mm:
+            continue
+        wk_lab = f"{int(mm.group(1)):02d}"
+        alias_key = _norm_token(mm.group(2))
+        alias_seat = seat_by_branch_key.get(alias_key)
 
         for p in files:
-            pp = p.replace("\\","/")
+            pp = p.replace("\\", "/")
             if problems_root + "/" not in pp:
                 continue
-            m2 = re.search(r"boj_(\d)", pp)
+            m2 = re.search(r"boj_(\d+)", pp)
             if not m2:
                 continue
             pid = int(m2.group(1))
 
-            # ① 소유자 seat: 제목에서 찾기 → 실패 시 경로로 추론
-            owner_seat, owner_member = subj_seat, None
-            if owner_seat:
-                owner_member = next((mm for mm in participants if str(mm["seat"]) == owner_seat), None)
-            if not owner_member:
-                for mm in participants:
-                    if _member_owns_path(pp, pid, mm):
-                        owner_seat, owner_member = str(mm["seat"]), mm
-                        break
-            if not owner_member:
+            final_seat = alias_seat
+            if not final_seat:
+                # 제목 alias로 못 찾으면 경로 소유 규칙으로 보조
+                for mmbr in participants:
+                    if _member_owns_path(pp, pid, mmbr):
+                        final_seat = str(mmbr["seat"]); break
+            if not final_seat:
                 continue
 
-            # ② 주차 라벨: 제목에서 찾기 → 실패 시 경로에서 weekNN 추출
-            wk_lab = subj_wk
-            if not wk_lab:
-                mw = re.search(r"/problems/week(\d{2})/", pp, re.IGNORECASE)
-                if mw:
-                    wk_lab = mw.group(1)
-            if not wk_lab:
-                continue
+            commit_attrib.setdefault(final_seat, {})[pid] = wk_lab
 
-            commit_attrib.setdefault(owner_seat, {}).setdefault(pid, wk_lab)
+    # 2) (보조) 진행 중 주차의 브랜치 diff 기반 보정
+    # 현재 주차 라벨(숫자 id 최대값)만 보정 대상으로 사용
+    numeric_labels = [int(str(w.get("id"))) for w in weeks_cfg if str(w.get("id")).isdigit()]
+    current_wk_lab = f"{max(numeric_labels):02d}" if numeric_labels else None
 
-    # 2) 브랜치 기반 (최신 브랜치 우선)
     def _ref_unix_ts(ref: str) -> int:
         try:
             out = _run(f"git log -1 --format=%ct {shlex.quote(ref)}")
@@ -600,7 +579,6 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     refs = list_all_refs()
     week_branch_re = re.compile(r"week\s*(\d+)-([A-Za-z0-9_\-]+)", re.IGNORECASE)
 
-    # (seat, pid)별로 가장 "최신" 브랜치를 고름
     best_branch: Dict[Tuple[str, int], Tuple[int, str, str]] = {}  # -> (ts, wk_lab, ref)
 
     for r in refs:
@@ -608,6 +586,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
         if not mb:
             continue
         wk_lab = f"{int(mb.group(1)):02d}"
+        if current_wk_lab and wk_lab != current_wk_lab:
+            continue  # 진행 중 주차만 보정
         bkey = _norm_token(mb.group(2))
         seat = seat_by_branch_key.get(bkey)
         if not seat:
@@ -636,25 +616,24 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     for (seat, pid), (_ts, wk_lab, _ref) in best_branch.items():
         branch_attrib.setdefault(seat, {})[pid] = wk_lab
 
-    # 3) 병합 (commit > latest-branch > (옵션) DURING 폴백)
+    # 3) 병합 (commit > branch-diff > DURING fallback)
     out: Dict[str, Dict[int, str]] = {str(m["seat"]): {} for m in participants}
 
-    # 우선순위 1: 커밋
+    # 1순위: 커밋
     for seat, mp in commit_attrib.items():
         out[seat].update(mp)
 
-    # 우선순위 2: 최신 브랜치 (이미 커밋으로 잡힌 pid는 유지)
+    # 2순위: 진행 중 브랜치 보정 (이미 커밋으로 잡힌 pid는 유지)
     for seat, mp in branch_attrib.items():
         for pid, wk_lab in mp.items():
             out[seat].setdefault(pid, wk_lab)
 
-    # 우선순위 3: 폴백 (옵션)
+    # 3순위: DURING 폴백(옵션)
     if ALSS_TREND_FALLBACK_DURING and states_bundle:
         for w in weeks_cfg:
-            # 더미 주차(그룹 없음)에는 귀속하지 않음
             if not (w.get("groups") or []):
                 continue
-            lab = f"{int(w['id']):02d}" if isinstance(w.get("id"), int) or str(w.get("id","")).isdigit() else str(w.get("id",""))
+            lab = f"{int(w['id']):02d}" if str(w.get("id", "")).isdigit() else str(w.get("id", ""))
             for g in w["groups"]:
                 for pid, seat_states in states_bundle[w["id"]][g["key"]].items():
                     for m in participants:
@@ -729,7 +708,6 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
 
         for widx, ws in enumerate(week_sets):
             assign = len(ws)
-            # ← weeks_cfg[widx]로 대응하는 주차 설정을 참조
             w_cfg = weeks_cfg[widx] if widx < len(weeks_cfg) else {}
             if assign == 0:
                 if DEBUG and not (w_cfg.get("groups") or []):
@@ -795,7 +773,6 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
         label_pos = {lab: i for i, lab in enumerate(all_labels)}
 
         # 4) 분모(배정 누적 집합)를 all_labels 순서에 맞게 구성
-        #    weeks.yaml에 없는 주차 라벨은 직전까지의 배정 누적을 그대로 사용
         cumulative_assign_sets_all = []
         for i, lab in enumerate(all_labels):
             U = set()
@@ -848,7 +825,6 @@ def main():
     if DEBUG:
         target_pids_dbg = sorted({pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"]})
         print(f"[debug] target_pids (weeks.yaml): {len(target_pids_dbg)}")
-        # 각 PID에 대해 후보 경로가 몇 개 있는지(최대 8개만 샘플)
         for pid in target_pids_dbg[:30]:
             paths = repo_index_all.get(pid, [])
             print(f"[debug] pid={pid} candidates={len(paths)}")
