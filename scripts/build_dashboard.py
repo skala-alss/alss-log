@@ -777,37 +777,49 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                 submission_map[seat][pid] = wk
                 seen_by_seat[seat].add(pid)
 
-    # ★ (보조) 현재 주차 브랜치 diff 보정: 아직 귀속 안 된 DURING만 현재주차로
+    # ★ (보조) 브랜치 diff 보정: 모든 weekNN-<alias> 브랜치를 스캔하여 해당 주차로 귀속
     if CHECK_BRANCHES and week_labels_sorted:
-        current_wk_lab = week_labels_sorted[-1]
-        week_branch_re = re.compile(rf"^week\s*0*{int(current_wk_lab)}-([A-Za-z0-9_\-]+)$", re.IGNORECASE)
         refs = list_all_refs()
-        for r in refs:
-            mb = week_branch_re.search(r)
-            if not mb:
-                continue
-            alias_key = _norm_token(mb.group(1))
-            seat = seat_by_branch_key.get(alias_key)
-            if not seat:
-                continue
+        problems_root = infer_problems_root(weeks_cfg)
 
-            diff_paths = list_diff_paths_vs_main(r, problems_root)
-            if DEBUG:
-                print(f"[debug] branch={r} week={current_wk_lab} diff_paths={len(diff_paths)}")
+        for wk in week_labels_sorted:  # '01','02','03','04'... 오름차순
+            wk_int = int(wk)
 
-            for p in diff_paths:
-                ext = os.path.splitext(p)[1].lower()
-                if ext not in ALLOWED_EXT:
+            for r in refs:
+                # ref 예시: 'week04-keehoon', 'origin/week04-keehoon', 'remotes/origin/week04-keehoon'
+                base = r.split("/")[-1]  # 마지막 세그먼트만 추출하여 앵커 매칭
+                m = re.match(rf"^week\s*0*{wk_int}-([A-Za-z0-9_\-]+)$", base, re.IGNORECASE)
+                if not m:
                     continue
-                pid = _pid_from_path(p, participants, assigned_universe)
-                if pid is None:
+
+                alias_key = _norm_token(m.group(1))
+                seat = seat_by_branch_key.get(alias_key)
+                if not seat:
                     continue
-                if pid not in during_by_seat[seat]:
-                    continue
-                if pid in seen_by_seat[seat]:
-                    continue
-                submission_map[seat][pid] = current_wk_lab
-                seen_by_seat[seat].add(pid)
+
+                diff_paths = list_diff_paths_vs_main(r, problems_root)
+                if DEBUG:
+                    print(f"[debug] branch-match: ref={r} wk={wk} alias={alias_key} diff_paths={len(diff_paths)}")
+
+                for p in diff_paths:
+                    if problems_root + "/" not in p:
+                        continue
+                    ext = os.path.splitext(p)[1].lower()
+                    if ext not in ALLOWED_EXT:
+                        continue
+
+                    pid = _pid_from_path(p, participants, assigned_universe)
+                    if pid is None:
+                        continue
+                    # DURING이 아닌 PID는 분자 후보에서 제외
+                    if pid not in during_by_seat[seat]:
+                        continue
+                    # 이미 더 이른 주차에 귀속된 PID는 건너뜀(earliest wins)
+                    if pid in seen_by_seat[seat]:
+                        continue
+
+                    submission_map[seat][pid] = wk
+                    seen_by_seat[seat].add(pid)
 
     # ★ (옵션) DURING 폴백: 끝까지 귀속 안 된 DURING → 배정 주차로
     if ALSS_TREND_FALLBACK_DURING:
