@@ -253,6 +253,24 @@ def render_week_readme_members_only(week_cfg, participants, states_by_group):
 ALLOWED_EXT = {".cpp",".cc",".cxx",".c",".py",".java",".kt",".js",".ts",
                ".rb",".go",".cs",".swift",".rs",".m",".mm"}
 
+# 위쪽 유틸 근처에 추가
+def _list_changed_paths_for_commit(sha: str) -> List[str]:
+    # 1) merge 포함해서 show
+    t1 = _decode_git(_run_bytes(
+        f"git -c core.quotepath=off show -m --name-only --no-renames --pretty= {shlex.quote(sha)}"
+    ))
+    paths = [_clean_git_path(x.strip()) for x in t1.splitlines() if x.strip()]
+
+    # 2) 여전히 비면 diff-tree -m 폴백
+    if not paths:
+        t2 = _decode_git(_run_bytes(
+            f"git -c core.quotepath=off diff-tree -r -m --no-commit-id --name-only {shlex.quote(sha)}"
+        ))
+        paths = [_clean_git_path(x.strip()) for x in t2.splitlines() if x.strip()]
+
+    # 중복 제거
+    return list(dict.fromkeys(paths))
+
 def _norm_token(s: str) -> str:
     # 한글/기호 경로의 정규화 문제를 없애기 위해 NFKC 적용
     s = unicodedata.normalize("NFKC", (s or ""))
@@ -516,15 +534,7 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
         if not SUBMIT_RE.search(subj_norm):
             continue
 
-        # ✅ 해당 커밋의 변경 파일 (git show 방식)
-        try:
-            show_b = _run_bytes(
-                f"git -c core.quotepath=off show --name-only --no-renames --pretty= {shlex.quote(sha)}"
-            )
-            show_t = _decode_git(show_b)
-            paths = [_clean_git_path(p.strip()) for p in show_t.splitlines() if p.strip()]
-        except Exception:
-            paths = []
+        paths = _list_changed_paths_for_commit(sha)
         out.append((sha, ts, subj_norm, paths))
 
     if DEBUG:
@@ -595,7 +605,10 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
 
     # 배정 PID 유니버스 (분모 한정)
     assigned_universe: Set[int] = set(
-        pid for w in weeks_cfg for g in (w.get("groups") or []) for pid in g.get("problems", [])
+        pid
+        for w in weeks_cfg
+        for g in (w.get("groups") or [])
+        for pid in g.get("problems", [])
     )
 
     # seat 인덱스 (alias/branch_key/file_key/name/github → seat)
@@ -620,14 +633,39 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                     if seat_states.get(seat) == "DURING":
                         during_by_seat[seat].add(pid)
     if DEBUG:
-        print("[debug][trend] DURING_by_seat_sizes:",
-              {s: len(v) for s, v in during_by_seat.items()})
+        print("[debug][trend] DURING_by_seat_sizes:", {s: len(v) for s, v in during_by_seat.items()})
 
     # 주차 라벨 정렬 (숫자만)
     week_labels_sorted: List[str] = sorted(
         [f"{int(w.get('id')):02d}" for w in weeks_cfg if str(w.get("id", "")).isdigit()],
         key=lambda s: int(s)
     )
+
+    # --- 커밋 파일 → PID 해석 유틸 (경로/파일명 모두 지원) ---
+    PID_DIR_RE = re.compile(r"boj_(\d{3,6})")
+    PID_ANYNUM_RE = re.compile(r"(?<!\d)(\d{3,6})(?!\d)")
+
+    def _pid_from_path(path: str) -> int | None:
+        """
+        경로에서 배정 PID 판별:
+          1) 디렉터리/경로의 boj_#### 우선
+          2) 파일명 규칙(_parse_pid_and_seat_from_basename 재사용)
+          3) 마지막 폴백: 파일명 내 단일 숫자 토큰(3~6자리) 하나면 채택
+        """
+        p = path.replace("\\", "/")
+        m = PID_DIR_RE.search(p)
+        if m:
+            pid = int(m.group(1))
+            return pid if pid in assigned_universe else None
+
+        base_noext = os.path.splitext(os.path.basename(p))[0]
+        pid2, _seat_guess = _parse_pid_and_seat_from_basename(base_noext, participants, assigned_universe)
+        if pid2:
+            return pid2
+
+        nums = [int(x) for x in PID_ANYNUM_RE.findall(base_noext)]
+        nums = [n for n in nums if n in assigned_universe]
+        return nums[0] if len(nums) == 1 else None
 
     # main submit 커밋 수집 → (seat, week)별 후보 PID 집합 준비
     commits = collect_submit_commits_on_main()
@@ -643,6 +681,20 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
         if not seat:
             continue
 
+        # merge 커밋 대비: 파일 목록이 비면 보조 수집 시도
+        if not files:
+            try:
+                if "_list_changed_paths_for_commit" in globals():
+                    files = globals()["_list_changed_paths_for_commit"](_sha)
+                else:
+                    # 내장 폴백: show -m
+                    show_t = _decode_git(_run_bytes(
+                        f"git -c core.quotepath=off show -m --name-only --no-renames --pretty= {shlex.quote(_sha)}"
+                    ))
+                    files = [_clean_git_path(x.strip()) for x in show_t.splitlines() if x.strip()]
+            except Exception:
+                files = []
+
         cand: Set[int] = set()
         for p in files:
             pp = p.replace("\\", "/")
@@ -651,11 +703,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
             ext = os.path.splitext(pp)[1].lower()
             if ext not in ALLOWED_EXT:
                 continue
-            mdir = re.search(r"boj_(\d{3,6})", pp)
-            if not mdir:
-                continue
-            pid = int(mdir.group(1))
-            if pid in assigned_universe:
+            pid = _pid_from_path(pp)
+            if pid is not None:
                 cand.add(pid)
 
         if cand:
@@ -701,17 +750,19 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
             if DEBUG:
                 print(f"[debug] branch={r} week={current_wk_lab} diff_paths={len(diff_paths)}")
             for p in diff_paths:
-                m2 = re.search(r"boj_(\d{3,6})", p)
-                if not m2:
+                if problems_root + "/" not in p:
                     continue
-                pid = int(m2.group(1))
-                if pid not in assigned_universe:
+                ext = os.path.splitext(p)[1].lower()
+                if ext not in ALLOWED_EXT:
+                    continue
+                pid = _pid_from_path(p)
+                if pid is None or pid not in assigned_universe:
                     continue
                 if pid in during_by_seat[seat] and pid not in assigned_by_seat[seat]:
                     submission_map[seat][pid] = current_wk_lab
                     assigned_by_seat[seat].add(pid)
 
-    # (옵션) DURING 폴백
+    # (옵션) DURING 폴백: 아직 귀속 안 된 DURING PID를 배정 주차로 매핑
     if ALSS_TREND_FALLBACK_DURING:
         assign_by_lab: Dict[str, Set[int]] = {}
         for w in weeks_cfg:
