@@ -55,7 +55,7 @@
     
     <style>
       .caption { paint-order: stroke fill; stroke: var(--text-stroke); stroke-width: .6px; }
-      .caption-note { font-size:12px; fill: var(--fg-muted-2); font-weight:600; }
+      .caption-note { font-size:9px; fill: var(--fg-muted-2); font-weight:600; }
       .colhdr { font-size: 12px; fill: var(--fg-muted); font-weight: 700; letter-spacing: .1px; }
       .rowlabel text { font-size: 12px; fill: var(--fg-muted-2); font-weight: 600; letter-spacing: .1px; }
       .cell-anim {
