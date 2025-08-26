@@ -170,11 +170,11 @@
               <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
                 <g transform="translate(388,44)">
                   <g class="cell-anim" style="animation-delay:0.09s">
-                    <title>W01 · skala-changhyun · 79% (44/56) · github:skala-changhyun · boj:gcgc09</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 47.0%)" />
+                    <title>W01 · skala-changhyun · 89% (50/56) · github:skala-changhyun · boj:gcgc09</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 41.3%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">79%</text>
+                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">89%</text>
                   </g>
                 </g>
               </a>
@@ -208,10 +208,10 @@
 
           <g transform="translate(700,44)">
             <g class="cell-anim avg" style="animation-delay:0.18s">
-              <title>W01 · 전체 평균 69% (Σ분자=233 / Σ분모=336)</title>
+              <title>W01 · 전체 평균 71% (Σ분자=239 / Σ분모=336)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
-                    text-anchor="middle" dominant-baseline="middle">69%</text>
+                    text-anchor="middle" dominant-baseline="middle">71%</text>
             </g>
           </g>
         
@@ -354,11 +354,11 @@
               <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
                 <g transform="translate(388,148)">
                   <g class="cell-anim" style="animation-delay:0.45s">
-                    <title>W04 · skala-changhyun · 0% (0/43) · github:skala-changhyun · boj:gcgc09</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <title>W04 · skala-changhyun · 5% (2/43) · github:skala-changhyun · boj:gcgc09</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 89.2%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">5%</text>
                   </g>
                 </g>
               </a>
@@ -392,10 +392,10 @@
 
           <g transform="translate(700,148)">
             <g class="cell-anim avg" style="animation-delay:0.54s">
-              <title>W04 · 전체 평균 3% (Σ분자=9 / Σ분모=258)</title>
+              <title>W04 · 전체 평균 4% (Σ분자=11 / Σ분모=258)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
-                    text-anchor="middle" dominant-baseline="middle">3%</text>
+                    text-anchor="middle" dominant-baseline="middle">4%</text>
             </g>
           </g>
         
