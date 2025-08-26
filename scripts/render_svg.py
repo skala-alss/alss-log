@@ -29,12 +29,76 @@ def ensure_dir(p: str):
     os.makedirs(p, exist_ok=True)
 
 def pct_to_color(p: float) -> str:
+    """
+    Heatmap 색조는 그대로 유지(파랑 계열), 명도만 비율에 따라 보정.
+    다크모드에서는 텍스트/스트로크 대비만 변수로 맞춥니다.
+    """
     p = max(0.0, min(100.0, float(p)))
     L = 92 - (57 * (p / 100.0))
     return f"hsl(210, 85%, {L:.1f}%)"
 
 def escape(s: str) -> str:
     return html.escape(str(s), quote=True)
+
+# ---------- Common style helpers ----------
+def common_light_dark_style() -> str:
+    """
+    공통 팔레트 변수: 라이트 기본, 다크에서 오버라이드.
+    각 SVG의 구체 스타일에서 이 변수를 활용합니다.
+    """
+    return f"""
+    <style>
+      svg {{
+        font-family: {SYSTEM_FONT_STACK};
+        background: none; /* transparent */
+        /* Light (default) */
+        --fg-strong:   #0f172a;  /* slate-900 */
+        --fg-muted:    #334155;  /* slate-700 */
+        --fg-muted-2:  #475569;  /* slate-600 */
+        --axis:        #64748b;  /* slate-500 */
+        --stroke:      #e2e8f0;  /* slate-200 */
+        --panel-fill:  #ffffff;
+        --panel-stk:   #e2e8f0;
+        --track:       #f1f5f9;  /* slate-100 */
+        --bar:         #38bdf8;  /* sky-400 */
+        --line:        #06b6d4;  /* cyan-500 */
+        --dot:         #06b6d4;
+        --badge-fill:  #f1f5f9;
+        --badge-stk:   #e2e8f0;
+        --avg-fill:    #0ea5e9;  /* sky-500 */
+        --avg-stk:     #bae6fd;  /* sky-200 */
+        --pct-color:   #0f172a;
+      }}
+
+      @media (prefers-color-scheme: dark) {{
+        svg {{
+          --fg-strong:   #e5e7eb; /* slate-200 */
+          --fg-muted:    #cbd5e1; /* slate-300 */
+          --fg-muted-2:  #94a3b8; /* slate-400 */
+          --axis:        #94a3b8; /* slate-400 */
+          --stroke:      #334155; /* slate-700 */
+          --panel-fill:  #0b1220; /* 어두운 보드판 느낌 */
+          --panel-stk:   #334155;
+          --track:       #1f2937; /* slate-800 */
+          --bar:         #38bdf8; /* 그대로 가도 대비 충분 */
+          --line:        #22d3ee; /* cyan-400 조금 더 밝게 */
+          --dot:         #22d3ee;
+          --badge-fill:  #111827; /* slate-900 */
+          --badge-stk:   #334155;
+          --avg-fill:    #38bdf8; /* 평칸도 다크에서 더 선명하게 */
+          --avg-stk:     #075985; /* sky-700 */
+          --pct-color:   #e5e7eb;
+        }}
+      }}
+
+      @keyframes pop {{ 0%{{opacity:0; transform:scale(0.96)}} 100%{{opacity:1; transform:scale(1)}} }}
+      @keyframes grow {{ to {{ width: var(--w); }} }}
+      @keyframes draw {{
+        from {{ stroke-dasharray:1000; stroke-dashoffset:1000; }}
+        to   {{ stroke-dasharray:1000; stroke-dashoffset:0; }}
+      }}
+    </style>
+    """
 
 # ---------- Weekly Heatmap ----------
 def render_weekly_heatmap(payload: dict) -> str:
@@ -48,7 +112,7 @@ def render_weekly_heatmap(payload: dict) -> str:
     cell_w, cell_h = 96, 44
     left_gutter = 84
     right_avg_w = 90
-    top_gutter = 56
+    top_gutter = 56  # 제목 제거했지만 레이아웃 안정성 위해 유지
     col_gap, row_gap = 8, 8
 
     rows = len(weeks)
@@ -57,7 +121,6 @@ def render_weekly_heatmap(payload: dict) -> str:
     width  = left_gutter + cols*(cell_w+col_gap) + right_avg_w
     height = top_gutter + rows*(cell_h+row_gap)
 
-    # stagger animation helper
     def delay(i, j):  # s
         return 0.03 * (i*cols + j)
 
@@ -126,28 +189,25 @@ def render_weekly_heatmap(payload: dict) -> str:
 
         body_rows.append("\n".join(row_group))
 
+    # style
     style = f"""
+    {common_light_dark_style()}
     <style>
-      @keyframes pop {{ 0%{{opacity:0; transform:scale(0.96)}} 100%{{opacity:1; transform:scale(1)}} }}
-      svg {{ font-family: {SYSTEM_FONT_STACK}; background: #ffffff; }}
-      .title {{ font-weight: 700; font-size: 18px; fill: #0f172a; }}
-      .colhdr {{ font-size: 12px; fill: #334155; }}
-      .rowlabel text {{ font-size: 12px; fill: #475569; }}
-      /* translate는 바깥 g, 애니메이션은 안쪽 g(.cell-anim) */
+      .colhdr {{ font-size: 12px; fill: var(--fg-muted); }}
+      .rowlabel text {{ font-size: 12px; fill: var(--fg-muted-2); }}
       .cell-anim {{
         animation: pop .45s ease both;
         transform-box: fill-box;
         transform-origin: 50% 50%;
       }}
-      .cell-anim rect {{ stroke: #e2e8f0; stroke-width: 1; }}
-      .cell-anim.avg rect {{ fill: #0ea5e9; opacity:.14; stroke: #bae6fd; }}
-      .pct {{ fill: #0f172a; font-size: 14px; font-weight: 700; }}
+      .cell-anim rect {{ stroke: var(--stroke); stroke-width: 1; }}
+      .cell-anim.avg rect {{ fill: var(--avg-fill); opacity:.16; stroke: var(--avg-stk); }}
+      .pct {{ fill: var(--pct-color); font-size: 14px; font-weight: 700; }}
     </style>
     """
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img">
       {style}
-      <text class="title" x="16" y="28">주차별 완료율 (%)</text>
       {''.join(header_cells)}
       {header_avg}
       {''.join(body_rows)}
@@ -162,7 +222,7 @@ def render_leaderboard(payload: dict) -> str:
     chart_w      = 460
     row_h        = 44
     gap          = 8
-    pad_top      = 56
+    pad_top      = 24  # 제목 제거로 상단 패딩 축소
     height       = pad_top + n*(row_h+gap)
     width        = left_label_w + chart_w + 32
 
@@ -189,22 +249,17 @@ def render_leaderboard(payload: dict) -> str:
         ''')
 
     style = f"""
+    {common_light_dark_style()}
     <style>
-      @keyframes grow {{ to {{ width: var(--w); }} }}
-      svg {{ font-family: {SYSTEM_FONT_STACK}; background:#fff; }}
-      .title {{ font-weight:700; font-size:18px; fill:#0f172a; }}
-      .name {{ font-size:14px; fill:#334155; font-weight:600; }}
-      .track {{ fill:#f1f5f9; }}
-      .bar {{
-        fill:#38bdf8; animation: grow 0.9s cubic-bezier(.2,.7,.2,1) forwards;
-      }}
-      .pct  {{ font-size:12px; fill:#0f172a; text-anchor:end; font-weight:700; }}
-      .nd   {{ font-size:12px; fill:#0f172a; }}
+      .name {{ font-size:14px; fill: var(--fg-muted); font-weight:600; }}
+      .track {{ fill: var(--track); }}
+      .bar {{ fill: var(--bar); animation: grow 0.9s cubic-bezier(.2,.7,.2,1) forwards; }}
+      .pct  {{ font-size:12px; fill: var(--fg-strong); text-anchor:end; font-weight:700; }}
+      .nd   {{ font-size:12px; fill: var(--fg-strong); }}
     </style>
     """
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img">
       {style}
-      <text class="title" x="16" y="28">전체 리더보드 (누적)</text>
       {''.join(bars)}
     </svg>'''
 
@@ -219,7 +274,7 @@ def render_trend_multiples(payload: dict) -> str:
     cols = 3
     rows = math.ceil(len(members)/cols)
     gap  = 14
-    pad_top = 56
+    pad_top = 12  # 제목 제거
     width  = cols*card_w + (cols-1)*gap + 16
     height = pad_top + rows*card_h + (rows-1)*gap
 
@@ -227,9 +282,10 @@ def render_trend_multiples(payload: dict) -> str:
     inset = 24
     cw, ch = card_w-2*inset, card_h-2*inset
 
-    def path_for(values: List[float]) -> str:
+    def path_for(values: List[float]):
         n = len(values)
-        if n == 0: return ""
+        if n == 0: 
+            return "", (inset, inset+ch)
         pts = []
         for i, v in enumerate(values):
             x = inset + (cw*(i/(n-1 if n>1 else 1)))
@@ -250,7 +306,6 @@ def render_trend_multiples(payload: dict) -> str:
         lx, ly = last_xy
         delay = 0.12 * idx
 
-        # label for last point
         last_pct = int(round(vals[-1])) if vals else 0
 
         grid = f'''
@@ -286,29 +341,20 @@ def render_trend_multiples(payload: dict) -> str:
         ''')
 
     style = f"""
+    {common_light_dark_style()}
     <style>
-      @keyframes draw {{
-        from {{ stroke-dasharray:1000; stroke-dashoffset:1000; }}
-        to   {{ stroke-dasharray:1000; stroke-dashoffset:0; }}
-      }}
-      svg {{ font-family:{SYSTEM_FONT_STACK}; background:#fff; }}
-      .title {{ font-weight:700; font-size:18px; fill:#0f172a; }}
-      .panel {{ fill:#ffffff; stroke:#e2e8f0; }}
-      .name  {{ font-size:13px; font-weight:700; fill:#0f172a; }}
-      .grid line {{ stroke:#e2e8f0; stroke-width:1; }}
-      .line {{
-        fill:none; stroke:#06b6d4; stroke-width:2.2;
-        animation: draw 1.1s ease forwards;
-      }}
-      .dot {{ fill:#06b6d4; }}
-      .lastlabel rect {{ fill:#f1f5f9; stroke:#e2e8f0; }}
-      .lastlabel text {{ font-size:12px; fill:#0f172a; font-weight:700; }}
-      .xt {{ font-size:10px; fill:#64748b; }}
+      .panel {{ fill: var(--panel-fill); stroke: var(--panel-stk); }}
+      .name  {{ font-size:13px; font-weight:700; fill: var(--fg-strong); }}
+      .grid line {{ stroke: var(--stroke); stroke-width:1; }}
+      .line {{ fill:none; stroke: var(--line); stroke-width:2.2; animation: draw 1.1s ease forwards; }}
+      .dot {{ fill: var(--dot); }}
+      .lastlabel rect {{ fill: var(--badge-fill); stroke: var(--badge-stk); }}
+      .lastlabel text {{ font-size:12px; fill: var(--fg-strong); font-weight:700; }}
+      .xt {{ font-size:10px; fill: var(--axis); }}
     </style>
     """
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img">
       {style}
-      <text class="title" x="16" y="28">멤버별 주차별 누적 추세 (제출 주차 귀속 / 배정 누적, %)</text>
       {''.join(cards)}
     </svg>'''
 
