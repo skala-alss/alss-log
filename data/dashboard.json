@@ -1,0 +1,158 @@
+{
+  "members": [
+    "nOOne-is-hier",
+    "SDGeo12",
+    "jiyunee02",
+    "skala-changhyun",
+    "seo-youngjae",
+    "JinYeopKang"
+  ],
+  "weeks": [
+    "01",
+    "02",
+    "04"
+  ],
+  "weekly": {
+    "pct": [
+      [
+        100,
+        71,
+        18,
+        79,
+        100,
+        48
+      ],
+      [
+        85,
+        32,
+        27,
+        10,
+        7,
+        0
+      ],
+      [
+        16,
+        5,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "num": [
+      [
+        56,
+        40,
+        10,
+        44,
+        56,
+        27
+      ],
+      [
+        50,
+        19,
+        16,
+        6,
+        4,
+        0
+      ],
+      [
+        7,
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "den": [
+      56,
+      59,
+      43
+    ]
+  },
+  "leaderboard": [
+    {
+      "name": "nOOne-is-hier",
+      "done": 113,
+      "total": 158,
+      "pct": 72
+    },
+    {
+      "name": "SDGeo12",
+      "done": 61,
+      "total": 158,
+      "pct": 39
+    },
+    {
+      "name": "seo-youngjae",
+      "done": 60,
+      "total": 158,
+      "pct": 38
+    },
+    {
+      "name": "skala-changhyun",
+      "done": 50,
+      "total": 158,
+      "pct": 32
+    },
+    {
+      "name": "JinYeopKang",
+      "done": 27,
+      "total": 158,
+      "pct": 17
+    },
+    {
+      "name": "jiyunee02",
+      "done": 26,
+      "total": 158,
+      "pct": 16
+    }
+  ],
+  "trend": {
+    "weeks": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "series": {
+      "nOOne-is-hier": [
+        100,
+        63,
+        92,
+        72
+      ],
+      "SDGeo12": [
+        71,
+        37,
+        51,
+        39
+      ],
+      "jiyunee02": [
+        18,
+        11,
+        22,
+        16
+      ],
+      "skala-changhyun": [
+        41,
+        34,
+        43,
+        32
+      ],
+      "seo-youngjae": [
+        11,
+        27,
+        52,
+        38
+      ],
+      "JinYeopKang": [
+        2,
+        1,
+        11,
+        17
+      ]
+    }
+  }
+}
