@@ -241,6 +241,7 @@ def render_weekly_heatmap(payload: dict) -> str:
     {common_light_dark_style()}
     <style>
       .caption {{ paint-order: stroke fill; stroke: var(--text-stroke); stroke-width: .6px; }}
+      .caption-note {{ font-size:12px; fill: var(--fg-muted-2); font-weight:600; }}
       .colhdr {{ font-size: 12px; fill: var(--fg-muted); font-weight: 700; letter-spacing: .1px; }}
       .rowlabel text {{ font-size: 12px; fill: var(--fg-muted-2); font-weight: 600; letter-spacing: .1px; }}
       .cell-anim {{
@@ -350,7 +351,7 @@ def render_trend_multiples(payload: dict) -> str:
     height = pad_top + rows*card_h + (rows-1)*gap
 
      # [ADD] 캡션용 오른쪽 여백(px)
-    caption_right_pad = 200
+    caption_right_pad = 230  # 200 → 230 (오른쪽 간격 +30px)
     width += caption_right_pad
 
     inset = 24
