@@ -304,8 +304,14 @@ def _member_owns_path(path: str, pid: int, member: dict) -> bool:
 
     bn_norm = _norm_token(base_noext)  # 구분자 통일(대/소문자, -, _ 등)
     # 1) 파일명 패턴 확정 매치: <key>_(or -)<pid>(...)
+    # 규칙 A: <name>_<pid>[_suffix]  (정확 일치)
     for k in klist:
-        if re.match(rf"^{re.escape(k)}[_\-]{pid_s}(?:[_\-].*)?$", bn_norm):
+        if re.match(rf"^{re.escape(k)}_{pid_s}(?:_.+)?$", bn_norm):
+            return True
+
+    # 규칙 B: boj_<pid>_<name>  (정확 일치)
+    for k in klist:
+        if re.match(rf"^boj_{pid_s}_{re.escape(k)}(?:_.+)?$", bn_norm):
             return True
 
     # 2) 디렉터리 구조 힌트: .../boj_<pid>.../ <basename startswith key>
@@ -431,6 +437,7 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
             parts += ["-n", str(lim)]
     except Exception:
         pass
+    # 제목만으로도 매칭되지만, 포맷은 깔끔하게 유지
     parts += [f"--pretty=format:%H%x1f%ct%x1f%s%x1e", ref]
     cmd = " ".join(shlex.quote(x) for x in parts)
 
@@ -449,11 +456,13 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
         if not SUBMIT_RE.search(subj_norm):
             continue
 
-        # 해당 커밋이 변경한 파일들만 수집 (브랜치 전체 diff 아님)
+        # 해당 커밋의 변경 파일 (merge 안전)
         try:
-            files = _run(
-                f"git -c core.quotepath=off show --name-only --no-renames --pretty= {shlex.quote(sha)}"
-            )
+            files = _run(" ".join([
+                "git", "-c", "core.quotepath=off",
+                "diff-tree", "--no-commit-id", "--name-only", "-r",
+                "-m", "--first-parent", shlex.quote(sha),
+            ]))
             paths = [_clean_git_path(p.strip()) for p in files.splitlines() if p.strip()]
         except Exception:
             paths = []
@@ -470,6 +479,51 @@ def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
     모든 refs에서 problems/ 이하 파일을 모아 pid -> [paths...] 매핑
     """
     problems_root = infer_problems_root(weeks_cfg)
+    assigned_universe: Set[int] = set(pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"])
+
+    def _guess_seat_from_name_tokens(name_tokens: Set[str]) -> str | None:
+        """파일명에 들어있는 이름 토큰에서 seat 추정"""
+        for mm in participants:
+            seat = str(mm["seat"])
+            for k in _member_keys_for_match(mm):
+                if k in name_tokens:
+                    return seat
+        return None
+
+    def _parse_pid_and_seat_from_basename(base_noext: str) -> Tuple[int | None, str | None]:
+        """
+        파일명 규칙에 맞춰 PID와 seat(소유자) 추정
+          - 규칙 A: <name>_<pid>(_:suffix)?    ex) keehoon_5597, keehoon_5597_2
+          - 규칙 B: boj_<pid>_<name>          ex) boj_2557_keehoon
+        name/토큰 비교는 normalize된 토큰 단위로 수행
+        """
+        bn = _norm_token(base_noext)              # ex) 'keehoon_5597_2', 'boj_2557_keehoon'
+        toks = set(bn.split("_"))
+
+        # --- 규칙 B: boj_<pid>_<name...>
+        m = re.match(r"^boj_(\d{3,6})_(.)$", bn)
+        if m:
+            try:
+                pid = int(m.group(1))
+            except Exception:
+                pid = None
+            name_part = m.group(2)
+            seat = _guess_seat_from_name_tokens(set(name_part.split("_")))
+            return (pid if pid in assigned_universe else None, seat)
+
+        # --- 규칙 A: <name...>_<pid>(_<suffix>)?
+        m = re.match(r"^(.+?)_(\d{3,6})(?:_.+)?$", bn)
+        if m:
+            name_part = m.group(1)
+            try:
+                pid = int(m.group(2))
+            except Exception:
+                pid = None
+            seat = _guess_seat_from_name_tokens(set(name_part.split("_")))
+            return (pid if pid in assigned_universe else None, seat)
+
+        # 실패 시 None
+        return (None, None)
     paths = paths_in_refs(refs, problems_root)
     by_pid: Dict[int, List[str]] = {}
     for p in paths:
@@ -548,21 +602,39 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             pp = p.replace("\\", "/")
             if problems_root + "/" not in pp:
                 continue
-            m2 = re.search(r"boj_(\d+)", pp)
-            if not m2:
+            # 문제 소스만 집계
+            ext = os.path.splitext(pp)[1].lower()
+            if ext not in ALLOWED_EXT:
                 continue
-            pid = int(m2.group(1))
+            base_noext = os.path.splitext(os.path.basename(pp))[0]
+            pid, seat_from_name = _parse_pid_and_seat_from_basename(base_noext)
+            if pid is None:
+                # boj_ 디렉토리명 등 보조: path 전체에서 boj_<pid>
+                m_dir = re.search(r"boj_(\d{3,6})", pp)
+                if m_dir:
+                    try:
+                        cand = int(m_dir.group(1))
+                        if cand in assigned_universe:
+                            pid = cand
+                    except Exception:
+                        pass
+            if pid is None:
+                continue
 
-            final_seat = alias_seat
+            # seat 우선순위: PR 제목(alias) > 파일명 추정 seat > (없으면 스킵)
+            final_seat = alias_seat or seat_from_name
             if not final_seat:
-                # 제목 alias로 못 찾으면 경로 소유 규칙으로 보조
+                # 마지막 보조: 경로 규칙(드물게 이름이 빠진 경우)
                 for mmbr in participants:
                     if _member_owns_path(pp, pid, mmbr):
-                        final_seat = str(mmbr["seat"]); break
+                        final_seat = str(mmbr["seat"])
+                        break
             if not final_seat:
                 continue
 
             commit_attrib.setdefault(final_seat, {})[pid] = wk_lab
+            if DEBUG:
+                print(f"[debug][submit] sha={sha[:8]} week={wk_lab} seat={final_seat} pid={pid} file={os.path.basename(pp)}")
 
     # 2) (보조) 진행 중 주차의 브랜치 diff 기반 보정
     # 현재 주차 라벨(숫자 id 최대값)만 보정 대상으로 사용
@@ -644,6 +716,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     if DEBUG:
         total_mapped = sum(len(v) for v in out.values())
         print(f"[debug] submission_attribution mapped pairs: {total_mapped}")
+        print("[debug] per-seat counts:", {s: len(mp) for s, mp in out.items()})
     return out
 
 # ---------- Root README dashboards ----------
