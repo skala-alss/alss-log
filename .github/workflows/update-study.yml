@@ -73,6 +73,13 @@ jobs:
         run: |
           python scripts/build_dashboard.py
 
+      # 5.1) 집계 결과 JSON으로 저장
+      - name: Upload dashboard JSON (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-json
+          path: data/dashboard.json
+
       # 5.5) 커밋 전 디프/상태 확인 (그대로 유지 OK)
       - name: Show diff before commit
         run: |
@@ -122,3 +129,41 @@ jobs:
           git remote -v
           echo '--- show refs snapshot ---'
           git for-each-ref --format='%(refname:short)' | sed -n '1,200p' || true
+
+  render:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout with BOT PAT
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.BOT_PAT }}
+
+      - name: Download dashboard JSON
+        uses: actions/download-artifact@v4
+        with:
+          name: dashboard-json
+          path: data
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Render animated SVGs
+        run: |
+          python scripts/render_svg.py data/dashboard.json assets/
+
+      - name: Commit & Push SVGs
+        run: |
+          git add assets/*.svg || true
+          if ! git diff --cached --quiet; then
+            git config user.name  "skala-bot"
+            git config user.email "skalabot16@gmail.com"
+            git commit -m "🎨 build(svg): update animated study dashboards"
+            git push origin HEAD:main
+          else
+            echo "No SVG changes to commit."
+          fi
