@@ -91,6 +91,12 @@ jobs:
           python scripts/build_dashboard.py
           test -f data/dashboard.json || (echo "data/dashboard.json not created" && exit 1)
 
+      # 5.0.1) data 디렉터리 상주시킬 .gitkeep 준비
+      - name: Ensure data/.gitkeep exists
+        run: |
+          mkdir -p data
+          [ -f data/.gitkeep ] || touch data/.gitkeep
+
       # 5.1) 집계 결과 JSON artifact 업로드
       - name: Upload dashboard JSON (artifact)
         uses: actions/upload-artifact@v4
@@ -123,9 +129,12 @@ jobs:
       # 6) README/주차README + weeks.yaml + .gitkeep + 🔵 dashboard.json 커밋/푸시
       - name: Commit & Push changes (rebase & retry)
         run: |
-          # 스테이징 (JSON 포함)
-          git add -- README.md ':(glob)**/README.md' config/weeks.yaml ':(glob)**/.gitkeep' data/dashboard.json || true
-          git add -u -- README.md ':(glob)**/README.md' config/weeks.yaml ':(glob)**/.gitkeep' data/dashboard.json || true
+          # JSON이 .gitignore에 걸려도 강제로 트래킹
+          git add -f data/dashboard.json data/.gitkeep
+
+          # 나머지 변경 파일 스테이징
+          git add -- README.md ':(glob)**/README.md' config/weeks.yaml ':(glob)**/.gitkeep' || true
+          git add -u -- README.md ':(glob)**/README.md' config/weeks.yaml ':(glob)**/.gitkeep' || true
 
           echo "=== staged files (name-only) ==="
           git --no-pager diff --cached --name-only || true
