@@ -17,8 +17,8 @@
 | :----: | ----: | :------- | :-----------------------------------------: | :---------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 17608 | 막대기 | [🔗](https://www.acmicpc.net/problem/17608) | [📁](./스택/boj_17608_막대기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 12605 | 단어순서 뒤집기 | [🔗](https://www.acmicpc.net/problem/12605) | [📁](./스택/boj_12605_단어순서_뒤집기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10828 | 스택 | [🔗](https://www.acmicpc.net/problem/10828) | [📁](./스택/boj_10828_스택) | ✅ | ❌ | ☑️ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1874 | 스택 수열 | [🔗](https://www.acmicpc.net/problem/1874) | [📁](./스택/boj_1874_스택_수열) | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10828 | 스택 | [🔗](https://www.acmicpc.net/problem/10828) | [📁](./스택/boj_10828_스택) | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1874 | 스택 수열 | [🔗](https://www.acmicpc.net/problem/1874) | [📁](./스택/boj_1874_스택_수열) | ✅ | ❌ | ☑️ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 1918 | 후위 표기식 | [🔗](https://www.acmicpc.net/problem/1918) | [📁](./스택/boj_1918_후위_표기식) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:STACK-->
@@ -33,7 +33,7 @@
 | :----: | ----: | :--------- | :-----------------------------------------: | :----------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2161 | 카드1 | [🔗](https://www.acmicpc.net/problem/2161) | [📁](./큐/boj_2161_카드1) | ✅ | ✅ | ✅ | ✅ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 26042 | 식당 입구 대기 줄 | [🔗](https://www.acmicpc.net/problem/26042) | [📁](./큐/boj_26042_식당_입구_대기_줄) | ✅ | ✅ | ✅ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1158 | 요세푸스 문제 | [🔗](https://www.acmicpc.net/problem/1158) | [📁](./큐/boj_1158_요세푸스_문제) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1966 | 프린터 큐 | [🔗](https://www.acmicpc.net/problem/1966) | [📁](./큐/boj_1966_프린터_큐) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
