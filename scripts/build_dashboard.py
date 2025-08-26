@@ -327,6 +327,53 @@ def _member_owns_path(path: str, pid: int, member: dict) -> bool:
 
     return False
 
+# ---------- Filename → (pid, seat) helper (global) ----------
+def _parse_pid_and_seat_from_basename(base_noext: str,
+                                      participants,
+                                      assigned_universe: Set[int]) -> Tuple[int | None, str | None]:
+    """
+    파일명에서 PID와 seat 추정
+      - 규칙 A: <name...>_<pid>(_<suffix>)?
+      - 규칙 B: boj_<pid>_<name...>
+    name/토큰 비교는 normalize된 토큰 단위로 수행
+    """
+    bn = _norm_token(base_noext)
+
+    # 규칙 B: boj_<pid>_<name...>
+    m = re.match(r"^boj_(\d{3,6})_(.+)$", bn)  # (.) → (.+)로 수정
+    if m:
+        try:
+            pid = int(m.group(1))
+        except Exception:
+            pid = None
+        name_part = m.group(2)
+        name_tokens = set(name_part.split("_"))
+        # seat 추정
+        for mm in participants:
+            seat = str(mm["seat"])
+            for k in _member_keys_for_match(mm):
+                if k in name_tokens:
+                    return (pid if (pid in assigned_universe) else None, seat)
+        return (pid if (pid in assigned_universe) else None, None)
+
+    # 규칙 A: <name...>_<pid>(_<suffix>)?
+    m = re.match(r"^(.+?)_(\d{3,6})(?:_.+)?$", bn)
+    if m:
+        name_part = m.group(1)
+        try:
+            pid = int(m.group(2))
+        except Exception:
+            pid = None
+        name_tokens = set(name_part.split("_"))
+        for mm in participants:
+            seat = str(mm["seat"])
+            for k in _member_keys_for_match(mm):
+                if k in name_tokens:
+                    return (pid if (pid in assigned_universe) else None, seat)
+        return (pid if (pid in assigned_universe) else None, None)
+
+    return (None, None)
+
 # ---------- Git helpers ----------
 def _run(cmd: str, cwd: str = ROOT_DIR) -> str:
     return subprocess.check_output(cmd, shell=True, cwd=cwd, text=True, stderr=subprocess.DEVNULL)
@@ -479,51 +526,6 @@ def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
     모든 refs에서 problems/ 이하 파일을 모아 pid -> [paths...] 매핑
     """
     problems_root = infer_problems_root(weeks_cfg)
-    assigned_universe: Set[int] = set(pid for w in weeks_cfg for g in w["groups"] for pid in g["problems"])
-
-    def _guess_seat_from_name_tokens(name_tokens: Set[str]) -> str | None:
-        """파일명에 들어있는 이름 토큰에서 seat 추정"""
-        for mm in participants:
-            seat = str(mm["seat"])
-            for k in _member_keys_for_match(mm):
-                if k in name_tokens:
-                    return seat
-        return None
-
-    def _parse_pid_and_seat_from_basename(base_noext: str) -> Tuple[int | None, str | None]:
-        """
-        파일명 규칙에 맞춰 PID와 seat(소유자) 추정
-          - 규칙 A: <name>_<pid>(_:suffix)?    ex) keehoon_5597, keehoon_5597_2
-          - 규칙 B: boj_<pid>_<name>          ex) boj_2557_keehoon
-        name/토큰 비교는 normalize된 토큰 단위로 수행
-        """
-        bn = _norm_token(base_noext)              # ex) 'keehoon_5597_2', 'boj_2557_keehoon'
-        toks = set(bn.split("_"))
-
-        # --- 규칙 B: boj_<pid>_<name...>
-        m = re.match(r"^boj_(\d{3,6})_(.)$", bn)
-        if m:
-            try:
-                pid = int(m.group(1))
-            except Exception:
-                pid = None
-            name_part = m.group(2)
-            seat = _guess_seat_from_name_tokens(set(name_part.split("_")))
-            return (pid if pid in assigned_universe else None, seat)
-
-        # --- 규칙 A: <name...>_<pid>(_<suffix>)?
-        m = re.match(r"^(.+?)_(\d{3,6})(?:_.+)?$", bn)
-        if m:
-            name_part = m.group(1)
-            try:
-                pid = int(m.group(2))
-            except Exception:
-                pid = None
-            seat = _guess_seat_from_name_tokens(set(name_part.split("_")))
-            return (pid if pid in assigned_universe else None, seat)
-
-        # 실패 시 None
-        return (None, None)
     paths = paths_in_refs(refs, problems_root)
     by_pid: Dict[int, List[str]] = {}
     for p in paths:
@@ -607,7 +609,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
             if ext not in ALLOWED_EXT:
                 continue
             base_noext = os.path.splitext(os.path.basename(pp))[0]
-            pid, seat_from_name = _parse_pid_and_seat_from_basename(base_noext)
+            pid, seat_from_name = _parse_pid_and_seat_from_basename(base_noext, participants, assigned_universe)
             if pid is None:
                 # boj_ 디렉토리명 등 보조: path 전체에서 boj_<pid>
                 m_dir = re.search(r"boj_(\d{3,6})", pp)
