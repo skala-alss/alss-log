@@ -63,10 +63,10 @@ def render_weekly_heatmap(payload: dict) -> str:
 
     # header
     header_cells = []
-    x = left_gutter
     for j, m in enumerate(members):
+        x = left_gutter + j*(cell_w+col_gap)
         header_cells.append(f'''
-          <g transform="translate({x + j*(cell_w+col_gap)},{top_gutter-28})">
+          <g transform="translate({x},{top_gutter-28})">
             <text class="colhdr" x="{cell_w/2}" y="0"
                   text-anchor="middle" dominant-baseline="middle">{escape(m)}</text>
           </g>
@@ -83,7 +83,7 @@ def render_weekly_heatmap(payload: dict) -> str:
     for i, wk in enumerate(weeks):
         row_y = top_gutter + i*(cell_h+row_gap)
 
-        # week label (왼쪽 주차 라벨도 중앙 정렬)
+        # week label
         row_group = [f'''
           <g class="rowlabel" transform="translate({left_gutter-12},{row_y + cell_h/2})">
             <text x="-6" y="0" text-anchor="end" dominant-baseline="middle">{escape(wk)}</text>
@@ -99,11 +99,13 @@ def render_weekly_heatmap(payload: dict) -> str:
             row_sum += v_num
             cx = left_gutter + j*(cell_w+col_gap)
             cell = f'''
-              <g class="cell" style="animation-delay:{delay(i,j):.2f}s" transform="translate({cx},{row_y})">
-                <title>W{escape(wk)} · {escape(members[j])} · {v_pct}% ({v_num}/{den[i]})</title>
-                <rect rx="10" ry="10" width="{cell_w}" height="{cell_h}" fill="{pct_to_color(v_pct)}" />
-                <text class="pct" x="{cell_w/2}" y="{cell_h/2}"
-                      text-anchor="middle" dominant-baseline="middle">{int(round(v_pct))}%</text>
+              <g transform="translate({cx},{row_y})">
+                <g class="cell-anim" style="animation-delay:{delay(i,j):.2f}s">
+                  <title>W{escape(wk)} · {escape(members[j])} · {v_pct}% ({v_num}/{den[i]})</title>
+                  <rect rx="10" ry="10" width="{cell_w}" height="{cell_h}" fill="{pct_to_color(v_pct)}" />
+                  <text class="pct" x="{cell_w/2}" y="{cell_h/2}"
+                        text-anchor="middle" dominant-baseline="middle">{int(round(v_pct))}%</text>
+                </g>
               </g>
             '''
             row_group.append(cell)
@@ -112,11 +114,13 @@ def render_weekly_heatmap(payload: dict) -> str:
         avg_pct = 0 if row_den == 0 else round(row_sum / row_den * 100)
         avg_x = left_gutter + cols*(cell_w+col_gap)
         row_group.append(f'''
-          <g class="cell avg" style="animation-delay:{delay(i,cols):.2f}s" transform="translate({avg_x},{row_y})">
-            <title>W{escape(wk)} · 전체 평균 {avg_pct}% (Σ분자={row_sum} / Σ분모={row_den})</title>
-            <rect rx="10" ry="10" width="{right_avg_w}" height="{cell_h}" />
-            <text class="pct" x="{right_avg_w/2}" y="{cell_h/2}"
-                  text-anchor="middle" dominant-baseline="middle">{avg_pct}%</text>
+          <g transform="translate({avg_x},{row_y})">
+            <g class="cell-anim avg" style="animation-delay:{delay(i,cols):.2f}s">
+              <title>W{escape(wk)} · 전체 평균 {avg_pct}% (Σ분자={row_sum} / Σ분모={row_den})</title>
+              <rect rx="10" ry="10" width="{right_avg_w}" height="{cell_h}" />
+              <text class="pct" x="{right_avg_w/2}" y="{cell_h/2}"
+                    text-anchor="middle" dominant-baseline="middle">{avg_pct}%</text>
+            </g>
           </g>
         ''')
 
@@ -129,9 +133,14 @@ def render_weekly_heatmap(payload: dict) -> str:
       .title {{ font-weight: 700; font-size: 18px; fill: #0f172a; }}
       .colhdr {{ font-size: 12px; fill: #334155; }}
       .rowlabel text {{ font-size: 12px; fill: #475569; }}
-      .cell {{ animation: pop .45s ease both; }}
-      .cell rect {{ stroke: #e2e8f0; stroke-width: 1; }}
-      .cell.avg rect {{ fill: #0ea5e9; opacity:.14; stroke: #bae6fd; }}
+      /* translate는 바깥 g, 애니메이션은 안쪽 g(.cell-anim) */
+      .cell-anim {{
+        animation: pop .45s ease both;
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
+      }}
+      .cell-anim rect {{ stroke: #e2e8f0; stroke-width: 1; }}
+      .cell-anim.avg rect {{ fill: #0ea5e9; opacity:.14; stroke: #bae6fd; }}
       .pct {{ fill: #0f172a; font-size: 14px; font-weight: 700; }}
     </style>
     """
