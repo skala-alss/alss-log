@@ -578,6 +578,14 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle=None) ->
     """
     problems_root = infer_problems_root(weeks_cfg)
 
+    # 제출 파일에서 PID를 추출할 때 '배정 세트 내 PID만' 집계하기 위해
+    # 전 주차의 배정 PID 유니버스를 미리 만든다.
+    assigned_universe: Set[int] = set()
+    for w in weeks_cfg:
+        for g in (w.get("groups") or []):
+            for pid in g.get("problems", []):
+                assigned_universe.add(pid)
+
     # seat 인덱스 (alias/branch_key/file_key/name/github → seat)
     seat_by_branch_key = {}
     for m in participants:
@@ -808,6 +816,8 @@ def render_root_dashboards(root_readme_path: str, participants, weeks_cfg, state
             tot.append(str(rate))
         overall = round(sum(col_tot_solved) / sum(col_tot_assign) * 100) if sum(col_tot_assign) else 0
         tot.append(str(overall))
+        # ⬇ 실제로 합계 행을 표에 추가
+        lines.append("| " + " | ".join(tot) + " |")
         return "\n".join(lines)
 
     # 3-2) 전체 리더보드 (누적): DURING만 (유니크 PID 기준)
