@@ -680,41 +680,46 @@ def classify_states_repo(week_cfg, members, problems: List[int], repo_index_all:
 # ---------- Submission week attribution (commit first, current-branch as backup) ----------
 def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict[str, Dict[int, str]]:
     """
-    반환: { seat(str) : { pid(int) : week_label("02","03",...) } }
-    규칙:
-      - DURING PID만 집계 (states_bundle 기반)
-      - main의 submit 커밋을 '멤버별/주차별 오름차순'으로 처리하며,
-        각 (seat, pid)는 **처음 등장한 주차**에만 귀속
-      - 이후 현재 주차 브랜치에서 아직 귀속 안 된 DURING PID가 보이면 현재 주차로 귀속
-      - (옵션) ALSS_TREND_FALLBACK_DURING=1이면 남은 DURING PID를 배정 주차로 매핑
+    반환: { seat(str) : { pid(int) : week_label("01","02",...) } }
+
+    ★ 핵심 규칙(요청사항 반영):
+      1) DURING PID 집합을 좌석별로 먼저 만든다(표1 계산 때 만든 것과 동일, '진실').
+      2) submit PR 커밋을 '주차 오름차순'으로 순회하면서,
+         - 각 커밋이 바꾼 파일에서 PID를 뽑고
+         - 그 PID가 해당 좌석의 DURING에 있고
+         - 아직 어떤 주차에도 '귀속되지 않았다'면
+           → 해당 주차(wk)에 '최초 등장'으로 귀속한다.
+      3) (보조) 현재 주차 브랜치 diff에서도 동일 규칙으로 보정(아직 귀속 안 된 DURING만).
+      4) (옵션) ALSS_TREND_FALLBACK_DURING=1 이면, 끝까지 귀속 안 된 DURING을 배정 주차로 폴백.
     """
     problems_root = infer_problems_root(weeks_cfg)
 
-    # 배정 PID 유니버스 (분모 한정)
-    assigned_universe: Set[int] = set(
+    # 배정 PID 유니버스 (모든 주차의 problems 합집합)
+    assigned_universe: Set[int] = {
         pid
         for w in weeks_cfg
         for g in (w.get("groups") or [])
         for pid in g.get("problems", [])
-    )
+    }
 
-    # seat 인덱스 (alias/branch_key/file_key/name/github → seat)
+    # 좌석 alias 매핑 (submit: weekNN-<alias> -> seat)
     seat_by_branch_key: Dict[str, str] = {}
-    for m in participants:
+    seats_order = []
+    for m in sorted(participants, key=lambda x: int(x["seat"])):
         seat = str(m["seat"])
+        seats_order.append(seat)
         for key in [m.get("branch_key"), m.get("file_key"), m.get("name"), m.get("github")]:
             if key:
                 seat_by_branch_key[_norm_token(key)] = seat
     if DEBUG:
         print("[debug] seat_by_branch_key:", seat_by_branch_key)
 
-    # DURING PID 집합(분자 후보)을 좌석별로 준비
+    # ★ DURING PID 집합(좌석별 ground truth)
     during_by_seat: Dict[str, Set[int]] = {str(m["seat"]): set() for m in participants}
     for w in weeks_cfg:
-        if not (w.get("groups") or []):
-            continue
-        for g in w["groups"]:
-            for pid, seat_states in states_bundle[w["id"]][g["key"]].items():
+        for g in (w.get("groups") or []):
+            group_states = states_bundle[w["id"]][g["key"]]
+            for pid, seat_states in group_states.items():
                 for m in participants:
                     seat = str(m["seat"])
                     if seat_states.get(seat) == "DURING":
@@ -722,15 +727,15 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
     if DEBUG:
         print("[debug][trend] DURING_by_seat_sizes:", {s: len(v) for s, v in during_by_seat.items()})
 
-    # 주차 라벨 정렬 (숫자만)
+    # ★ 주차 라벨(숫자만) 오름차순
     week_labels_sorted: List[str] = sorted(
         [f"{int(w.get('id')):02d}" for w in weeks_cfg if str(w.get("id", "")).isdigit()],
         key=lambda s: int(s)
     )
 
-    # main submit 커밋 수집 → (seat, week)별 후보 PID 집합 준비
+    # ★ 커밋 → (seat, week)별 PID 후보 사전: seats × weeks
     commits = collect_submit_commits_on_main()
-    commit_items: List[Tuple[str, str, Set[int]]] = []  # (seat, wk_lab, {pids})
+    cand_by_seat_week: Dict[str, Dict[str, Set[int]]] = {s: {} for s in seats_order}
 
     for _sha, _ts, subj, files in commits:
         m = SUBMIT_RE.search(subj)
@@ -742,52 +747,39 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
         if not seat:
             continue
 
-        if not files:
-            try:
-                files = _list_changed_paths_for_commit(_sha)
-            except Exception:
-                files = []
-
-        cand: Set[int] = set()
         for p in files:
-            pp = p.replace("\\", "/")
-            if problems_root + "/" not in pp:
-                continue
-            ext = os.path.splitext(pp)[1].lower()
+            ext = os.path.splitext(p)[1].lower()
             if ext not in ALLOWED_EXT:
                 continue
-            pid = _pid_from_path(pp, participants, assigned_universe)
-            if pid is not None:
-                cand.add(pid)
-
-        if cand:
-            commit_items.append((seat, wk_lab, cand))
+            # problems/ 이하만 강제하지 말고, PID만 제대로 뽑히면 인정
+            pid = _pid_from_path(p, participants, assigned_universe)
+            if pid is None:
+                continue
+            # ★ 해당 좌석이 DURING이 아닌 PID는 애초에 분자 후보로 보지 않음
+            if pid not in during_by_seat[seat]:
+                continue
+            cand_by_seat_week.setdefault(seat, {}).setdefault(wk_lab, set()).add(pid)
 
     if DEBUG:
-        tmp = {}
-        for seat, wk, pids in commit_items:
-            tmp.setdefault(seat, {}).setdefault(wk, 0)
-            tmp[seat][wk] += len(pids)
-        print("[debug][trend] commit_candidates_by_seat_week:", tmp)
+        dbg = {s: {wk: len(ps) for wk, ps in sorted(wmap.items())} for s, wmap in cand_by_seat_week.items()}
+        print("[debug][trend] commit_candidates_by_seat_week:", dbg)
 
-    # 제출 귀속 맵: earliest week wins (좌석별, 주차 오름차순으로 처리)
-    submission_map: Dict[str, Dict[int, str]] = {str(m["seat"]): {} for m in participants}
-    assigned_by_seat: Dict[str, Set[int]] = {str(m["seat"]): set() for m in participants}
+    # ★ 최초-등장 귀속: 주차 오름차순으로 '처음 본 DURING PID'만 매핑
+    submission_map: Dict[str, Dict[int, str]] = {s: {} for s in seats_order}
+    seen_by_seat: Dict[str, Set[int]] = {s: set() for s in seats_order}
 
-    for seat in submission_map.keys():
-        for wk in week_labels_sorted:
-            # 해당 좌석·주차의 커밋들에서 DURING PID만 추출
-            for s, w, pids in commit_items:
-                if s != seat or w != wk:
+    for wk in week_labels_sorted:               # 01 → 02 → 03 → ...
+        for seat in seats_order:                # 좌석 순회
+            for pid in sorted(cand_by_seat_week.get(seat, {}).get(wk, set())):
+                if pid in seen_by_seat[seat]:   # 이미 이전 주차에 귀속됨
                     continue
-                for pid in pids:
-                    if pid in during_by_seat[seat] and pid not in assigned_by_seat[seat]:
-                        submission_map[seat][pid] = wk
-                        assigned_by_seat[seat].add(pid)
+                # DURING 보증은 위 cand 구성 단계에서 이미 통과
+                submission_map[seat][pid] = wk
+                seen_by_seat[seat].add(pid)
 
-    # (보조) 현재 주차 브랜치 보정
+    # ★ (보조) 현재 주차 브랜치 diff 보정: 아직 귀속 안 된 DURING만 현재주차로
     if CHECK_BRANCHES and week_labels_sorted:
-        current_wk_lab = week_labels_sorted[-1]  # 가장 큰 주차 = 현재 주차
+        current_wk_lab = week_labels_sorted[-1]
         week_branch_re = re.compile(rf"^week\s*0*{int(current_wk_lab)}-([A-Za-z0-9_\-]+)$", re.IGNORECASE)
         refs = list_all_refs()
         for r in refs:
@@ -802,25 +794,27 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
             diff_paths = list_diff_paths_vs_main(r, problems_root)
             if DEBUG:
                 print(f"[debug] branch={r} week={current_wk_lab} diff_paths={len(diff_paths)}")
+
             for p in diff_paths:
-                if problems_root + "/" not in p:
-                    continue
                 ext = os.path.splitext(p)[1].lower()
                 if ext not in ALLOWED_EXT:
                     continue
                 pid = _pid_from_path(p, participants, assigned_universe)
-                if pid is None or pid not in assigned_universe:
+                if pid is None:
                     continue
-                if pid in during_by_seat[seat] and pid not in assigned_by_seat[seat]:
-                    submission_map[seat][pid] = current_wk_lab
-                    assigned_by_seat[seat].add(pid)
+                if pid not in during_by_seat[seat]:
+                    continue
+                if pid in seen_by_seat[seat]:
+                    continue
+                submission_map[seat][pid] = current_wk_lab
+                seen_by_seat[seat].add(pid)
 
-    # (옵션) DURING 폴백: 아직 귀속 안 된 DURING PID를 배정 주차로 매핑
+    # ★ (옵션) DURING 폴백: 끝까지 귀속 안 된 DURING → 배정 주차로
     if ALSS_TREND_FALLBACK_DURING:
         assign_by_lab: Dict[str, Set[int]] = {}
         for w in weeks_cfg:
             lab = f"{int(w['id']):02d}" if str(w.get("id", "")).isdigit() else str(w.get("id", ""))
-            ws = set(pid for g in w.get("groups", []) for pid in g.get("problems", []))
+            ws = set(pid for g in (w.get("groups") or []) for pid in g.get("problems", []))
             assign_by_lab[lab] = ws
         for seat, during_set in during_by_seat.items():
             for pid in during_set:
@@ -831,8 +825,8 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                         submission_map[seat][pid] = wk
                         break
 
+    # 디버그: 주차·좌석별 분자 분포 및 합계
     if DEBUG:
-        # 주차·좌석별 분자 분포 + 합계
         by_seat_week = {}
         for seat, mp in submission_map.items():
             agg = {}
@@ -842,7 +836,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
         print("[debug][trend] submission_by_seat_week:", by_seat_week)
         totals = {s: sum(d.values()) for s, d in by_seat_week.items()}
         total_mapped = sum(totals.values())
-        print(f"[debug] submission_attribution mapped pairs: {total_mapped}")
+        print("[debug] submission_attribution mapped pairs:", total_mapped)
         print("[debug] per-seat counts:", totals)
 
     return submission_map
