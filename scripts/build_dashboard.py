@@ -255,21 +255,31 @@ ALLOWED_EXT = {".cpp",".cc",".cxx",".c",".py",".java",".kt",".js",".ts",
 
 # 위쪽 유틸 근처에 추가
 def _list_changed_paths_for_commit(sha: str) -> List[str]:
-    # 1) merge 포함해서 show
+    """
+    merge 커밋 포함 변경 파일 안전 수집:
+      1) git show -m --name-only --no-renames  (merge 분해)
+      2) 폴백: git diff-tree -r -m --no-commit-id --name-only
+    """
+    # 1) show -m
     t1 = _decode_git(_run_bytes(
         f"git -c core.quotepath=off show -m --name-only --no-renames --pretty= {shlex.quote(sha)}"
     ))
     paths = [_clean_git_path(x.strip()) for x in t1.splitlines() if x.strip()]
 
-    # 2) 여전히 비면 diff-tree -m 폴백
+    # 2) 폴백
     if not paths:
         t2 = _decode_git(_run_bytes(
             f"git -c core.quotepath=off diff-tree -r -m --no-commit-id --name-only {shlex.quote(sha)}"
         ))
         paths = [_clean_git_path(x.strip()) for x in t2.splitlines() if x.strip()]
 
-    # 중복 제거
+    # 중복 제거(순서 유지)
     return list(dict.fromkeys(paths))
+
+def _is_merge_commit(sha: str) -> bool:
+    out = _decode_git(_run_bytes(f"git rev-list --parents -n 1 {shlex.quote(sha)}"))
+    # parents가 2개 이상이면 merge
+    return len(out.strip().split()) >= 3
 
 def _norm_token(s: str) -> str:
     # 한글/기호 경로의 정규화 문제를 없애기 위해 NFKC 적용
@@ -497,44 +507,103 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
     """
     main 히스토리에서 'submit: week{번호}-{alias}' 커밋만 수집.
     반환: [(sha, ts, subject(NFKC), [changed_paths...])], 최신순
-    파일 목록은 ✅ git show --name-only --no-renames 로 취득.
+
+    변경 파일 목록 수집은 merge 커밋을 포함해 안전하게 동작하도록 다음 순서로 시도한다:
+      1) git show -m --name-only --no-renames --pretty=
+      2) (폴백) git diff-tree -r -m --no-commit-id --name-only
+
+    환경변수:
+      - {limit_env_var}: 최근 N개 커밋만 검사(0 또는 미설정이면 무제한)
     """
     ref = _resolve_main_ref()
+
+    # --- git log 호출 구성 ---
     parts = [
         "git", "-c", "core.quotepath=off",
         "-c", "i18n.logOutputEncoding=UTF-8",
         "log", "--no-color",
     ]
+    # 상한 (디버깅/속도용)
     try:
         lim = int(os.getenv(limit_env_var, "").strip() or "0")
         if lim > 0:
             parts += ["-n", str(lim)]
     except Exception:
         pass
+
+    # 레코드/필드 구분은 RS/US(0x1E/0x1F)로 고정
     parts += [f"--pretty=format:%H%x1f%ct%x1f%s%x1e", ref]
     cmd = " ".join(shlex.quote(x) for x in parts)
 
+    # --- 실행 & 파싱 ---
     raw_b = _run_bytes(cmd)
     raw = _decode_git(raw_b)
-    recs = raw.split("\x1e")
+    recs = raw.split("\x1e")  # RS
+
     out: List[Tuple[str, int, str, List[str]]] = []
+
+    # merge 여부 확인 헬퍼(선택)
+    def _is_merge(sha: str) -> bool:
+        try:
+            line = _decode_git(_run_bytes(f"git rev-list --parents -n 1 {shlex.quote(sha)}"))
+            return len(line.strip().split()) >= 3  # sha + >=2 parents
+        except Exception:
+            return False
+
+    # 안전한 변경 파일 수집(내장 폴백 포함)
+    def _safe_list_paths(sha: str) -> List[str]:
+        # 선호: 외부 헬퍼가 있으면 사용
+        if "_list_changed_paths_for_commit" in globals():
+            try:
+                return list(dict.fromkeys(globals()["_list_changed_paths_for_commit"](sha)))
+            except Exception:
+                pass
+        # 1) show -m
+        t1 = _decode_git(_run_bytes(
+            f"git -c core.quotepath=off show -m --name-only --no-renames --pretty= {shlex.quote(sha)}"
+        ))
+        paths = [_clean_git_path(x.strip()) for x in t1.splitlines() if x.strip()]
+        # 2) 폴백: diff-tree -m
+        if not paths:
+            t2 = _decode_git(_run_bytes(
+                f"git -c core.quotepath=off diff-tree -r -m --no-commit-id --name-only {shlex.quote(sha)}"
+            ))
+            paths = [_clean_git_path(x.strip()) for x in t2.splitlines() if x.strip()]
+        # 중복 제거(순서 유지)
+        return list(dict.fromkeys(paths))
 
     for rec in recs:
         if not rec.strip():
             continue
-        cols = rec.split("\x1f")
+        cols = rec.split("\x1f")  # US
         if len(cols) < 3:
             continue
+
         sha, ts_s, subj = cols[0].strip(), cols[1].strip(), cols[2].strip()
         try:
             ts = int(ts_s)
         except Exception:
             ts = 0
+
         subj_norm = unicodedata.normalize("NFKC", subj)
+
+        # 커밋 제목이 'submit: week..-alias' 패턴이 아니면 스킵
         if not SUBMIT_RE.search(subj_norm):
             continue
 
-        paths = _list_changed_paths_for_commit(sha)
+        # 변경 파일(merge 포함) 수집
+        paths = _safe_list_paths(sha)
+
+        if DEBUG:
+            if not paths:
+                try:
+                    mflag = _is_merge(sha)
+                except Exception:
+                    mflag = False
+                print(f"[debug] submit-commit has NO files (merge={mflag}) sha={sha} subj={subj_norm}")
+            else:
+                print(f"[debug] submit-commit files: {len(paths)} sha={sha}")
+
         out.append((sha, ts, subj_norm, paths))
 
     if DEBUG:
