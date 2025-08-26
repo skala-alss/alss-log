@@ -30,16 +30,20 @@ jobs:
         run: |
           git config --global advice.detachedHead false
           git remote set-url origin https://x-access-token:${{ secrets.BOT_PAT }}@github.com/${{ github.repository }}.git
-
           git fetch --prune --tags
           git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
           git fetch origin '+refs/pull/*/head:refs/remotes/pull/*/head' --prune
           git fetch origin '+refs/pull/*/merge:refs/remotes/pull/*/merge' --prune
-
           echo '--- remote branches (head 100) ---'
           git for-each-ref --format='%(refname:short)' refs/remotes/ | sed -n '1,100p' || true
           echo '--- recent main log (head 30) ---'
           (git log origin/main --oneline --decorate -n 30 || git log main --oneline --decorate -n 30) || true
+
+      # 🔴 최신 main으로 동기화 (변경 생성 전에!)
+      - name: Sync to latest main (pre-build)
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
 
       # 3) Python
       - name: Set up Python
@@ -67,7 +71,6 @@ jobs:
           ALSS_CHECK_BRANCHES: "1"
           ALSS_OVERWRITE: "1"
           ALSS_DEBUG: "1"
-          # 더미 주차가 있을 때 오귀속 방지. 필요시 수동으로 "1"로 켜세요.
           ALSS_TREND_FALLBACK_DURING: "0"
           ALSS_LOG_LIMIT: "0"
         run: |
@@ -102,12 +105,7 @@ jobs:
             echo "(no changes in config/weeks.yaml)"
           fi
 
-      - name: Sync to latest main (pre-build)
-        run: |
-          git fetch origin main
-          git checkout -B main origin/main
-
-      # 6) README/주차README + weeks.yaml + .gitkeep 커밋/푸시
+      # 6) README/주차README + weeks.yaml + .gitkeep 커밋/푸시 (rebase & retry)
       - name: Commit & Push changes (rebase & retry)
         run: |
           # 스테이징
@@ -134,7 +132,6 @@ jobs:
               exit 0
             fi
             echo "Push failed (attempt $attempt). Retrying..."
-            # rebase 실패 시 중단 복구
             git rebase --abort || true
             sleep $((attempt*2))
           done
@@ -162,25 +159,26 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.BOT_PAT }}
 
-      - name: Download dashboard JSON
-        uses: actions/download-artifact@v4
-        with:
-          name: dashboard-json
-          path: data
+      # 🔴 렌더 전에 최신 main으로 동기화
+      - name: Sync to latest main
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      - name: Download dashboard JSON
+        uses: actions/download-artifact@v4
+        with:
+          name: dashboard-json
+          path: data
+
       - name: Render animated SVGs
         run: |
           python scripts/render_svg.py data/dashboard.json assets/
-
-      - name: Sync to latest main
-        run: |
-          git fetch origin main
-          git checkout -B main origin/main   # 현재 워킹 트리를 최신 main으로 맞춤
 
       - name: Commit & Push SVGs (rebase & retry)
         run: |
