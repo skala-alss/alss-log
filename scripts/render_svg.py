@@ -188,13 +188,26 @@ def render_weekly_heatmap(payload: dict) -> str:
             row_sum += v_num
             cx = left_gutter + j*(cell_w+col_gap)
 
+            # 배경색 + 명도 계산 (OS 테마와 무관하게 글자색 결정)
             color, L = pct_to_color_and_l(v_pct)
-            # 자동 대비: 어두운 셀(작은 L)에는 흰색, 아니면 변수색
-            pct_fill = "#f8fafc" if L < 60 else "var(--pct-color)"
+
+            # 밝으면 진한 글자, 어두우면 흰 글자
+            if L >= 60:
+                pct_fill = "#0b1220"   # 진한 글자(테마 무시)
+                pct_stroke = "rgba(255,255,255,.18)"  # 아주 옅은 외곽선(밝은 셀 테두리는 흰색이 자연스러움)
+            else:
+                pct_fill = "#f8fafc"   # 흰 글자(테마 무시)
+                pct_stroke = "rgba(0,0,0,.22)"        # 아주 옅은 외곽선(어두운 셀 테두리는 검정이 자연스러움)
+
+            # 경계 구간에서만 외곽선 두께 약간 강조 (가독성)
+            stroke_w = ".6px" if 56 <= L <= 64 else ".4px"
 
             boj = profiles[m]["boj"]
             href = solved_url(boj) if boj else f"https://github.com/{profiles[m]['github']}"
-            title = f"W{wk} · {m} · {v_pct}% ({v_num}/{den[i]}) · github:{profiles[m]['github']}" + (f" · boj:{boj}" if boj else "")
+            title = (
+                f"W{wk} · {m} · {v_pct}% ({v_num}/{den[i]}) · "
+                f"github:{profiles[m]['github']}" + (f" · boj:{boj}" if boj else "")
+            )
 
             body.append(f'''
               <a href="{href}" target="_blank" rel="noopener">
@@ -202,8 +215,9 @@ def render_weekly_heatmap(payload: dict) -> str:
                   <g class="cell-anim" style="animation-delay:{delay(i,j):.2f}s">
                     <title>{escape(title)}</title>
                     <rect rx="10" ry="10" width="{cell_w}" height="{cell_h}" fill="{color}" />
-                    <text class="pct" x="{cell_w/2}" y="{cell_h/2}" style="fill:{pct_fill}"
-                          text-anchor="middle" dominant-baseline="middle">{int(round(v_pct))}%</text>
+                    <text class="pct" x="{cell_w/2}" y="{cell_h/2}"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:{pct_fill}; paint-order:stroke fill; stroke:{pct_stroke}; stroke-width:{stroke_w}">{int(round(v_pct))}%</text>
                   </g>
                 </g>
               </a>
