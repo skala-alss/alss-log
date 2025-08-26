@@ -156,6 +156,11 @@ jobs:
         run: |
           python scripts/render_svg.py data/dashboard.json assets/
 
+      - name: Sync to latest main
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main   # 현재 워킹 트리를 최신 main으로 맞춤
+
       - name: Commit & Push SVGs
         run: |
           git add assets/*.svg || true
