@@ -133,8 +133,9 @@
                   <g class="cell-anim" style="animation-delay:0.00s">
                     <title>W01 · nOOne-is-hier · 100% (56/56) · github:nOOne-is-hier · boj:kanadachocolate</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
-                          text-anchor="middle" dominant-baseline="middle">100%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">100%</text>
                   </g>
                 </g>
               </a>
@@ -145,8 +146,9 @@
                   <g class="cell-anim" style="animation-delay:0.03s">
                     <title>W01 · SDGeo12 · 71% (40/56) · github:SDGeo12 · boj:sdgeo20</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 51.5%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
-                          text-anchor="middle" dominant-baseline="middle">71%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">71%</text>
                   </g>
                 </g>
               </a>
@@ -157,8 +159,9 @@
                   <g class="cell-anim" style="animation-delay:0.06s">
                     <title>W01 · jiyunee02 · 18% (10/56) · github:jiyunee02 · boj:jiyun301</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 81.7%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">18%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">18%</text>
                   </g>
                 </g>
               </a>
@@ -169,8 +172,9 @@
                   <g class="cell-anim" style="animation-delay:0.09s">
                     <title>W01 · skala-changhyun · 79% (44/56) · github:skala-changhyun · boj:gcgc09</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 47.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
-                          text-anchor="middle" dominant-baseline="middle">79%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">79%</text>
                   </g>
                 </g>
               </a>
@@ -181,8 +185,9 @@
                   <g class="cell-anim" style="animation-delay:0.12s">
                     <title>W01 · seo-youngjae · 100% (56/56) · github:seo-youngjae · boj:heaven707</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 35.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
-                          text-anchor="middle" dominant-baseline="middle">100%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">100%</text>
                   </g>
                 </g>
               </a>
@@ -193,8 +198,9 @@
                   <g class="cell-anim" style="animation-delay:0.15s">
                     <title>W01 · JinYeopKang · 48% (27/56) · github:JinYeopKang · boj:jyyj14587</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 64.6%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">48%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">48%</text>
                   </g>
                 </g>
               </a>
@@ -219,8 +225,9 @@
                   <g class="cell-anim" style="animation-delay:0.18s">
                     <title>W02 · nOOne-is-hier · 85% (50/59) · github:nOOne-is-hier · boj:kanadachocolate</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 43.6%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:#f8fafc"
-                          text-anchor="middle" dominant-baseline="middle">85%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#f8fafc; paint-order:stroke fill; stroke:rgba(0,0,0,.22); stroke-width:.4px">85%</text>
                   </g>
                 </g>
               </a>
@@ -231,8 +238,9 @@
                   <g class="cell-anim" style="animation-delay:0.21s">
                     <title>W02 · SDGeo12 · 32% (19/59) · github:SDGeo12 · boj:sdgeo20</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 73.8%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">32%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">32%</text>
                   </g>
                 </g>
               </a>
@@ -243,8 +251,9 @@
                   <g class="cell-anim" style="animation-delay:0.24s">
                     <title>W02 · jiyunee02 · 27% (16/59) · github:jiyunee02 · boj:jiyun301</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 76.6%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">27%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">27%</text>
                   </g>
                 </g>
               </a>
@@ -255,8 +264,9 @@
                   <g class="cell-anim" style="animation-delay:0.27s">
                     <title>W02 · skala-changhyun · 10% (6/59) · github:skala-changhyun · boj:gcgc09</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 86.3%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">10%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">10%</text>
                   </g>
                 </g>
               </a>
@@ -267,8 +277,9 @@
                   <g class="cell-anim" style="animation-delay:0.30s">
                     <title>W02 · seo-youngjae · 7% (4/59) · github:seo-youngjae · boj:heaven707</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 88.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">7%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">7%</text>
                   </g>
                 </g>
               </a>
@@ -279,8 +290,9 @@
                   <g class="cell-anim" style="animation-delay:0.33s">
                     <title>W02 · JinYeopKang · 0% (0/59) · github:JinYeopKang · boj:jyyj14587</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
                   </g>
                 </g>
               </a>
@@ -305,8 +317,9 @@
                   <g class="cell-anim" style="animation-delay:0.36s">
                     <title>W04 · nOOne-is-hier · 16% (7/43) · github:nOOne-is-hier · boj:kanadachocolate</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 82.9%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">16%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">16%</text>
                   </g>
                 </g>
               </a>
@@ -317,8 +330,9 @@
                   <g class="cell-anim" style="animation-delay:0.39s">
                     <title>W04 · SDGeo12 · 5% (2/43) · github:SDGeo12 · boj:sdgeo20</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 89.2%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">5%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">5%</text>
                   </g>
                 </g>
               </a>
@@ -329,8 +343,9 @@
                   <g class="cell-anim" style="animation-delay:0.42s">
                     <title>W04 · jiyunee02 · 0% (0/43) · github:jiyunee02 · boj:jiyun301</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
                   </g>
                 </g>
               </a>
@@ -341,8 +356,9 @@
                   <g class="cell-anim" style="animation-delay:0.45s">
                     <title>W04 · skala-changhyun · 0% (0/43) · github:skala-changhyun · boj:gcgc09</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
                   </g>
                 </g>
               </a>
@@ -353,8 +369,9 @@
                   <g class="cell-anim" style="animation-delay:0.48s">
                     <title>W04 · seo-youngjae · 0% (0/43) · github:seo-youngjae · boj:heaven707</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
                   </g>
                 </g>
               </a>
@@ -365,8 +382,9 @@
                   <g class="cell-anim" style="animation-delay:0.51s">
                     <title>W04 · JinYeopKang · 0% (0/43) · github:JinYeopKang · boj:jyyj14587</title>
                     <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
-                    <text class="pct" x="48.0" y="22.0" style="fill:var(--pct-color)"
-                          text-anchor="middle" dominant-baseline="middle">0%</text>
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
                   </g>
                 </g>
               </a>
