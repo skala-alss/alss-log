@@ -67,6 +67,8 @@
       .pt:hover .tip, .pt:focus .tip { visibility:visible; opacity:1; }
       .pt .tip rect { fill: var(--badge-fill); stroke: var(--badge-stk); }
       .pt .tip text { font-size:12px; fill: var(--fg-strong); font-weight:700; }
+      /* [ADD] 캡션 스타일 */
+      .caption-note { font-size:10px; fill: var(--fg-muted-2); font-weight:600; }
     </style>
     
       
