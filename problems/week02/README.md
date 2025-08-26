@@ -35,7 +35,7 @@
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 26042 | 식당 입구 대기 줄 | [🔗](https://www.acmicpc.net/problem/26042) | [📁](./큐/boj_26042_식당_입구_대기_줄) | ✅ | ✅ | ✅ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1158 | 요세푸스 문제 | [🔗](https://www.acmicpc.net/problem/1158) | [📁](./큐/boj_1158_요세푸스_문제) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1966 | 프린터 큐 | [🔗](https://www.acmicpc.net/problem/1966) | [📁](./큐/boj_1966_프린터_큐) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1966 | 프린터 큐 | [🔗](https://www.acmicpc.net/problem/1966) | [📁](./큐/boj_1966_프린터_큐) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 
 <!--END:PROGRESS:QUEUE-->
 
