@@ -27,7 +27,7 @@ Env:
 """
 
 import os, re, time, math, subprocess, shlex, unicodedata
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set, Tuple, Optional
 import requests, yaml
 
 # ---------- Paths ----------
@@ -182,12 +182,17 @@ def patch_member_columns_in_block(block_md, pid_to_states, participants):
         if pid not in pid_to_states:
             continue
 
-        # 멤버 칸 덮어쓰기
+        # 멤버 칸 덮어쓰기 (옵션 존중)
         for idx, seat in enumerate(seats):
             col = member_cols[idx]
             state = pid_to_states[pid].get(str(seat), "NONE")
             sym = SYMBOL.get(state, SYMBOL["NONE"])
-            if cells[col] != sym:
+            if OVERWRITE_ALL_MEMBER_CELLS:
+                do_write = (cells[col] != sym)
+            else:
+                do_write = is_blank_cell(cells[col]) and (cells[col] != sym)
+
+            if do_write:
                 if DEBUG:
                     print(f"[debug] patch: pid={pid} seat={seat} state={state} -> '{sym}' (was '{cells[col]}')")
                 cells[col] = sym
@@ -253,7 +258,6 @@ def render_week_readme_members_only(week_cfg, participants, states_by_group):
 ALLOWED_EXT = {".cpp",".cc",".cxx",".c",".py",".java",".kt",".js",".ts",
                ".rb",".go",".cs",".swift",".rs",".m",".mm"}
 
-# 위쪽 유틸 근처에 추가
 def _list_changed_paths_for_commit(sha: str) -> List[str]:
     """
     merge 커밋 포함 변경 파일 안전 수집:
@@ -278,11 +282,9 @@ def _list_changed_paths_for_commit(sha: str) -> List[str]:
 
 def _is_merge_commit(sha: str) -> bool:
     out = _decode_git(_run_bytes(f"git rev-list --parents -n 1 {shlex.quote(sha)}"))
-    # parents가 2개 이상이면 merge
-    return len(out.strip().split()) >= 3
+    return len(out.strip().split()) >= 3  # parents가 2개 이상이면 merge
 
 def _norm_token(s: str) -> str:
-    # 한글/기호 경로의 정규화 문제를 없애기 위해 NFKC 적용
     s = unicodedata.normalize("NFKC", (s or ""))
     return re.sub(r"[\s_\-]+", "_", s.strip().lower())
 
@@ -316,10 +318,11 @@ def _path_tokens_without_ext(path: str) -> Set[str]:
 def _member_owns_path(path: str, pid: int, member: dict) -> bool:
     """
     제출 파일 여부(견고 버전):
-      - 경로(정규화) 안에 'boj_{pid}'가 있어야 함
       - 코드 파일 확장자여야 함
-      - 파일명(확장자 제외)에 멤버 key( file_key / name / github 중 하나 )가 포함되면 DURING
-      - 추가: 디렉터리 경로에도 멤버 key 토큰이 단독으로 등장하면 인정
+      - 규칙 A: <name>_<pid>[_suffix]
+      - 규칙 B: boj_<pid>_<name>
+      - 규칙 C: 경로에 boj_<pid>가 있고 파일명에 멤버 key 힌트가 있으면 인정
+      - 느슨: 경로 토큰에 pid와 멤버 key가 함께 존재하면 인정
     """
     p = path.replace("\\", "/")
     base = os.path.basename(p)
@@ -353,7 +356,7 @@ def _member_owns_path(path: str, pid: int, member: dict) -> bool:
 # ---------- Filename → (pid, seat) helper ----------
 def _parse_pid_and_seat_from_basename(base_noext: str,
                                       participants,
-                                      assigned_universe: Set[int]) -> Tuple[int | None, str | None]:
+                                      assigned_universe: Set[int]) -> Tuple[Optional[int], Optional[str]]:
     """
     파일명에서 PID와 seat 추정
       - 규칙 A: <name...>_<pid>(_<suffix>)?
@@ -395,6 +398,34 @@ def _parse_pid_and_seat_from_basename(base_noext: str,
 
     return (None, None)
 
+# ---------- Global PID extraction (A/B/C 모두 지원) ----------
+PID_DIR_RE = re.compile(r"boj_(\d{3,6})")
+PID_ANYNUM_RE = re.compile(r"(?<!\d)(\d{3,6})(?!\d)")
+
+def _pid_from_path(path: str,
+                   participants,
+                   assigned_universe: Set[int]) -> Optional[int]:
+    """
+    경로에서 배정 PID 판별:
+      1) 경로/디렉터리의 boj_#### 우선
+      2) 파일명 규칙(_parse_pid_and_seat_from_basename 재사용)
+      3) 마지막 폴백: 파일명 내 '단일' 숫자 토큰(3~6자리) 하나면 채택
+    """
+    p = path.replace("\\", "/")
+    m = PID_DIR_RE.search(p)
+    if m:
+        pid = int(m.group(1))
+        return pid if pid in assigned_universe else None
+
+    base_noext = os.path.splitext(os.path.basename(p))[0]
+    pid2, _seat_guess = _parse_pid_and_seat_from_basename(base_noext, participants, assigned_universe)
+    if pid2:
+        return pid2
+
+    nums = [int(x) for x in PID_ANYNUM_RE.findall(base_noext)]
+    nums = [n for n in nums if n in assigned_universe]
+    return nums[0] if len(nums) == 1 else None
+
 # ---------- Robust subprocess helpers (bytes + multi-decoding) ----------
 def _run_bytes(cmd: str, cwd: str = ROOT_DIR) -> bytes:
     p = subprocess.Popen(cmd, shell=True, cwd=cwd,
@@ -411,11 +442,9 @@ def _decode_git(b: bytes) -> str:
     return b.decode("utf-8", errors="replace")
 
 def _run(cmd: str, cwd: str = ROOT_DIR) -> str:
-    # bytes 수집 후 다중 인코딩 폴백으로 안전 디코딩
     return _decode_git(_run_bytes(cmd, cwd))
 
 def _clean_git_path(s: str) -> str:
-    """git이 C-quoted로 내보낸 경로를 정리(양끝 따옴표 제거)"""
     if not s:
         return s
     s = s.strip()
@@ -462,7 +491,7 @@ def list_paths_in_ref(ref: str, rel_path: str) -> List[str]:
             f"git -c core.quotepath=off ls-tree -r --name-only "
             f"{shlex.quote(ref)} -- {shlex.quote(rel_path)}"
         )
-        out = _run(cmd)  # bytes→decode 폴백
+        out = _run(cmd)
         return [_clean_git_path(ln.strip()) for ln in out.splitlines() if ln.strip()]
     except Exception:
         return []
@@ -517,13 +546,11 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
     """
     ref = _resolve_main_ref()
 
-    # --- git log 호출 구성 ---
     parts = [
         "git", "-c", "core.quotepath=off",
         "-c", "i18n.logOutputEncoding=UTF-8",
         "log", "--no-color",
     ]
-    # 상한 (디버깅/속도용)
     try:
         lim = int(os.getenv(limit_env_var, "").strip() or "0")
         if lim > 0:
@@ -531,33 +558,20 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
     except Exception:
         pass
 
-    # 레코드/필드 구분은 RS/US(0x1E/0x1F)로 고정
     parts += [f"--pretty=format:%H%x1f%ct%x1f%s%x1e", ref]
     cmd = " ".join(shlex.quote(x) for x in parts)
 
-    # --- 실행 & 파싱 ---
     raw_b = _run_bytes(cmd)
     raw = _decode_git(raw_b)
     recs = raw.split("\x1e")  # RS
 
     out: List[Tuple[str, int, str, List[str]]] = []
 
-    # merge 여부 확인 헬퍼(선택)
-    def _is_merge(sha: str) -> bool:
-        try:
-            line = _decode_git(_run_bytes(f"git rev-list --parents -n 1 {shlex.quote(sha)}"))
-            return len(line.strip().split()) >= 3  # sha + >=2 parents
-        except Exception:
-            return False
-
-    # 안전한 변경 파일 수집(내장 폴백 포함)
     def _safe_list_paths(sha: str) -> List[str]:
-        # 선호: 외부 헬퍼가 있으면 사용
-        if "_list_changed_paths_for_commit" in globals():
-            try:
-                return list(dict.fromkeys(globals()["_list_changed_paths_for_commit"](sha)))
-            except Exception:
-                pass
+        try:
+            return list(dict.fromkeys(_list_changed_paths_for_commit(sha)))
+        except Exception:
+            pass
         # 1) show -m
         t1 = _decode_git(_run_bytes(
             f"git -c core.quotepath=off show -m --name-only --no-renames --pretty= {shlex.quote(sha)}"
@@ -569,7 +583,6 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
                 f"git -c core.quotepath=off diff-tree -r -m --no-commit-id --name-only {shlex.quote(sha)}"
             ))
             paths = [_clean_git_path(x.strip()) for x in t2.splitlines() if x.strip()]
-        # 중복 제거(순서 유지)
         return list(dict.fromkeys(paths))
 
     for rec in recs:
@@ -587,17 +600,15 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
 
         subj_norm = unicodedata.normalize("NFKC", subj)
 
-        # 커밋 제목이 'submit: week..-alias' 패턴이 아니면 스킵
         if not SUBMIT_RE.search(subj_norm):
             continue
 
-        # 변경 파일(merge 포함) 수집
         paths = _safe_list_paths(sha)
 
         if DEBUG:
             if not paths:
                 try:
-                    mflag = _is_merge(sha)
+                    mflag = _is_merge_commit(sha)
                 except Exception:
                     mflag = False
                 print(f"[debug] submit-commit has NO files (merge={mflag}) sha={sha} subj={subj_norm}")
@@ -611,21 +622,28 @@ def collect_submit_commits_on_main(limit_env_var: str = "ALSS_LOG_LIMIT") -> Lis
     return out
 
 # ---------- Repo scanning: GLOBAL index (across all weeks/branches) ----------
-def collect_repo_files_all(weeks_cfg, refs: List[str]) -> Dict[int, List[str]]:
+def collect_repo_files_all(weeks_cfg, refs: List[str], participants) -> Dict[int, List[str]]:
     """
     모든 refs에서 problems/ 이하 파일을 모아 pid -> [paths...] 매핑
+    (파일명만으로 PID가 있는 경우도 포함: 케이스 B 대응)
     """
     problems_root = infer_problems_root(weeks_cfg)
-    paths = paths_in_refs(refs, problems_root)
+    # 배정 PID 유니버스
+    assigned_universe: Set[int] = set(
+        pid
+        for w in weeks_cfg
+        for g in (w.get("groups") or [])
+        for pid in g.get("problems", [])
+    )
+    all_paths = paths_in_refs(refs, problems_root)
     by_pid: Dict[int, List[str]] = {}
-    for p in paths:
-        m = re.search(r"boj_(\d+)", p)
-        if not m:
-            continue
+    for p in all_paths:
         ext = os.path.splitext(p)[1].lower()
         if ext not in ALLOWED_EXT:
             continue
-        pid = int(m.group(1))
+        pid = _pid_from_path(p, participants, assigned_universe)
+        if pid is None:
+            continue
         by_pid.setdefault(pid, []).append(p)
     return by_pid
 
@@ -668,7 +686,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
       - main의 submit 커밋을 '멤버별/주차별 오름차순'으로 처리하며,
         각 (seat, pid)는 **처음 등장한 주차**에만 귀속
       - 이후 현재 주차 브랜치에서 아직 귀속 안 된 DURING PID가 보이면 현재 주차로 귀속
-      - (옵션) ALSS_TREND_FALLBACK_DURING=1이면 남은 DURING PID를 배정 주차로 폴백
+      - (옵션) ALSS_TREND_FALLBACK_DURING=1이면 남은 DURING PID를 배정 주차로 매핑
     """
     problems_root = infer_problems_root(weeks_cfg)
 
@@ -710,32 +728,6 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
         key=lambda s: int(s)
     )
 
-    # --- 커밋 파일 → PID 해석 유틸 (경로/파일명 모두 지원) ---
-    PID_DIR_RE = re.compile(r"boj_(\d{3,6})")
-    PID_ANYNUM_RE = re.compile(r"(?<!\d)(\d{3,6})(?!\d)")
-
-    def _pid_from_path(path: str) -> int | None:
-        """
-        경로에서 배정 PID 판별:
-          1) 디렉터리/경로의 boj_#### 우선
-          2) 파일명 규칙(_parse_pid_and_seat_from_basename 재사용)
-          3) 마지막 폴백: 파일명 내 단일 숫자 토큰(3~6자리) 하나면 채택
-        """
-        p = path.replace("\\", "/")
-        m = PID_DIR_RE.search(p)
-        if m:
-            pid = int(m.group(1))
-            return pid if pid in assigned_universe else None
-
-        base_noext = os.path.splitext(os.path.basename(p))[0]
-        pid2, _seat_guess = _parse_pid_and_seat_from_basename(base_noext, participants, assigned_universe)
-        if pid2:
-            return pid2
-
-        nums = [int(x) for x in PID_ANYNUM_RE.findall(base_noext)]
-        nums = [n for n in nums if n in assigned_universe]
-        return nums[0] if len(nums) == 1 else None
-
     # main submit 커밋 수집 → (seat, week)별 후보 PID 집합 준비
     commits = collect_submit_commits_on_main()
     commit_items: List[Tuple[str, str, Set[int]]] = []  # (seat, wk_lab, {pids})
@@ -750,17 +742,9 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
         if not seat:
             continue
 
-        # merge 커밋 대비: 파일 목록이 비면 보조 수집 시도
         if not files:
             try:
-                if "_list_changed_paths_for_commit" in globals():
-                    files = globals()["_list_changed_paths_for_commit"](_sha)
-                else:
-                    # 내장 폴백: show -m
-                    show_t = _decode_git(_run_bytes(
-                        f"git -c core.quotepath=off show -m --name-only --no-renames --pretty= {shlex.quote(_sha)}"
-                    ))
-                    files = [_clean_git_path(x.strip()) for x in show_t.splitlines() if x.strip()]
+                files = _list_changed_paths_for_commit(_sha)
             except Exception:
                 files = []
 
@@ -772,7 +756,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
             ext = os.path.splitext(pp)[1].lower()
             if ext not in ALLOWED_EXT:
                 continue
-            pid = _pid_from_path(pp)
+            pid = _pid_from_path(pp, participants, assigned_universe)
             if pid is not None:
                 cand.add(pid)
 
@@ -824,7 +808,7 @@ def build_submission_attribution(weeks_cfg, participants, states_bundle) -> Dict
                 ext = os.path.splitext(p)[1].lower()
                 if ext not in ALLOWED_EXT:
                     continue
-                pid = _pid_from_path(p)
+                pid = _pid_from_path(p, participants, assigned_universe)
                 if pid is None or pid not in assigned_universe:
                     continue
                 if pid in during_by_seat[seat] and pid not in assigned_by_seat[seat]:
@@ -1064,7 +1048,7 @@ def main():
 
     # 전 브랜치/리모트 확보 전제: Actions에서 git fetch --all --prune --tags 수행 권장
     refs = list_all_refs()
-    repo_index_all = collect_repo_files_all(weeks_cfg, refs)
+    repo_index_all = collect_repo_files_all(weeks_cfg, refs, participants)
     if DEBUG:
         target_pids_dbg = sorted({pid for w in weeks_cfg for g in w.get("groups", []) for pid in g.get("problems", [])})
         print(f"[debug] target_pids (weeks.yaml): {len(target_pids_dbg)}")
