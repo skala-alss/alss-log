@@ -18,7 +18,7 @@
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 17608 | 막대기 | [🔗](https://www.acmicpc.net/problem/17608) | [📁](./스택/boj_17608_막대기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 12605 | 단어순서 뒤집기 | [🔗](https://www.acmicpc.net/problem/12605) | [📁](./스택/boj_12605_단어순서_뒤집기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10828 | 스택 | [🔗](https://www.acmicpc.net/problem/10828) | [📁](./스택/boj_10828_스택) | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1874 | 스택 수열 | [🔗](https://www.acmicpc.net/problem/1874) | [📁](./스택/boj_1874_스택_수열) | ✅ | ❌ | ☑️ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1874 | 스택 수열 | [🔗](https://www.acmicpc.net/problem/1874) | [📁](./스택/boj_1874_스택_수열) | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 1918 | 후위 표기식 | [🔗](https://www.acmicpc.net/problem/1918) | [📁](./스택/boj_1918_후위_표기식) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:STACK-->
