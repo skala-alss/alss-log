@@ -83,7 +83,7 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 2741 | N 찍기 | [🔗](https://www.acmicpc.net/problem/2741) | [📁](./%EB%B0%98%EB%B3%B5%EB%AC%B8%20%C2%B7%20%EC%B6%9C%EB%A0%A5%20%ED%8C%A8%ED%84%B4/boj_2741_N_%EC%B0%8D%EA%B8%B0) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 2438 | 별 찍기 - 1 | [🔗](https://www.acmicpc.net/problem/2438) | [📁](./%EB%B0%98%EB%B3%B5%EB%AC%B8%20%C2%B7%20%EC%B6%9C%EB%A0%A5%20%ED%8C%A8%ED%84%B4/boj_2438_%EB%B3%84_%EC%B0%8D%EA%B8%B0_-_1) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 10871 | X보다 작은 수 | [🔗](https://www.acmicpc.net/problem/10871) | [📁](./%EB%B0%98%EB%B3%B5%EB%AC%B8%20%C2%B7%20%EC%B6%9C%EB%A0%A5%20%ED%8C%A8%ED%84%B4/boj_10871_X%EB%B3%B4%EB%8B%A4_%EC%9E%91%EC%9D%80_%EC%88%98) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 5597 | 과제 안 내신 분..? | [🔗](https://www.acmicpc.net/problem/5597) | [📁](./%EB%B0%98%EB%B3%B5%EB%AC%B8%20%C2%B7%20%EC%B6%9C%EB%A0%A5%20%ED%8C%A8%ED%84%B4/boj_5597_%EA%B3%BC%EC%A0%9C_%EC%95%88_%EB%82%B4%EC%8B%A0_%EB%B6%84..%EF%BC%9F) | ✅ | ✅ | ✅ | ✅ | ✅ | ☑️ |
+| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 5597 | 과제 안 내신 분..? | [🔗](https://www.acmicpc.net/problem/5597) | [📁](./%EB%B0%98%EB%B3%B5%EB%AC%B8%20%C2%B7%20%EC%B6%9C%EB%A0%A5%20%ED%8C%A8%ED%84%B4/boj_5597_%EA%B3%BC%EC%A0%9C_%EC%95%88_%EB%82%B4%EC%8B%A0_%EB%B6%84..%EF%BC%9F) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <!--END:PROGRESS:LOOP-->
 
@@ -97,7 +97,7 @@
 | :--------------------------------------------------------------------------------: | ----: | :---- | :-----------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 10807 | 개수 세기 | [🔗](https://www.acmicpc.net/problem/10807) | [📁](./1%EC%B0%A8%EC%9B%90%C2%B72%EC%B0%A8%EC%9B%90%20%EB%B0%B0%EC%97%B4/boj_10807_%EA%B0%9C%EC%88%98_%EC%84%B8%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2566 | 최댓값 | [🔗](https://www.acmicpc.net/problem/2566) | [📁](./1%EC%B0%A8%EC%9B%90%C2%B72%EC%B0%A8%EC%9B%90%20%EB%B0%B0%EC%97%B4/boj_2566_%EC%B5%9C%EB%8C%93%EA%B0%92) | ✅ | ❌ | ☑️ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2738 | 행렬 덧셈 | [🔗](https://www.acmicpc.net/problem/2738) | [📁](./1%EC%B0%A8%EC%9B%90%C2%B72%EC%B0%A8%EC%9B%90%20%EB%B0%B0%EC%97%B4/boj_2738_%ED%96%89%EB%A0%AC_%EB%8D%A7%EC%85%88) | ✅ | ✅ | ☑️ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2738 | 행렬 덧셈 | [🔗](https://www.acmicpc.net/problem/2738) | [📁](./1%EC%B0%A8%EC%9B%90%C2%B72%EC%B0%A8%EC%9B%90%20%EB%B0%B0%EC%97%B4/boj_2738_%ED%96%89%EB%A0%AC_%EB%8D%A7%EC%85%88) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 
 <!--END:PROGRESS:ARRAY-->
 

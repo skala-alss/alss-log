@@ -31,11 +31,11 @@
 
 | 솔브드 티어 |    번호 | 제목         |                      링크                     |               폴더               | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----: | ----: | :--------- | :-----------------------------------------: | :----------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2161 | 카드1 | [🔗](https://www.acmicpc.net/problem/2161) | [📁](./큐/boj_2161_카드1) | ✅ | ✅ | ✅ | ✅ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 26042 | 식당 입구 대기 줄 | [🔗](https://www.acmicpc.net/problem/26042) | [📁](./큐/boj_26042_식당_입구_대기_줄) | ✅ | ✅ | ✅ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1158 | 요세푸스 문제 | [🔗](https://www.acmicpc.net/problem/1158) | [📁](./큐/boj_1158_요세푸스_문제) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1966 | 프린터 큐 | [🔗](https://www.acmicpc.net/problem/1966) | [📁](./큐/boj_1966_프린터_큐) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2161 | 카드1 | [🔗](https://www.acmicpc.net/problem/2161) | [📁](./큐/boj_2161_카드1) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 26042 | 식당 입구 대기 줄 | [🔗](https://www.acmicpc.net/problem/26042) | [📁](./큐/boj_26042_식당_입구_대기_줄) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1158 | 요세푸스 문제 | [🔗](https://www.acmicpc.net/problem/1158) | [📁](./큐/boj_1158_요세푸스_문제) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1966 | 프린터 큐 | [🔗](https://www.acmicpc.net/problem/1966) | [📁](./큐/boj_1966_프린터_큐) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 
 <!--END:PROGRESS:QUEUE-->
 
@@ -47,10 +47,10 @@
 
 | 솔브드 티어 |    번호 | 제목        |                      링크                     |                  폴더                 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----: | ----: | :-------- | :-----------------------------------------: | :---------------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1927 | 최소 힙 | [🔗](https://www.acmicpc.net/problem/1927) | [📁](./우선순위%20큐/boj_1927_최소_힙) | ✅ | ✅ | ✅ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 11279 | 최대 힙 | [🔗](https://www.acmicpc.net/problem/11279) | [📁](./우선순위%20큐/boj_11279_최대_힙) | ✅ | ✅ | ✅ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11286 | 절댓값 힙 | [🔗](https://www.acmicpc.net/problem/11286) | [📁](./우선순위%20큐/boj_11286_절댓값_힙) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2075 | N번째 큰 수 | [🔗](https://www.acmicpc.net/problem/2075) | [📁](./우선순위%20큐/boj_2075_N번째_큰_수) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1927 | 최소 힙 | [🔗](https://www.acmicpc.net/problem/1927) | [📁](./우선순위%20큐/boj_1927_최소_힙) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 11279 | 최대 힙 | [🔗](https://www.acmicpc.net/problem/11279) | [📁](./우선순위%20큐/boj_11279_최대_힙) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11286 | 절댓값 힙 | [🔗](https://www.acmicpc.net/problem/11286) | [📁](./우선순위%20큐/boj_11286_절댓값_힙) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2075 | N번째 큰 수 | [🔗](https://www.acmicpc.net/problem/2075) | [📁](./우선순위%20큐/boj_2075_N번째_큰_수) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 7662 | 이중 우선순위 큐 | [🔗](https://www.acmicpc.net/problem/7662) | [📁](./우선순위%20큐/boj_7662_이중_우선순위_큐) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:PQ-->
