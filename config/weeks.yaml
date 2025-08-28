@@ -245,3 +245,54 @@ weeks:
     - 4779
     - 10830
     - 11444
+- id: 5
+  path: problems/week05/README.md
+  groups:
+  - key: SORT_BASIC
+    marker: PROGRESS:SORT_BASIC
+    title: 🔢 정렬 (기본)
+    problems:
+    - 23881
+    - 23882
+    - 23899
+    - 23968
+    - 23969
+    - 24051
+    - 24052
+    - 24060
+    - 24061
+    - 24090
+    - 24091
+    - 24092
+  - key: SORT_ADVANCED
+    marker: PROGRESS:SORT_ADVANCED
+    title: 🧠 정렬 — 심화 (고급)
+    problems:
+    - 23883
+    - 23884
+    - 23900
+    - 23970
+    - 24046
+    - 24047
+    - 24048
+    - 24053
+    - 24054
+    - 24055
+    - 24056
+    - 24062
+  - key: COMPLEXITY
+    marker: PROGRESS:COMPLEXITY
+    title: ⏱️ 시간복잡도
+    problems:
+    - 24262
+    - 24263
+    - 24264
+    - 24265
+    - 24266
+    - 24267
+    - 24313
+    - 24314
+    - 24315
+    - 24368
+    - 24369
+    - 24370
