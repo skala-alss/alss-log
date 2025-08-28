@@ -22,53 +22,60 @@ def main() -> None:
         idx += n
         
         # print(block)
-        stack, ans = [], []
-        for i in range(n):
+        stack, result = [], []
+        current = 1
+        for num in block:
+            while current <= num:
+                stack.append(current)
+                result.append(f"+ push {current}, stack={stack}")
+                current += 1
+                
+            if stack[-1] == num:
+                stack.pop()
+                result.append(f"- pop {num}, stack={stack}")
+            else:
+                print("NO")
+                return
             
-    
-    
+        for i in result:
+            print(i)
+
     # print(stack)
     
-    print(blocks)
-
+    # print(blocks)
 
 if __name__ == "__main__":
     main()
 
 
+#========================== 제출본 =================================
+# def main() -> None:
+
+#     import sys
+    
+#     n = int(sys.stdin.readline().strip())
+#     block = [int(sys.stdin.readline().strip()) for _ in range(n)]
+    
+#     stack, result = [], []
+#     current = 1
+#     for num in block:
+#         while current <= num:
+#             stack.append(current)
+#             result.append('+')
+#             current += 1
+                
+#         if stack[-1] == num:
+#             stack.pop()
+#             result.append('-')
+#         else:
+#             print("NO")
+#             return
+            
+#     for i in result:
+#         print(i)
 
 
+# if __name__ == "__main__":
+#     main()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-def merge_sort(arr):
-    if len(arr) < 2:
-        return arr
-
-    mid = len(arr) // 2
-    low_arr = merge_sort(arr[:mid])
-    high_arr = merge_sort(arr[mid:])
-
-    merged_arr = []
-    l = h = 0
-    while l < len(low_arr) and h < len(high_arr):
-        if low_arr[l] < high_arr[h]:
-            merged_arr.append(low_arr[l])
-            l += 1
-        else:
-            merged_arr.append(high_arr[h])
-            h += 1
-    merged_arr += low_arr[l:]
-    merged_arr += high_arr[h:]
-    return merged_arr
