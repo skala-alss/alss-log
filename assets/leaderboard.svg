@@ -64,15 +64,15 @@
       
           <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
             <g transform="translate(0,16)">
-              <title>nOOne-is-hier · 59% (115/194) · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <title>nOOne-is-hier · 62% (121/194) · github:nOOne-is-hier · boj:kanadachocolate</title>
               <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:283.2px; animation-delay:0.00s"/>
-                <text class="pct" x="468" y="28.0">59%</text>
-                <text class="nd"  x="12" y="28.0">115/194</text>
+                      style="--wpx:297.6px; animation-delay:0.00s"/>
+                <text class="pct" x="468" y="28.0">62%</text>
+                <text class="nd"  x="12" y="28.0">121/194</text>
               </g>
             </g>
           </a>
