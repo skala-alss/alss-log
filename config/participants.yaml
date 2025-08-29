@@ -1,0 +1,42 @@
+members:
+  - seat: 1
+    name: "nOOne-is-hier"
+    solved_handle: "kanadachocolate"
+    github: "nOOne-is-hier"
+    branch_key: "keehoon"
+    file_key: "keehoon"
+
+  - seat: 2
+    name: "SDGeo12"
+    solved_handle: "sdgeo20"
+    github: "SDGeo12"
+    branch_key: "donggeon"
+    file_key: "donggeon"
+
+  - seat: 3
+    name: "jiyunee02"
+    solved_handle: "jiyun301"
+    github: "jiyunee02"
+    branch_key: "jiyun"
+    file_key: "jiyun"
+
+  - seat: 4
+    name: "skala-changhyun"
+    solved_handle: "gcgc09"
+    github: "skala-changhyun"
+    branch_key: "chang"
+    file_key: "chang"
+
+  - seat: 5
+    name: "seo-youngjae"
+    solved_handle: "heaven707"
+    github: "seo-youngjae"
+    branch_key: "youngjae"
+    file_key: "youngjae"
+
+  - seat: 6
+    name: "JinYeopKang"
+    solved_handle: "jyyj14587"
+    github: "JinYeopKang"
+    branch_key: "jinyeop"
+    file_key: "jinyeop"

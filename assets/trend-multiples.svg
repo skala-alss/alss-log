@@ -1,0 +1,448 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 824 390" role="img">
+      
+    
+    <style>
+      svg {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        background: none; /* transparent */
+        /* Light (default) */
+        --fg-strong:   #0f172a;
+        --fg-muted:    #334155;
+        --fg-muted-2:  #475569;
+        --axis:        #64748b;
+        --stroke:      #e2e8f0;
+        --panel-fill:  #ffffff;
+        --panel-stk:   #e2e8f0;
+        --track:       #f1f5f9;
+        --bar:         #38bdf8;
+        --line:        #06b6d4;
+        --dot:         #06b6d4;
+        --badge-fill:  #f1f5f9;
+        --badge-stk:   #e2e8f0;
+        --avg-fill:    #0ea5e9;
+        --avg-stk:     #bae6fd;
+        --pct-color:   #0b1220;
+        --text-stroke: rgba(0,0,0,.28);
+      }
+      @media (prefers-color-scheme: dark) {
+        svg {
+          --fg-strong:   #e5e7eb;
+          --fg-muted:    #cbd5e1;
+          --fg-muted-2:  #94a3b8;
+          --axis:        #94a3b8;
+          --stroke:      #334155;
+          --panel-fill:  #0b1220;
+          --panel-stk:   #334155;
+          --track:       #1f2937;
+          --bar:         #38bdf8;
+          --line:        #22d3ee;
+          --dot:         #22d3ee;
+          --badge-fill:  #111827;
+          --badge-stk:   #334155;
+          --avg-fill:    #38bdf8;
+          --avg-stk:     #075985;
+          --pct-color:   #e5e7eb;
+          --text-stroke: rgba(255,255,255,.22);
+        }
+      }
+      @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
+      @keyframes grow-wpx { from { width:0px } to { width: var(--wpx) } }
+      @keyframes draw {
+        from { stroke-dasharray:1000; stroke-dashoffset:1000; }
+        to   { stroke-dasharray:1000; stroke-dashoffset:0; }
+      }
+    </style>
+    
+    <style>
+      .panel { fill: var(--panel-fill); stroke: var(--panel-stk); }
+      .name  { font-size:13px; font-weight:800; fill: var(--fg-strong); letter-spacing:.1px; }
+      .grid line { stroke: var(--stroke); stroke-width:1; }
+      .line { fill:none; stroke: var(--line); stroke-width:2.2; animation: draw 1.1s ease forwards; }
+      .dot { fill: var(--dot); }
+      .lastlabel rect { fill: var(--badge-fill); stroke: var(--badge-stk); }
+      .lastlabel text { font-size:12px; fill: var(--fg-strong); font-weight:800; }
+      .xt { font-size:10px; fill: var(--axis); }
+      .pt { cursor: default; }
+      .pt .tip { visibility:hidden; opacity:0; transition:.12s; pointer-events:none; }
+      .pt:hover .tip, .pt:focus .tip { visibility:visible; opacity:1; }
+      .pt .tip rect { fill: var(--badge-fill); stroke: var(--badge-stk); }
+      .pt .tip text { font-size:12px; fill: var(--fg-strong); font-weight:700; }
+      /* [ADD] 캡션 스타일 */
+      .caption-note { font-size:10px; fill: var(--fg-muted-2); font-weight:600; }
+    </style>
+    
+      
+          <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+            <g class="card" transform="translate(0,8)">
+              <title>nOOne-is-hier · 5주 추세 · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
+              <text class="name" x="24" y="18">nOOne-is-hier</text>
+              
+          <g class="grid">
+            <line x1="24" y1="24" x2="236" y2="24" />
+            <line x1="24" y1="146" x2="236" y2="146" />
+          </g>
+        
+              <path class="line" d="M24.0,24.0 L77.0,69.1 L130.0,33.8 L183.0,52.1 L236.0,70.4" pathLength="1000" style="animation-delay:0.00s"></path>
+              
+              <g class="pt" transform="translate(24.0,24.0)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">100%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(77.0,69.1)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">63%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(130.0,33.8)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">92%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(183.0,52.1)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">77%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(236.0,70.4)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">62%</text>
+                </g>
+              </g>
+            
+              <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
+              <g class="lastlabel" transform="translate(214.0,58.4)">
+                <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
+                <text x="0" y="2" text-anchor="middle">62%</text>
+              </g>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="77.0" y="164" text-anchor="middle">02</text><text class="xt" x="130.0" y="164" text-anchor="middle">03</text><text class="xt" x="183.0" y="164" text-anchor="middle">04</text><text class="xt" x="236.0" y="164" text-anchor="middle">05</text>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+            <g class="card" transform="translate(274,8)">
+              <title>SDGeo12 · 5주 추세 · github:SDGeo12 · boj:sdgeo20</title>
+              <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
+              <text class="name" x="24" y="18">SDGeo12</text>
+              
+          <g class="grid">
+            <line x1="24" y1="24" x2="236" y2="24" />
+            <line x1="24" y1="146" x2="236" y2="146" />
+          </g>
+        
+              <path class="line" d="M24.0,59.4 L77.0,100.9 L130.0,83.8 L183.0,98.4 L236.0,107.0" pathLength="1000" style="animation-delay:0.12s"></path>
+              
+              <g class="pt" transform="translate(24.0,59.4)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">71%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(77.0,100.9)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">37%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(130.0,83.8)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">51%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(183.0,98.4)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">39%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(236.0,107.0)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">32%</text>
+                </g>
+              </g>
+            
+              <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
+              <g class="lastlabel" transform="translate(214.0,95.0)">
+                <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
+                <text x="0" y="2" text-anchor="middle">32%</text>
+              </g>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="77.0" y="164" text-anchor="middle">02</text><text class="xt" x="130.0" y="164" text-anchor="middle">03</text><text class="xt" x="183.0" y="164" text-anchor="middle">04</text><text class="xt" x="236.0" y="164" text-anchor="middle">05</text>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+            <g class="card" transform="translate(548,8)">
+              <title>jiyunee02 · 5주 추세 · github:jiyunee02 · boj:jiyun301</title>
+              <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
+              <text class="name" x="24" y="18">jiyunee02</text>
+              
+          <g class="grid">
+            <line x1="24" y1="24" x2="236" y2="24" />
+            <line x1="24" y1="146" x2="236" y2="146" />
+          </g>
+        
+              <path class="line" d="M24.0,124.0 L77.0,132.6 L130.0,119.2 L183.0,117.9 L236.0,122.8" pathLength="1000" style="animation-delay:0.24s"></path>
+              
+              <g class="pt" transform="translate(24.0,124.0)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">18%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(77.0,132.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">11%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(130.0,119.2)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">22%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(183.0,117.9)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">23%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(236.0,122.8)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">19%</text>
+                </g>
+              </g>
+            
+              <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
+              <g class="lastlabel" transform="translate(214.0,110.8)">
+                <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
+                <text x="0" y="2" text-anchor="middle">19%</text>
+              </g>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="77.0" y="164" text-anchor="middle">02</text><text class="xt" x="130.0" y="164" text-anchor="middle">03</text><text class="xt" x="183.0" y="164" text-anchor="middle">04</text><text class="xt" x="236.0" y="164" text-anchor="middle">05</text>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+            <g class="card" transform="translate(0,192)">
+              <title>skala-changhyun · 5주 추세 · github:skala-changhyun · boj:gcgc09</title>
+              <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
+              <text class="name" x="24" y="18">skala-changhyun</text>
+              
+          <g class="grid">
+            <line x1="24" y1="24" x2="236" y2="24" />
+            <line x1="24" y1="146" x2="236" y2="146" />
+          </g>
+        
+              <path class="line" d="M24.0,96.0 L77.0,104.5 L130.0,93.5 L183.0,100.9 L236.0,109.4" pathLength="1000" style="animation-delay:0.36s"></path>
+              
+              <g class="pt" transform="translate(24.0,96.0)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">41%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(77.0,104.5)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">34%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(130.0,93.5)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">43%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(183.0,100.9)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">37%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(236.0,109.4)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">30%</text>
+                </g>
+              </g>
+            
+              <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
+              <g class="lastlabel" transform="translate(214.0,97.4)">
+                <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
+                <text x="0" y="2" text-anchor="middle">30%</text>
+              </g>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="77.0" y="164" text-anchor="middle">02</text><text class="xt" x="130.0" y="164" text-anchor="middle">03</text><text class="xt" x="183.0" y="164" text-anchor="middle">04</text><text class="xt" x="236.0" y="164" text-anchor="middle">05</text>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+            <g class="card" transform="translate(274,192)">
+              <title>seo-youngjae · 5주 추세 · github:seo-youngjae · boj:heaven707</title>
+              <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
+              <text class="name" x="24" y="18">seo-youngjae</text>
+              
+          <g class="grid">
+            <line x1="24" y1="24" x2="236" y2="24" />
+            <line x1="24" y1="146" x2="236" y2="146" />
+          </g>
+        
+              <path class="line" d="M24.0,132.6 L77.0,113.1 L130.0,82.6 L183.0,92.3 L236.0,102.1" pathLength="1000" style="animation-delay:0.48s"></path>
+              
+              <g class="pt" transform="translate(24.0,132.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">11%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(77.0,113.1)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">27%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(130.0,82.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">52%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(183.0,92.3)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">44%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(236.0,102.1)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">36%</text>
+                </g>
+              </g>
+            
+              <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
+              <g class="lastlabel" transform="translate(214.0,90.1)">
+                <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
+                <text x="0" y="2" text-anchor="middle">36%</text>
+              </g>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="77.0" y="164" text-anchor="middle">02</text><text class="xt" x="130.0" y="164" text-anchor="middle">03</text><text class="xt" x="183.0" y="164" text-anchor="middle">04</text><text class="xt" x="236.0" y="164" text-anchor="middle">05</text>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+            <g class="card" transform="translate(548,192)">
+              <title>JinYeopKang · 5주 추세 · github:JinYeopKang · boj:jyyj14587</title>
+              <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
+              <text class="name" x="24" y="18">JinYeopKang</text>
+              
+          <g class="grid">
+            <line x1="24" y1="24" x2="236" y2="24" />
+            <line x1="24" y1="146" x2="236" y2="146" />
+          </g>
+        
+              <path class="line" d="M24.0,143.6 L77.0,144.8 L130.0,132.6 L183.0,124.0 L236.0,127.7" pathLength="1000" style="animation-delay:0.60s"></path>
+              
+              <g class="pt" transform="translate(24.0,143.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">2%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(77.0,144.8)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">1%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(130.0,132.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">11%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(183.0,124.0)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">18%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(236.0,127.7)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">15%</text>
+                </g>
+              </g>
+            
+              <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
+              <g class="lastlabel" transform="translate(214.0,115.7)">
+                <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
+                <text x="0" y="2" text-anchor="middle">15%</text>
+              </g>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="77.0" y="164" text-anchor="middle">02</text><text class="xt" x="130.0" y="164" text-anchor="middle">03</text><text class="xt" x="183.0" y="164" text-anchor="middle">04</text><text class="xt" x="236.0" y="164" text-anchor="middle">05</text>
+            </g>
+          </a>
+        
+      <text x="808" y="376" text-anchor="end" dominant-baseline="text-after-edge" class="caption-note">※ 제출 주차 귀속 기준 / 배정 누적 분모 대비</text>
+    </svg>

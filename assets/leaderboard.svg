@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 328" role="img">
+      
+    
+    <style>
+      svg {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        background: none; /* transparent */
+        /* Light (default) */
+        --fg-strong:   #0f172a;
+        --fg-muted:    #334155;
+        --fg-muted-2:  #475569;
+        --axis:        #64748b;
+        --stroke:      #e2e8f0;
+        --panel-fill:  #ffffff;
+        --panel-stk:   #e2e8f0;
+        --track:       #f1f5f9;
+        --bar:         #38bdf8;
+        --line:        #06b6d4;
+        --dot:         #06b6d4;
+        --badge-fill:  #f1f5f9;
+        --badge-stk:   #e2e8f0;
+        --avg-fill:    #0ea5e9;
+        --avg-stk:     #bae6fd;
+        --pct-color:   #0b1220;
+        --text-stroke: rgba(0,0,0,.28);
+      }
+      @media (prefers-color-scheme: dark) {
+        svg {
+          --fg-strong:   #e5e7eb;
+          --fg-muted:    #cbd5e1;
+          --fg-muted-2:  #94a3b8;
+          --axis:        #94a3b8;
+          --stroke:      #334155;
+          --panel-fill:  #0b1220;
+          --panel-stk:   #334155;
+          --track:       #1f2937;
+          --bar:         #38bdf8;
+          --line:        #22d3ee;
+          --dot:         #22d3ee;
+          --badge-fill:  #111827;
+          --badge-stk:   #334155;
+          --avg-fill:    #38bdf8;
+          --avg-stk:     #075985;
+          --pct-color:   #e5e7eb;
+          --text-stroke: rgba(255,255,255,.22);
+        }
+      }
+      @keyframes pop { 0%{opacity:0; transform:scale(0.96)} 100%{opacity:1; transform:scale(1)} }
+      @keyframes grow-wpx { from { width:0px } to { width: var(--wpx) } }
+      @keyframes draw {
+        from { stroke-dasharray:1000; stroke-dashoffset:1000; }
+        to   { stroke-dasharray:1000; stroke-dashoffset:0; }
+      }
+    </style>
+    
+    <style>
+      .name { font-size:14px; fill: var(--fg-muted); font-weight:700; letter-spacing:.1px; }
+      .track { fill: var(--track); }
+      .bar  { fill: var(--bar); animation: grow-wpx 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+      .pct  { font-size:12px; fill: var(--fg-strong); text-anchor:end; font-weight:800; }
+      .nd   { font-size:12px; fill: var(--fg-strong); font-weight:700; }
+    </style>
+    
+      
+          <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+            <g transform="translate(0,16)">
+              <title>nOOne-is-hier · 62% (121/194) · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:297.6px; animation-delay:0.00s"/>
+                <text class="pct" x="468" y="28.0">62%</text>
+                <text class="nd"  x="12" y="28.0">121/194</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+            <g transform="translate(0,68)">
+              <title>seo-youngjae · 36% (69/194) · github:seo-youngjae · boj:heaven707</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">seo-youngjae</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:172.79999999999998px; animation-delay:0.06s"/>
+                <text class="pct" x="468" y="28.0">36%</text>
+                <text class="nd"  x="12" y="28.0">69/194</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+            <g transform="translate(0,120)">
+              <title>SDGeo12 · 32% (62/194) · github:SDGeo12 · boj:sdgeo20</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">SDGeo12</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:153.6px; animation-delay:0.12s"/>
+                <text class="pct" x="468" y="28.0">32%</text>
+                <text class="nd"  x="12" y="28.0">62/194</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+            <g transform="translate(0,172)">
+              <title>skala-changhyun · 30% (59/194) · github:skala-changhyun · boj:gcgc09</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">skala-changhyun</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:144.0px; animation-delay:0.18s"/>
+                <text class="pct" x="468" y="28.0">30%</text>
+                <text class="nd"  x="12" y="28.0">59/194</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+            <g transform="translate(0,224)">
+              <title>jiyunee02 · 19% (37/194) · github:jiyunee02 · boj:jiyun301</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">jiyunee02</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:91.2px; animation-delay:0.24s"/>
+                <text class="pct" x="468" y="28.0">19%</text>
+                <text class="nd"  x="12" y="28.0">37/194</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+            <g transform="translate(0,276)">
+              <title>JinYeopKang · 15% (29/194) · github:JinYeopKang · boj:jyyj14587</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">JinYeopKang</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:72.0px; animation-delay:0.30s"/>
+                <text class="pct" x="468" y="28.0">15%</text>
+                <text class="nd"  x="12" y="28.0">29/194</text>
+              </g>
+            </g>
+          </a>
+        
+    </svg>
