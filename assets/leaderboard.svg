@@ -139,15 +139,15 @@
         
           <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
             <g transform="translate(0,276)">
-              <title>JinYeopKang · 15% (29/194) · github:JinYeopKang · boj:jyyj14587</title>
+              <title>JinYeopKang · 16% (32/194) · github:JinYeopKang · boj:jyyj14587</title>
               <text class="name" x="158" y="28.0" text-anchor="end">JinYeopKang</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:72.0px; animation-delay:0.30s"/>
-                <text class="pct" x="468" y="28.0">15%</text>
-                <text class="nd"  x="12" y="28.0">29/194</text>
+                      style="--wpx:76.8px; animation-delay:0.30s"/>
+                <text class="pct" x="468" y="28.0">16%</text>
+                <text class="nd"  x="12" y="28.0">32/194</text>
               </g>
             </g>
           </a>
