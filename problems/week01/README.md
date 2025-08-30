@@ -21,7 +21,7 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 10171 | 고양이 | [🔗](https://www.acmicpc.net/problem/10171) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_10171_%EA%B3%A0%EC%96%91%EC%9D%B4) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 10172 | 개 | [🔗](https://www.acmicpc.net/problem/10172) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_10172_%EA%B0%9C) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 25083 | 새싹 | [🔗](https://www.acmicpc.net/problem/25083) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_25083_%EC%83%88%EC%8B%B9) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 11718 | 그대로 출력하기 | [🔗](https://www.acmicpc.net/problem/11718) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_11718_%EA%B7%B8%EB%8C%80%EB%A1%9C_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 11718 | 그대로 출력하기 | [🔗](https://www.acmicpc.net/problem/11718) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_11718_%EA%B7%B8%EB%8C%80%EB%A1%9C_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 
 <!--END:PROGRESS:IO-->
 
