@@ -1,0 +1,298 @@
+weeks:
+- id: 1
+  path: problems/week01/README.md
+  groups:
+  - key: IO
+    marker: PROGRESS:IO
+    title: 🖨️ 출력 · 입력 연습
+    problems:
+    - 2557
+    - 7287
+    - 10171
+    - 10172
+    - 10699
+    - 11718
+    - 25083
+  - key: MATH
+    marker: PROGRESS:MATH
+    title: 🔢 사칙연산 · 기초 수학
+    problems:
+    - 1000
+    - 1001
+    - 1008
+    - 1934
+    - 2292
+    - 2420
+    - 2475
+    - 2501
+    - 10869
+    - 10870
+    - 10872
+    - 10950
+    - 10951
+    - 10952
+    - 10998
+    - 11382
+    - 15552
+    - 15964
+  - key: IF
+    marker: PROGRESS:IF
+    title: ⚖️ 조건문
+    problems:
+    - 1330
+    - 2480
+    - 2753
+    - 2754
+    - 9498
+    - 14681
+  - key: LOOP
+    marker: PROGRESS:LOOP
+    title: 🔁 반복문 · 출력 패턴
+    problems:
+    - 2438
+    - 2739
+    - 2741
+    - 5597
+    - 10871
+  - key: ARRAY
+    marker: PROGRESS:ARRAY
+    title: 📑 1차원·2차원 배열
+    problems:
+    - 2566
+    - 2738
+    - 10807
+  - key: STRING
+    marker: PROGRESS:STRING
+    title: 🔤 문자열
+    problems:
+    - 2743
+    - 2744
+    - 9086
+    - 10798
+    - 11654
+    - 14935
+    - 20528
+    - 20944
+    - 27866
+  - key: BRUTE
+    marker: PROGRESS:BRUTE
+    title: 🎲 브루트포스 · 완전 탐색
+    problems:
+    - 2231
+    - 2309
+    - 2798
+  - key: IMPLEMENT
+    marker: PROGRESS:IMPLEMENT
+    title: 🛠️ 구현／시뮬레이션 · 기타
+    problems:
+    - 10250
+    - 19532
+    - 23251
+    - 23885
+    - 30204
+- id: 2
+  path: problems/week02/README.md
+  groups:
+  - key: STACK
+    marker: PROGRESS:STACK
+    title: 📦 스택
+    problems:
+    - 1874
+    - 1918
+    - 10828
+    - 12605
+    - 17608
+  - key: QUEUE
+    marker: PROGRESS:QUEUE
+    title: ⏩ 큐
+    problems:
+    - 1158
+    - 1966
+    - 2161
+    - 18258
+    - 26042
+  - key: PQ
+    marker: PROGRESS:PQ
+    title: 🏆 우선순위 큐
+    problems:
+    - 1927
+    - 2075
+    - 7662
+    - 11279
+    - 11286
+  - key: DEQUE
+    marker: PROGRESS:DEQUE
+    title: 📚 덱
+    problems:
+    - 1021
+    - 2346
+    - 5430
+    - 10866
+    - 28279
+  - key: LIST
+    marker: PROGRESS:LIST
+    title: 🔗 연결리스트
+    problems:
+    - 1406
+    - 5397
+    - 23309
+    - 30885
+    - 31423
+  - key: SETMAP
+    marker: PROGRESS:SETMAP
+    title: 🔍 집합과 맵
+    problems:
+    - 1302
+    - 1620
+    - 1764
+    - 2108
+    - 2822
+    - 2910
+    - 7785
+    - 9375
+    - 10815
+    - 11478
+    - 11723
+    - 17219
+    - 20291
+    - 21939
+    - 21944
+  - key: BIT
+    marker: PROGRESS:BIT
+    title: ⚡ 비트연산
+    problems:
+    - 1094
+    - 1740
+    - 2830
+    - 10728
+    - 15787
+    - 24389
+  - key: STRING
+    marker: PROGRESS:STRING
+    title: 🔤 문자열
+    problems:
+    - 1157
+    - 1213
+    - 1259
+    - 1316
+    - 1543
+    - 1919
+    - 2675
+    - 2908
+    - 2941
+    - 5622
+    - 10809
+    - 10820
+    - 11720
+- id: 3
+  path: ''
+  groups: []
+- id: 4
+  path: problems/week04/README.md
+  groups:
+  - key: BEGINNER
+    marker: PROGRESS:BEGINNER
+    title: 🧩 브루트포스&재귀&백트래킹—초급(골드 미만)
+    problems:
+    - 1065
+    - 11277
+    - 11278
+    - 12348
+    - 14888
+    - 15649
+    - 15650
+    - 15651
+    - 15652
+    - 15654
+    - 15655
+    - 15656
+    - 15657
+    - 15658
+    - 15663
+    - 15664
+    - 15665
+    - 15666
+    - 27433
+    - 27434
+  - key: ADVANCED
+    marker: PROGRESS:ADVANCED
+    title: 🧠 브루트포스 & 재귀 & 백트래킹 — 고급(골드 이상)
+    problems:
+    - 9663
+    - 12347
+    - 14502
+    - 15659
+    - 16637
+    - 16638
+    - 16639
+    - 17141
+    - 17142
+    - 17471
+    - 17779
+    - 27439
+    - 30242
+  - key: DNC
+    marker: PROGRESS:DNC
+    title: 🪚 분할 정복 (Divide & Conquer)
+    problems:
+    - 1074
+    - 1629
+    - 1780
+    - 1992
+    - 2447
+    - 2630
+    - 2749
+    - 4779
+    - 10830
+    - 11444
+- id: 5
+  path: problems/week05/README.md
+  groups:
+  - key: SORT_BASIC
+    marker: PROGRESS:SORT_BASIC
+    title: 🔢 정렬 (기본)
+    problems:
+    - 23881
+    - 23882
+    - 23899
+    - 23968
+    - 23969
+    - 24051
+    - 24052
+    - 24060
+    - 24061
+    - 24090
+    - 24091
+    - 24092
+  - key: SORT_ADVANCED
+    marker: PROGRESS:SORT_ADVANCED
+    title: 🧠 정렬 — 심화 (고급)
+    problems:
+    - 23883
+    - 23884
+    - 23900
+    - 23970
+    - 24046
+    - 24047
+    - 24048
+    - 24053
+    - 24054
+    - 24055
+    - 24056
+    - 24062
+  - key: COMPLEXITY
+    marker: PROGRESS:COMPLEXITY
+    title: ⏱️ 시간복잡도
+    problems:
+    - 24262
+    - 24263
+    - 24264
+    - 24265
+    - 24266
+    - 24267
+    - 24313
+    - 24314
+    - 24315
+    - 24368
+    - 24369
+    - 24370
