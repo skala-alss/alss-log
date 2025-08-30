@@ -19,7 +19,7 @@
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 12605 | 단어순서 뒤집기 | [🔗](https://www.acmicpc.net/problem/12605) | [📁](./스택/boj_12605_단어순서_뒤집기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10828 | 스택 | [🔗](https://www.acmicpc.net/problem/10828) | [📁](./스택/boj_10828_스택) | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1874 | 스택 수열 | [🔗](https://www.acmicpc.net/problem/1874) | [📁](./스택/boj_1874_스택_수열) | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 1918 | 후위 표기식 | [🔗](https://www.acmicpc.net/problem/1918) | [📁](./스택/boj_1918_후위_표기식) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 1918 | 후위 표기식 | [🔗](https://www.acmicpc.net/problem/1918) | [📁](./스택/boj_1918_후위_표기식) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:STACK-->
 
@@ -81,9 +81,9 @@
 | :----: | ----: | :-------- | :-----------------------------------------: | :-------------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1406 | 에디터 | [🔗](https://www.acmicpc.net/problem/1406) | [📁](./연결리스트/boj_1406_에디터) | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 5397 | 키로거 | [🔗](https://www.acmicpc.net/problem/5397) | [📁](./연결리스트/boj_5397_키로거) | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 31423 | 신촌 통폐합 계획 | [🔗](https://www.acmicpc.net/problem/31423) | [📁](./연결리스트/boj_31423_신촌_통폐합_계획) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 23309 | 철도 공사 | [🔗](https://www.acmicpc.net/problem/23309) | [📁](./연결리스트/boj_23309_철도_공사) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 30885 | Φ² | [🔗](https://www.acmicpc.net/problem/30885) | [📁](./연결리스트/boj_30885_Φ²) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 31423 | 신촌 통폐합 계획 | [🔗](https://www.acmicpc.net/problem/31423) | [📁](./연결리스트/boj_31423_신촌_통폐합_계획) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 23309 | 철도 공사 | [🔗](https://www.acmicpc.net/problem/23309) | [📁](./연결리스트/boj_23309_철도_공사) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 30885 | Φ² | [🔗](https://www.acmicpc.net/problem/30885) | [📁](./연결리스트/boj_30885_Φ²) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:LIST-->
 
