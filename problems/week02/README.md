@@ -51,7 +51,7 @@
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 11279 | 최대 힙 | [🔗](https://www.acmicpc.net/problem/11279) | [📁](./우선순위%20큐/boj_11279_최대_힙) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11286 | 절댓값 힙 | [🔗](https://www.acmicpc.net/problem/11286) | [📁](./우선순위%20큐/boj_11286_절댓값_힙) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2075 | N번째 큰 수 | [🔗](https://www.acmicpc.net/problem/2075) | [📁](./우선순위%20큐/boj_2075_N번째_큰_수) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 7662 | 이중 우선순위 큐 | [🔗](https://www.acmicpc.net/problem/7662) | [📁](./우선순위%20큐/boj_7662_이중_우선순위_큐) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 7662 | 이중 우선순위 큐 | [🔗](https://www.acmicpc.net/problem/7662) | [📁](./우선순위%20큐/boj_7662_이중_우선순위_큐) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:PQ-->
 
@@ -67,7 +67,7 @@
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 28279 | 덱 2 | [🔗](https://www.acmicpc.net/problem/28279) | [📁](./덱/boj_28279_덱_2) | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1021 | 회전하는 큐 | [🔗](https://www.acmicpc.net/problem/1021) | [📁](./덱/boj_1021_회전하는_큐) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2346 | 풍선 터뜨리기 | [🔗](https://www.acmicpc.net/problem/2346) | [📁](./덱/boj_2346_풍선_터뜨리기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 5430 | AC | [🔗](https://www.acmicpc.net/problem/5430) | [📁](./덱/boj_5430_AC) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 5430 | AC | [🔗](https://www.acmicpc.net/problem/5430) | [📁](./덱/boj_5430_AC) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:DEQUE-->
 
@@ -108,8 +108,8 @@
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 11478 | 서로 다른 부분 문자열의 개수 | [🔗](https://www.acmicpc.net/problem/11478) | [📁](./집합과%20맵/boj_11478_서로_다른_부분_문자열의_개수) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 20291 | 파일 정리 | [🔗](https://www.acmicpc.net/problem/20291) | [📁](./집합과%20맵/boj_20291_파일_정리) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 2108 | 통계학 | [🔗](https://www.acmicpc.net/problem/2108) | [📁](./집합과%20맵/boj_2108_통계학) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 21939 | 문제 추천 시스템 Version 1 | [🔗](https://www.acmicpc.net/problem/21939) | [📁](./집합과%20맵/boj_21939_문제_추천_시스템_Version_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 21944 | 문제 추천 시스템 Version 2 | [🔗](https://www.acmicpc.net/problem/21944) | [📁](./집합과%20맵/boj_21944_문제_추천_시스템_Version_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 21939 | 문제 추천 시스템 Version 1 | [🔗](https://www.acmicpc.net/problem/21939) | [📁](./집합과%20맵/boj_21939_문제_추천_시스템_Version_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 21944 | 문제 추천 시스템 Version 2 | [🔗](https://www.acmicpc.net/problem/21944) | [📁](./집합과%20맵/boj_21944_문제_추천_시스템_Version_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:SETMAP-->
 
@@ -126,7 +126,7 @@
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1740 | 거듭제곱 | [🔗](https://www.acmicpc.net/problem/1740) | [📁](./비트연산/boj_1740_거듭제곱) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 15787 | 기차가 어둠을 헤치고 은하수를 | [🔗](https://www.acmicpc.net/problem/15787) | [📁](./비트연산/boj_15787_기차가_어둠을_헤치고_은하수를) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 10728 | XOR 삼형제 1 | [🔗](https://www.acmicpc.net/problem/10728) | [📁](./비트연산/boj_10728_XOR삼형제_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/13.svg" alt="Gold III" width="20"/> | 2830 | 행성 X3 | [🔗](https://www.acmicpc.net/problem/2830) | [📁](./비트연산/boj_2830_행성_X3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/13.svg" alt="Gold III" width="20"/> | 2830 | 행성 X3 | [🔗](https://www.acmicpc.net/problem/2830) | [📁](./비트연산/boj_2830_행성_X3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:BIT-->
 
