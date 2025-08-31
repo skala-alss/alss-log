@@ -66,7 +66,7 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 9498 | 시험 성적 | [🔗](https://www.acmicpc.net/problem/9498) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_9498_%EC%8B%9C%ED%97%98_%EC%84%B1%EC%A0%81) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 14681 | 사분면 고르기 | [🔗](https://www.acmicpc.net/problem/14681) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_14681_%EC%82%AC%EB%B6%84%EB%A9%B4_%EA%B3%A0%EB%A5%B4%EA%B8%B0) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 2753 | 윤년 | [🔗](https://www.acmicpc.net/problem/2753) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2753_%EC%9C%A4%EB%85%84) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2754 | 학점계산 | [🔗](https://www.acmicpc.net/problem/2754) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2754_%ED%95%99%EC%A0%90%EA%B3%84%EC%82%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2754 | 학점계산 | [🔗](https://www.acmicpc.net/problem/2754) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2754_%ED%95%99%EC%A0%90%EA%B3%84%EC%82%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | <img src="https://static.solved.ac/tier_small/2.svg" alt="Bronze IV" width="20"/> | 2480 | 주사위 세개 | [🔗](https://www.acmicpc.net/problem/2480) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2480_%EC%A3%BC%EC%82%AC%EC%9C%84_%EC%84%B8%EA%B0%9C) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 
 <!--END:PROGRESS:IF-->
