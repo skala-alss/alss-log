@@ -22,15 +22,60 @@ def main() -> None:
         idx += n
         
         # print(block)
-        stack, ans = [], []
-        for i in range
-    
-    
+        stack, result = [], []
+        current = 1
+        for num in block:
+            while current <= num:
+                stack.append(current)
+                result.append(f"+ push {current}, stack={stack}")
+                current += 1
+                
+            if stack[-1] == num:
+                stack.pop()
+                result.append(f"- pop {num}, stack={stack}")
+            else:
+                print("NO")
+                return
+            
+        for i in result:
+            print(i)
+
     # print(stack)
     
-    print(blocks)
-
+    # print(blocks)
 
 if __name__ == "__main__":
     main()
+
+
+#========================== 제출본 =================================
+# def main() -> None:
+
+#     import sys
+    
+#     n = int(sys.stdin.readline().strip())
+#     block = [int(sys.stdin.readline().strip()) for _ in range(n)]
+    
+#     stack, result = [], []
+#     current = 1
+#     for num in block:
+#         while current <= num:
+#             stack.append(current)
+#             result.append('+')
+#             current += 1
+                
+#         if stack[-1] == num:
+#             stack.pop()
+#             result.append('-')
+#         else:
+#             print("NO")
+#             return
+            
+#     for i in result:
+#         print(i)
+
+
+# if __name__ == "__main__":
+#     main()
+
 
