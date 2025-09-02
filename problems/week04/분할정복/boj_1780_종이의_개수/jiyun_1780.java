@@ -31,6 +31,7 @@ public class jiyun_1780 {
         mergeSort(row+size*2,col+size*2,size); //9
     }
 
+    //row,col은 시작좌표
     static boolean check(int row, int col,int n){
         int firstBlock = arr[row][col];
 
