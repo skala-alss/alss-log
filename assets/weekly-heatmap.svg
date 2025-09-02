@@ -316,11 +316,11 @@
               <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
                 <g transform="translate(76,148)">
                   <g class="cell-anim" style="animation-delay:0.36s">
-                    <title>W04 · nOOne-is-hier · 42% (18/43) · github:nOOne-is-hier · boj:kanadachocolate</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 68.1%)" />
+                    <title>W04 · nOOne-is-hier · 49% (21/43) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 64.1%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">42%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">49%</text>
                   </g>
                 </g>
               </a>
@@ -342,11 +342,11 @@
               <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
                 <g transform="translate(284,148)">
                   <g class="cell-anim" style="animation-delay:0.42s">
-                    <title>W04 · jiyunee02 · 28% (12/43) · github:jiyunee02 · boj:jiyun301</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 76.0%)" />
+                    <title>W04 · jiyunee02 · 33% (14/43) · github:jiyunee02 · boj:jiyun301</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 73.2%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">28%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">33%</text>
                   </g>
                 </g>
               </a>
@@ -393,10 +393,10 @@
 
           <g transform="translate(700,148)">
             <g class="cell-anim avg" style="animation-delay:0.54s">
-              <title>W04 · 전체 평균 14% (Σ분자=37 / Σ분모=258)</title>
+              <title>W04 · 전체 평균 16% (Σ분자=42 / Σ분모=258)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
-                    text-anchor="middle" dominant-baseline="middle">14%</text>
+                    text-anchor="middle" dominant-baseline="middle">16%</text>
             </g>
           </g>
         
