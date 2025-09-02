@@ -39,8 +39,8 @@
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 15658 | 연산자 끼워넣기 (2) | [🔗](https://www.acmicpc.net/problem/15658) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15658_연산자_끼워넣기_(2)) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 14888 | 연산자 끼워넣기 | [🔗](https://www.acmicpc.net/problem/14888) | [📁](./브루트포스&재귀&백트래킹-초급/boj_14888_연산자_끼워넣기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 12348 | 분해합 2 | [🔗](https://www.acmicpc.net/problem/12348) | [📁](./브루트포스&재귀&백트래킹-초급/boj_12348_분해합_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11277 | 2-SAT - 1 | [🔗](https://www.acmicpc.net/problem/11277) | [📁](./브루트포스&재귀&백트래킹-초급/boj_11277_2-SAT_-_1) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11278 | 2-SAT - 2 | [🔗](https://www.acmicpc.net/problem/11278) | [📁](./브루트포스&재귀&백트래킹-초급/boj_11278_2-SAT_-_2) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11277 | 2-SAT - 1 | [🔗](https://www.acmicpc.net/problem/11277) | [📁](./브루트포스&재귀&백트래킹-초급/boj_11277_2-SAT_-_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11278 | 2-SAT - 2 | [🔗](https://www.acmicpc.net/problem/11278) | [📁](./브루트포스&재귀&백트래킹-초급/boj_11278_2-SAT_-_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:BEGINNER-->
 
@@ -76,8 +76,8 @@
 
 | 솔브드 티어 | 번호 | 제목 | 링크 | 폴더 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 |:---:|---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 4779 | 칸토어 집합 | [🔗](https://www.acmicpc.net/problem/4779) | [📁](./분할정복/boj_4779_칸토어_집합) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1780 | 종이의 개수 | [🔗](https://www.acmicpc.net/problem/1780) | [📁](./분할정복/boj_1780_종이의_개수) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 4779 | 칸토어 집합 | [🔗](https://www.acmicpc.net/problem/4779) | [📁](./분할정복/boj_4779_칸토어_집합) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1780 | 종이의 개수 | [🔗](https://www.acmicpc.net/problem/1780) | [📁](./분할정복/boj_1780_종이의_개수) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 2630 | 색종이 만들기 | [🔗](https://www.acmicpc.net/problem/2630) | [📁](./분할정복/boj_2630_색종이_만들기) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 1992 | 쿼드트리 | [🔗](https://www.acmicpc.net/problem/1992) | [📁](./분할정복/boj_1992_쿼드트리) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 1629 | 곱셈 | [🔗](https://www.acmicpc.net/problem/1629) | [📁](./분할정복/boj_1629_곱셈) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
