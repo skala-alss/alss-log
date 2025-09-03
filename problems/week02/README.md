@@ -99,12 +99,12 @@
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 7785 | 회사에 있는 사람 | [🔗](https://www.acmicpc.net/problem/7785) | [📁](./집합과%20맵/boj_7785_회사에_있는_사람) | ✅ | ✅ | ✅ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2822 | 점수 계산 | [🔗](https://www.acmicpc.net/problem/2822) | [📁](./집합과%20맵/boj_2822_점수_계산) | ✅ | ✅ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 10815 | 숫자 카드 | [🔗](https://www.acmicpc.net/problem/10815) | [📁](./집합과%20맵/boj_10815_숫자_카드) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 17219 | 비밀번호 찾기 | [🔗](https://www.acmicpc.net/problem/17219) | [📁](./집합과%20맵/boj_17219_비밀번호_찾기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1764 | 듣보잡 | [🔗](https://www.acmicpc.net/problem/1764) | [📁](./집합과%20맵/boj_1764_듣보잡) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1620 | 나는야 포켓몬 마스터 이다솜 | [🔗](https://www.acmicpc.net/problem/1620) | [📁](./집합과%20맵/boj_1620_나는야_포켓몬_마스터_이다솜) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1302 | 베스트셀러 | [🔗](https://www.acmicpc.net/problem/1302) | [📁](./집합과%20맵/boj_1302_베스트셀러) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 9375 | 패션왕 신해빈 | [🔗](https://www.acmicpc.net/problem/9375) | [📁](./집합과%20맵/boj_9375_패션왕_신해빈) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2910 | 빈도 정렬 | [🔗](https://www.acmicpc.net/problem/2910) | [📁](./집합과%20맵/boj_2910_빈도_정렬) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 17219 | 비밀번호 찾기 | [🔗](https://www.acmicpc.net/problem/17219) | [📁](./집합과%20맵/boj_17219_비밀번호_찾기) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1764 | 듣보잡 | [🔗](https://www.acmicpc.net/problem/1764) | [📁](./집합과%20맵/boj_1764_듣보잡) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1620 | 나는야 포켓몬 마스터 이다솜 | [🔗](https://www.acmicpc.net/problem/1620) | [📁](./집합과%20맵/boj_1620_나는야_포켓몬_마스터_이다솜) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1302 | 베스트셀러 | [🔗](https://www.acmicpc.net/problem/1302) | [📁](./집합과%20맵/boj_1302_베스트셀러) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 9375 | 패션왕 신해빈 | [🔗](https://www.acmicpc.net/problem/9375) | [📁](./집합과%20맵/boj_9375_패션왕_신해빈) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2910 | 빈도 정렬 | [🔗](https://www.acmicpc.net/problem/2910) | [📁](./집합과%20맵/boj_2910_빈도_정렬) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 11478 | 서로 다른 부분 문자열의 개수 | [🔗](https://www.acmicpc.net/problem/11478) | [📁](./집합과%20맵/boj_11478_서로_다른_부분_문자열의_개수) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 20291 | 파일 정리 | [🔗](https://www.acmicpc.net/problem/20291) | [📁](./집합과%20맵/boj_20291_파일_정리) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 2108 | 통계학 | [🔗](https://www.acmicpc.net/problem/2108) | [📁](./집합과%20맵/boj_2108_통계학) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |

@@ -25,7 +25,7 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 27434 | 팩토리얼 3 | [🔗](https://www.acmicpc.net/problem/27434) | [📁](./브루트포스&재귀&백트래킹-초급/boj_27434_팩토리얼_3) | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1065 | 한수 | [🔗](https://www.acmicpc.net/problem/1065) | [📁](./브루트포스&재귀&백트래킹-초급/boj_1065_한수) | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15649 | N과 M (1) | [🔗](https://www.acmicpc.net/problem/15649) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15649_N과_M_(1)) | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15650 | N과 M (2) | [🔗](https://www.acmicpc.net/problem/15650) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15650_N과_M_(2)) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15650 | N과 M (2) | [🔗](https://www.acmicpc.net/problem/15650) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15650_N과_M_(2)) | ✅ | ☑️ | ✅ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15651 | N과 M (3) | [🔗](https://www.acmicpc.net/problem/15651) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15651_N과_M_(3)) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15652 | N과 M (4) | [🔗](https://www.acmicpc.net/problem/15652) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15652_N과_M_(4)) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 15654 | N과 M (5) | [🔗](https://www.acmicpc.net/problem/15654) | [📁](./브루트포스&재귀&백트래킹-초급/boj_15654_N과_M_(5)) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
@@ -77,10 +77,10 @@
 | 솔브드 티어 | 번호 | 제목 | 링크 | 폴더 | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 |:---:|---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 4779 | 칸토어 집합 | [🔗](https://www.acmicpc.net/problem/4779) | [📁](./분할정복/boj_4779_칸토어_집합) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1780 | 종이의 개수 | [🔗](https://www.acmicpc.net/problem/1780) | [📁](./분할정복/boj_1780_종이의_개수) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 2630 | 색종이 만들기 | [🔗](https://www.acmicpc.net/problem/2630) | [📁](./분할정복/boj_2630_색종이_만들기) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 1992 | 쿼드트리 | [🔗](https://www.acmicpc.net/problem/1992) | [📁](./분할정복/boj_1992_쿼드트리) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 1629 | 곱셈 | [🔗](https://www.acmicpc.net/problem/1629) | [📁](./분할정복/boj_1629_곱셈) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1780 | 종이의 개수 | [🔗](https://www.acmicpc.net/problem/1780) | [📁](./분할정복/boj_1780_종이의_개수) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 2630 | 색종이 만들기 | [🔗](https://www.acmicpc.net/problem/2630) | [📁](./분할정복/boj_2630_색종이_만들기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 1992 | 쿼드트리 | [🔗](https://www.acmicpc.net/problem/1992) | [📁](./분할정복/boj_1992_쿼드트리) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 1629 | 곱셈 | [🔗](https://www.acmicpc.net/problem/1629) | [📁](./분할정복/boj_1629_곱셈) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 2447 | 별 찍기 - 10 | [🔗](https://www.acmicpc.net/problem/2447) | [📁](./분할정복/boj_2447_별_찍기_10) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 1074 | Z | [🔗](https://www.acmicpc.net/problem/1074) | [📁](./분할정복/boj_1074_Z) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 10830 | 행렬 제곱 | [🔗](https://www.acmicpc.net/problem/10830) | [📁](./분할정복/boj_10830_행렬_제곱) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
