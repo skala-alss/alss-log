@@ -64,15 +64,15 @@
       
           <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
             <g transform="translate(0,16)">
-              <title>nOOne-is-hier · 70% (136/194) · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <title>nOOne-is-hier · 72% (140/194) · github:nOOne-is-hier · boj:kanadachocolate</title>
               <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:336.0px; animation-delay:0.00s"/>
-                <text class="pct" x="468" y="28.0">70%</text>
-                <text class="nd"  x="12" y="28.0">136/194</text>
+                      style="--wpx:345.59999999999997px; animation-delay:0.00s"/>
+                <text class="pct" x="468" y="28.0">72%</text>
+                <text class="nd"  x="12" y="28.0">140/194</text>
               </g>
             </g>
           </a>
@@ -92,32 +92,32 @@
             </g>
           </a>
         
-          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
             <g transform="translate(0,120)">
+              <title>skala-changhyun · 34% (66/194) · github:skala-changhyun · boj:gcgc09</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">skala-changhyun</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:163.20000000000002px; animation-delay:0.12s"/>
+                <text class="pct" x="468" y="28.0">34%</text>
+                <text class="nd"  x="12" y="28.0">66/194</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+            <g transform="translate(0,172)">
               <title>SDGeo12 · 32% (63/194) · github:SDGeo12 · boj:sdgeo20</title>
               <text class="name" x="158" y="28.0" text-anchor="end">SDGeo12</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:153.6px; animation-delay:0.12s"/>
+                      style="--wpx:153.6px; animation-delay:0.18s"/>
                 <text class="pct" x="468" y="28.0">32%</text>
                 <text class="nd"  x="12" y="28.0">63/194</text>
-              </g>
-            </g>
-          </a>
-        
-          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
-            <g transform="translate(0,172)">
-              <title>skala-changhyun · 31% (60/194) · github:skala-changhyun · boj:gcgc09</title>
-              <text class="name" x="158" y="28.0" text-anchor="end">skala-changhyun</text>
-              <g class="barwrap" transform="translate(168,0)">
-                <rect class="track" width="480" height="44" rx="10" ry="10"/>
-                <!-- width px 애니메이션: 둥근 모서리 유지 -->
-                <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:148.8px; animation-delay:0.18s"/>
-                <text class="pct" x="468" y="28.0">31%</text>
-                <text class="nd"  x="12" y="28.0">60/194</text>
               </g>
             </g>
           </a>
