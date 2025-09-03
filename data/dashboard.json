@@ -33,7 +33,7 @@
       ],
       [
         58,
-        9,
+        14,
         33,
         7,
         0,
@@ -67,7 +67,7 @@
       ],
       [
         25,
-        4,
+        6,
         14,
         3,
         0,
@@ -103,16 +103,16 @@
       "pct": 36
     },
     {
-      "name": "skala-changhyun",
-      "done": 66,
+      "name": "SDGeo12",
+      "done": 65,
       "total": 194,
       "pct": 34
     },
     {
-      "name": "SDGeo12",
-      "done": 63,
+      "name": "skala-changhyun",
+      "done": 66,
       "total": 194,
-      "pct": 32
+      "pct": 34
     },
     {
       "name": "jiyunee02",
@@ -148,7 +148,7 @@
         37,
         51,
         39,
-        32
+        34
       ],
       "jiyunee02": [
         18,
