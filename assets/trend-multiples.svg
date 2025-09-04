@@ -293,7 +293,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,96.0 L66.4,104.5 L108.8,93.5 L151.2,100.9 L193.6,104.5 L236.0,111.8" pathLength="1000" style="animation-delay:0.36s"></path>
+              <path class="line" d="M24.0,96.0 L66.4,104.5 L108.8,93.5 L151.2,100.9 L193.6,103.3 L236.0,111.8" pathLength="1000" style="animation-delay:0.36s"></path>
               
               <g class="pt" transform="translate(24.0,96.0)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -327,11 +327,11 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(193.6,104.5)" tabindex="0">
+              <g class="pt" transform="translate(193.6,103.3)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">34%</text>
+                  <text x="0" y="2" text-anchor="middle">35%</text>
                 </g>
               </g>
             
