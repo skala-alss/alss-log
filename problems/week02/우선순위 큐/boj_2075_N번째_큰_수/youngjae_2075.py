@@ -27,7 +27,6 @@ def main() -> None:
     # flat = [x for row in arr for x in row]
     # print(sorted(flat)[-5])
 
-
 if __name__ == "__main__":
     main()
 
