@@ -83,7 +83,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,24.0 L66.4,69.1 L108.8,33.8 L151.2,52.1 L193.6,58.2 L236.0,74.0" pathLength="1000" style="animation-delay:0.00s"></path>
+              <path class="line" d="M24.0,24.0 L66.4,69.1 L108.8,33.8 L151.2,52.1 L193.6,53.3 L236.0,70.4" pathLength="1000" style="animation-delay:0.00s"></path>
               
               <g class="pt" transform="translate(24.0,24.0)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -117,26 +117,26 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(193.6,58.2)" tabindex="0">
+              <g class="pt" transform="translate(193.6,53.3)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">72%</text>
+                  <text x="0" y="2" text-anchor="middle">76%</text>
                 </g>
               </g>
             
-              <g class="pt" transform="translate(236.0,74.0)" tabindex="0">
+              <g class="pt" transform="translate(236.0,70.4)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">59%</text>
+                  <text x="0" y="2" text-anchor="middle">62%</text>
                 </g>
               </g>
             
               <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
-              <g class="lastlabel" transform="translate(214.0,62.0)">
+              <g class="lastlabel" transform="translate(214.0,58.4)">
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
-                <text x="0" y="2" text-anchor="middle">59%</text>
+                <text x="0" y="2" text-anchor="middle">62%</text>
               </g>
               <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="66.4" y="164" text-anchor="middle">02</text><text class="xt" x="108.8" y="164" text-anchor="middle">03</text><text class="xt" x="151.2" y="164" text-anchor="middle">04</text><text class="xt" x="193.6" y="164" text-anchor="middle">05</text><text class="xt" x="236.0" y="164" text-anchor="middle">06</text>
             </g>
@@ -223,7 +223,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,124.0 L66.4,132.6 L108.8,119.2 L151.2,117.9 L193.6,117.9 L236.0,122.8" pathLength="1000" style="animation-delay:0.24s"></path>
+              <path class="line" d="M24.0,124.0 L66.4,132.6 L108.8,119.2 L151.2,117.9 L193.6,116.7 L236.0,121.6" pathLength="1000" style="animation-delay:0.24s"></path>
               
               <g class="pt" transform="translate(24.0,124.0)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -257,26 +257,26 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(193.6,117.9)" tabindex="0">
+              <g class="pt" transform="translate(193.6,116.7)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">23%</text>
+                  <text x="0" y="2" text-anchor="middle">24%</text>
                 </g>
               </g>
             
-              <g class="pt" transform="translate(236.0,122.8)" tabindex="0">
+              <g class="pt" transform="translate(236.0,121.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">19%</text>
+                  <text x="0" y="2" text-anchor="middle">20%</text>
                 </g>
               </g>
             
               <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
-              <g class="lastlabel" transform="translate(214.0,110.8)">
+              <g class="lastlabel" transform="translate(214.0,109.6)">
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
-                <text x="0" y="2" text-anchor="middle">19%</text>
+                <text x="0" y="2" text-anchor="middle">20%</text>
               </g>
               <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="66.4" y="164" text-anchor="middle">02</text><text class="xt" x="108.8" y="164" text-anchor="middle">03</text><text class="xt" x="151.2" y="164" text-anchor="middle">04</text><text class="xt" x="193.6" y="164" text-anchor="middle">05</text><text class="xt" x="236.0" y="164" text-anchor="middle">06</text>
             </g>
@@ -363,7 +363,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,132.6 L66.4,113.1 L108.8,82.6 L151.2,92.3 L193.6,102.1 L236.0,110.6" pathLength="1000" style="animation-delay:0.48s"></path>
+              <path class="line" d="M24.0,132.6 L66.4,113.1 L108.8,82.6 L151.2,92.3 L193.6,89.9 L236.0,100.9" pathLength="1000" style="animation-delay:0.48s"></path>
               
               <g class="pt" transform="translate(24.0,132.6)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -397,26 +397,26 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(193.6,102.1)" tabindex="0">
+              <g class="pt" transform="translate(193.6,89.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">36%</text>
+                  <text x="0" y="2" text-anchor="middle">46%</text>
                 </g>
               </g>
             
-              <g class="pt" transform="translate(236.0,110.6)" tabindex="0">
+              <g class="pt" transform="translate(236.0,100.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
-                  <text x="0" y="2" text-anchor="middle">29%</text>
+                  <text x="0" y="2" text-anchor="middle">37%</text>
                 </g>
               </g>
             
               <!-- 마지막 배지: 점의 정중앙 위/아래 + 카드 내부 클램프 -->
-              <g class="lastlabel" transform="translate(214.0,98.6)">
+              <g class="lastlabel" transform="translate(214.0,88.9)">
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
-                <text x="0" y="2" text-anchor="middle">29%</text>
+                <text x="0" y="2" text-anchor="middle">37%</text>
               </g>
               <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="66.4" y="164" text-anchor="middle">02</text><text class="xt" x="108.8" y="164" text-anchor="middle">03</text><text class="xt" x="151.2" y="164" text-anchor="middle">04</text><text class="xt" x="193.6" y="164" text-anchor="middle">05</text><text class="xt" x="236.0" y="164" text-anchor="middle">06</text>
             </g>
