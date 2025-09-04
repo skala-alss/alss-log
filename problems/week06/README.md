@@ -103,7 +103,7 @@
 ---
 
 > **Legend**
-> \#1 = nOOne-is-hier · #2 = SDGeo12 · #3 = jiyunee02 · #4 = skala-changhyun · #5 = seo-youngjae · #6 = JinYeopK
+> \#1 = nOOne-is-hier · #2 = SDGeo12 · #3 = jiyunee02 · #4 = skala-changhyun · #5 = seo-youngjae · #6 = JinYeopKang
 
 ---
 
