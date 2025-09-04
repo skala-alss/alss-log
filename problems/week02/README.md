@@ -105,7 +105,7 @@
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1302 | 베스트셀러 | [🔗](https://www.acmicpc.net/problem/1302) | [📁](./집합과%20맵/boj_1302_베스트셀러) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 9375 | 패션왕 신해빈 | [🔗](https://www.acmicpc.net/problem/9375) | [📁](./집합과%20맵/boj_9375_패션왕_신해빈) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2910 | 빈도 정렬 | [🔗](https://www.acmicpc.net/problem/2910) | [📁](./집합과%20맵/boj_2910_빈도_정렬) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 11478 | 서로 다른 부분 문자열의 개수 | [🔗](https://www.acmicpc.net/problem/11478) | [📁](./집합과%20맵/boj_11478_서로_다른_부분_문자열의_개수) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 11478 | 서로 다른 부분 문자열의 개수 | [🔗](https://www.acmicpc.net/problem/11478) | [📁](./집합과%20맵/boj_11478_서로_다른_부분_문자열의_개수) | ✅ | ❌ | ❌ | ❌ | ☑️ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 20291 | 파일 정리 | [🔗](https://www.acmicpc.net/problem/20291) | [📁](./집합과%20맵/boj_20291_파일_정리) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 2108 | 통계학 | [🔗](https://www.acmicpc.net/problem/2108) | [📁](./집합과%20맵/boj_2108_통계학) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 21939 | 문제 추천 시스템 Version 1 | [🔗](https://www.acmicpc.net/problem/21939) | [📁](./집합과%20맵/boj_21939_문제_추천_시스템_Version_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
