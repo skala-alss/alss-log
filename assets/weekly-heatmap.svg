@@ -408,11 +408,11 @@
               <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
                 <g transform="translate(76,200)">
                   <g class="cell-anim" style="animation-delay:0.54s">
-                    <title>W05 · nOOne-is-hier · 19% (7/36) · github:nOOne-is-hier · boj:kanadachocolate</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 81.2%)" />
+                    <title>W05 · nOOne-is-hier · 22% (8/36) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 79.5%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">19%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">22%</text>
                   </g>
                 </g>
               </a>
@@ -485,10 +485,10 @@
 
           <g transform="translate(700,200)">
             <g class="cell-anim avg" style="animation-delay:0.72s">
-              <title>W05 · 전체 평균 9% (Σ분자=20 / Σ분모=216)</title>
+              <title>W05 · 전체 평균 10% (Σ분자=21 / Σ분모=216)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
-                    text-anchor="middle" dominant-baseline="middle">9%</text>
+                    text-anchor="middle" dominant-baseline="middle">10%</text>
             </g>
           </g>
         
