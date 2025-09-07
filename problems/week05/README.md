@@ -27,10 +27,10 @@
 | <img src="https://static.solved.ac/tier_small/5.svg" width="20"/> | 24051 | 알고리즘 수업 - 삽입 정렬 1 | [🔗](https://www.acmicpc.net/problem/24051) | [📁](./정렬/boj_24051_알고리즘_수업_-_삽입_정렬_1) | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/5.svg" width="20"/> | 24052 | 알고리즘 수업 - 삽입 정렬 2 | [🔗](https://www.acmicpc.net/problem/24052) | [📁](./정렬/boj_24052_알고리즘_수업_-_삽입_정렬_2) | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> | 24060 | 알고리즘 수업 - 병합 정렬 1 | [🔗](https://www.acmicpc.net/problem/24060) | [📁](./정렬/boj_24060_알고리즘_수업_-_병합_정렬_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24061 | 알고리즘 수업 - 병합 정렬 2 | [🔗](https://www.acmicpc.net/problem/24061) | [📁](./정렬/boj_24061_알고리즘_수업_-_병합_정렬_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24090 | 알고리즘 수업 - 퀵 정렬 1 | [🔗](https://www.acmicpc.net/problem/24090) | [📁](./정렬/boj_24090_알고리즘_수업_-_퀵_정렬_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24091 | 알고리즘 수업 - 퀵 정렬 2 | [🔗](https://www.acmicpc.net/problem/24091) | [📁](./정렬/boj_24091_알고리즘_수업_-_퀵_정렬_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24092 | 알고리즘 수업 - 퀵 정렬 3 | [🔗](https://www.acmicpc.net/problem/24092) | [📁](./정렬/boj_24092_알고리즘_수업_-_퀵_정렬_3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24061 | 알고리즘 수업 - 병합 정렬 2 | [🔗](https://www.acmicpc.net/problem/24061) | [📁](./정렬/boj_24061_알고리즘_수업_-_병합_정렬_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24090 | 알고리즘 수업 - 퀵 정렬 1 | [🔗](https://www.acmicpc.net/problem/24090) | [📁](./정렬/boj_24090_알고리즘_수업_-_퀵_정렬_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24091 | 알고리즘 수업 - 퀵 정렬 2 | [🔗](https://www.acmicpc.net/problem/24091) | [📁](./정렬/boj_24091_알고리즘_수업_-_퀵_정렬_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24092 | 알고리즘 수업 - 퀵 정렬 3 | [🔗](https://www.acmicpc.net/problem/24092) | [📁](./정렬/boj_24092_알고리즘_수업_-_퀵_정렬_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:SORT_BASIC-->
 
@@ -65,12 +65,12 @@
 
 |                               솔브드 티어                               |    번호 | 제목           |                      링크                     |                  폴더                  | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | ----: | :----------- | :-----------------------------------------: | :----------------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://static.solved.ac/tier_small/1.svg" width="20"/> | 24262 | 알고리즘 수행 시간 1 | [🔗](https://www.acmicpc.net/problem/24262) | [📁](./시간복잡도/boj_24262_알고리즘_수행_시간_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/2.svg" width="20"/> | 24263 | 알고리즘 수행 시간 2 | [🔗](https://www.acmicpc.net/problem/24263) | [📁](./시간복잡도/boj_24263_알고리즘_수행_시간_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24264 | 알고리즘 수행 시간 3 | [🔗](https://www.acmicpc.net/problem/24264) | [📁](./시간복잡도/boj_24264_알고리즘_수행_시간_3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24265 | 알고리즘 수행 시간 4 | [🔗](https://www.acmicpc.net/problem/24265) | [📁](./시간복잡도/boj_24265_알고리즘_수행_시간_4) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24266 | 알고리즘 수행 시간 5 | [🔗](https://www.acmicpc.net/problem/24266) | [📁](./시간복잡도/boj_24266_알고리즘_수행_시간_5) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/4.svg" width="20"/> | 24267 | 알고리즘 수행 시간 6 | [🔗](https://www.acmicpc.net/problem/24267) | [📁](./시간복잡도/boj_24267_알고리즘_수행_시간_6) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/1.svg" width="20"/> | 24262 | 알고리즘 수행 시간 1 | [🔗](https://www.acmicpc.net/problem/24262) | [📁](./시간복잡도/boj_24262_알고리즘_수행_시간_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/2.svg" width="20"/> | 24263 | 알고리즘 수행 시간 2 | [🔗](https://www.acmicpc.net/problem/24263) | [📁](./시간복잡도/boj_24263_알고리즘_수행_시간_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24264 | 알고리즘 수행 시간 3 | [🔗](https://www.acmicpc.net/problem/24264) | [📁](./시간복잡도/boj_24264_알고리즘_수행_시간_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24265 | 알고리즘 수행 시간 4 | [🔗](https://www.acmicpc.net/problem/24265) | [📁](./시간복잡도/boj_24265_알고리즘_수행_시간_4) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24266 | 알고리즘 수행 시간 5 | [🔗](https://www.acmicpc.net/problem/24266) | [📁](./시간복잡도/boj_24266_알고리즘_수행_시간_5) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/4.svg" width="20"/> | 24267 | 알고리즘 수행 시간 6 | [🔗](https://www.acmicpc.net/problem/24267) | [📁](./시간복잡도/boj_24267_알고리즘_수행_시간_6) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24313 | 점근적 표기 1 | [🔗](https://www.acmicpc.net/problem/24313) | [📁](./시간복잡도/boj_24313_점근적_표기_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24314 | 점근적 표기 2 | [🔗](https://www.acmicpc.net/problem/24314) | [📁](./시간복잡도/boj_24314_점근적_표기_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24315 | 점근적 표기 3 | [🔗](https://www.acmicpc.net/problem/24315) | [📁](./시간복잡도/boj_24315_점근적_표기_3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
