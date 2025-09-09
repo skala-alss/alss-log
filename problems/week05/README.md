@@ -71,12 +71,12 @@
 | <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24265 | 알고리즘 수행 시간 4 | [🔗](https://www.acmicpc.net/problem/24265) | [📁](./시간복잡도/boj_24265_알고리즘_수행_시간_4) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/3.svg" width="20"/> | 24266 | 알고리즘 수행 시간 5 | [🔗](https://www.acmicpc.net/problem/24266) | [📁](./시간복잡도/boj_24266_알고리즘_수행_시간_5) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" width="20"/> | 24267 | 알고리즘 수행 시간 6 | [🔗](https://www.acmicpc.net/problem/24267) | [📁](./시간복잡도/boj_24267_알고리즘_수행_시간_6) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24313 | 점근적 표기 1 | [🔗](https://www.acmicpc.net/problem/24313) | [📁](./시간복잡도/boj_24313_점근적_표기_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24314 | 점근적 표기 2 | [🔗](https://www.acmicpc.net/problem/24314) | [📁](./시간복잡도/boj_24314_점근적_표기_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24315 | 점근적 표기 3 | [🔗](https://www.acmicpc.net/problem/24315) | [📁](./시간복잡도/boj_24315_점근적_표기_3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24368 | 점근적 표기 4 | [🔗](https://www.acmicpc.net/problem/24368) | [📁](./시간복잡도/boj_24368_점근적_표기_4) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24369 | 점근적 표기 5 | [🔗](https://www.acmicpc.net/problem/24369) | [📁](./시간복잡도/boj_24369_점근적_표기_5) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24370 | 점근적 표기 6 | [🔗](https://www.acmicpc.net/problem/24370) | [📁](./시간복잡도/boj_24370_점근적_표기_6) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24313 | 점근적 표기 1 | [🔗](https://www.acmicpc.net/problem/24313) | [📁](./시간복잡도/boj_24313_점근적_표기_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24314 | 점근적 표기 2 | [🔗](https://www.acmicpc.net/problem/24314) | [📁](./시간복잡도/boj_24314_점근적_표기_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24315 | 점근적 표기 3 | [🔗](https://www.acmicpc.net/problem/24315) | [📁](./시간복잡도/boj_24315_점근적_표기_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24368 | 점근적 표기 4 | [🔗](https://www.acmicpc.net/problem/24368) | [📁](./시간복잡도/boj_24368_점근적_표기_4) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24369 | 점근적 표기 5 | [🔗](https://www.acmicpc.net/problem/24369) | [📁](./시간복잡도/boj_24369_점근적_표기_5) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24370 | 점근적 표기 6 | [🔗](https://www.acmicpc.net/problem/24370) | [📁](./시간복잡도/boj_24370_점근적_표기_6) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:COMPLEXITY-->
 
