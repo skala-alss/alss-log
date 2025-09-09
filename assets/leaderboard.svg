@@ -64,15 +64,15 @@
       
           <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
             <g transform="translate(0,16)">
-              <title>nOOne-is-hier · 66% (158/238) · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <title>nOOne-is-hier · 69% (164/238) · github:nOOne-is-hier · boj:kanadachocolate</title>
               <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:316.8px; animation-delay:0.00s"/>
-                <text class="pct" x="468" y="28.0">66%</text>
-                <text class="nd"  x="12" y="28.0">158/238</text>
+                      style="--wpx:331.2px; animation-delay:0.00s"/>
+                <text class="pct" x="468" y="28.0">69%</text>
+                <text class="nd"  x="12" y="28.0">164/238</text>
               </g>
             </g>
           </a>
@@ -92,39 +92,39 @@
             </g>
           </a>
         
-          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
             <g transform="translate(0,120)">
+              <title>SDGeo12 · 29% (69/238) · github:SDGeo12 · boj:sdgeo20</title>
+              <text class="name" x="158" y="28.0" text-anchor="end">SDGeo12</text>
+              <g class="barwrap" transform="translate(168,0)">
+                <rect class="track" width="480" height="44" rx="10" ry="10"/>
+                <!-- width px 애니메이션: 둥근 모서리 유지 -->
+                <rect class="bar" width="0" height="44" rx="10" ry="10"
+                      style="--wpx:139.2px; animation-delay:0.12s"/>
+                <text class="pct" x="468" y="28.0">29%</text>
+                <text class="nd"  x="12" y="28.0">69/238</text>
+              </g>
+            </g>
+          </a>
+        
+          <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+            <g transform="translate(0,172)">
               <title>skala-changhyun · 28% (67/238) · github:skala-changhyun · boj:gcgc09</title>
               <text class="name" x="158" y="28.0" text-anchor="end">skala-changhyun</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:134.4px; animation-delay:0.12s"/>
+                      style="--wpx:134.4px; animation-delay:0.18s"/>
                 <text class="pct" x="468" y="28.0">28%</text>
                 <text class="nd"  x="12" y="28.0">67/238</text>
               </g>
             </g>
           </a>
         
-          <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
-            <g transform="translate(0,172)">
-              <title>SDGeo12 · 27% (65/238) · github:SDGeo12 · boj:sdgeo20</title>
-              <text class="name" x="158" y="28.0" text-anchor="end">SDGeo12</text>
-              <g class="barwrap" transform="translate(168,0)">
-                <rect class="track" width="480" height="44" rx="10" ry="10"/>
-                <!-- width px 애니메이션: 둥근 모서리 유지 -->
-                <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:129.60000000000002px; animation-delay:0.18s"/>
-                <text class="pct" x="468" y="28.0">27%</text>
-                <text class="nd"  x="12" y="28.0">65/238</text>
-              </g>
-            </g>
-          </a>
-        
           <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
             <g transform="translate(0,224)">
-              <title>jiyunee02 · 21% (49/238) · github:jiyunee02 · boj:jiyun301</title>
+              <title>jiyunee02 · 21% (50/238) · github:jiyunee02 · boj:jiyun301</title>
               <text class="name" x="158" y="28.0" text-anchor="end">jiyunee02</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
@@ -132,7 +132,7 @@
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
                       style="--wpx:100.8px; animation-delay:0.24s"/>
                 <text class="pct" x="468" y="28.0">21%</text>
-                <text class="nd"  x="12" y="28.0">49/238</text>
+                <text class="nd"  x="12" y="28.0">50/238</text>
               </g>
             </g>
           </a>
