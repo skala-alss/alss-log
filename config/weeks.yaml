@@ -359,3 +359,62 @@ weeks:
     - 11662
     - 11664
     - 32136
+- id: 7
+  path: problems/week07/README.md
+  groups:
+  - key: DP_BASIC
+    marker: PROGRESS:DP_BASIC
+    title: 🧩 동적 계획법 (Dynamic Programming)
+    problems:
+    - 1003
+    - 1010
+    - 1149
+    - 1463
+    - 1912
+    - 1932
+    - 2156
+    - 2579
+    - 2775
+    - 2839
+    - 9095
+    - 9461
+    - 11053
+    - 11726
+    - 11727
+  - key: DP_ADVANCED
+    marker: PROGRESS:DP_ADVANCED
+    title: 🧠 고급
+    problems:
+    - 2096
+    - 2133
+    - 2225
+    - 2565
+    - 9251
+    - 10942
+    - 11054
+    - 12865
+  - key: DP_DEEP
+    marker: PROGRESS:DP_DEEP
+    title: 🔬 심화
+    problems:
+    - 2098
+    - 2293
+    - 2294
+    - 10971
+    - 11047
+    - 14501
+    - 15486
+    - 16991
+  - key: DP_PRACTICE
+    marker: PROGRESS:DP_PRACTICE
+    title: 🧪 연습
+    problems:
+    - 24416
+    - 24417
+    - 24418
+    - 24419
+    - 24426
+    - 24427
+    - 24428
+    - 24429
+    - 24430
