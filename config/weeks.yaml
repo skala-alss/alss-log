@@ -296,3 +296,125 @@ weeks:
     - 24368
     - 24369
     - 24370
+- id: 6
+  path: problems/week06/README.md
+  groups:
+  - key: SLIDING_TWO_POINTER
+    marker: PROGRESS:SLIDING_TWO_POINTER
+    title: 🔁 슬라이딩 윈도우 / 투 포인터
+    problems:
+    - 1940
+    - 2531
+    - 2559
+    - 10025
+    - 12847
+    - 12891
+    - 14465
+    - 15565
+    - 21921
+    - 27496
+  - key: BINARY_SEARCH
+    marker: PROGRESS:BINARY_SEARCH
+    title: 🔎 이분 탐색 / 파라메트릭 서치
+    problems:
+    - 1654
+    - 2343
+    - 2512
+    - 2792
+    - 2805
+    - 6236
+    - 13702
+    - 14627
+    - 16401
+    - 16564
+  - key: ADVANCED
+    marker: PROGRESS:ADVANCED
+    title: 🧠 고급
+    problems:
+    - 1253
+    - 1561
+    - 1644
+    - 1806
+    - 2110
+    - 2352
+    - 2467
+    - 2470
+    - 2473
+    - 2539
+    - 3020
+    - 3078
+    - 3079
+    - 15961
+    - 17951
+    - 20437
+  - key: TERNARY_MITM
+    marker: PROGRESS:TERNARY_MITM
+    title: 🔺 삼분탐색 / 중간에서 만나기 (MITM)
+    problems:
+    - 1208
+    - 1450
+    - 2295
+    - 7453
+    - 9998
+    - 11662
+    - 11664
+    - 32136
+- id: 7
+  path: problems/week07/README.md
+  groups:
+  - key: DP_BASIC
+    marker: PROGRESS:DP_BASIC
+    title: 🧩 동적 계획법 (Dynamic Programming)
+    problems:
+    - 1003
+    - 1010
+    - 1149
+    - 1463
+    - 1912
+    - 1932
+    - 2156
+    - 2579
+    - 2775
+    - 2839
+    - 9095
+    - 9461
+    - 11053
+    - 11726
+    - 11727
+  - key: DP_ADVANCED
+    marker: PROGRESS:DP_ADVANCED
+    title: 🧠 고급
+    problems:
+    - 2096
+    - 2133
+    - 2225
+    - 2565
+    - 9251
+    - 10942
+    - 11054
+    - 12865
+  - key: DP_DEEP
+    marker: PROGRESS:DP_DEEP
+    title: 🔬 심화
+    problems:
+    - 2098
+    - 2293
+    - 2294
+    - 10971
+    - 11047
+    - 14501
+    - 15486
+    - 16991
+  - key: DP_PRACTICE
+    marker: PROGRESS:DP_PRACTICE
+    title: 🧪 연습
+    problems:
+    - 24416
+    - 24417
+    - 24418
+    - 24419
+    - 24426
+    - 24427
+    - 24428
+    - 24429
+    - 24430
