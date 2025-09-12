@@ -64,15 +64,15 @@
       
           <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
             <g transform="translate(0,16)">
-              <title>nOOne-is-hier · 62% (173/278) · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <title>nOOne-is-hier · 64% (177/278) · github:nOOne-is-hier · boj:kanadachocolate</title>
               <text class="name" x="158" y="28.0" text-anchor="end">nOOne-is-hier</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:297.6px; animation-delay:0.00s"/>
-                <text class="pct" x="468" y="28.0">62%</text>
-                <text class="nd"  x="12" y="28.0">173/278</text>
+                      style="--wpx:307.2px; animation-delay:0.00s"/>
+                <text class="pct" x="468" y="28.0">64%</text>
+                <text class="nd"  x="12" y="28.0">177/278</text>
               </g>
             </g>
           </a>
@@ -139,15 +139,15 @@
         
           <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
             <g transform="translate(0,276)">
-              <title>JinYeopKang · 12% (34/278) · github:JinYeopKang · boj:jyyj14587</title>
+              <title>JinYeopKang · 14% (39/278) · github:JinYeopKang · boj:jyyj14587</title>
               <text class="name" x="158" y="28.0" text-anchor="end">JinYeopKang</text>
               <g class="barwrap" transform="translate(168,0)">
                 <rect class="track" width="480" height="44" rx="10" ry="10"/>
                 <!-- width px 애니메이션: 둥근 모서리 유지 -->
                 <rect class="bar" width="0" height="44" rx="10" ry="10"
-                      style="--wpx:57.599999999999994px; animation-delay:0.30s"/>
-                <text class="pct" x="468" y="28.0">12%</text>
-                <text class="nd"  x="12" y="28.0">34/278</text>
+                      style="--wpx:67.2px; animation-delay:0.30s"/>
+                <text class="pct" x="468" y="28.0">14%</text>
+                <text class="nd"  x="12" y="28.0">39/278</text>
               </g>
             </g>
           </a>
