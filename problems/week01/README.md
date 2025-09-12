@@ -21,7 +21,7 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 10171 | 고양이 | [🔗](https://www.acmicpc.net/problem/10171) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_10171_%EA%B3%A0%EC%96%91%EC%9D%B4) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 10172 | 개 | [🔗](https://www.acmicpc.net/problem/10172) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_10172_%EA%B0%9C) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 25083 | 새싹 | [🔗](https://www.acmicpc.net/problem/25083) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_25083_%EC%83%88%EC%8B%B9) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 11718 | 그대로 출력하기 | [🔗](https://www.acmicpc.net/problem/11718) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_11718_%EA%B7%B8%EB%8C%80%EB%A1%9C_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 11718 | 그대로 출력하기 | [🔗](https://www.acmicpc.net/problem/11718) | [📁](./%EC%B6%9C%EB%A0%A5%20%C2%B7%20%EC%9E%85%EB%A0%A5%20%EC%97%B0%EC%8A%B5/boj_11718_%EA%B7%B8%EB%8C%80%EB%A1%9C_%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 
 <!--END:PROGRESS:IO-->
 
@@ -66,7 +66,7 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 9498 | 시험 성적 | [🔗](https://www.acmicpc.net/problem/9498) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_9498_%EC%8B%9C%ED%97%98_%EC%84%B1%EC%A0%81) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 14681 | 사분면 고르기 | [🔗](https://www.acmicpc.net/problem/14681) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_14681_%EC%82%AC%EB%B6%84%EB%A9%B4_%EA%B3%A0%EB%A5%B4%EA%B8%B0) | ✅ | ✅ | ☑️ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 2753 | 윤년 | [🔗](https://www.acmicpc.net/problem/2753) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2753_%EC%9C%A4%EB%85%84) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2754 | 학점계산 | [🔗](https://www.acmicpc.net/problem/2754) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2754_%ED%95%99%EC%A0%90%EA%B3%84%EC%82%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 2754 | 학점계산 | [🔗](https://www.acmicpc.net/problem/2754) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2754_%ED%95%99%EC%A0%90%EA%B3%84%EC%82%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/2.svg" alt="Bronze IV" width="20"/> | 2480 | 주사위 세개 | [🔗](https://www.acmicpc.net/problem/2480) | [📁](./%EC%A1%B0%EA%B1%B4%EB%AC%B8/boj_2480_%EC%A3%BC%EC%82%AC%EC%9C%84_%EC%84%B8%EA%B0%9C) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 
 <!--END:PROGRESS:IF-->
@@ -112,8 +112,8 @@
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 11654 | 아스키 코드 | [🔗](https://www.acmicpc.net/problem/11654) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_11654_%EC%95%84%EC%8A%A4%ED%82%A4_%EC%BD%94%EB%93%9C) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 2743 | 단어 길이 재기 | [🔗](https://www.acmicpc.net/problem/2743) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_2743_%EB%8B%A8%EC%96%B4_%EA%B8%B8%EC%9D%B4_%EC%9E%AC%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 2744 | 대소문자 바꾸기 | [🔗](https://www.acmicpc.net/problem/2744) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_2744_%EB%8C%80%EC%86%8C%EB%AC%B8%EC%9E%90_%EB%B0%94%EA%BE%B8%EA%B8%B0) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 27866 | 문자와 문자열 | [🔗](https://www.acmicpc.net/problem/27866) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_27866_%EB%AC%B8%EC%9E%90%EC%99%80_%EB%AC%B8%EC%9E%90%EC%97%B4) | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 9086 | 문자열 | [🔗](https://www.acmicpc.net/problem/9086) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_9086_%EB%AC%B8%EC%9E%90%EC%97%B4) | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 27866 | 문자와 문자열 | [🔗](https://www.acmicpc.net/problem/27866) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_27866_%EB%AC%B8%EC%9E%90%EC%99%80_%EB%AC%B8%EC%9E%90%EC%97%B4) | ✅ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| <img src="https://static.solved.ac/tier_small/1.svg" alt="Bronze V" width="20"/> | 9086 | 문자열 | [🔗](https://www.acmicpc.net/problem/9086) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_9086_%EB%AC%B8%EC%9E%90%EC%97%B4) | ✅ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | <img src="https://static.solved.ac/tier_small/2.svg" alt="Bronze IV" width="20"/> | 14935 | FA | [🔗](https://www.acmicpc.net/problem/14935) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_14935_FA) | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 20528 | 끝말잇기 | [🔗](https://www.acmicpc.net/problem/20528) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_20528_%EB%81%9D%EB%A7%90%EC%9E%87%EA%B8%B0) | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/3.svg" alt="Bronze III" width="20"/> | 20944 | 팰린드롬 척화비 | [🔗](https://www.acmicpc.net/problem/20944) | [📁](./%EB%AC%B8%EC%9E%90%EC%97%B4/boj_20944_%ED%8C%B0%EB%A6%B0%EB%93%9C%EB%A1%AC_%EC%B2%99%ED%99%94%EB%B9%84) | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ |

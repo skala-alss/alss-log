@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.StringTokenizer;
+
+public class donggeon_23882 {
+
+    static int k;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(st.nextToken());
+
+        // 배열 값 할당
+        st = new StringTokenizer(br.readLine());
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        // 선택 정렬 및 출력
+        selection_sort(arr);
+    }
+
+    public static void selection_sort(int[] arr) {
+        int cnt = 0;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int idx = i;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] > arr[idx]) {
+                    idx = j;
+                }
+            }
+
+            if (idx != i) {
+                int temp = arr[i];
+                arr[i] = arr[idx];
+                arr[idx] = temp;
+                cnt++;
+            }
+            if (cnt == k) {
+                for (int val : arr) {
+                    System.out.print(val + " ");
+                }
+                return;
+            }
+        }
+        System.out.println(-1);
+    }
+}

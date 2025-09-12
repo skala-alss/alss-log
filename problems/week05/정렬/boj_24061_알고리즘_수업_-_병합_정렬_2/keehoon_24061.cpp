@@ -1,12 +1,12 @@
-// 24060 – 알고리즘 수업 - 병합 정렬 1
-// https://www.acmicpc.net/problem/24060
-// solved.ac: https://solved.ac/search?query=24060
+// 24061 – 알고리즘 수업 - 병합 정렬 2
+// https://www.acmicpc.net/problem/24061
+// solved.ac: https://solved.ac/search?query=24061
 // 시간 제한: 1 초
 // 메모리 제한: 512 MB
-// 티어: ⚪ Silver III
+// 티어: ⚪ Silver IV
 // 태그: 구현, 재귀, 정렬
-// 푼 사람 수: 9,136
-// 평균 시도: 2.10
+// 푼 사람 수: 389
+// 평균 시도: 2.33
 
 #include <iostream>
 #include <vector>
@@ -49,52 +49,41 @@ int main()
     vector<int> tmp;
     tmp.reserve(r - p + 1);
 
-    int i = p, j = q + 1;
+    int i = p;
+    int j = q + 1;
     while (i <= q && j <= r)
     {
       if (A[i] <= A[j])
         tmp.push_back(A[i++]);
       else
         tmp.push_back(A[j++]);
+    }
 
+    while (i <= q)
+      tmp.push_back(A[i++]);
+
+    while (j <= r)
+      tmp.push_back(A[j++]);
+
+    for (int t = 0; t < int(tmp.size()); ++t)
+    {
+      A[p + t] = tmp[t];
       --K;
       if (!K)
       {
-        cout << *tmp.rbegin();
+        for (int &number : A)
+          cout << number << ' ';
         return;
       }
     }
-
-    // 왼쪽 잔여
-    while (i <= q)
-    {
-      tmp.push_back(A[i++]);
-      if (--K == 0)
-      {
-        cout << tmp.back();
-        return;
-      }
-    }
-
-    // 오른쪽 잔여
-    while (j <= r)
-    {
-      tmp.push_back(A[j++]);
-      if (--K == 0)
-      {
-        cout << tmp.back();
-        return;
-      }
-    }
-
-    copy(tmp.begin(), tmp.end(), A.begin() + p);
   };
 
   auto merge_sort = [&](auto &&self, int p, int r) -> void
   {
     if (p >= r || !K)
       return;
-    int q = (p + r) >> 1;
+    int q = (p + r) / 2;
+
     self(self, p, q);
     self(self, q + 1, r);
     if (K)
