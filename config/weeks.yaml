@@ -264,6 +264,8 @@ weeks:
     - 24090
     - 24091
     - 24092
+    - 24173
+    - 24174
   - key: SORT_ADVANCED
     marker: PROGRESS:SORT_ADVANCED
     title: 🧠 정렬 — 심화 (고급)
