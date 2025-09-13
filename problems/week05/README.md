@@ -31,6 +31,8 @@
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24090 | 알고리즘 수업 - 퀵 정렬 1 | [🔗](https://www.acmicpc.net/problem/24090) | [📁](./정렬/boj_24090_알고리즘_수업_-_퀵_정렬_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 24091 | 알고리즘 수업 - 퀵 정렬 2 | [🔗](https://www.acmicpc.net/problem/24091) | [📁](./정렬/boj_24091_알고리즘_수업_-_퀵_정렬_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 24092 | 알고리즘 수업 - 퀵 정렬 3 | [🔗](https://www.acmicpc.net/problem/24092) | [📁](./정렬/boj_24092_알고리즘_수업_-_퀵_정렬_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24173 | 알고리즘 수업 - 힙 정렬 1 | [🔗](https://www.acmicpc.net/problem/24173) | [📁](./정렬/boj_24173_알고리즘_수업_-_힙_정렬_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" width="20"/> | 24174 | 알고리즘 수업 - 힙 정렬 2 | [🔗](https://www.acmicpc.net/problem/24174) | [📁](./정렬/boj_24174_알고리즘_수업_-_힙_정렬_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:SORT_BASIC-->
 
