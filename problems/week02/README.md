@@ -17,7 +17,7 @@
 | :----: | ----: | :------- | :-----------------------------------------: | :---------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 17608 | 막대기 | [🔗](https://www.acmicpc.net/problem/17608) | [📁](./스택/boj_17608_막대기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 12605 | 단어순서 뒤집기 | [🔗](https://www.acmicpc.net/problem/12605) | [📁](./스택/boj_12605_단어순서_뒤집기) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10828 | 스택 | [🔗](https://www.acmicpc.net/problem/10828) | [📁](./스택/boj_10828_스택) | ✅ | ☑️ | ✅ | ✅ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10828 | 스택 | [🔗](https://www.acmicpc.net/problem/10828) | [📁](./스택/boj_10828_스택) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1874 | 스택 수열 | [🔗](https://www.acmicpc.net/problem/1874) | [📁](./스택/boj_1874_스택_수열) | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" alt="Gold II" width="20"/> | 1918 | 후위 표기식 | [🔗](https://www.acmicpc.net/problem/1918) | [📁](./스택/boj_1918_후위_표기식) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
@@ -33,7 +33,7 @@
 | :----: | ----: | :--------- | :-----------------------------------------: | :----------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2161 | 카드1 | [🔗](https://www.acmicpc.net/problem/2161) | [📁](./큐/boj_2161_카드1) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 26042 | 식당 입구 대기 줄 | [🔗](https://www.acmicpc.net/problem/26042) | [📁](./큐/boj_26042_식당_입구_대기_줄) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ☑️ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 18258 | 큐 2 | [🔗](https://www.acmicpc.net/problem/18258) | [📁](./큐/boj_18258_큐_2) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1158 | 요세푸스 문제 | [🔗](https://www.acmicpc.net/problem/1158) | [📁](./큐/boj_1158_요세푸스_문제) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1966 | 프린터 큐 | [🔗](https://www.acmicpc.net/problem/1966) | [📁](./큐/boj_1966_프린터_큐) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 
@@ -49,7 +49,7 @@
 | :----: | ----: | :-------- | :-----------------------------------------: | :---------------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 1927 | 최소 힙 | [🔗](https://www.acmicpc.net/problem/1927) | [📁](./우선순위%20큐/boj_1927_최소_힙) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg" alt="Silver II" width="20"/> | 11279 | 최대 힙 | [🔗](https://www.acmicpc.net/problem/11279) | [📁](./우선순위%20큐/boj_11279_최대_힙) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11286 | 절댓값 힙 | [🔗](https://www.acmicpc.net/problem/11286) | [📁](./우선순위%20큐/boj_11286_절댓값_힙) | ✅ | ☑️ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" alt="Silver I" width="20"/> | 11286 | 절댓값 힙 | [🔗](https://www.acmicpc.net/problem/11286) | [📁](./우선순위%20큐/boj_11286_절댓값_힙) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2075 | N번째 큰 수 | [🔗](https://www.acmicpc.net/problem/2075) | [📁](./우선순위%20큐/boj_2075_N번째_큰_수) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 7662 | 이중 우선순위 큐 | [🔗](https://www.acmicpc.net/problem/7662) | [📁](./우선순위%20큐/boj_7662_이중_우선순위_큐) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
@@ -65,7 +65,7 @@
 | :----: | ----: | :------ | :-----------------------------------------: | :------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 10866 | 덱 | [🔗](https://www.acmicpc.net/problem/10866) | [📁](./덱/boj_10866_덱) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 28279 | 덱 2 | [🔗](https://www.acmicpc.net/problem/28279) | [📁](./덱/boj_28279_덱_2) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1021 | 회전하는 큐 | [🔗](https://www.acmicpc.net/problem/1021) | [📁](./덱/boj_1021_회전하는_큐) | ✅ | ☑️ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 1021 | 회전하는 큐 | [🔗](https://www.acmicpc.net/problem/1021) | [📁](./덱/boj_1021_회전하는_큐) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 2346 | 풍선 터뜨리기 | [🔗](https://www.acmicpc.net/problem/2346) | [📁](./덱/boj_2346_풍선_터뜨리기) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" alt="Gold V" width="20"/> | 5430 | AC | [🔗](https://www.acmicpc.net/problem/5430) | [📁](./덱/boj_5430_AC) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
@@ -98,9 +98,9 @@
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 11723 | 집합 | [🔗](https://www.acmicpc.net/problem/11723) | [📁](./집합과%20맵/boj_11723_집합) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 7785 | 회사에 있는 사람 | [🔗](https://www.acmicpc.net/problem/7785) | [📁](./집합과%20맵/boj_7785_회사에_있는_사람) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2822 | 점수 계산 | [🔗](https://www.acmicpc.net/problem/2822) | [📁](./집합과%20맵/boj_2822_점수_계산) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 10815 | 숫자 카드 | [🔗](https://www.acmicpc.net/problem/10815) | [📁](./집합과%20맵/boj_10815_숫자_카드) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 17219 | 비밀번호 찾기 | [🔗](https://www.acmicpc.net/problem/17219) | [📁](./집합과%20맵/boj_17219_비밀번호_찾기) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1764 | 듣보잡 | [🔗](https://www.acmicpc.net/problem/1764) | [📁](./집합과%20맵/boj_1764_듣보잡) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 10815 | 숫자 카드 | [🔗](https://www.acmicpc.net/problem/10815) | [📁](./집합과%20맵/boj_10815_숫자_카드) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 17219 | 비밀번호 찾기 | [🔗](https://www.acmicpc.net/problem/17219) | [📁](./집합과%20맵/boj_17219_비밀번호_찾기) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1764 | 듣보잡 | [🔗](https://www.acmicpc.net/problem/1764) | [📁](./집합과%20맵/boj_1764_듣보잡) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1620 | 나는야 포켓몬 마스터 이다솜 | [🔗](https://www.acmicpc.net/problem/1620) | [📁](./집합과%20맵/boj_1620_나는야_포켓몬_마스터_이다솜) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/7.svg" alt="Silver IV" width="20"/> | 1302 | 베스트셀러 | [🔗](https://www.acmicpc.net/problem/1302) | [📁](./집합과%20맵/boj_1302_베스트셀러) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" alt="Silver III" width="20"/> | 9375 | 패션왕 신해빈 | [🔗](https://www.acmicpc.net/problem/9375) | [📁](./집합과%20맵/boj_9375_패션왕_신해빈) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |

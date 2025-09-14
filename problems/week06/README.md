@@ -44,8 +44,8 @@
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 1654 | 랜선 자르기 | [🔗](https://www.acmicpc.net/problem/1654) | [📁](./이분_탐색&파라메트릭_서치/boj_1654_랜선_자르기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 2512 | 예산 | [🔗](https://www.acmicpc.net/problem/2512) | [📁](./이분_탐색&파라메트릭_서치/boj_2512_예산) | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 2805 | 나무 자르기 | [🔗](https://www.acmicpc.net/problem/2805) | [📁](./이분_탐색&파라메트릭_서치/boj_2805_나무_자르기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 13702 | 이상한 술집 | [🔗](https://www.acmicpc.net/problem/13702) | [📁](./이분_탐색&파라메트릭_서치/boj_13702_이상한_술집) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 14627 | 파닭파닭 | [🔗](https://www.acmicpc.net/problem/14627) | [📁](./이분_탐색&파라메트릭_서치/boj_14627_파닭파닭) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 13702 | 이상한 술집 | [🔗](https://www.acmicpc.net/problem/13702) | [📁](./이분_탐색&파라메트릭_서치/boj_13702_이상한_술집) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 14627 | 파닭파닭 | [🔗](https://www.acmicpc.net/problem/14627) | [📁](./이분_탐색&파라메트릭_서치/boj_14627_파닭파닭) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 16401 | 과자 나눠주기 | [🔗](https://www.acmicpc.net/problem/16401) | [📁](./이분_탐색&파라메트릭_서치/boj_16401_과자_나눠주기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 2343 | 기타 레슨 | [🔗](https://www.acmicpc.net/problem/2343) | [📁](./이분_탐색&파라메트릭_서치/boj_2343_기타_레슨) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 2792 | 보석 상자 | [🔗](https://www.acmicpc.net/problem/2792) | [📁](./이분_탐색&파라메트릭_서치/boj_2792_보석_상자) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
