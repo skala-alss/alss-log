@@ -237,11 +237,11 @@
               <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
                 <g transform="translate(180,96)">
                   <g class="cell-anim" style="animation-delay:0.21s">
-                    <title>W02 · SDGeo12 · 32% (19/59) · github:SDGeo12 · boj:sdgeo20</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 73.8%)" />
+                    <title>W02 · SDGeo12 · 44% (26/59) · github:SDGeo12 · boj:sdgeo20</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 66.9%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">32%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">44%</text>
                   </g>
                 </g>
               </a>
@@ -301,10 +301,10 @@
 
           <g transform="translate(700,96)">
             <g class="cell-anim avg" style="animation-delay:0.36s">
-              <title>W02 · 전체 평균 39% (Σ분자=137 / Σ분모=354)</title>
+              <title>W02 · 전체 평균 41% (Σ분자=144 / Σ분모=354)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
-                    text-anchor="middle" dominant-baseline="middle">39%</text>
+                    text-anchor="middle" dominant-baseline="middle">41%</text>
             </g>
           </g>
         
@@ -500,11 +500,11 @@
               <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
                 <g transform="translate(76,252)">
                   <g class="cell-anim" style="animation-delay:0.72s">
-                    <title>W06 · nOOne-is-hier · 30% (13/44) · github:nOOne-is-hier · boj:kanadachocolate</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 74.9%)" />
+                    <title>W06 · nOOne-is-hier · 34% (15/44) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 72.6%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">30%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">34%</text>
                   </g>
                 </g>
               </a>
@@ -577,10 +577,10 @@
 
           <g transform="translate(700,252)">
             <g class="cell-anim avg" style="animation-delay:0.90s">
-              <title>W06 · 전체 평균 8% (Σ분자=21 / Σ분모=264)</title>
+              <title>W06 · 전체 평균 9% (Σ분자=23 / Σ분모=264)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
-                    text-anchor="middle" dominant-baseline="middle">8%</text>
+                    text-anchor="middle" dominant-baseline="middle">9%</text>
             </g>
           </g>
         
