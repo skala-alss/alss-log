@@ -30,9 +30,7 @@ def main() -> None:
                     visited[i] = False
         backtracking(1)
         print("\n".join(result))   
-        
     
-
 if __name__ == "__main__":
     main()
 
