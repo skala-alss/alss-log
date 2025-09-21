@@ -420,3 +420,64 @@ weeks:
     - 24428
     - 24429
     - 24430
+- id: 8
+  path: problems/week08/README.md
+  groups:
+  - key: DFS_BFS
+    marker: PROGRESS:DFS_BFS
+    title: 🧭 그래프 탐색 (DFS/BFS)
+    problems:
+    - 24444
+    - 24445
+    - 24446
+    - 24447
+    - 24479
+    - 24480
+    - 24481
+    - 24482
+    - 24483
+    - 24484
+  - key: GRAPH_DEEP
+    marker: PROGRESS:GRAPH_DEEP
+    title: 🔬 심화
+    problems:
+    - 1260
+    - 1697
+    - 2146
+    - 2178
+    - 2206
+    - 2606
+    - 2644
+    - 2667
+    - 5427
+    - 7569
+    - 7576
+    - 9019
+    - 13913
+    - 14503
+    - 16236
+    - 16928
+    - 16940
+    - 16947
+    - 16964
+  - key: TREE
+    marker: PROGRESS:TREE
+    title: 🌲 트리
+    problems:
+    - 1167
+    - 1967
+    - 1991
+    - 2250
+    - 4803
+    - 11725
+    - 14267
+    - 15681
+  - key: TOPOLOGICAL_SORT
+    marker: PROGRESS:TOPOLOGICAL_SORT
+    title: 🧱 위상정렬
+    problems:
+    - 1005
+    - 1766
+    - 2056
+    - 3665
+    - 14567
