@@ -54,6 +54,11 @@ SKALA 알고리즘 스터디 (ALSS)의 문제 풀이 기록 저장소입니다.
           </tr>
           <tr>
             <td>Week 08</td>
+            <td><a href="./docs/study-note-week08.pdf">📄 PDF</a></td>
+            <td><a href="./problems/week08">📂 week08</a></td>
+          </tr>
+          <tr>
+            <td>Week 09</td>
             <td>(예정)</td>
             <td>-</td>
           </tr>
