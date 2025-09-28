@@ -481,3 +481,60 @@ weeks:
     - 2056
     - 3665
     - 14567
+- id: 9
+  path: problems/week09/README.md
+  groups:
+  - key: DIJKSTRA
+    marker: PROGRESS:DIJKSTRA
+    title: 🚦 다익스트라
+    problems:
+    - 1446
+    - 1916
+    - 4485
+    - 18352
+    - 22955
+  - key: BELLMAN_FORD
+    marker: PROGRESS:BELLMAN_FORD
+    title: ⏱️ 벨만‑포드
+    problems:
+    - 1219
+    - 1738
+    - 1865
+    - 11657
+    - 13317
+  - key: FLOYD_WARSHALL
+    marker: PROGRESS:FLOYD_WARSHALL
+    title: 🌐 플로이드‑워셜
+    problems:
+    - 1058
+    - 1389
+    - 2660
+    - 11403
+    - 11404
+  - key: ZERO_ONE_BFS
+    marker: PROGRESS:ZERO_ONE_BFS
+    title: 🧮 0‑1 BFS
+    problems:
+    - 1261
+    - 1584
+    - 2665
+    - 13549
+    - 14497
+  - key: UNION_FIND
+    marker: PROGRESS:UNION_FIND
+    title: 🔗 분리 집합 (Union‑Find)
+    problems:
+    - 1717
+    - 1976
+    - 17352
+    - 17619
+    - 24542
+  - key: MST
+    marker: PROGRESS:MST
+    title: 🕸️ 최소 스패닝 트리 (MST)
+    problems:
+    - 1197
+    - 1647
+    - 1774
+    - 1922
+    - 4386
