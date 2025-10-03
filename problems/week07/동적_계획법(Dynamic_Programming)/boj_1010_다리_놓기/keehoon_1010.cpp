@@ -9,6 +9,7 @@
 // 평균 시도: 2.07
 
 #include <iostream>
+#include <vector>
 #if defined(_WIN32)
 #include <io.h>
 #include <cstdio>
@@ -40,10 +41,19 @@ int main()
   int T;
   cin >> T;
 
-  while (--T)
+  vector<vector<int>> dp(31, vector<int>(31, 1));
+
+  for (int i = 1; i <= 30; ++i)
+    for (int j = 1; j <= i; ++j)
+      if (i != j)
+        dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+
+  while (T--)
   {
     int N, M;
     cin >> N >> M;
-    }
+    cout << dp[M][N] << '\n';
+  }
+
   return 0;
 }
