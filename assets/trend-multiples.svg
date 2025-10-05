@@ -74,7 +74,7 @@
       
           <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
             <g class="card" transform="translate(0,8)">
-              <title>nOOne-is-hier · 9주 추세 · github:nOOne-is-hier · boj:kanadachocolate</title>
+              <title>nOOne-is-hier · 10주 추세 · github:nOOne-is-hier · boj:kanadachocolate</title>
               <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
               <text class="name" x="24" y="18">nOOne-is-hier</text>
               
@@ -83,7 +83,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,24.0 L50.5,69.1 L77.0,33.8 L103.5,52.1 L130.0,53.3 L156.5,59.4 L183.0,66.7 L209.5,76.5 L236.0,81.3" pathLength="1000" style="animation-delay:0.00s"></path>
+              <path class="line" d="M24.0,24.0 L47.6,69.1 L71.1,33.8 L94.7,52.1 L118.2,53.3 L141.8,59.4 L165.3,66.7 L188.9,76.5 L212.4,81.3 L236.0,81.3" pathLength="1000" style="animation-delay:0.00s"></path>
               
               <g class="pt" transform="translate(24.0,24.0)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -93,7 +93,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(50.5,69.1)" tabindex="0">
+              <g class="pt" transform="translate(47.6,69.1)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -101,7 +101,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(77.0,33.8)" tabindex="0">
+              <g class="pt" transform="translate(71.1,33.8)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -109,7 +109,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(103.5,52.1)" tabindex="0">
+              <g class="pt" transform="translate(94.7,52.1)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -117,7 +117,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(130.0,53.3)" tabindex="0">
+              <g class="pt" transform="translate(118.2,53.3)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -125,7 +125,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(156.5,59.4)" tabindex="0">
+              <g class="pt" transform="translate(141.8,59.4)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -133,7 +133,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(183.0,66.7)" tabindex="0">
+              <g class="pt" transform="translate(165.3,66.7)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -141,11 +141,19 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(209.5,76.5)" tabindex="0">
+              <g class="pt" transform="translate(188.9,76.5)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
                   <text x="0" y="2" text-anchor="middle">57%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(212.4,81.3)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">53%</text>
                 </g>
               </g>
             
@@ -162,13 +170,13 @@
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
                 <text x="0" y="2" text-anchor="middle">53%</text>
               </g>
-              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="50.5" y="164" text-anchor="middle">02</text><text class="xt" x="77.0" y="164" text-anchor="middle">03</text><text class="xt" x="103.5" y="164" text-anchor="middle">04</text><text class="xt" x="130.0" y="164" text-anchor="middle">05</text><text class="xt" x="156.5" y="164" text-anchor="middle">06</text><text class="xt" x="183.0" y="164" text-anchor="middle">07</text><text class="xt" x="209.5" y="164" text-anchor="middle">08</text><text class="xt" x="236.0" y="164" text-anchor="middle">09</text>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="47.55555555555556" y="164" text-anchor="middle">02</text><text class="xt" x="71.11111111111111" y="164" text-anchor="middle">03</text><text class="xt" x="94.66666666666667" y="164" text-anchor="middle">04</text><text class="xt" x="118.22222222222223" y="164" text-anchor="middle">05</text><text class="xt" x="141.77777777777777" y="164" text-anchor="middle">06</text><text class="xt" x="165.33333333333334" y="164" text-anchor="middle">07</text><text class="xt" x="188.8888888888889" y="164" text-anchor="middle">08</text><text class="xt" x="212.44444444444446" y="164" text-anchor="middle">09</text><text class="xt" x="236.0" y="164" text-anchor="middle">10</text>
             </g>
           </a>
         
           <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
             <g class="card" transform="translate(274,8)">
-              <title>SDGeo12 · 9주 추세 · github:SDGeo12 · boj:sdgeo20</title>
+              <title>SDGeo12 · 10주 추세 · github:SDGeo12 · boj:sdgeo20</title>
               <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
               <text class="name" x="24" y="18">SDGeo12</text>
               
@@ -177,7 +185,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,59.4 L50.5,100.9 L77.0,83.8 L103.5,98.4 L130.0,105.7 L156.5,108.2 L183.0,108.2 L209.5,113.1 L236.0,115.5" pathLength="1000" style="animation-delay:0.12s"></path>
+              <path class="line" d="M24.0,59.4 L47.6,100.9 L71.1,83.8 L94.7,98.4 L118.2,105.7 L141.8,108.2 L165.3,108.2 L188.9,113.1 L212.4,115.5 L236.0,115.5" pathLength="1000" style="animation-delay:0.12s"></path>
               
               <g class="pt" transform="translate(24.0,59.4)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -187,7 +195,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(50.5,100.9)" tabindex="0">
+              <g class="pt" transform="translate(47.6,100.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -195,7 +203,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(77.0,83.8)" tabindex="0">
+              <g class="pt" transform="translate(71.1,83.8)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -203,7 +211,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(103.5,98.4)" tabindex="0">
+              <g class="pt" transform="translate(94.7,98.4)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -211,7 +219,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(130.0,105.7)" tabindex="0">
+              <g class="pt" transform="translate(118.2,105.7)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -219,7 +227,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(156.5,108.2)" tabindex="0">
+              <g class="pt" transform="translate(141.8,108.2)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -227,7 +235,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(183.0,108.2)" tabindex="0">
+              <g class="pt" transform="translate(165.3,108.2)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -235,11 +243,19 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(209.5,113.1)" tabindex="0">
+              <g class="pt" transform="translate(188.9,113.1)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
                   <text x="0" y="2" text-anchor="middle">27%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(212.4,115.5)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">25%</text>
                 </g>
               </g>
             
@@ -256,13 +272,13 @@
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
                 <text x="0" y="2" text-anchor="middle">25%</text>
               </g>
-              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="50.5" y="164" text-anchor="middle">02</text><text class="xt" x="77.0" y="164" text-anchor="middle">03</text><text class="xt" x="103.5" y="164" text-anchor="middle">04</text><text class="xt" x="130.0" y="164" text-anchor="middle">05</text><text class="xt" x="156.5" y="164" text-anchor="middle">06</text><text class="xt" x="183.0" y="164" text-anchor="middle">07</text><text class="xt" x="209.5" y="164" text-anchor="middle">08</text><text class="xt" x="236.0" y="164" text-anchor="middle">09</text>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="47.55555555555556" y="164" text-anchor="middle">02</text><text class="xt" x="71.11111111111111" y="164" text-anchor="middle">03</text><text class="xt" x="94.66666666666667" y="164" text-anchor="middle">04</text><text class="xt" x="118.22222222222223" y="164" text-anchor="middle">05</text><text class="xt" x="141.77777777777777" y="164" text-anchor="middle">06</text><text class="xt" x="165.33333333333334" y="164" text-anchor="middle">07</text><text class="xt" x="188.8888888888889" y="164" text-anchor="middle">08</text><text class="xt" x="212.44444444444446" y="164" text-anchor="middle">09</text><text class="xt" x="236.0" y="164" text-anchor="middle">10</text>
             </g>
           </a>
         
           <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
             <g class="card" transform="translate(548,8)">
-              <title>jiyunee02 · 9주 추세 · github:jiyunee02 · boj:jiyun301</title>
+              <title>jiyunee02 · 10주 추세 · github:jiyunee02 · boj:jiyun301</title>
               <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
               <text class="name" x="24" y="18">jiyunee02</text>
               
@@ -271,7 +287,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,124.0 L50.5,132.6 L77.0,119.2 L103.5,117.9 L130.0,116.7 L156.5,119.2 L183.0,121.6 L209.5,125.3 L236.0,126.5" pathLength="1000" style="animation-delay:0.24s"></path>
+              <path class="line" d="M24.0,124.0 L47.6,132.6 L71.1,119.2 L94.7,117.9 L118.2,116.7 L141.8,119.2 L165.3,121.6 L188.9,125.3 L212.4,126.5 L236.0,126.5" pathLength="1000" style="animation-delay:0.24s"></path>
               
               <g class="pt" transform="translate(24.0,124.0)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -281,7 +297,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(50.5,132.6)" tabindex="0">
+              <g class="pt" transform="translate(47.6,132.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -289,7 +305,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(77.0,119.2)" tabindex="0">
+              <g class="pt" transform="translate(71.1,119.2)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -297,7 +313,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(103.5,117.9)" tabindex="0">
+              <g class="pt" transform="translate(94.7,117.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -305,7 +321,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(130.0,116.7)" tabindex="0">
+              <g class="pt" transform="translate(118.2,116.7)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -313,7 +329,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(156.5,119.2)" tabindex="0">
+              <g class="pt" transform="translate(141.8,119.2)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -321,7 +337,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(183.0,121.6)" tabindex="0">
+              <g class="pt" transform="translate(165.3,121.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -329,11 +345,19 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(209.5,125.3)" tabindex="0">
+              <g class="pt" transform="translate(188.9,125.3)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
                   <text x="0" y="2" text-anchor="middle">17%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(212.4,126.5)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">16%</text>
                 </g>
               </g>
             
@@ -350,13 +374,13 @@
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
                 <text x="0" y="2" text-anchor="middle">16%</text>
               </g>
-              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="50.5" y="164" text-anchor="middle">02</text><text class="xt" x="77.0" y="164" text-anchor="middle">03</text><text class="xt" x="103.5" y="164" text-anchor="middle">04</text><text class="xt" x="130.0" y="164" text-anchor="middle">05</text><text class="xt" x="156.5" y="164" text-anchor="middle">06</text><text class="xt" x="183.0" y="164" text-anchor="middle">07</text><text class="xt" x="209.5" y="164" text-anchor="middle">08</text><text class="xt" x="236.0" y="164" text-anchor="middle">09</text>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="47.55555555555556" y="164" text-anchor="middle">02</text><text class="xt" x="71.11111111111111" y="164" text-anchor="middle">03</text><text class="xt" x="94.66666666666667" y="164" text-anchor="middle">04</text><text class="xt" x="118.22222222222223" y="164" text-anchor="middle">05</text><text class="xt" x="141.77777777777777" y="164" text-anchor="middle">06</text><text class="xt" x="165.33333333333334" y="164" text-anchor="middle">07</text><text class="xt" x="188.8888888888889" y="164" text-anchor="middle">08</text><text class="xt" x="212.44444444444446" y="164" text-anchor="middle">09</text><text class="xt" x="236.0" y="164" text-anchor="middle">10</text>
             </g>
           </a>
         
           <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
             <g class="card" transform="translate(0,192)">
-              <title>skala-changhyun · 9주 추세 · github:skala-changhyun · boj:gcgc09</title>
+              <title>skala-changhyun · 10주 추세 · github:skala-changhyun · boj:gcgc09</title>
               <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
               <text class="name" x="24" y="18">skala-changhyun</text>
               
@@ -365,7 +389,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,96.0 L50.5,104.5 L77.0,93.5 L103.5,100.9 L130.0,104.5 L156.5,110.6 L183.0,115.5 L209.5,119.2 L236.0,121.6" pathLength="1000" style="animation-delay:0.36s"></path>
+              <path class="line" d="M24.0,96.0 L47.6,104.5 L71.1,93.5 L94.7,100.9 L118.2,104.5 L141.8,110.6 L165.3,115.5 L188.9,119.2 L212.4,121.6 L236.0,121.6" pathLength="1000" style="animation-delay:0.36s"></path>
               
               <g class="pt" transform="translate(24.0,96.0)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -375,7 +399,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(50.5,104.5)" tabindex="0">
+              <g class="pt" transform="translate(47.6,104.5)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -383,7 +407,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(77.0,93.5)" tabindex="0">
+              <g class="pt" transform="translate(71.1,93.5)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -391,7 +415,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(103.5,100.9)" tabindex="0">
+              <g class="pt" transform="translate(94.7,100.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -399,7 +423,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(130.0,104.5)" tabindex="0">
+              <g class="pt" transform="translate(118.2,104.5)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -407,7 +431,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(156.5,110.6)" tabindex="0">
+              <g class="pt" transform="translate(141.8,110.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -415,7 +439,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(183.0,115.5)" tabindex="0">
+              <g class="pt" transform="translate(165.3,115.5)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -423,11 +447,19 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(209.5,119.2)" tabindex="0">
+              <g class="pt" transform="translate(188.9,119.2)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
                   <text x="0" y="2" text-anchor="middle">22%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(212.4,121.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">20%</text>
                 </g>
               </g>
             
@@ -444,13 +476,13 @@
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
                 <text x="0" y="2" text-anchor="middle">20%</text>
               </g>
-              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="50.5" y="164" text-anchor="middle">02</text><text class="xt" x="77.0" y="164" text-anchor="middle">03</text><text class="xt" x="103.5" y="164" text-anchor="middle">04</text><text class="xt" x="130.0" y="164" text-anchor="middle">05</text><text class="xt" x="156.5" y="164" text-anchor="middle">06</text><text class="xt" x="183.0" y="164" text-anchor="middle">07</text><text class="xt" x="209.5" y="164" text-anchor="middle">08</text><text class="xt" x="236.0" y="164" text-anchor="middle">09</text>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="47.55555555555556" y="164" text-anchor="middle">02</text><text class="xt" x="71.11111111111111" y="164" text-anchor="middle">03</text><text class="xt" x="94.66666666666667" y="164" text-anchor="middle">04</text><text class="xt" x="118.22222222222223" y="164" text-anchor="middle">05</text><text class="xt" x="141.77777777777777" y="164" text-anchor="middle">06</text><text class="xt" x="165.33333333333334" y="164" text-anchor="middle">07</text><text class="xt" x="188.8888888888889" y="164" text-anchor="middle">08</text><text class="xt" x="212.44444444444446" y="164" text-anchor="middle">09</text><text class="xt" x="236.0" y="164" text-anchor="middle">10</text>
             </g>
           </a>
         
           <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
             <g class="card" transform="translate(274,192)">
-              <title>seo-youngjae · 9주 추세 · github:seo-youngjae · boj:heaven707</title>
+              <title>seo-youngjae · 10주 추세 · github:seo-youngjae · boj:heaven707</title>
               <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
               <text class="name" x="24" y="18">seo-youngjae</text>
               
@@ -459,7 +491,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,132.6 L50.5,113.1 L77.0,82.6 L103.5,92.3 L130.0,91.1 L156.5,99.6 L183.0,100.9 L209.5,107.0 L236.0,110.6" pathLength="1000" style="animation-delay:0.48s"></path>
+              <path class="line" d="M24.0,132.6 L47.6,113.1 L71.1,82.6 L94.7,92.3 L118.2,91.1 L141.8,99.6 L165.3,100.9 L188.9,107.0 L212.4,110.6 L236.0,110.6" pathLength="1000" style="animation-delay:0.48s"></path>
               
               <g class="pt" transform="translate(24.0,132.6)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -469,7 +501,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(50.5,113.1)" tabindex="0">
+              <g class="pt" transform="translate(47.6,113.1)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -477,7 +509,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(77.0,82.6)" tabindex="0">
+              <g class="pt" transform="translate(71.1,82.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -485,7 +517,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(103.5,92.3)" tabindex="0">
+              <g class="pt" transform="translate(94.7,92.3)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -493,7 +525,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(130.0,91.1)" tabindex="0">
+              <g class="pt" transform="translate(118.2,91.1)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -501,7 +533,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(156.5,99.6)" tabindex="0">
+              <g class="pt" transform="translate(141.8,99.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -509,7 +541,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(183.0,100.9)" tabindex="0">
+              <g class="pt" transform="translate(165.3,100.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -517,11 +549,19 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(209.5,107.0)" tabindex="0">
+              <g class="pt" transform="translate(188.9,107.0)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
                   <text x="0" y="2" text-anchor="middle">32%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(212.4,110.6)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">29%</text>
                 </g>
               </g>
             
@@ -538,13 +578,13 @@
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
                 <text x="0" y="2" text-anchor="middle">29%</text>
               </g>
-              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="50.5" y="164" text-anchor="middle">02</text><text class="xt" x="77.0" y="164" text-anchor="middle">03</text><text class="xt" x="103.5" y="164" text-anchor="middle">04</text><text class="xt" x="130.0" y="164" text-anchor="middle">05</text><text class="xt" x="156.5" y="164" text-anchor="middle">06</text><text class="xt" x="183.0" y="164" text-anchor="middle">07</text><text class="xt" x="209.5" y="164" text-anchor="middle">08</text><text class="xt" x="236.0" y="164" text-anchor="middle">09</text>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="47.55555555555556" y="164" text-anchor="middle">02</text><text class="xt" x="71.11111111111111" y="164" text-anchor="middle">03</text><text class="xt" x="94.66666666666667" y="164" text-anchor="middle">04</text><text class="xt" x="118.22222222222223" y="164" text-anchor="middle">05</text><text class="xt" x="141.77777777777777" y="164" text-anchor="middle">06</text><text class="xt" x="165.33333333333334" y="164" text-anchor="middle">07</text><text class="xt" x="188.8888888888889" y="164" text-anchor="middle">08</text><text class="xt" x="212.44444444444446" y="164" text-anchor="middle">09</text><text class="xt" x="236.0" y="164" text-anchor="middle">10</text>
             </g>
           </a>
         
           <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
             <g class="card" transform="translate(548,192)">
-              <title>JinYeopKang · 9주 추세 · github:JinYeopKang · boj:jyyj14587</title>
+              <title>JinYeopKang · 10주 추세 · github:JinYeopKang · boj:jyyj14587</title>
               <rect class="panel" x="0" y="0" width="260" height="170" rx="16" ry="16"/>
               <text class="name" x="24" y="18">JinYeopKang</text>
               
@@ -553,7 +593,7 @@
             <line x1="24" y1="146" x2="236" y2="146" />
           </g>
         
-              <path class="line" d="M24.0,143.6 L50.5,144.8 L77.0,132.6 L103.5,124.0 L130.0,125.3 L156.5,127.7 L183.0,126.5 L209.5,128.9 L236.0,131.4" pathLength="1000" style="animation-delay:0.60s"></path>
+              <path class="line" d="M24.0,143.6 L47.6,144.8 L71.1,132.6 L94.7,124.0 L118.2,125.3 L141.8,127.7 L165.3,126.5 L188.9,128.9 L212.4,131.4 L236.0,131.4" pathLength="1000" style="animation-delay:0.60s"></path>
               
               <g class="pt" transform="translate(24.0,143.6)" tabindex="0">
                 <circle r="3" class="dot"/>
@@ -563,7 +603,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(50.5,144.8)" tabindex="0">
+              <g class="pt" transform="translate(47.6,144.8)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -571,7 +611,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(77.0,132.6)" tabindex="0">
+              <g class="pt" transform="translate(71.1,132.6)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -579,7 +619,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(103.5,124.0)" tabindex="0">
+              <g class="pt" transform="translate(94.7,124.0)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -587,7 +627,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(130.0,125.3)" tabindex="0">
+              <g class="pt" transform="translate(118.2,125.3)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -595,7 +635,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(156.5,127.7)" tabindex="0">
+              <g class="pt" transform="translate(141.8,127.7)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -603,7 +643,7 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(183.0,126.5)" tabindex="0">
+              <g class="pt" transform="translate(165.3,126.5)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
@@ -611,11 +651,19 @@
                 </g>
               </g>
             
-              <g class="pt" transform="translate(209.5,128.9)" tabindex="0">
+              <g class="pt" transform="translate(188.9,128.9)" tabindex="0">
                 <circle r="3" class="dot"/>
                 <g class="tip" transform="translate(0,-14)">
                   <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
                   <text x="0" y="2" text-anchor="middle">14%</text>
+                </g>
+              </g>
+            
+              <g class="pt" transform="translate(212.4,131.4)" tabindex="0">
+                <circle r="3" class="dot"/>
+                <g class="tip" transform="translate(0,-14)">
+                  <rect x="-18" y="-12" width="36" height="20" rx="6" ry="6"/>
+                  <text x="0" y="2" text-anchor="middle">12%</text>
                 </g>
               </g>
             
@@ -632,7 +680,7 @@
                 <rect x="-20" y="-12" width="40" height="20" rx="6" ry="6"/>
                 <text x="0" y="2" text-anchor="middle">12%</text>
               </g>
-              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="50.5" y="164" text-anchor="middle">02</text><text class="xt" x="77.0" y="164" text-anchor="middle">03</text><text class="xt" x="103.5" y="164" text-anchor="middle">04</text><text class="xt" x="130.0" y="164" text-anchor="middle">05</text><text class="xt" x="156.5" y="164" text-anchor="middle">06</text><text class="xt" x="183.0" y="164" text-anchor="middle">07</text><text class="xt" x="209.5" y="164" text-anchor="middle">08</text><text class="xt" x="236.0" y="164" text-anchor="middle">09</text>
+              <text class="xt" x="24.0" y="164" text-anchor="middle">01</text><text class="xt" x="47.55555555555556" y="164" text-anchor="middle">02</text><text class="xt" x="71.11111111111111" y="164" text-anchor="middle">03</text><text class="xt" x="94.66666666666667" y="164" text-anchor="middle">04</text><text class="xt" x="118.22222222222223" y="164" text-anchor="middle">05</text><text class="xt" x="141.77777777777777" y="164" text-anchor="middle">06</text><text class="xt" x="165.33333333333334" y="164" text-anchor="middle">07</text><text class="xt" x="188.8888888888889" y="164" text-anchor="middle">08</text><text class="xt" x="212.44444444444446" y="164" text-anchor="middle">09</text><text class="xt" x="236.0" y="164" text-anchor="middle">10</text>
             </g>
           </a>
         
