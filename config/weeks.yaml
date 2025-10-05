@@ -538,3 +538,6 @@ weeks:
     - 1774
     - 1922
     - 4386
+- id: 10
+  path: problems/week10/README.md
+  groups: []

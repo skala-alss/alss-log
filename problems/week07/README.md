@@ -29,7 +29,7 @@
 | <img src="https://static.solved.ac/tier_small/8.svg"  width="20"/> | 9461 | 파도반 수열 | [🔗](https://www.acmicpc.net/problem/9461) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_9461_파도반_수열) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg"  width="20"/> | 11726 | 2×n\_타일링 | [🔗](https://www.acmicpc.net/problem/11726) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_11726_2×n_타일링) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg"  width="20"/> | 11727 | 2×n\_타일링\_2 | [🔗](https://www.acmicpc.net/problem/11727) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_11727_2×n_타일링_2) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 1912 | 연속합 | [🔗](https://www.acmicpc.net/problem/1912) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_1912_연속합) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 1912 | 연속합 | [🔗](https://www.acmicpc.net/problem/1912) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_1912_연속합) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 11053 | 가장\_긴\_증가하는\_부분\_수열 | [🔗](https://www.acmicpc.net/problem/11053) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_11053_가장_긴_증가하는_부분_수열) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 1149 | RGB거리 | [🔗](https://www.acmicpc.net/problem/1149) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_1149_RGB거리) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 1932 | 정수\_삼각형 | [🔗](https://www.acmicpc.net/problem/1932) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_1932_정수_삼각형) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
