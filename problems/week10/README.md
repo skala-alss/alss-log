@@ -13,7 +13,7 @@
 
 ## 💰 그리디 알고리즘
 
-|                               솔브드 티어                               |   번호  | 제목                            |                      링크                     |                              폴더                              |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |
+|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                   폴더                   | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :---: | :---------------------------- | :-----------------------------------------: | :----------------------------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> |  1439 | 뒤집기                           |  [🔗](https://www.acmicpc.net/problem/1439) |                 [📁](./그리디_알고리즘/boj_1439_뒤집기)                |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> |  1789 | 수들의_합                         |  [🔗](https://www.acmicpc.net/problem/1789) |                [📁](./그리디_알고리즘/boj_1789_수들의_합)               |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
@@ -27,7 +27,7 @@
 
 ## 🧩 애드 훅 (Ad Hoc)
 
-|                               솔브드 티어                               |   번호  | 제목               |                      링크                     |                    폴더                   |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |
+|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                   폴더                   | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :---: | :--------------- | :-----------------------------------------: | :-------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> |  4378 | 트ㅏㅊ;             |  [🔗](https://www.acmicpc.net/problem/4378) |        [📁](./애드_훅/boj_4378_트ㅏㅊ;)       |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 |  <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> |  1560 | 비숍               |  [🔗](https://www.acmicpc.net/problem/1560) |         [📁](./애드_훅/boj_1560_비숍)        |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
@@ -37,13 +37,11 @@
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 28128 | 현대모비스_특별상의_주인공은？ | [🔗](https://www.acmicpc.net/problem/28128) | [📁](./애드_훅/boj_28128_현대모비스_특별상의_주인공은？) |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 | <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 18137 | 나이트의_경로          | [🔗](https://www.acmicpc.net/problem/18137) |      [📁](./애드_훅/boj_18137_나이트의_경로)     |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 
-> 참고: `?` → `？`로 전각 치환 적용.
-
 ---
 
 ## 🧱 해 구성하기 (Constructive)
 
-|                               솔브드 티어                               |   번호  | 제목                 |                      링크                     |                        폴더                       |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |
+|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                   폴더                   | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :---: | :----------------- | :-----------------------------------------: | :---------------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 30010 | 잘못된_버블정렬           | [🔗](https://www.acmicpc.net/problem/30010) |        [📁](./해_구성하기/boj_30010_잘못된_버블정렬)        |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 |  <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> | 16956 | 늑대와_양              | [🔗](https://www.acmicpc.net/problem/16956) |          [📁](./해_구성하기/boj_16956_늑대와_양)         |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
@@ -57,7 +55,7 @@
 
 ## 🛠️ 구현
 
-|                               솔브드 티어                               |   번호  | 제목         |                      링크                     |                폴더               |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |
+|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                   폴더                   | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :---: | :--------- | :-----------------------------------------: | :-----------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> |  2563 | 색종이        |  [🔗](https://www.acmicpc.net/problem/2563) |     [📁](./구현/boj_2563_색종이)     |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 |  <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> |  1913 | 달팽이        |  [🔗](https://www.acmicpc.net/problem/1913) |     [📁](./구현/boj_1913_달팽이)     |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
@@ -71,7 +69,7 @@
 
 ## 🧪 시뮬레이션
 
-|                               솔브드 티어                               |   번호  | 제목                              |                      링크                     |                           폴더                           |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |
+|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                   폴더                   | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :---: | :------------------------------ | :-----------------------------------------: | :----------------------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> |  1531 | 투명                              |  [🔗](https://www.acmicpc.net/problem/1531) |                [📁](./시뮬레이션/boj_1531_투명)               |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 31001 | 주식_시뮬레이션                        | [🔗](https://www.acmicpc.net/problem/31001) |            [📁](./시뮬레이션/boj_31001_주식_시뮬레이션)            |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
@@ -85,7 +83,7 @@
 
 ## 🔀 많은 조건 분기
 
-|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                     폴더                     |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |
+|                               솔브드 티어                               |   번호  | 제목              |                      링크                     |                   폴더                   | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :---: | :-------------- | :-----------------------------------------: | :----------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 |  <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 12759 | 틱!_택!_토!        | [🔗](https://www.acmicpc.net/problem/12759) |     [📁](./많은_조건_분기/boj_12759_틱!_택!_토!)    |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
 |  <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> | 34126 | 래환이의_초콜릿_포장_이야기 | [🔗](https://www.acmicpc.net/problem/34126) | [📁](./많은_조건_분기/boj_34126_래환이의_초콜릿_포장_이야기) |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |  ❌  |
