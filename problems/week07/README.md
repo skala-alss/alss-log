@@ -33,7 +33,7 @@
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 11053 | 가장\_긴\_증가하는\_부분\_수열 | [🔗](https://www.acmicpc.net/problem/11053) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_11053_가장_긴_증가하는_부분_수열) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 1149 | RGB거리 | [🔗](https://www.acmicpc.net/problem/1149) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_1149_RGB거리) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 1932 | 정수\_삼각형 | [🔗](https://www.acmicpc.net/problem/1932) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_1932_정수_삼각형) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 2156 | 포도주\_시식 | [🔗](https://www.acmicpc.net/problem/2156) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_2156_포도주_시식) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 2156 | 포도주\_시식 | [🔗](https://www.acmicpc.net/problem/2156) | [📁](./동적_계획법%28Dynamic_Programming%29/boj_2156_포도주_시식) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:DP_BASIC-->
 
