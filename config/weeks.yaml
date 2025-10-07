@@ -540,4 +540,70 @@ weeks:
     - 4386
 - id: 10
   path: problems/week10/README.md
-  groups: []
+  groups:
+  - key: GREEDY
+    marker: PROGRESS:GREEDY
+    title: 💰 그리디 알고리즘
+    problems:
+    - 1439
+    - 1789
+    - 1931
+    - 14698
+    - 15790
+    - 27377
+    - 29814
+  - key: ADHOC
+    marker: PROGRESS:ADHOC
+    title: 🧩 애드 훅 (Ad Hoc)
+    problems:
+    - 1560
+    - 4378
+    - 15550
+    - 15927
+    - 18137
+    - 28128
+    - 29793
+  - key: CONSTRUCTIVE
+    marker: PROGRESS:CONSTRUCTIVE
+    title: 🧱 해 구성하기 (Constructive)
+    problems:
+    - 2077
+    - 13314
+    - 16956
+    - 30010
+    - 30516
+    - 32113
+    - 34094
+  - key: IMPLEMENTATION
+    marker: PROGRESS:IMPLEMENTATION
+    title: 🛠️ 구현
+    problems:
+    - 1913
+    - 2563
+    - 2615
+    - 4920
+    - 16986
+    - 25341
+    - 28130
+  - key: SIMULATION
+    marker: PROGRESS:SIMULATION
+    title: 🧪 시뮬레이션
+    problems:
+    - 1531
+    - 6568
+    - 8972
+    - 14598
+    - 23031
+    - 31001
+    - 31404
+  - key: BRANCHING
+    marker: PROGRESS:BRANCHING
+    title: 🔀 많은 조건 분기
+    problems:
+    - 1111
+    - 1318
+    - 12759
+    - 18109
+    - 30412
+    - 31931
+    - 34126
