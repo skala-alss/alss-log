@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 460" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 512" role="img">
       
     
     <style>
@@ -592,11 +592,11 @@
               <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
                 <g transform="translate(76,304)">
                   <g class="cell-anim" style="animation-delay:0.90s">
-                    <title>W07 · nOOne-is-hier · 8% (3/40) · github:nOOne-is-hier · boj:kanadachocolate</title>
-                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 87.4%)" />
+                    <title>W07 · nOOne-is-hier · 10% (4/40) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 86.3%)" />
                     <text class="pct" x="48.0" y="22.0"
                           text-anchor="middle" dominant-baseline="middle"
-                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">8%</text>
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">10%</text>
                   </g>
                 </g>
               </a>
@@ -669,7 +669,7 @@
 
           <g transform="translate(700,304)">
             <g class="cell-anim avg" style="animation-delay:1.08s">
-              <title>W07 · 전체 평균 3% (Σ분자=7 / Σ분모=240)</title>
+              <title>W07 · 전체 평균 3% (Σ분자=8 / Σ분모=240)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
                     text-anchor="middle" dominant-baseline="middle">3%</text>
@@ -854,6 +854,98 @@
           <g transform="translate(700,408)">
             <g class="cell-anim avg" style="animation-delay:1.44s">
               <title>W09 · 전체 평균 0% (Σ분자=0 / Σ분모=180)</title>
+              <rect rx="10" ry="10" width="90" height="44" />
+              <text class="pct" x="45.0" y="22.0"
+                    text-anchor="middle" dominant-baseline="middle">0%</text>
+            </g>
+          </g>
+        
+          <g class="rowlabel" transform="translate(66,482.0)">
+            <text class="caption" x="-6" y="1" text-anchor="end" dominant-baseline="middle">10 주차</text>
+          </g>
+        
+
+              <a href="https://solved.ac/profile/kanadachocolate" target="_blank" rel="noopener">
+                <g transform="translate(76,460)">
+                  <g class="cell-anim" style="animation-delay:1.44s">
+                    <title>W10 · nOOne-is-hier · 0% (0/42) · github:nOOne-is-hier · boj:kanadachocolate</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                  </g>
+                </g>
+              </a>
+            
+
+              <a href="https://solved.ac/profile/sdgeo20" target="_blank" rel="noopener">
+                <g transform="translate(180,460)">
+                  <g class="cell-anim" style="animation-delay:1.47s">
+                    <title>W10 · SDGeo12 · 0% (0/42) · github:SDGeo12 · boj:sdgeo20</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                  </g>
+                </g>
+              </a>
+            
+
+              <a href="https://solved.ac/profile/jiyun301" target="_blank" rel="noopener">
+                <g transform="translate(284,460)">
+                  <g class="cell-anim" style="animation-delay:1.50s">
+                    <title>W10 · jiyunee02 · 0% (0/42) · github:jiyunee02 · boj:jiyun301</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                  </g>
+                </g>
+              </a>
+            
+
+              <a href="https://solved.ac/profile/gcgc09" target="_blank" rel="noopener">
+                <g transform="translate(388,460)">
+                  <g class="cell-anim" style="animation-delay:1.53s">
+                    <title>W10 · skala-changhyun · 0% (0/42) · github:skala-changhyun · boj:gcgc09</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                  </g>
+                </g>
+              </a>
+            
+
+              <a href="https://solved.ac/profile/heaven707" target="_blank" rel="noopener">
+                <g transform="translate(492,460)">
+                  <g class="cell-anim" style="animation-delay:1.56s">
+                    <title>W10 · seo-youngjae · 0% (0/42) · github:seo-youngjae · boj:heaven707</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                  </g>
+                </g>
+              </a>
+            
+
+              <a href="https://solved.ac/profile/jyyj14587" target="_blank" rel="noopener">
+                <g transform="translate(596,460)">
+                  <g class="cell-anim" style="animation-delay:1.59s">
+                    <title>W10 · JinYeopKang · 0% (0/42) · github:JinYeopKang · boj:jyyj14587</title>
+                    <rect rx="10" ry="10" width="96" height="44" fill="hsl(210, 85%, 92.0%)" />
+                    <text class="pct" x="48.0" y="22.0"
+                          text-anchor="middle" dominant-baseline="middle"
+                          style="fill:#0b1220; paint-order:stroke fill; stroke:rgba(255,255,255,.18); stroke-width:.4px">0%</text>
+                  </g>
+                </g>
+              </a>
+            
+
+          <g transform="translate(700,460)">
+            <g class="cell-anim avg" style="animation-delay:1.62s">
+              <title>W10 · 전체 평균 0% (Σ분자=0 / Σ분모=252)</title>
               <rect rx="10" ry="10" width="90" height="44" />
               <text class="pct" x="45.0" y="22.0"
                     text-anchor="middle" dominant-baseline="middle">0%</text>
