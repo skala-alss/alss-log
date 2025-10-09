@@ -19,7 +19,7 @@
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 18352 | 특정 거리의 도시 찾기 | [🔗](https://www.acmicpc.net/problem/18352) | [📁](./다익스트라/boj_18352_특정_거리의_도시_찾기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 1446 | 지름길 | [🔗](https://www.acmicpc.net/problem/1446) | [📁](./다익스트라/boj_1446_지름길) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 1916 | 최소비용 구하기 | [🔗](https://www.acmicpc.net/problem/1916) | [📁](./다익스트라/boj_1916_최소비용_구하기) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 4485 | 녹색 옷 입은 애가 젤다지? | [🔗](https://www.acmicpc.net/problem/4485) | [📁](./다익스트라/boj_4485_녹색_옷_입은_애가_젤다지？) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 4485 | 녹색 옷 입은 애가 젤다지? | [🔗](https://www.acmicpc.net/problem/4485) | [📁](./다익스트라/boj_4485_녹색_옷_입은_애가_젤다지？) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 22955 | 고양이 도도의 탈출기 | [🔗](https://www.acmicpc.net/problem/22955) | [📁](./다익스트라/boj_22955_고양이_도도의_탈출기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:DIJKSTRA-->
