@@ -51,7 +51,7 @@
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 1058 | 친구 | [🔗](https://www.acmicpc.net/problem/1058) | [📁](./플로이드-워셜/boj_1058_친구) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 1389 | 케빈 베이컨의 6단계 법칙 | [🔗](https://www.acmicpc.net/problem/1389) | [📁](./플로이드-워셜/boj_1389_케빈_베이컨의_6단계_법칙) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 11403 | 경로 찾기 | [🔗](https://www.acmicpc.net/problem/11403) | [📁](./플로이드-워셜/boj_11403_경로_찾기) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 2660 | 회장뽑기 | [🔗](https://www.acmicpc.net/problem/2660) | [📁](./플로이드-워셜/boj_2660_회장뽑기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 2660 | 회장뽑기 | [🔗](https://www.acmicpc.net/problem/2660) | [📁](./플로이드-워셜/boj_2660_회장뽑기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 11404 | 플로이드 | [🔗](https://www.acmicpc.net/problem/11404) | [📁](./플로이드-워셜/boj_11404_플로이드) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:FLOYD_WARSHALL-->
@@ -84,7 +84,7 @@
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 1717 | 집합의 표현 | [🔗](https://www.acmicpc.net/problem/1717) | [📁](./분리_집합/boj_1717_집합의_표현) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 17352 | 여러분의 다리가 되어 드리겠습니다! | [🔗](https://www.acmicpc.net/problem/17352) | [📁](./분리_집합/boj_17352_여러분의_다리가_되어_드리겠습니다!) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 1976 | 여행 가자 | [🔗](https://www.acmicpc.net/problem/1976) | [📁](./분리_집합/boj_1976_여행_가자) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 17619 | 개구리 점프 | [🔗](https://www.acmicpc.net/problem/17619) | [📁](./분리_집합/boj_17619_개구리_점프) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 17619 | 개구리 점프 | [🔗](https://www.acmicpc.net/problem/17619) | [📁](./분리_집합/boj_17619_개구리_점프) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:UNION_FIND-->
 
@@ -96,10 +96,10 @@
 
 |                               솔브드 티어                               |  번호  | 제목        |                     링크                     |                  폴더                  | <a href="https://github.com/nOOne-is-hier" title="nOOne-is-hier">#1</a> | <a href="https://github.com/SDGeo12" title="SDGeo12">#2</a> | <a href="https://github.com/jiyunee02" title="jiyunee02">#3</a> | <a href="https://github.com/skala-changhyun" title="skala-changhyun">#4</a> | <a href="https://github.com/seo-youngjae" title="seo-youngjae">#5</a> | <a href="https://github.com/JinYeopKang" title="JinYeopKang">#6</a> |
 | :----------------------------------------------------------------: | :--: | :-------- | :----------------------------------------: | :----------------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 1197 | 최소 스패닝 트리 | [🔗](https://www.acmicpc.net/problem/1197) | [📁](./최소_스패닝_트리/boj_1197_최소_스패닝_트리) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 1922 | 네트워크 연결 | [🔗](https://www.acmicpc.net/problem/1922) | [📁](./최소_스패닝_트리/boj_1922_네트워크_연결) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 1197 | 최소 스패닝 트리 | [🔗](https://www.acmicpc.net/problem/1197) | [📁](./최소_스패닝_트리/boj_1197_최소_스패닝_트리) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 1922 | 네트워크 연결 | [🔗](https://www.acmicpc.net/problem/1922) | [📁](./최소_스패닝_트리/boj_1922_네트워크_연결) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 1647 | 도시 분할 계획 | [🔗](https://www.acmicpc.net/problem/1647) | [📁](./최소_스패닝_트리/boj_1647_도시_분할_계획) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 4386 | 별자리 만들기 | [🔗](https://www.acmicpc.net/problem/4386) | [📁](./최소_스패닝_트리/boj_4386_별자리_만들기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 4386 | 별자리 만들기 | [🔗](https://www.acmicpc.net/problem/4386) | [📁](./최소_스패닝_트리/boj_4386_별자리_만들기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 1774 | 우주신과의 교감 | [🔗](https://www.acmicpc.net/problem/1774) | [📁](./최소_스패닝_트리/boj_1774_우주신과의_교감) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:MST-->
