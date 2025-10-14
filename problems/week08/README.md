@@ -90,7 +90,7 @@
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 2056 | 작업 | [🔗](https://www.acmicpc.net/problem/2056) | [📁](./위상정렬/boj_2056_작업) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 1005 | ACM\_Craft | [🔗](https://www.acmicpc.net/problem/1005) | [📁](./위상정렬/boj_1005_ACM_Craft) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 1766 | 문제집 | [🔗](https://www.acmicpc.net/problem/1766) | [📁](./위상정렬/boj_1766_문제집) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 3665 | 최종\_순위 | [🔗](https://www.acmicpc.net/problem/3665) | [📁](./위상정렬/boj_3665_최종_순위) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 3665 | 최종\_순위 | [🔗](https://www.acmicpc.net/problem/3665) | [📁](./위상정렬/boj_3665_최종_순위) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:TOPOLOGICAL_SORT-->
 
