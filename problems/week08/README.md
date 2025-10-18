@@ -74,7 +74,7 @@
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 14267 | 회사\_문화\_1 | [🔗](https://www.acmicpc.net/problem/14267) | [📁](./트리/boj_14267_회사_문화_1) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 4803 | 트리 | [🔗](https://www.acmicpc.net/problem/4803) | [📁](./트리/boj_4803_트리) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 1167 | 트리의\_지름 | [🔗](https://www.acmicpc.net/problem/1167) | [📁](./트리/boj_1167_트리의_지름) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 2250 | 트리의\_높이와\_너비 | [🔗](https://www.acmicpc.net/problem/2250) | [📁](./트리/boj_2250_트리의_높이와_너비) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 2250 | 트리의\_높이와\_너비 | [🔗](https://www.acmicpc.net/problem/2250) | [📁](./트리/boj_2250_트리의_높이와_너비) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:TREE-->
 
