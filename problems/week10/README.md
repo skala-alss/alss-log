@@ -23,7 +23,7 @@
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 14698 | 전생했더니_슬라임_연구자였던_건에_대하여_(Hard) | [🔗](https://www.acmicpc.net/problem/14698) | [📁](./그리디_알고리즘/boj_14698_전생했더니_슬라임_연구자였던_건에_대하여_%28Hard%29) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 27377 | 읽씹_멈춰! | [🔗](https://www.acmicpc.net/problem/27377) | [📁](./그리디_알고리즘/boj_27377_읽씹_멈춰!) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 15790 | 최종병기_활 | [🔗](https://www.acmicpc.net/problem/15790) | [📁](./그리디_알고리즘/boj_15790_최종병기_활) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 29814 | 원교수님_과제가_너무_많아요 | [🔗](https://www.acmicpc.net/problem/29814) | [📁](./그리디_알고리즘/boj_29814_원교수님_과제가_너무_많아요) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 29814 | 원교수님_과제가_너무_많아요 | [🔗](https://www.acmicpc.net/problem/29814) | [📁](./그리디_알고리즘/boj_29814_원교수님_과제가_너무_많아요) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:GREEDY-->
 
