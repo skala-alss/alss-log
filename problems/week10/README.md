@@ -39,7 +39,7 @@
 | <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> | 1560 | 비숍 | [🔗](https://www.acmicpc.net/problem/1560) | [📁](./애드_훅/boj_1560_비숍) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 15927 | 회문은_회문아니야!! | [🔗](https://www.acmicpc.net/problem/15927) | [📁](./애드_훅/boj_15927_회문은_회문아니야!!) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 15550 | if_2 | [🔗](https://www.acmicpc.net/problem/15550) | [📁](./애드_훅/boj_15550_if_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 29793 | 라라와_용맥_변환 | [🔗](https://www.acmicpc.net/problem/29793) | [📁](./애드_훅/boj_29793_라라와_용맥_변환) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 29793 | 라라와_용맥_변환 | [🔗](https://www.acmicpc.net/problem/29793) | [📁](./애드_훅/boj_29793_라라와_용맥_변환) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 28128 | 현대모비스_특별상의_주인공은？ | [🔗](https://www.acmicpc.net/problem/28128) | [📁](./애드_훅/boj_28128_현대모비스_특별상의_주인공은？) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 18137 | 나이트의_경로 | [🔗](https://www.acmicpc.net/problem/18137) | [📁](./애드_훅/boj_18137_나이트의_경로) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
