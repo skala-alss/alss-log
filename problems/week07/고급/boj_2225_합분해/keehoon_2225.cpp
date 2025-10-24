@@ -41,33 +41,25 @@ int main()
   int N, K;
   cin >> N >> K;
 
-  vector<int> memo(N + 1, -1);
+  vector<vector<int>> memo(N + 1, vector<int>(K + 1, 0));
   const int MOD = 1e9;
 
-  auto dp = [&](auto &&self, int n, int sum, int cnt, int tmp) -> int
+  auto dp = [&](auto &&self, int &n, int sum, int cnt) -> int
   {
-    if (n < 0 || cnt > K)
+    if (sum > n || cnt > K)
       return 0;
 
-    if (memo[n] != -1)
-      return memo[n];
+    if (memo[n][cnt] != 0)
+      return memo[n][cnt];
 
-    if (sum == N && cnt == K)
-      return 1;
-
-    for (int i = 0; i <= N; ++i)
+    if (sum == n)
     {
-      tmp += self(self, i, sum + i, cnt + 1, tmp);
-      tmp %= MOD;
+      ++memo[n][cnt];
+      return 0;
     }
 
-    return tmp;
+    for (int i = 0; i <= n; ++i)
   };
-
-  for (int i = 0; i <= N; ++i)
-    memo[i] = dp(dp, i, 0, 0, 0);
-
-  cout << memo[N];
 
   return 0;
 }
