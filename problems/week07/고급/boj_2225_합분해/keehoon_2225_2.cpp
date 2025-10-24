@@ -52,11 +52,7 @@ int main()
     if (memo[cnt][n] != -1)
       return memo[cnt][n];
 
-    int tmp = 0;
-    for (int i = n; i >= 0; --i)
-      tmp = (tmp + self(self, cnt - 1, i)) % MOD;
-
-    return memo[cnt][n] = tmp;
+    return memo[cnt][n] = (self(self, cnt - 1, n) + self(self, cnt, n - 1)) % MOD;
   };
 
   dp(dp, K, N);
