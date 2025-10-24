@@ -50,9 +50,9 @@
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 5427 | 불 | [🔗](https://www.acmicpc.net/problem/5427) | [📁](./심화/boj_5427_불) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 9019 | DSLR | [🔗](https://www.acmicpc.net/problem/9019) | [📁](./심화/boj_9019_DSLR) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 13913 | 숨바꼭질\_4 | [🔗](https://www.acmicpc.net/problem/13913) | [📁](./심화/boj_13913_숨바꼭질_4) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 2146 | 다리\_만들기 | [🔗](https://www.acmicpc.net/problem/2146) | [📁](./심화/boj_2146_다리_만들기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 2146 | 다리\_만들기 | [🔗](https://www.acmicpc.net/problem/2146) | [📁](./심화/boj_2146_다리_만들기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 2206 | 벽\_부수고\_이동하기 | [🔗](https://www.acmicpc.net/problem/2206) | [📁](./심화/boj_2206_벽_부수고_이동하기) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 16236 | 아기\_상어 | [🔗](https://www.acmicpc.net/problem/16236) | [📁](./심화/boj_16236_아기_상어) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 16236 | 아기\_상어 | [🔗](https://www.acmicpc.net/problem/16236) | [📁](./심화/boj_16236_아기_상어) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 16940 | BFS\_스페셜\_저지 | [🔗](https://www.acmicpc.net/problem/16940) | [📁](./심화/boj_16940_BFS_스페셜_저지) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 16964 | DFS\_스페셜\_저지 | [🔗](https://www.acmicpc.net/problem/16964) | [📁](./심화/boj_16964_DFS_스페셜_저지) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 16947 | 서울\_지하철\_2호선 | [🔗](https://www.acmicpc.net/problem/16947) | [📁](./심화/boj_16947_서울_지하철_2호선) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
