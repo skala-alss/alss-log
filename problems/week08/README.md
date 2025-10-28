@@ -45,7 +45,7 @@
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 2667 | 단지번호붙이기 | [🔗](https://www.acmicpc.net/problem/2667) | [📁](./심화/boj_2667_단지번호붙이기) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 7576 | 토마토 | [🔗](https://www.acmicpc.net/problem/7576) | [📁](./심화/boj_7576_토마토) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 7569 | 토마토 | [🔗](https://www.acmicpc.net/problem/7569) | [📁](./심화/boj_7569_토마토) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 14503 | 로봇\_청소기 | [🔗](https://www.acmicpc.net/problem/14503) | [📁](./심화/boj_14503_로봇_청소기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 14503 | 로봇\_청소기 | [🔗](https://www.acmicpc.net/problem/14503) | [📁](./심화/boj_14503_로봇_청소기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 16928 | 뱀과\_사다리\_게임 | [🔗](https://www.acmicpc.net/problem/16928) | [📁](./심화/boj_16928_뱀과_사다리_게임) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 5427 | 불 | [🔗](https://www.acmicpc.net/problem/5427) | [📁](./심화/boj_5427_불) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 9019 | DSLR | [🔗](https://www.acmicpc.net/problem/9019) | [📁](./심화/boj_9019_DSLR) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
