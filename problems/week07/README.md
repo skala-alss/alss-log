@@ -50,7 +50,7 @@
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 2565 | 전깃줄 | [🔗](https://www.acmicpc.net/problem/2565) | [📁](./고급/boj_2565_전깃줄) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 9251 | LCS | [🔗](https://www.acmicpc.net/problem/9251) | [📁](./고급/boj_9251_LCS) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 12865 | 평범한\_배낭 | [🔗](https://www.acmicpc.net/problem/12865) | [📁](./고급/boj_12865_평범한_배낭) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 2133 | 타일\_채우기 | [🔗](https://www.acmicpc.net/problem/2133) | [📁](./고급/boj_2133_타일_채우기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 2133 | 타일\_채우기 | [🔗](https://www.acmicpc.net/problem/2133) | [📁](./고급/boj_2133_타일_채우기) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 10942 | 팰린드롬？ | [🔗](https://www.acmicpc.net/problem/10942) | [📁](./고급/boj_10942_팰린드롬？) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 11054 | 가장\_긴\_바이토닉\_부분\_수열 | [🔗](https://www.acmicpc.net/problem/11054) | [📁](./고급/boj_11054_가장_긴_바이토닉_부분_수열) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
@@ -66,7 +66,7 @@
 | :----------------------------------------------------------------: | ----: | :--------- | :-----------------------------------------: | :---------------------------: | :---------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :-----------------------------------------------------------------: |
 | <img src="https://static.solved.ac/tier_small/7.svg"  width="20"/> | 11047 | 동전\_0 | [🔗](https://www.acmicpc.net/problem/11047) | [📁](./심화/boj_11047_동전_0) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 2293 | 동전\_1 | [🔗](https://www.acmicpc.net/problem/2293) | [📁](./심화/boj_2293_동전_1) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 2294 | 동전\_2 | [🔗](https://www.acmicpc.net/problem/2294) | [📁](./심화/boj_2294_동전_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 2294 | 동전\_2 | [🔗](https://www.acmicpc.net/problem/2294) | [📁](./심화/boj_2294_동전_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 2098 | 외판원\_순회 | [🔗](https://www.acmicpc.net/problem/2098) | [📁](./심화/boj_2098_외판원_순회) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 10971 | 외판원\_순회\_2 | [🔗](https://www.acmicpc.net/problem/10971) | [📁](./심화/boj_10971_외판원_순회_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 16991 | 외판원\_순회\_3 | [🔗](https://www.acmicpc.net/problem/16991) | [📁](./심화/boj_16991_외판원_순회_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
