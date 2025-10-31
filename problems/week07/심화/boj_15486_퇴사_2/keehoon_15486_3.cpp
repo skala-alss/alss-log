@@ -8,7 +8,6 @@
 // 푼 사람 수: 10,995
 // 평균 시도: 2.48
 
-#include <algorithm>
 #include <iostream>
 #include <vector>
 #if defined(_WIN32)
@@ -41,20 +40,20 @@ int main()
 
   int N;
   cin >> N;
-  vector<vector<int>> table(2, vector<int>(N + 1, 0));
+  vector<int> T(N + 1), P(N + 1);
   for (int i = 1; i <= N; ++i)
-    cin >> table[0][i] >> table[1][i];
+    cin >> T[i] >> P[i];
 
-  int tmp = 0;
   vector<int> dp(N + 2, 0);
+
   for (int i = 1; i <= N; ++i)
   {
-    if (i + table[0][i] - 1 <= N)
-      dp[i + table[0][i]] = max(dp[i + table[0][i]], tmp + table[1][i]);
-    tmp = max(tmp, dp[i + 1]);
+    if (i + T[i] <= N + 1)
+      dp[i + T[i]] = max(dp[i + T[i]], dp[i] + P[i]);
+    dp[i + 1] = max(dp[i + 1], dp[i]);
   }
 
-  cout << *max_element(dp.begin(), dp.end());
+  cout << dp[N + 1];
 
   return 0;
 }
