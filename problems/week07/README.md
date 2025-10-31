@@ -71,7 +71,7 @@
 | <img src="https://static.solved.ac/tier_small/9.svg"  width="20"/> | 10971 | 외판원\_순회\_2 | [🔗](https://www.acmicpc.net/problem/10971) | [📁](./심화/boj_10971_외판원_순회_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 16991 | 외판원\_순회\_3 | [🔗](https://www.acmicpc.net/problem/16991) | [📁](./심화/boj_16991_외판원_순회_3) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg"  width="20"/> | 14501 | 퇴사 | [🔗](https://www.acmicpc.net/problem/14501) | [📁](./심화/boj_14501_퇴사) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 15486 | 퇴사\_2 | [🔗](https://www.acmicpc.net/problem/15486) | [📁](./심화/boj_15486_퇴사_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 15486 | 퇴사\_2 | [🔗](https://www.acmicpc.net/problem/15486) | [📁](./심화/boj_15486_퇴사_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:DP_DEEP-->
 
