@@ -55,7 +55,7 @@
 | :----------------------------------------------------------------: | :---: | :----------------- | :-----------------------------------------: | :---------------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 30010 | 잘못된_버블정렬 | [🔗](https://www.acmicpc.net/problem/30010) | [📁](./해_구성하기/boj_30010_잘못된_버블정렬) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> | 16956 | 늑대와_양 | [🔗](https://www.acmicpc.net/problem/16956) | [📁](./해_구성하기/boj_16956_늑대와_양) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 34094 | 골드리치의_비밀_금고 | [🔗](https://www.acmicpc.net/problem/34094) | [📁](./해_구성하기/boj_34094_골드리치의_비밀_금고) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 34094 | 골드리치의_비밀_금고 | [🔗](https://www.acmicpc.net/problem/34094) | [📁](./해_구성하기/boj_34094_골드리치의_비밀_금고) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 30516 | 커플_파괴자_민욱이_(Small) | [🔗](https://www.acmicpc.net/problem/30516) | [📁](./해_구성하기/boj_30516_커플_파괴자_민욱이_%28Small%29) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 13314 | 플로이드에_오타가？ | [🔗](https://www.acmicpc.net/problem/13314) | [📁](./해_구성하기/boj_13314_플로이드에_오타가？) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 2077 | 싼데_비슷한 | [🔗](https://www.acmicpc.net/problem/2077) | [📁](./해_구성하기/boj_2077_싼데_비슷한) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
