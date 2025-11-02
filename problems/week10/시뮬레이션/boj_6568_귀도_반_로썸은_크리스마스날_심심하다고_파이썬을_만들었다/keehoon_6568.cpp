@@ -10,6 +10,7 @@
 
 #include <bitset>
 #include <iostream>
+#include <vector>
 #if defined(_WIN32)
 #include <io.h>
 #include <cstdio>
@@ -38,7 +39,51 @@ int main()
   }
 #endif
 
-  int adder = 0, pc = 0;
+  while (true)
+  {
+    unsigned char adder = 0, pc = 0;
+    vector<string> pids(1 << 5);
 
-  return 0;
+    for (int i = 0; i < 1 << 5; ++i)
+      if (!(cin >> pids[i]))
+        return 0;
+
+    while (true)
+    {
+      string cmd_bits = pids[pc].substr(0, 3), val_bits = pids[pc].substr(3, 5);
+
+      int command = stoi(cmd_bits, nullptr, 2), value = stoi(val_bits, nullptr, 2);
+
+      pc = pc + 1 & 31;
+
+      switch (command)
+      {
+      case 0:
+        pids[value] = bitset<8>(adder).to_string();
+        break;
+      case 1:
+        adder = stoi(pids[value], nullptr, 2);
+        break;
+      case 2:
+        if (adder == 0)
+          pc = value;
+        break;
+      case 3:
+        break;
+      case 4:
+        --adder;
+        break;
+      case 5:
+        ++adder;
+        break;
+      case 6:
+        pc = value;
+        break;
+      case 7:
+        cout << bitset<8>(adder) << '\n';
+        goto next_case;
+      }
+    }
+  next_case:;
+  }
 }
