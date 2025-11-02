@@ -91,7 +91,7 @@
 | :----------------------------------------------------------------: | :---: | :------------------------------ | :-----------------------------------------: | :----------------------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 1531 | 투명 | [🔗](https://www.acmicpc.net/problem/1531) | [📁](./시뮬레이션/boj_1531_투명) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/10.svg" width="20"/> | 31001 | 주식_시뮬레이션 | [🔗](https://www.acmicpc.net/problem/31001) | [📁](./시뮬레이션/boj_31001_주식_시뮬레이션) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 6568 | 귀도_반_로썸은_크리스마스날_심심하다고_파이썬을_만들었다 | [🔗](https://www.acmicpc.net/problem/6568) | [📁](./시뮬레이션/boj_6568_귀도_반_로썸은_크리스마스날_심심하다고_파이썬을_만들었다) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 6568 | 귀도_반_로썸은_크리스마스날_심심하다고_파이썬을_만들었다 | [🔗](https://www.acmicpc.net/problem/6568) | [📁](./시뮬레이션/boj_6568_귀도_반_로썸은_크리스마스날_심심하다고_파이썬을_만들었다) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 23031 | 으어어…_에이쁠_주세요.. | [🔗](https://www.acmicpc.net/problem/23031) | [📁](./시뮬레이션/boj_23031_으어어…_에이쁠_주세요..) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 8972 | 미친_아두이노 | [🔗](https://www.acmicpc.net/problem/8972) | [📁](./시뮬레이션/boj_8972_미친_아두이노) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 31404 | 아리스,*청소합니다!*(Easy) | [🔗](https://www.acmicpc.net/problem/31404) | [📁](./시뮬레이션/boj_31404_아리스,_청소합니다!_%28Easy%29) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
