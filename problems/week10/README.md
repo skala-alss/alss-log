@@ -109,7 +109,7 @@
 | :----------------------------------------------------------------: | :---: | :-------------- | :-----------------------------------------: | :----------------------------------------: | :-: | :-: | :-: | :-: | :-: | :-: |
 | <img src="https://static.solved.ac/tier_small/6.svg" width="20"/> | 12759 | 틱!_택!_토! | [🔗](https://www.acmicpc.net/problem/12759) | [📁](./많은_조건_분기/boj_12759_틱!_택!_토!) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/8.svg" width="20"/> | 34126 | 래환이의_초콜릿_포장_이야기 | [🔗](https://www.acmicpc.net/problem/34126) | [📁](./많은_조건_분기/boj_34126_래환이의_초콜릿_포장_이야기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 30412 | 산책_나온_춘배 | [🔗](https://www.acmicpc.net/problem/30412) | [📁](./많은_조건_분기/boj_30412_산책_나온_춘배) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/11.svg" width="20"/> | 30412 | 산책_나온_춘배 | [🔗](https://www.acmicpc.net/problem/30412) | [📁](./많은_조건_분기/boj_30412_산책_나온_춘배) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 18109 | 도깨비불 | [🔗](https://www.acmicpc.net/problem/18109) | [📁](./많은_조건_분기/boj_18109_도깨비불) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 1111 | IQ_Test | [🔗](https://www.acmicpc.net/problem/1111) | [📁](./많은_조건_분기/boj_1111_IQ_Test) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 1318 | 포커 | [🔗](https://www.acmicpc.net/problem/1318) | [📁](./많은_조건_분기/boj_1318_포커) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
