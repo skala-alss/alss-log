@@ -44,22 +44,15 @@ int main()
   for (long long &tower : towers)
     cin >> tower;
 
-  auto relu = [](long long x) -> long long
-  {
-    return x > 0 ? x : 0;
-  };
-
   long long result = 1e9;
-  result = min(result, relu(X - abs(towers[0] - towers[1])));
-  result = min(result, relu(X - abs(towers[N - 1] - towers[N - 2])));
 
-  for (int i = 1; i < N - 1; ++i)
+  for (int i = 0; i < N; ++i)
   {
-    long long L = towers[i - 1], I = towers[i], R = towers[i + 1];
-    result = min(result, relu(max(L + X, R + X) - I));
-    result = min(result, relu(I + X - L) + relu(I + X - R));
-    result = min(result, relu(X - (I - L)) + relu(X - (R - (I + relu(X - (I - L))))));
-    result = min(result, relu(X - (I - R)) + relu(X - (L - (I + relu(X - (I - R))))));
+    long long L = i > 0 ? towers[i - 1] : 2e9, I = towers[i], R = i < N - 1 ? towers[i + 1] : 2e9;
+    result = min(result, max(max(L + X, R + X) - I, 0LL));
+    result = min(result, max(I + X - L, 0LL) + max(I + X - R, 0LL));
+    result = min(result, max(X - (I - L), 0LL) + max(X - (R - (I + max(X - (I - L), 0LL))), 0LL));
+    result = min(result, max(X - (I - R), 0LL) + max(X - (L - (I + max(X - (I - R), 0LL))), 0LL));
   }
 
   cout << result;
