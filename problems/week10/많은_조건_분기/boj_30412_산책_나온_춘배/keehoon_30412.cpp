@@ -38,27 +38,30 @@ int main()
   }
 #endif
 
-  int N, X;
+  long long N, X;
   cin >> N >> X;
-  vector<int> towers(N);
-  for (int &tower : towers)
+  vector<long long> towers(N);
+  for (long long &tower : towers)
     cin >> tower;
 
-  int result = 1e9;
-  for (int i = 0; i < N; ++i)
+  auto relu = [](long long x) -> long long
   {
-    if (i == 0)
-      result = min(result, max(X - abs(towers[0] - towers[1]), 0));
-    else if (i == N - 1)
-      result = min(result, max(X - abs(towers[N - 1] - towers[N - 2]), 0));
-    else
-    {
-      int L = towers[i - 1], I = towers[i], R = towers[i + 1];
-      result = min(result, max(0, max(L + X, R + X) - I));
-      result = min(result, max(0, I + X - L) + max(0, I + X - R));
-      result = min(result, L >= R + 2 * X ? max(0, R + X - I) : 2 * max(R + X, L - X) - I + X - L);
-      result = min(result, L <= R - 2 * X ? max(0, L + X - I) : 2 * max(L + X, R - X) - I + X - R);
-    }
+    return x > 0 ? x : 0;
+  };
+
+  auto
+
+      long long result = 1e9;
+  result = min(result, relu(X - abs(towers[0] - towers[1])));
+  result = min(result, relu(X - abs(towers[N - 1] - towers[N - 2])));
+
+  for (int i = 1; i < N - 1; ++i)
+  {
+    long long L = towers[i - 1], I = towers[i], R = towers[i + 1];
+    result = min(result, relu(max(L + X, R + X) - I));
+    result = min(result, relu(I + X - L) + relu(I + X - R));
+    result = min(result, L >= R + 2 * X ? max(0ll, R + X - I) : 2 * max(R + X, L - X) - I + X - L);
+    result = min(result, L <= R - 2 * X ? max(0ll, L + X - I) : 2 * max(L + X, R - X) - I + X - R);
   }
 
   cout << result;
