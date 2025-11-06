@@ -60,8 +60,12 @@ int main()
     else if (A <= D && C <= B)
       result = "DRAW";
 
-    else if (A <= D && C > B)
-      result = "SASUKE";
+    else if (A < D && C > B)
+      if (Y <= A)
+        result = "DRAW";
+
+      else
+        result = (ceil_div(Y, A) > ceil_div(X, C)) ? "SASUKE" : "DRAW";
 
     else if (A > D && C < B)
       result = "NARUTO";
