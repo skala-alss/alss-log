@@ -60,24 +60,19 @@ int main()
     else if (A <= D && C <= B)
       result = "DRAW";
 
-    else if (A < D && C > B)
-      if (Y <= A)
-        result = "DRAW";
-
-      else
-        result = (ceil_div(Y, A) > ceil_div(X, C)) ? "SASUKE" : "DRAW";
-
     else if (A > D && C < B)
       result = "NARUTO";
 
     else if (A > D && C == B)
-      if (X <= C)
-        result = "DRAW";
+      result = (ceil_div(Y, A) <= ceil_div(X, C)) ? "NARUTO" : "DRAW";
 
-      else
-        result = (ceil_div(Y, A) <= ceil_div(X, C)) ? "NARUTO" : "DRAW";
+    else if (A < D && C > B)
+      result = "SASUKE";
 
-    else
+    else if (A == D && C > B)
+      result = (ceil_div(Y, A) > ceil_div(X, C)) ? "SASUKE" : "DRAW";
+
+    else if (A > D && C > B)
       result = (ceil_div(Y, A) <= ceil_div(X, C)) ? "NARUTO" : "SASUKE";
 
     cout << result << '\n';
