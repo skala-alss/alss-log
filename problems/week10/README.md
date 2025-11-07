@@ -113,7 +113,7 @@
 | <img src="https://static.solved.ac/tier_small/12.svg" width="20"/> | 18109 | 도깨비불 | [🔗](https://www.acmicpc.net/problem/18109) | [📁](./많은_조건_분기/boj_18109_도깨비불) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" width="20"/> | 1111 | IQ_Test | [🔗](https://www.acmicpc.net/problem/1111) | [📁](./많은_조건_분기/boj_1111_IQ_Test) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/14.svg" width="20"/> | 1318 | 포커 | [🔗](https://www.acmicpc.net/problem/1318) | [📁](./많은_조건_분기/boj_1318_포커) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 31931 | 지금부터_서로_죽여라 | [🔗](https://www.acmicpc.net/problem/31931) | [📁](./많은_조건_분기/boj_31931_지금부터_서로_죽여라) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/15.svg" width="20"/> | 31931 | 지금부터_서로_죽여라 | [🔗](https://www.acmicpc.net/problem/31931) | [📁](./많은_조건_분기/boj_31931_지금부터_서로_죽여라) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 <!--END:PROGRESS:BRANCHING-->
 
