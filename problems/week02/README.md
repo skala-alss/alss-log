@@ -141,7 +141,7 @@
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 10809 | 알파벳 찾기 | [🔗](https://www.acmicpc.net/problem/10809) | [📁](./문자열/boj_10809_알파벳_찾기) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 2675 | 문자열 반복 | [🔗](https://www.acmicpc.net/problem/2675) | [📁](./문자열/boj_2675_문자열_반복) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 10820 | 문자열 분석 | [🔗](https://www.acmicpc.net/problem/10820) | [📁](./문자열/boj_10820_문자열_분석) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
-| <img src="https://static.solved.ac/tier_small/2.svg" alt="Bronze IV" width="20"/> | 11720 | 숫자의 합 | [🔗](https://www.acmicpc.net/problem/11720) | [📁](./문자열/boj_11720_숫자의_합) | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
+| <img src="https://static.solved.ac/tier_small/2.svg" alt="Bronze IV" width="20"/> | 11720 | 숫자의 합 | [🔗](https://www.acmicpc.net/problem/11720) | [📁](./문자열/boj_11720_숫자의_합) | ✅ | ✅ | ❌ | ☑️ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/5.svg" alt="Bronze I" width="20"/> | 1157 | 단어 공부 | [🔗](https://www.acmicpc.net/problem/1157) | [📁](./문자열/boj_1157_단어_공부) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/6.svg" alt="Silver V" width="20"/> | 2941 | 크로아티아 알파벳 | [🔗](https://www.acmicpc.net/problem/2941) | [📁](./문자열/boj_2941_크로아티아_알파벳) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | <img src="https://static.solved.ac/tier_small/4.svg" alt="Bronze II" width="20"/> | 5622 | 다이얼 | [🔗](https://www.acmicpc.net/problem/5622) | [📁](./문자열/boj_5622_다이얼) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
