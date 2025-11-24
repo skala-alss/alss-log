@@ -39,19 +39,79 @@ int main()
   }
 #endif
 
+  constexpr int DR[4] = {-1, 0, 1, 0};
+  constexpr int DC[4] = {0, 1, 0, -1};
+
   int N, M;
   cin >> N >> M;
   vector<int> lab(N * N);
-  queue<int> pods;
+  vector<int> pods;
+  int blanks = 0;
   for (int i = 0; i < N * N; ++i)
   {
     cin >> lab[i];
     if (lab[i] == 2)
     {
-      pods.push(i);
+      pods.push_back(i);
       lab[i] = 0;
     }
+    if (lab[i] == 0)
+      ++blanks;
   }
+
+  int best = 1e9;
+  deque<int> q;
+  auto bfs = [&](vector<int> &graph) -> void
+  {
+    int last = 0;
+    int spread = 0;
+    while (!q.empty())
+    {
+      last = graph[q.front()];
+      ++spread;
+      int cr = q.front() / N;
+      int cc = q.front() % N;
+      q.pop_front();
+
+      for (int i = 0; i < 4; ++i)
+      {
+        int nr = cr + DR[i];
+        int nc = cc + DC[i];
+        if (0 <= nr && nr < N && 0 <= nc && nc < N && graph[nr * N + nc] == 0)
+        {
+          graph[nr * N + nc] = graph[cr * N + cc] + 1;
+          q.push_back(nr * N + nc);
+        }
+      }
+    }
+
+    best = blanks == spread ? min(best, last - 1) : best;
+  };
+
+  deque<int> dq;
+  auto dfs = [&](auto &&self, int start) -> void
+  {
+    if (dq.size() == M)
+    {
+      vector<int> graph = lab;
+      for (int &idx : dq)
+        graph[idx] = 1;
+      q = dq;
+      bfs(graph);
+      return;
+    }
+
+    for (int i = start; i < pods.size(); ++i)
+    {
+      dq.push_back(pods[i]);
+      self(self, i + 1);
+      dq.pop_back();
+    }
+  };
+
+  dfs(dfs, 0);
+
+  cout << (best != 1e9 ? best : -1);
 
   return 0;
 }
