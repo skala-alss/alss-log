@@ -56,7 +56,7 @@
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 9663 | N-Queen | [🔗](https://www.acmicpc.net/problem/9663) | [📁](./브루트포스&재귀&백트래킹-고급/boj_9663_N_Queen) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 14502 | 연구소 | [🔗](https://www.acmicpc.net/problem/14502) | [📁](./브루트포스&재귀&백트래킹-고급/boj_14502_연구소) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 15659 | 연산자 끼워넣기 (3) | [🔗](https://www.acmicpc.net/problem/15659) | [📁](./브루트포스&재귀&백트래킹-고급/boj_15659_연산자_끼워넣기_(3)) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 17141 | 연구소 2 | [🔗](https://www.acmicpc.net/problem/17141) | [📁](./브루트포스&재귀&백트래킹-고급/boj_17141_연구소_2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| <img src="https://static.solved.ac/tier_small/12.svg" alt="Gold IV" width="20"/> | 17141 | 연구소 2 | [🔗](https://www.acmicpc.net/problem/17141) | [📁](./브루트포스&재귀&백트래킹-고급/boj_17141_연구소_2) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" alt="Gold III" width="20"/> | 17142 | 연구소 3 | [🔗](https://www.acmicpc.net/problem/17142) | [📁](./브루트포스&재귀&백트래킹-고급/boj_17142_연구소_3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" alt="Gold III" width="20"/> | 16637 | 괄호 추가하기 | [🔗](https://www.acmicpc.net/problem/16637) | [📁](./브루트포스&재귀&백트래킹-고급/boj_16637_괄호_추가하기) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | <img src="https://static.solved.ac/tier_small/13.svg" alt="Gold III" width="20"/> | 17471 | 게리맨더링 | [🔗](https://www.acmicpc.net/problem/17471) | [📁](./브루트포스&재귀&백트래킹-고급/boj_17471_게리맨더링) | ☑️ | ❌ | ❌ | ❌ | ❌ | ❌ |
